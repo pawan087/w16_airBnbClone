@@ -1,39 +1,28 @@
 "use strict";
+
+const { Validator } = require("sequelize");
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Bookings", {
+    return queryInterface.createTable("Images", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       spotId: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      startDate: {
+      url: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(500),
         validate: {
-          customValidator(value) {
-            if (value < Date.now()) {
-              throw new Error("startDate can't be set in the past");
-            }
-          },
-        },
-      },
-      endDate: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        validate: {
-          customValidator(value) {
-            if (value < Date.now()) {
-              throw new Error("endDate can't be set in the past");
+          len: [5, 500],
+          isNotUrl(value) {
+            if (!Validator.isUrl(value)) {
+              throw new Error("Must be a valid url.");
             }
           },
         },
@@ -51,6 +40,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Bookings");
+    return queryInterface.dropTable("Images");
   },
 };
