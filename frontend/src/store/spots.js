@@ -13,7 +13,7 @@ export const getSpots = () => async (dispatch) => {
 
 const initialState = {};
 
-const spotsReducer = (state = initialState, action) => {
+const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SPOTS:
       const newState = {};
@@ -24,4 +24,4 @@ const spotsReducer = (state = initialState, action) => {
   }
 };
 
-export default spotsReducer;
+export default spotReducer;

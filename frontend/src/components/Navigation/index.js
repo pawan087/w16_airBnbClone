@@ -16,6 +16,7 @@ function Navigation({ isLoaded }) {
       <>
         <LoginFormModal />
         <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/spots">Spots</NavLink>
       </>
     );
   }
