@@ -5,17 +5,18 @@ import { getSpots } from "../../store/spots";
 
 export default function SpotsContainer() {
   const dispatch = useDispatch();
-  const spots = useSelector((state) => state.spots);
-  // const spotsArr = Object.values(spots);
-  console.log(spots);
+  const spots = useSelector((state) => state.spot);
+  const spotsArr = Object.values(spots);
 
   useEffect(() => {
     dispatch(getSpots());
   }, [dispatch]);
 
   return (
-    <>
-      <h1>Testing Spots Here</h1>
-    </>
+    <ul>
+      {spotsArr.map((spot) => (
+        <li>{spot.name}</li>
+      ))}
+    </ul>
   );
 }
