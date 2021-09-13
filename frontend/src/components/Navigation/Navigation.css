@@ -1,0 +1,10 @@
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.nav-bar * {
+  margin: 0.5em;
+  list-style-type: none;
+}
