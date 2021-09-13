@@ -18,52 +18,28 @@ module.exports = {
       address: {
         allowNull: false,
         type: Sequelize.STRING(100),
-        validate: {
-          len: [5, 100],
-        },
       },
       city: {
         allowNull: false,
         type: Sequelize.STRING(50),
-        validate: {
-          len: [5, 50],
-        },
       },
       country: {
         allowNull: false,
         type: Sequelize.STRING(50),
-        validate: {
-          len: [5, 50],
-        },
       },
       lat: {
         type: Sequelize.DECIMAL,
-        validate: {
-          min: -90,
-          max: 90,
-        },
       },
       lng: {
         type: Sequelize.DECIMAL,
-        validate: {
-          min: -180,
-          max: 180,
-        },
       },
       name: {
         allowNull: false,
         type: Sequelize.STRING(50),
-        validate: {
-          len: [2, 50],
-        },
       },
       price: {
         allowNull: false,
         type: Sequelize.DECIMAL,
-        validate: {
-          min: 0,
-          max: 1000000,
-        },
       },
       createdAt: {
         allowNull: false,
