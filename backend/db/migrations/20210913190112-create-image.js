@@ -18,14 +18,6 @@ module.exports = {
       url: {
         allowNull: false,
         type: Sequelize.STRING(500),
-        validate: {
-          len: [5, 500],
-          isNotUrl(value) {
-            if (!Validator.isUrl(value)) {
-              throw new Error("Must be a valid url.");
-            }
-          },
-        },
       },
       createdAt: {
         allowNull: false,

@@ -20,9 +20,6 @@ module.exports = {
       review: {
         allowNull: false,
         type: Sequelize.STRING(1000),
-        validate: {
-          len: [5, 1000],
-        },
       },
       createdAt: {
         allowNull: false,

@@ -19,24 +19,10 @@ module.exports = {
       startDate: {
         allowNull: false,
         type: Sequelize.DATE,
-        validate: {
-          customValidator(value) {
-            if (value < Date.now()) {
-              throw new Error("startDate can't be set in the past");
-            }
-          },
-        },
       },
       endDate: {
         allowNull: false,
         type: Sequelize.DATE,
-        validate: {
-          customValidator(value) {
-            if (value < Date.now()) {
-              throw new Error("endDate can't be set in the past");
-            }
-          },
-        },
       },
       createdAt: {
         allowNull: false,
