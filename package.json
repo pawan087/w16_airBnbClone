@@ -1,5 +1,5 @@
 {
-  "name": "authenticate-me",
+  "name": "airBnbClone",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pawan087/w15d3_authenticateMe.git"
+    "url": "git+https://github.com/pawan087/w16_airBnbClone"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pawan087/w15d3_authenticateMe/issues"
+    "url": "https://github.com/pawan087/w16_airBnbClone/issues"
   },
-  "homepage": "https://github.com/pawan087/w15d3_authenticateMe#readme"
+  "homepage": "https://github.com/pawan087/w16_airBnbClone#readme"
 }
