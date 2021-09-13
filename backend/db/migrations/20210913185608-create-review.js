@@ -1,4 +1,5 @@
 "use strict";
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("Reviews", {
@@ -18,7 +19,10 @@ module.exports = {
       },
       review: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(1000),
+        validate: {
+          len: [5, 1000],
+        },
       },
       createdAt: {
         allowNull: false,
