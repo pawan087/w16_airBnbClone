@@ -19,7 +19,6 @@ export const create = (booking) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  // dispatch(setBookings(data));
   return response;
 };
 
