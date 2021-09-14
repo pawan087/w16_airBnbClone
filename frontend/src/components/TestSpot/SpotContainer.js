@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, Route } from "react-router-dom";
 import { getReviews } from "../../store/reviews";
 import { getSpots } from "../../store/spots";
+import ReviewFormContainer from "./ReviewFormContainer";
 
 export default function SpotsContainer() {
   const { spotId } = useParams();
@@ -15,7 +16,7 @@ export default function SpotsContainer() {
   const specificReviews = reviewsArr.filter(
     (review) => review["spotId"] === +spotId
   );
-  console.log(specificReviews);
+  // console.log(specificReviews);
 
   useEffect(() => {
     dispatch(getSpots());
@@ -37,6 +38,8 @@ export default function SpotsContainer() {
           <li>{review.review}</li>
         ))}
       </ul>
+
+      <ReviewFormContainer />
     </>
   );
 }
