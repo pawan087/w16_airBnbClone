@@ -8,7 +8,7 @@ export default function SearchContainer() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [location, setLocation] = useState("");
-  const [startDate, setStateDate] = useState("");
+  const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -17,11 +17,14 @@ export default function SearchContainer() {
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
   let arr = [];
-  let curTime = new Date();
+  let today = new Date();
 
   bookingArr.forEach((booking) => {
-    // console.log(booking.startDate);
-    if (booking["Spot"]["city"].toLowerCase() === location.toLowerCase()) {
+    if (
+      booking["Spot"]["city"].toLowerCase() === location.toLowerCase() &&
+      startDate &&
+      endDate
+    ) {
       if (!(booking.startDate < startDate && endDate < booking.endDate)) {
         if (
           !(
@@ -69,8 +72,9 @@ export default function SearchContainer() {
           Start Date
           <input
             type="date"
+            min={today.toISOString().split("T")[0]}
             value={startDate}
-            onChange={(e) => setStateDate(e.target.value)}
+            onChange={(e) => setStartDate(e.target.value)}
             required
           />
         </label>
@@ -79,6 +83,7 @@ export default function SearchContainer() {
           <input
             type="date"
             value={endDate}
+            min={today.toISOString().split("T")[0]}
             onChange={(e) => setEndDate(e.target.value)}
             required
           />
@@ -88,7 +93,7 @@ export default function SearchContainer() {
 
       <ul>
         {arr.map((e) => (
-          <li>{e.name}</li>
+          <a href={`http://localhost:3000/spots/${e.id}`}>{e.name}</a>
         ))}
       </ul>
     </>
