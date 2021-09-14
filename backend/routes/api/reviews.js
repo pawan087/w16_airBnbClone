@@ -16,14 +16,14 @@ router.post(
   "/new",
   asyncHandler(async (req, res) => {
     const { userId, spotId, review } = req.body;
-    const x = await Review.create({
+    const createdReview = await Review.create({
       userId,
       spotId,
       review,
     });
 
     return res.json({
-      x,
+      createdReview,
     });
   })
 );
