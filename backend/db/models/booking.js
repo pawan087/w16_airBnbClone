@@ -29,6 +29,17 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
+  // Booking.create = async function ({ userId, spotId, startDate, endDate }) {
+  //   const booking = await Booking.create({
+  //     userId,
+  //     spotId,
+  //     startDate,
+  //     endDate,
+  //   });
+
+  //   return booking
+  // };
+
   Booking.associate = function (models) {
     Booking.belongsTo(models.User, { foreignKey: "userId" });
     Booking.belongsTo(models.Spot, { foreignKey: "spotId" });

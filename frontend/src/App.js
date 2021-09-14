@@ -7,6 +7,9 @@ import TestSpot from "./components/TestSpot/SpotContainer";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import TestBookings from "./components/TestBookings/BookingsContainer";
+import TestNewBooking from "./components/NewBooking/BookingFormContainer";
+
+
 function App() {
   const dispatch = useDispatch();
 
@@ -29,8 +32,11 @@ function App() {
           <Route path="/spots/:spotId">
             <TestSpot />
           </Route>
-          <Route path="/bookings">
+          <Route exact path="/bookings">
             <TestBookings />
+          </Route>
+          <Route path="/bookings/new">
+            <TestNewBooking />
           </Route>
         </Switch>
       )}

@@ -28,6 +28,7 @@ function Navigation({ isLoaded }) {
         </NavLink>
         <NavLink to="/spots">Spots</NavLink>
         <NavLink to="/bookings">Bookings</NavLink>
+        <NavLink to="/bookings/new">Book</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
