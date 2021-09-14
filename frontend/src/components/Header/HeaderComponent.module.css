@@ -1,6 +1,6 @@
 .logo {
   position: relative;
-  height: 2.5em;
+  height: 3.5em;
   width: auto;
   object-position: left;
   object-fit: contain;
@@ -12,7 +12,7 @@
   align-items: center;
   align-self: center;
   cursor: pointer;
-  padding: .5em .5em;
+  padding: .5em 1em;
 }
 
 .headerContainer {
@@ -20,10 +20,55 @@
   top: 0;
   z-index: 50;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
+  grid-template-columns: 1fr 1.5fr 1fr;
   background-color: burlywood;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.searchIcon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  background-color: #009cd5;
+  color: white;
+  border-radius: 9999px;
+  padding: 0.5em;
+  cursor: pointer;
+  margin-right: .5em;
+  position: absolute;
+  right: 0;
+
+}
+
+.middleHeader {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.searchInput {
+  border-radius: 9999px;
+  padding: 1.125em 1em;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  --tw-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--tw-text-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.searchInput:focus {
+  border: 0.0625em solid #009cd5;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
 }

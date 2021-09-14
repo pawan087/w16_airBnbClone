@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/pawan087/w16_airBnbClone/issues"
   },
-  "homepage": "https://github.com/pawan087/w16_airBnbClone#readme"
+  "homepage": "https://github.com/pawan087/w16_airBnbClone#readme",
+  "dependencies": {
+    "@heroicons/react": "^1.0.4"
+  }
 }
