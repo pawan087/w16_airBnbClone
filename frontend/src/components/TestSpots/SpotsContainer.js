@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getSpots } from "../../store/spots";
 
 export default function SpotsContainer() {
   const dispatch = useDispatch();
+
   const spots = useSelector((state) => state.spot);
   const spotsArr = Object.values(spots);
 
@@ -13,10 +13,12 @@ export default function SpotsContainer() {
   }, [dispatch]);
 
   return (
-    <ul>
+    <>
       {spotsArr.map((spot) => (
-        <li>{spot.name}</li>
+        <a key={spot.id} href={`http://localhost:3000/spots/${spot.id}`}>
+          {spot.name}
+        </a>
       ))}
-    </ul>
+    </>
   );
 }
