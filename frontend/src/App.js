@@ -10,6 +10,7 @@ import TestBookings from "./components/TestBookings/BookingsContainer";
 import TestNewBooking from "./components/NewBooking/BookingFormContainer";
 import TestSearch from "./components/TestSearch/SearchContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
+import BannerComponent from "./components/Banner/BannerComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ function App() {
   return (
     <>
       <HeaderComponent />
+      <BannerComponent />
+  
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>

@@ -36,7 +36,7 @@ export default function HeaderComponent() {
     "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png";
 
   return (
-    <header className={styles.headerContainer}>
+    <header id='navbar' className={styles.headerContainer}>
       <div>
         <a href='/'>
           <img
