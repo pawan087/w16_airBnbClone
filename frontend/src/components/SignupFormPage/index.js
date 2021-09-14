@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import "./SignupForm.css";
+import styles from "../../components/SignupFormPage/SignupForm.module.css";
 import * as sessionActions from "../../store/session";
 
 function SignupFormPage() {
@@ -32,49 +32,53 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="signup-form">
-      <ul>
+    <form onSubmit={handleSubmit} className={styles.signupForm}>
+      <ul className={styles.errors}>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label className={styles.signupLabel}>
         Email
         <input
           type="text"
+          className={styles.signupInput}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
-      <label>
+      <label className={styles.signupLabel}>
         Username
         <input
           type="text"
           value={username}
+          className={styles.signupInput}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
-      <label>
+      <label className={styles.signupLabel}>
         Password
         <input
           type="password"
           value={password}
+          className={styles.signupInput}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <label>
+      <label className={styles.signupLabel}>
         Confirm Password
         <input
           type="password"
           value={confirmPassword}
+          className={styles.signupInput}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className={styles.signupBtn} type="submit">Sign Up</button>
     </form>
   );
 }

@@ -38,7 +38,13 @@ export default function HeaderComponent() {
   return (
     <header className={styles.headerContainer}>
       <div>
-        <img className={styles.logo} src={imgUrl} alt="airBnbClone-logo"></img>
+        <a href='/'>
+          <img
+            className={styles.logo}
+            src={imgUrl}
+            alt="airBnbClone-logo"
+          ></img>
+        </a>
       </div>
 
       <div className={styles.middleHeader}>
@@ -105,13 +111,28 @@ export default function HeaderComponent() {
 
         {showMenu && (
           <div className={styles.dropDownMenu}>
-            {user ? <NavLink className={styles.headerNavLink} to="/bookings">Bookings</NavLink> : null}
-            {user ? <button className={styles.dropDownItem} onClick={logout}>Log Out</button> : null}
-            {!user ? (
-              <button className={styles.dropDownItem} onClick={() => setShowModal(true)}>Log In</button>
+            {user ? (
+              <NavLink className={styles.headerNavLink} to="/bookings">
+                Bookings
+              </NavLink>
+            ) : null}
+            {user ? (
+              <button className={styles.dropDownItem} onClick={logout}>
+                Log Out
+              </button>
             ) : null}
             {!user ? (
-              <NavLink to='/signup' className={styles.headerNavLink}>Sign Up</NavLink>
+              <button
+                className={styles.dropDownItem}
+                onClick={() => setShowModal(true)}
+              >
+                Log In
+              </button>
+            ) : null}
+            {!user ? (
+              <NavLink to="/signup" className={styles.headerNavLink}>
+                Sign Up
+              </NavLink>
             ) : null}
             {!user ? (
               <button className={styles.dropDownItem}>Demo User</button>

@@ -1,0 +1,65 @@
+.signupForm {
+  margin: 0 auto 0 auto;
+  width: 25%;
+  opacity: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.signupLabel {
+  font-size: .8em;
+  text-align: center;
+  color: #009cd5;
+}
+
+.signupInput {
+  margin: 0.75em 0em;
+  padding: 1em 1em;
+  width: 90%;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 0.5em;
+  --tw-border-opacity: 1;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.signupInput,
+input[type="textarea"] {
+	--tw-bg-opacity: 1;
+background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+  color: #009cd5;
+}
+
+.signupInput:focus {
+  border-color: #009cd5;
+}
+
+.signupBtn {
+  padding: 1em;
+  background: #009cd5;
+  opacity: 75%;
+  font-size: .8em;
+  border: none;
+  border-radius: .25em;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease all;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.signupBtn:hover {
+  opacity: 85%;
+}
+
+.errors {
+  text-decoration: none;
+  list-style: none;
+  color: #009cd5;
+}
