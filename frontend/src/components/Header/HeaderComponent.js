@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { Modal } from "../../context/Modal";
-import LoginForm from '../LoginFormModal/LoginForm';
+import LoginForm from "../LoginFormModal/LoginForm";
 
 export default function HeaderComponent() {
   const dispatch = useDispatch();
@@ -105,9 +105,13 @@ export default function HeaderComponent() {
 
         {showMenu && (
           <div className={styles.dropDownMenu}>
-            {user ? <button onClick={logout}>Log Out</button> : null}
+            {user ? <NavLink className={styles.dropDownItem} to="/bookings">Bookings</NavLink> : null}
+            {user ? <button className={styles.dropDownItem} onClick={logout}>Log Out</button> : null}
             {!user ? (
               <button onClick={() => setShowModal(true)}>Log In</button>
+            ) : null}
+            {!user ? (
+              <button>Demo User</button>
             ) : null}
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>

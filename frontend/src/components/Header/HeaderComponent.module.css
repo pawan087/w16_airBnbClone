@@ -103,3 +103,15 @@
   margin-right: 1em;
   padding: 0.125em 0.25em;
 }
+
+.dropDownMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  width: 10em;
+  height: auto;
+  padding: .5em .5em;
+  background-color: grey;
+  transform: translate(0%, 100%);
+}
