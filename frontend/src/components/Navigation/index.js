@@ -16,18 +16,18 @@ function Navigation({ isLoaded }) {
       <>
         <LoginFormModal />
         <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/spots">Spots</NavLink>
-        <NavLink to="/bookings">Bookings</NavLink>
       </>
     );
   }
 
   return (
-    <ul className='nav-bar'>
+    <ul className="nav-bar">
       <li>
         <NavLink exact to="/">
           Home
         </NavLink>
+        <NavLink to="/spots">Spots</NavLink>
+        <NavLink to="/bookings">Bookings</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
