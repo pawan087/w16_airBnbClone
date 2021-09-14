@@ -8,7 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import TestBookings from "./components/TestBookings/BookingsContainer";
 import TestNewBooking from "./components/NewBooking/BookingFormContainer";
-
+import TestSearch from "./components/TestSearch/SearchContainer";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +38,9 @@ function App() {
           <Route path="/bookings/new">
             <TestNewBooking />
           </Route>
+          <Route path="/search">
+          <TestSearch />
+        </Route>
         </Switch>
       )}
     </>
