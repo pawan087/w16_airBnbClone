@@ -6,7 +6,7 @@ import TestSpots from "./components/TestSpots/SpotsContainer";
 import TestSpot from "./components/TestSpot/SpotContainer";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-
+import TestBookings from "./components/TestBookings/BookingsContainer";
 function App() {
   const dispatch = useDispatch();
 
@@ -28,6 +28,9 @@ function App() {
           </Route>
           <Route path="/spots/:spotId">
             <TestSpot />
+          </Route>
+          <Route path="/bookings">
+            <TestBookings />
           </Route>
         </Switch>
       )}
