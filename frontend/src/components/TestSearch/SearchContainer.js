@@ -17,11 +17,25 @@ export default function SearchContainer() {
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
   let arr = [];
-  console.log(bookingArr[0]);
+  let curTime = new Date();
 
   bookingArr.forEach((booking) => {
+    // console.log(booking.startDate);
     if (booking["Spot"]["city"].toLowerCase() === location.toLowerCase()) {
-      arr.push(booking["Spot"]);
+      if (!(booking.startDate < startDate && endDate < booking.endDate)) {
+        if (
+          !(
+            startDate < booking.startDate &&
+            booking.startDate < endDate &&
+            endDate < booking.endDate
+          )
+        )
+          if (!(startDate < booking.startDate && booking.endDate < endDate)) {
+            if (!(booking.startDate < startDate && booking.endDate < endDate)) {
+              arr.push(booking["Spot"]);
+            }
+          }
+      }
     }
   });
 
