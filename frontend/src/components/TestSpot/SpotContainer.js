@@ -38,7 +38,7 @@ export default function SpotsContainer() {
           <li>{review.review}</li>
         ))}
       </ul>
-      
+
       <ReviewFormContainer />
     </>
   );

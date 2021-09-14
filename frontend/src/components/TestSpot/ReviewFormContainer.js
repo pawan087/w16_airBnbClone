@@ -19,7 +19,7 @@ export default function ReviewFormContainer() {
     return dispatch(
       reviewActions.create({ userId, spotId, review })
     ).catch(async (res) => {
-      const data = await res.json();
+      // const data = await res.json();
     });
   };
 
