@@ -13,10 +13,12 @@ export default function SpotsContainer() {
   }, [dispatch]);
 
   return (
-    <ul>
+    <>
       {spotsArr.map((spot) => (
-        <li>{spot.name}</li>
+        <a key={spot.id} href={`http://localhost:3000/spots/${spot.id}`}>
+          {spot.name}
+        </a>
       ))}
-    </ul>
+    </>
   );
 }
