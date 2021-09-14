@@ -105,13 +105,16 @@ export default function HeaderComponent() {
 
         {showMenu && (
           <div className={styles.dropDownMenu}>
-            {user ? <NavLink className={styles.dropDownItem} to="/bookings">Bookings</NavLink> : null}
+            {user ? <NavLink className={styles.headerNavLink} to="/bookings">Bookings</NavLink> : null}
             {user ? <button className={styles.dropDownItem} onClick={logout}>Log Out</button> : null}
             {!user ? (
-              <button onClick={() => setShowModal(true)}>Log In</button>
+              <button className={styles.dropDownItem} onClick={() => setShowModal(true)}>Log In</button>
             ) : null}
             {!user ? (
-              <button>Demo User</button>
+              <NavLink to='/signup' className={styles.headerNavLink}>Sign Up</NavLink>
+            ) : null}
+            {!user ? (
+              <button className={styles.dropDownItem}>Demo User</button>
             ) : null}
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>
