@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import TestBookings from "./components/TestBookings/BookingsContainer";
 import TestNewBooking from "./components/NewBooking/BookingFormContainer";
 import TestSearch from "./components/TestSearch/SearchContainer";
+import HeaderComponent from "./components/Header/HeaderComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+      <HeaderComponent />
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -39,8 +41,8 @@ function App() {
             <TestNewBooking />
           </Route>
           <Route path="/search">
-          <TestSearch />
-        </Route>
+            <TestSearch />
+          </Route>
         </Switch>
       )}
     </>
