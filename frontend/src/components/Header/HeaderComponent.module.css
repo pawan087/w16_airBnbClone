@@ -41,7 +41,13 @@
   cursor: pointer;
   margin-right: 0.5em;
   position: absolute;
+  opacity: 85%;
+  transition: 0.2s ease all;
   right: 0;
+}
+
+.searchIcon:hover {
+  opacity: 95%;
 }
 
 .middleHeader {
@@ -67,6 +73,7 @@
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
 }
 
 .searchInput:focus {
@@ -105,7 +112,7 @@
 }
 
 .dropDownMenu {
-  opacity: 97.5%;
+  opacity: 98%;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -125,21 +132,22 @@
 .dropDownItem {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  transition: 0.2s ease all;
   cursor: pointer;
   outline: none;
   opacity: 75%;
   border: none;
-  border-radius: .125em;
+  border-radius: 0.125em;
   text-decoration: none;
-  font-size: .75em;
-  padding: .5em;
+  font-size: 0.775em;
+  padding: 0.5em;
   display: flex;
   justify-content: Center;
   align-self: center;
   color: #009cd5;
   width: 75%;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-  var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .dropDownItem:hover {
@@ -156,17 +164,18 @@
   outline: none;
   opacity: 75%;
   border: none;
-  border-radius: .125em;
+  border-radius: 0.125em;
   text-decoration: none;
-  font-size: .75em;
-  padding: .5em;
+  font-size: 0.775em;
+  padding: 0.5em;
   display: flex;
   justify-content: Center;
   align-self: center;
   color: white;
+  transition: 0.2s ease all;
   width: 75%;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-  var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   background: #009cd5;
 }
 
