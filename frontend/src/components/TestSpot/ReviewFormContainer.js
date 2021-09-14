@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as bookingActions from "../../store/bookings";
+import * as reviewActions from "../../store/reviews";
 
 export default function ReviewFormContainer() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [userId, setUserId] = useState("");
   const [spotId, setSpotId] = useState("");
-  const [reviewContent, setReviewContent] = useState("");
+  const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/" />;
@@ -17,7 +17,7 @@ export default function ReviewFormContainer() {
     e.preventDefault();
 
     return dispatch(
-      bookingActions.create({ userId, spotId, reviewContent })
+      reviewActions.create({ userId, spotId, review })
     ).catch(async (res) => {
       const data = await res.json();
     });
@@ -47,8 +47,8 @@ export default function ReviewFormContainer() {
         Leave a review
         <input
           type="textarea"
-          value={reviewContent}
-          onChange={(e) => setReviewContent(e.target.value)}
+          value={review}
+          onChange={(e) => setReview(e.target.value)}
           required
         />
       </label>
