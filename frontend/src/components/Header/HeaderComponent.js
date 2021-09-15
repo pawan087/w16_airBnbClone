@@ -61,7 +61,8 @@ export default function HeaderComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
-    history.push("/signup");
+    setSearchInput("");
+    history.push("/search");
   };
 
   let imgUrl =
@@ -192,7 +193,7 @@ export default function HeaderComponent() {
             <button onClick={resetInput} className={styles.cancelSearchBtn}>
               Cancel
             </button>
-            <button className={styles.submitSearchBtn}>Search</button>
+            <button onClick={handleSubmit} className={styles.submitSearchBtn}>Search</button>
           </div>
         </div>
       )}
