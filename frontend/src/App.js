@@ -21,13 +21,13 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // <FooterComponent />
-
+  <FooterComponent />;
+  <Navigation isLoaded={isLoaded} />;
   return (
     <>
       <HeaderComponent />
       <BannerComponent />
-      <Navigation isLoaded={isLoaded} />
+      <FooterComponent />;
       {isLoaded && (
         <Switch>
           <Route path="/signup">
