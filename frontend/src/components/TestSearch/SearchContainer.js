@@ -8,13 +8,15 @@ export default function SearchContainer() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const searchCriteria = useSelector((state) => state.search);
+  const images = useSelector((state) => state.images);
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
 
   if (searchCriteria.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
   if (searchCriteria.endDate)
-  searchedEndDate = searchedEndDate.toISOString().split("T")[0];
+    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
+
   const [location, setLocation] = useState(searchCriteria.searchInput);
   const [startDate, setStartDate] = useState(searchedStartDate);
   const [endDate, setEndDate] = useState(searchedEndDate);
@@ -24,7 +26,9 @@ export default function SearchContainer() {
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
   let arr = [];
+
   let today = new Date();
+
   bookingArr.forEach((booking) => {
     if (booking["Spot"]["city"] === location && startDate && endDate) {
       if (!(booking.startDate < startDate && endDate < booking.endDate)) {
@@ -47,6 +51,7 @@ export default function SearchContainer() {
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());
+    // dispatch(getImages());
   }, [dispatch, searchCriteria]);
 
   // if (!sessionUser) return <Redirect to="/" />;
@@ -93,11 +98,16 @@ export default function SearchContainer() {
         <button type="submit">Search</button>
       </form>
 
-      <ul>
+      <div>
         {arr.map((e) => (
-          <a href={`http://localhost:3000/spots/${e.id}`}>{e.name}</a>
+          <div>
+            <h3>{arr.length}</h3>
+            <a key={e.id} href={`http://localhost:3000/spots/${e.id}`}>
+              {e.name}
+            </a>
+          </div>
         ))}
-      </ul>
+      </div>
     </>
   );
 }

@@ -256,7 +256,7 @@
   background-color: transparent;
   cursor: pointer;
   opacity: 75%;
-  transform: scale(1.25);
+  transform: scale(1);
   transition: 0.2s ease all;
     text-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -271,24 +271,24 @@
   background-color: transparent;
   cursor: pointer;
   opacity: 75%;
-  transform: scale(1.25);
+  transform: scale(1);
   transition: 0.2s ease all;
     text-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .submitSearchBtn:hover {
-  transform: scale(1.5);
+  transform: scale(1.25);
   opacity: 100%;
 }
 .submitSearchBtn:active {
-  transform: scale(1);
+  transform: scale(.75);
 }
 
 .cancelSearchBtn:hover {
-  transform: scale(1.5);
+  transform: scale(1.25);
   opacity: 100%;
 }
 .cancelSearchBtn:active {
-  transform: scale(1);
+  transform: scale(.75);
 }
