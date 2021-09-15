@@ -2,9 +2,20 @@
   display: relative;
 }
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .bannerImg {
   width: 100%;
   height: 100%;
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+  animation: fadein 1s;
 }
 
 .splashText {
@@ -18,6 +29,8 @@
   width: auto;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
+  animation: fadein 0.5s;
 }
 
 .splashBtn {
@@ -44,5 +57,5 @@
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .splashBtn:active {
-  transform: scale(0.9);
+  transform: scale(0.85);
 }
