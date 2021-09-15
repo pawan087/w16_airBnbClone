@@ -1,0 +1,66 @@
+.imgContainer {
+    position: relative;
+    width: 20rem;
+    height: 13rem;
+    flex-shrink: 0;
+    justify-content: space-between;
+  }
+
+  .img {
+    position: absolute;
+    width: 20rem;
+    object-fit: cover;
+    height: 13rem;
+  }
+
+  .heartIcon {
+    width: 1.75em;
+  }
+
+  .detailContainer {
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* padding-left: 10em; */
+  }
+
+  .cardContainer {
+    display: flex;
+  }
+
+  .spotMain {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .divisor {
+    border-bottom: 0.0625em solid #009cd5;
+    width: 2.5em;
+  }
+
+  .detail {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    --tw-text-opacity: 1;
+    color: rgba(107, 114, 128, var(--tw-text-opacity));
+    flex-grow: 1;
+  }
+
+  .resultsHeader {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+  }
+
+  .resultsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
