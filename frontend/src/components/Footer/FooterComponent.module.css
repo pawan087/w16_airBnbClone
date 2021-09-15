@@ -1,0 +1,22 @@
+.footer {
+	--tw-bg-opacity: 1;
+background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: absolute;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  left: 0;
+  width: 100%;
+  opacity: 85%;
+}
+
+.footerLogo {
+  position: relative;
+  margin-top: .125em;
+  margin-right: 1em;
+  height: 3em;
+  width: auto;
+  cursor: pointer;
+}
