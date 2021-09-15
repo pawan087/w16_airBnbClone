@@ -121,6 +121,7 @@ export default function SearchContainer() {
             required
           />
         </label>
+
         <label>
           Start Date
           <input
@@ -131,6 +132,7 @@ export default function SearchContainer() {
             required
           />
         </label>
+
         <label>
           End Date
           <input
@@ -141,6 +143,7 @@ export default function SearchContainer() {
             required
           />
         </label>
+
         <button type="submit">Search</button>
       </form>
 
@@ -158,8 +161,7 @@ export default function SearchContainer() {
             <h1 className={styles.resultsHeader}>Stays in {location}</h1>
           )}
 
-          {startDate &&
-            endDate &&
+          {
             arr.map((spot) => (
               <div className={styles.resultsContainer}>
                 <div className={styles.cardContainer}>
@@ -175,6 +177,7 @@ export default function SearchContainer() {
                   <div className={styles.results}>
                     <div className={styles.detailContainer}>
                       <p>{spot.city}</p>
+
                       <div className={styles.heartIcon}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -201,10 +204,11 @@ export default function SearchContainer() {
                       {spot.address} {spot.city} {spot.country}
                     </p>
 
-                    <div>
+                    <div className={styles.priceDetail}>
                       <div>
-                        <p>{spot.price}</p>
-                        <p>TOTAL</p>
+                        <p className={styles.price}>{spot.price}</p>
+
+                        <p className={styles.total}>{spot.price * dayCount}</p>
                       </div>
                     </div>
                   </div>
