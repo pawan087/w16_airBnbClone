@@ -61,7 +61,6 @@ export default function SearchContainer() {
     }
   });
 
-  console.log(searchResultsObj);
   const arr = Object.values(searchResultsObj);
   let today = new Date();
 
@@ -135,13 +134,16 @@ export default function SearchContainer() {
       </form>
 
       <div>
-        {startDate && endDate && arr.map((s) => (
-          <div>
-            <a key={s.id} href={`http://localhost:3000/spots/${s.id}`}>
-              {s.name}
-            </a>
-          </div>
-        ))}
+        {startDate &&
+          endDate &&
+          arr.map((s) => (
+            <div>
+              <a key={s.id} href={`http://localhost:3000/spots/${s.id}`}>
+                {s.name}
+              </a>
+              <img src={s.Images[0].url}></img>
+            </div>
+          ))}
       </div>
     </>
   );
