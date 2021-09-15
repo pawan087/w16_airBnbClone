@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
 import { getSpots } from "../../store/spots";
-import ResultsContainer from "./ResultsContainer";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
 export default function SearchContainer() {
   const dispatch = useDispatch();
@@ -150,12 +149,12 @@ export default function SearchContainer() {
       <main>
         <section>
           {!arr.length && startDate && endDate && (
-            <p>
+            <p className={styles.subHeader}>
               Sorry, there are no spots available in {location} between{" "}
               {startDate} and {endDate}.
             </p>
           )}
-          {arr.length > 0 && <p>{arr.length} Spot(s) Available</p>}
+          {arr.length > 0 && <h3 className={styles.subHeader}>{arr.length} Spot(s) Available</h3>}
 
           {arr.length > 0 && (
             <h1 className={styles.resultsHeader}>Stays in {location}</h1>
@@ -178,39 +177,24 @@ export default function SearchContainer() {
 
                   <div className={styles.results}>
                     <div className={styles.detailContainer}>
-                      <p>{spot.city}</p>
 
-                      <div className={styles.heartIcon}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                          />
-                        </svg>
-                      </div>
+
+
                     </div>
 
-                    <h4 className={styles.spotName}>{spot.name}</h4>
+                    <span className={styles.spotName}>{spot.name}</span>
 
                     <div className={styles.divisor} />
 
                     <p className={styles.detail}>
-                      {spot.address} {spot.city} {spot.country}
+                      {spot.address}, {spot.city}, {spot.country}
                     </p>
 
                     <div className={styles.priceDetail}>
                       <div>
-                        <p className={styles.price}>{spot.price}</p>
+                        <p className={styles.price}>${spot.price}/night</p>
 
-                        <p className={styles.total}>{spot.price * dayCount}</p>
+                        <p className={styles.total}>total ${spot.price * dayCount}</p>
                       </div>
                     </div>
                   </div>
