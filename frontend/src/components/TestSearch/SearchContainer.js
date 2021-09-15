@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
 import { getSpots } from "../../store/spots";
+import ResultsContainer from "./ResultsContainer";
 
 export default function SearchContainer() {
   const dispatch = useDispatch();
@@ -132,6 +133,8 @@ export default function SearchContainer() {
         </label>
         <button type="submit">Search</button>
       </form>
+
+      <ResultsContainer startDate={startDate} endDate={endDate} input={location} results={arr}></ResultsContainer>
 
       <div>
         {startDate &&
