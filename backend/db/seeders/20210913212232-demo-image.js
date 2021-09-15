@@ -17,6 +17,10 @@ module.exports = {
           spotId: 1,
           url: "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1946&q=80",
         },
+        {
+          spotId: 4,
+          url: "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2090&q=80",
+        },
       ],
       {}
     );

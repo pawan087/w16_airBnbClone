@@ -35,6 +35,16 @@ module.exports = {
           name: "Bnb on Black",
           price: 300.0,
         },
+        {
+          userId: "1",
+          address: "987 Brown Blvd.",
+          city: "San Francisco",
+          country: "United States of America",
+          lat: null,
+          lng: null,
+          name: "Bnb on Brown",
+          price: 400.0,
+        },
       ],
       {}
     );
@@ -45,7 +55,14 @@ module.exports = {
     return queryInterface.bulkDelete(
       "Spots",
       {
-        name: { [Op.in]: ["Bnb on Main", "Bnb on White", "Bnb on Black"] },
+        name: {
+          [Op.in]: [
+            "Bnb on Main",
+            "Bnb on White",
+            "Bnb on Black",
+            "Bnb on Brown",
+          ],
+        },
       },
       {}
     );
