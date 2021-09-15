@@ -1,25 +1,38 @@
 .outerContainer {
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 25%;
-  background-color: red;
+  width: 22.5em;
+  --tw-bg-opacity: 1;
+  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   margin-bottom: 2.5em;
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   justify-content: center;
   justify-items: center;
+  border-radius: 0.5em;
+  border: 1px solid rgb(243, 244, 246);
   justify-self: center;
   align-content: center;
   align-items: center;
   align-self: center;
+  transition: 0.2s ease all;
+  float: right;
+  margin-right: 5em;
+}
+
+.outerContainer:hover {
+    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .header {
   display: flex;
-  background-color: royalblue;
   margin-top: 0.75em;
   font-size: 1.25em;
   justify-content: center;
   justify-items: center;
+  color: #009cd5;
   justify-self: center;
   align-content: center;
   align-items: baseline;
@@ -32,14 +45,17 @@
   margin-left: 0.25em;
   font-weight: normal;
   font-size: 0.75rem;
+  color: rgb(75, 85, 99);
 }
 
 .inputsContainer {
-  background-color: yellow;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-flow: row;
-  width: 75%;
+  background-color: transparent;
+}
+
+.datesInputContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .inputContainer {
@@ -51,25 +67,41 @@
   align-content: center;
   align-items: center;
   align-self: center;
-  border: 1px solid black;
+  border-top-right-radius: 0.5em;
+  border: .0625em solid rgb(156, 163, 175);
+}
+
+.inputContainer:first-child {
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0;
+  border-right: none;
 }
 
 .guestInputContainer {
-  grid-column: span 2 / span 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-items: center;
   justify-self: center;
-  width: 100%;
-  align-content: center;
   align-items: center;
-  align-self: center;
+  width: 99%;
+  border: .0625em solid rgb(156, 163, 175);
+  border-bottom-right-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border-top: none;
 }
 
 .label {
-  font-size: 0.75em;
+  font-size: 0.68em;
+  color: rgb(75, 85, 99);
   font-weight: bold;
+
+}
+
+.guestLabel {
+  font-size: 0.68em;
+  color: rgb(75, 85, 99);
+  font-weight: bold;
+
 }
 
 .dateInput,
@@ -78,6 +110,7 @@
   width: 100%;
   outline: none;
   border: none;
+  color: rgb(75, 85, 99);
   background-color: transparent;
   cursor: pointer;
   justify-content: center;
@@ -87,11 +120,12 @@
   align-items: center;
   align-self: center;
   height: 2.25em;
+  box-sizing: border-box;
 }
 
 .btnContainer {
   cursor: pointer;
-  width: 75%;
+  width: 73%;
 }
 
 .btn {
@@ -104,9 +138,19 @@
   background-color: #009cd5;
   color: white;
   font-size: 0.75em;
+  border-radius: 0.5em;
   font-weight: bold;
+  transition: 0.2s ease all;
+  opacity: 85%;
 }
 
+.btn:hover {
+  opacity: 100%;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
 .detailsContainer {
   width: 75%;
   display: grid;
@@ -124,11 +168,13 @@
 
 .detail {
   font-weight: bold;
-  text-decoration: underline;
+
   font-size: 0.75em;
+  color: rgb(75, 85, 99);
 }
 .detailTotal {
   font-size: 0.75em;
+  color: rgb(75, 85, 99);
 }
 
 .divisorContainer {
@@ -137,7 +183,7 @@
 
 .divisor {
   width: 100%;
-  border-top: 0.125em solid black;
+  border-top: 0.125em solid #009cd5;
 }
 
 .footer {
@@ -148,5 +194,6 @@
 
 .footerDetail {
   font-weight: bold;
+  color: #009cd5;
   font-size: 0.75em;
 }

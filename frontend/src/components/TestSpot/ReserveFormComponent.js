@@ -6,16 +6,18 @@ export default function ReserveFormComponent() {
         $489<span className={styles.perNight}>/night</span>
       </div>
       <div className={styles.inputsContainer}>
-        <div className={styles.inputContainer}>
-          <label className={styles.label}>Check-In</label>
-          <input className={styles.dateInput} type="date"></input>
-        </div>
-        <div className={styles.inputContainer}>
-          <label className={styles.label}>Check-Out</label>
-          <input className={styles.dateInput} type="date"></input>
+        <div className={styles.datesInputContainer}>
+          <div className={styles.inputContainer}>
+            <label className={styles.label}>Check-In</label>
+            <input className={styles.dateInput} type="date"></input>
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label}>Check-Out</label>
+            <input className={styles.dateInput} type="date"></input>
+          </div>
         </div>
         <div className={styles.guestInputContainer}>
-          <label className={styles.label}>Guests</label>
+          <label className={styles.guestLabel}>Guests</label>
           <input className={styles.guestInput} type="number"></input>
         </div>
       </div>
