@@ -16,18 +16,18 @@ import FooterComponent from "./components/Footer/FooterComponent";
 function App() {
   const dispatch = useDispatch();
 
-  // <Navigation isLoaded={isLoaded} />
-
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  // <FooterComponent />
+
   return (
     <>
       <HeaderComponent />
       <BannerComponent />
-      <FooterComponent />
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/signup">
