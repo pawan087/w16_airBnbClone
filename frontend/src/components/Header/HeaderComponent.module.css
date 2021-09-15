@@ -1,3 +1,6 @@
+.leftHeader {
+}
+
 .logo {
   position: relative;
   height: 3.5em;
@@ -12,7 +15,12 @@
   align-items: center;
   align-self: center;
   cursor: pointer;
-  padding: 0.5em 1em;
+  padding: 0.5em 1.5em;
+  transition-duration: 150ms;
+}
+
+.logo:active {
+  transform: scale(0.95);
 }
 
 .headerContainer {
@@ -21,14 +29,14 @@
   z-index: 50;
   display: grid;
   /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
-  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   --tw-bg-opacity: 1;
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    transition: 0.2s ease all;
+  transition: 0.2s ease all;
 }
 
 .searchIcon {
@@ -43,8 +51,12 @@
   margin-right: 0.5em;
   position: absolute;
   opacity: 85%;
-  transition: 0.2s ease all;
+  transition-duration: 150ms;
   right: 0;
+}
+
+.searchIcon:active {
+  transform: scale(0.9);
 }
 
 .searchIcon:hover {
@@ -64,6 +76,7 @@
   font-size: 0.8em;
 
   border: none;
+  transition-duration: 150ms;
   outline: none;
   flex-grow: 1;
   --tw-text-opacity: 1;
@@ -74,6 +87,10 @@
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.searchInput:active {
+  transform: scale(1.01);
 }
 
 .searchInput:focus {
@@ -94,6 +111,7 @@
   height: auto;
   display: flex;
   align-items: center;
+  color: #009cd5;
 }
 
 .rightIconsContainer {
@@ -109,15 +127,20 @@
   cursor: pointer;
   margin-right: 1em;
   padding: 0.125em 0.25em;
+  transition-duration: 150ms;
+}
+
+.rightIconsContainer:active {
+  transform: scale(0.95);
 }
 
 .dropDownMenu {
-  opacity: 98%;
+  opacity: 97.5%;
   display: flex;
   flex-direction: column;
   position: absolute;
   bottom: 0;
-  width: 10em;
+  width: 7.5em;
   height: auto;
   border-radius: 0.5em;
   padding: 0.5em 0.5em;
@@ -127,6 +150,17 @@
   background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  -webkit-animation: fadein 0.33s; /* Safari, Chrome and Opera > 12.1 */
+  animation: fadein 0.33s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .dropDownItem {
@@ -142,12 +176,17 @@
   font-size: 0.775em;
   padding: 0.5em;
   display: flex;
+  transition-duration: 150ms;
   justify-content: Center;
   align-self: center;
   color: #009cd5;
   width: 75%;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.dropDownItem:active {
+  transform: scale(0.95);
 }
 
 .dropDownItem:hover {

@@ -1,23 +1,48 @@
-.bannerImg {
-    width: 100%;
-    height: 100%;
-}
-
-/* .imgContainer {
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+.splashContainer {
+  display: relative;
 }
 
 .bannerImg {
+  width: 100%;
+  height: 100%;
+}
+
+.splashText {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  min-width: 50%;
-  min-height: 50%;
-} */
+  background-color: transparent;
+  font-weight: bold;
+  font-size: .9em;
+  text-align: center;
+  color: #009cd5;
+  top: 50%;
+  width: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.splashBtn {
+  color: #009cd5;
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  outline: none;
+  font-weight: bold;
+  border: none;
+  padding: 1em 3em;
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-radius: 2.5em;
+  cursor: pointer;
+  transition-duration: 150ms;
+}
+
+.splashBtn:hover {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.splashBtn:active {
+  transform: scale(0.9);
+}

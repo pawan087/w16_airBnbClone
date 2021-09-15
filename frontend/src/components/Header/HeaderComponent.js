@@ -37,7 +37,7 @@ export default function HeaderComponent() {
 
   return (
     <header id='navbar' className={styles.headerContainer}>
-      <div>
+      <div className={styles.leftHeader}>
         <a href='/'>
           <img
             className={styles.logo}
