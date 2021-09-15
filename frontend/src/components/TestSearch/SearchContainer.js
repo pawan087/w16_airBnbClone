@@ -161,6 +161,8 @@ export default function SearchContainer() {
             <h1 className={styles.resultsHeader}>Stays in {location}</h1>
           )}
 
+          <div className={styles.divisor2} />
+
           {
             arr.map((spot) => (
               <div className={styles.resultsContainer}>

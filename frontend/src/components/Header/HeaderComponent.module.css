@@ -17,6 +17,7 @@
   cursor: pointer;
   padding: 0.5em 1.5em;
   transition-duration: 150ms;
+  
 }
 
 .logo:active {
