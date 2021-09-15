@@ -11,6 +11,24 @@
     />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <script>
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 25 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          document.getElementById("navbar").style.background = "transparent";
+        } else {
+          document.getElementById("navbar").style.background = "#F3F4F6";
+        }
+      }
+    </script>
+
     <title>React Template</title>
     <script
       src="https://kit.fontawesome.com/fd43fa86c2.js"
