@@ -16,7 +16,7 @@ import { DateRangePicker } from "react-date-range";
 export default function HeaderComponent() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -33,6 +33,34 @@ export default function HeaderComponent() {
     if (showMenu) return;
     setShowMenu(true);
   };
+
+  // if (showMenu) {
+  //   let dropDownMenu = document.querySelector("#dropDownMenu");
+  //   dropDownMenu.style.display = "flex";
+  // }
+
+  // if (showMenu === false) {
+  //   let dropDownMenu = document.querySelector("#dropDownMenu");
+  //   // dropDownMenu.style.display = "hidden";
+  // }
+
+  const toggleMenu = () => {
+    if (showMenu === false) {
+      let dropDownMenu = document.querySelector("#dropDownMenu");
+      dropDownMenu.style.display = "none";
+      setShowMenu(true);
+      return;
+    }
+    if (showMenu === true) {
+      let dropDownMenu = document.querySelector("#dropDownMenu");
+      dropDownMenu.style.display = "flex";
+      setShowMenu(false);
+      return;
+    }
+  };
+
+
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -44,6 +72,7 @@ export default function HeaderComponent() {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu, searchInput]);
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
@@ -108,7 +137,7 @@ export default function HeaderComponent() {
       </div>
 
       <div className={styles.rightHeader}>
-        <div className={styles.rightIconsContainer} onClick={openMenu}>
+        <div className={styles.rightIconsContainer} onClick={toggleMenu}>
           <div className={styles.menuIcon}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -144,42 +173,40 @@ export default function HeaderComponent() {
           </div>
         </div>
 
-        {showMenu && (
-          <div className={styles.dropDownMenu}>
-            <div className={styles.dropDownHeader}>Welcome, Pawan.</div>
-            {user ? (
-              <NavLink className={styles.headerNavLink} to="/bookings">
-                Bookings
-              </NavLink>
-            ) : null}
-            {user ? (
-              <button className={styles.dropDownItem} onClick={logout}>
-                Log Out
-              </button>
-            ) : null}
-            {!user ? (
-              <button
-                className={styles.dropDownItem}
-                onClick={() => setShowModal(true)}
-              >
-                Log In
-              </button>
-            ) : null}
-            {!user ? (
-              <NavLink to="/signup" className={styles.headerNavLink}>
-                Sign Up
-              </NavLink>
-            ) : null}
-            {!user ? (
-              <button className={styles.dropDownItem}>Demo User</button>
-            ) : null}
-            {showModal && (
-              <Modal onClose={() => setShowModal(false)}>
-                <LoginForm />
-              </Modal>
-            )}
-          </div>
-        )}
+        <div id="dropDownMenu" className={styles.dropDownMenu}>
+          <div className={styles.dropDownHeader}>Welcome, Pawan.</div>
+          {user ? (
+            <NavLink className={styles.headerNavLink} to="/bookings">
+              Bookings
+            </NavLink>
+          ) : null}
+          {user ? (
+            <button className={styles.dropDownItem} onClick={logout}>
+              Log Out
+            </button>
+          ) : null}
+          {!user ? (
+            <button
+              className={styles.dropDownItem}
+              onClick={() => setShowModal(true)}
+            >
+              Log In
+            </button>
+          ) : null}
+          {!user ? (
+            <NavLink to="/signup" className={styles.headerNavLink}>
+              Sign Up
+            </NavLink>
+          ) : null}
+          {!user ? (
+            <button className={styles.dropDownItem}>Demo User</button>
+          ) : null}
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              <LoginForm />
+            </Modal>
+          )}
+        </div>
       </div>
       {searchInput && (
         <div className={styles.dateRangePickerContainer}>
