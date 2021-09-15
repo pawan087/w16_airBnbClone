@@ -24,12 +24,8 @@ export default function SpotsContainer() {
   if (spot[0]) {
     showSpot = true;
   }
-  let image;
-  if (specificImages[0]) {
-    image = specificImages[0].url;
-  } else {
-    image = '';
-  }
+
+  // const image = specificImages[0].url;
 
   useEffect(() => {
     dispatch(getSpots());
@@ -39,7 +35,7 @@ export default function SpotsContainer() {
 
   if (!spot) return <Redirect to="/" />;
 
-/*   <ul>
+  /*   <ul>
     {specificReviews.map((review) => (
       <li>{review.review}</li>
     ))}
@@ -47,36 +43,7 @@ export default function SpotsContainer() {
 
   return (
     <>
-      {showSpot && <div className={styles.resultsContainer}>
-        <div className={styles.cardContainer}>
-          <div className={styles.imgContainer}>
-            <img
-              className={styles.img}
-              layout="fill"
-              objectFit="cover"
-              src={image}
-            />
-          </div>
-
-          <div className={styles.results}>
-            <div className={styles.detailContainer}></div>
-
-            <span className={styles.spotName}>{spot[0].name}</span>
-
-            <div className={styles.divisor} />
-
-            <p className={styles.detail}>
-              {spot[0].address}, {spot[0].city}, {spot[0].country}
-            </p>
-
-            <div className={styles.priceDetail}>
-              <div>
-                <p className={styles.price}>${spot[0].price}/night</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>}
+      {showSpot && <h3>{spot[0].name}</h3>}
       <ReviewFormContainer />
     </>
   );

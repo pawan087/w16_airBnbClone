@@ -20,16 +20,8 @@ export default function SpotsContainer() {
   );
   const imagesArr = Object.values(images);
   const specificImages = imagesArr.filter((image) => image.spotId === +spotId);
-  let showSpot = false;
-  if (spot[0]) {
-    showSpot = true;
-  }
-  let image;
-  if (specificImages[0]) {
-    image = specificImages[0].url;
-  } else {
-    image = '';
-  }
+
+  // const image = specificImages[0].url;
 
   useEffect(() => {
     dispatch(getSpots());
@@ -47,14 +39,14 @@ export default function SpotsContainer() {
 
   return (
     <>
-      {showSpot && <div className={styles.resultsContainer}>
+      <div className={styles.resultsContainer}>
         <div className={styles.cardContainer}>
           <div className={styles.imgContainer}>
             <img
               className={styles.img}
               layout="fill"
               objectFit="cover"
-              src={image}
+              src={''}
             />
           </div>
 
@@ -76,7 +68,7 @@ export default function SpotsContainer() {
             </div>
           </div>
         </div>
-      </div>}
+      </div>
       <ReviewFormContainer />
     </>
   );
