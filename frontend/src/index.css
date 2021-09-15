@@ -8,3 +8,12 @@ body {
   height: 100%;
   min-height: 100%;
 }
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #009cd5;
+  outline: .25em solid transparent;
+}

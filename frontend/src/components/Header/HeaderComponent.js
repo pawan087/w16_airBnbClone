@@ -1,17 +1,34 @@
 import styles from "../../components/Header/HeaderComponent.module.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import * as searchAction from "../../store/search";
 import * as sessionActions from "../../store/session";
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
+import { useHistory } from "react-router-dom";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
 
 export default function HeaderComponent() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const user = useSelector((state) => state.session.user);
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -26,19 +43,34 @@ export default function HeaderComponent() {
     document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  }, [showMenu, searchInput]);
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+  };
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
+  const resetInput = () => {
+    setSearchInput("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
+    history.push("/signup");
   };
 
   let imgUrl =
     "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png";
 
   return (
-    <header id='navbar' className={styles.headerContainer}>
+    <header id="navbar" className={styles.headerContainer}>
       <div className={styles.leftHeader}>
-        <a href='/'>
+        <a href="/">
           <img
             className={styles.logo}
             src={imgUrl}
@@ -51,10 +83,12 @@ export default function HeaderComponent() {
         <input
           className={styles.searchInput}
           type="text"
-          placeholder="Start your next adventure"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          placeholder="Find your next adventure"
         />
 
-        <div className={styles.searchIcon}>
+        <div onClick={handleSubmit} className={styles.searchIcon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -145,6 +179,23 @@ export default function HeaderComponent() {
           </div>
         )}
       </div>
+      {searchInput && (
+        <div className={styles.dateRangePickerContainer}>
+          <DateRangePicker
+            className={styles.dateRangePicker}
+            onChange={handleSelect}
+            rangeColors={["#009cd5"]}
+            minDate={new Date()}
+            ranges={[selectionRange]}
+          />
+          <div className={styles.searchBtnsContainer}>
+            <button onClick={resetInput} className={styles.cancelSearchBtn}>
+              Cancel
+            </button>
+            <button className={styles.submitSearchBtn}>Search</button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
