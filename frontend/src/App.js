@@ -11,9 +11,12 @@ import TestNewBooking from "./components/NewBooking/BookingFormContainer";
 import TestSearch from "./components/TestSearch/SearchContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import BannerComponent from "./components/Banner/BannerComponent";
+import FooterComponent from "./components/Footer/FooterComponent";
 
 function App() {
   const dispatch = useDispatch();
+
+  // <Navigation isLoaded={isLoaded} />
 
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -24,8 +27,7 @@ function App() {
     <>
       <HeaderComponent />
       <BannerComponent />
-  
-      <Navigation isLoaded={isLoaded} />
+      <FooterComponent />
       {isLoaded && (
         <Switch>
           <Route path="/signup">
