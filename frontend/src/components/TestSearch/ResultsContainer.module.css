@@ -1,0 +1,10 @@
+.resultsHeader {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+}

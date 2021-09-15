@@ -28,6 +28,7 @@ function App() {
       <HeaderComponent />
       <BannerComponent />
       <FooterComponent />;
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/signup">
