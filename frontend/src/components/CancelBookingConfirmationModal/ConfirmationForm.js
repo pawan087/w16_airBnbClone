@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 import { Redirect } from "react-router-dom";
 import * as bookingActions from "../../store/bookings";
-function ConfirmationForm() {
+function ConfirmationForm({ bookingId, startDate, endDate, name, username }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -38,34 +38,27 @@ function ConfirmationForm() {
 
       <div className={styles.cardContainer}>
         <div className={styles.topCardContainer}>
-          <div className={styles.title}>Reservation Confirmation</div>
-      <div className={styles.subtitle}>{'TEST'}</div>
+          <div className={styles.title}>Reservation Cancellation</div>
+          <div className={styles.subtitle}>{name}</div>
         </div>
         <div className={styles.middleContainer}>
-          <div className={styles.middleHeader}>
-            {'TEST'}'s Itinerary
-          </div>
+          <div className={styles.middleHeader}>{username}'s Itinerary</div>
           <div className={styles.divisor}></div>
           <div className={styles.label}>Date(s)</div>
-
-            <div className={styles.detail}>{'YEE'}</div>
-          )
-          <div className={styles.label}>Owner:</div>
-         <div className={styles.detail}>{'TEST'}</div>
-          <div className={styles.label}>Total:</div>
-          <div className={styles.detail}>{'TEST'}
+          <div className={styles.detail}>
+            {startDate.slice(5, 10)} through {endDate.slice(5, 10)}
           </div>
+          <div className={styles.label}></div>
+          <div className={styles.detail}></div>
           <div className={styles.middleFooter}>
-            The owner will receive payment two days after your stay ends.
+            Cancellations are allowed 24 hours before check-in.
           </div>
         </div>
         <div className={styles.btnsContainer}>
           <button onClick={cancelMe} className={styles.btnCancel}>
-            Cancel
+            Go Back
           </button>
-          <button className={styles.btnSubmit}>
-            Confirm Reservation
-          </button>
+          <button className={styles.btnSubmit}>Cancel Reservation</button>
         </div>
       </div>
     </div>

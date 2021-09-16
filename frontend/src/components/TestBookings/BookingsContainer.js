@@ -18,6 +18,7 @@ export default function BookingsContainer() {
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
   const imagesArr = Object.values(images);
+  // console.log('yee',spots['4'].name)
 
   // console.log(bookings[5].Spot.name);
 
@@ -30,21 +31,16 @@ export default function BookingsContainer() {
   if (!session.user) return <Redirect to="/" />;
 
   const userId = session.user.id;
+  const username = session.user.username;
 
   const userBookings = bookingArr.filter(
     (booking) => booking.userId === userId
   );
 
-  console.log(userBookings);
-
   for (let bookingObj of userBookings) {
     for (let imageObj of imagesArr) {
-      console.log(imageObj.spotId);
-      console.log(bookingObj.spotId);
       if (imageObj.spotId === bookingObj.spotId) {
         bookingObj["imgUrl"] = imageObj.url;
-        console.log(bookingObj);
-        console.log("yee");
       }
     }
   }
@@ -57,18 +53,22 @@ export default function BookingsContainer() {
 
   const linkMe = (booking) => {
     const { spotId } = booking;
-    // history.push(`/spots/${spotId}`);
+    history.push(`/spots/${spotId}`);
+  };
+
+  let giveMeName = (id) => {
+    return spots[id].name;
   };
 
   return (
     <>
       {userBookings.map((booking) => (
-        <div
-          onClick={() => linkMe(booking)}
-          className={styles2.resultsContainer}
-        >
+        <div className={styles2.resultsContainer}>
           <div className={styles.cardContainer}>
-            <div className={styles.imgContainer}>
+            <div
+              onClick={() => linkMe(booking)}
+              className={styles2.imgContainer}
+            >
               <img
                 className={styles.img}
                 layout="fill"
@@ -91,7 +91,13 @@ export default function BookingsContainer() {
                 {booking.endDate.slice(0, 10)}
               </p>
               <div className={styles.btnContainer}>
-                <CancelBookingConfirmationModal />
+                <CancelBookingConfirmationModal
+                  bookingId={booking.id}
+                  endDate={booking.endDate}
+                  startDate={booking.startDate}
+                  name={giveMeName(booking.spotId)}
+                  username={username}
+                />
               </div>
             </div>
           </div>

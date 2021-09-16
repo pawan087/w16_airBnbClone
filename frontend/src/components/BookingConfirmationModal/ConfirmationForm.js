@@ -96,8 +96,8 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
               5
             )} through ${endDate.slice(5)}`}</div>
           )}
-          <div className={styles.label}>Owner:</div>
-          {spot[0] && <div className={styles.detail}>{spot[0].userId}</div>}
+        
+
           <div className={styles.label}>Total:</div>
           <div className={styles.detail}>
             $
