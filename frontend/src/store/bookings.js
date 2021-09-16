@@ -1,15 +1,14 @@
 import { csrfFetch } from "./csrf";
 
 const SET_BOOKINGS = "bookings/setBookings";
-const DELETE_BOOKINGS = "bookings/deleteBooking";
 
 const setBookings = (bookings) => ({
   type: SET_BOOKINGS,
   bookings,
 });
 
-export const delBooking = (r) => async (dispatch) => {
-  const { id } = r;
+export const delBooking = (b) => async (dispatch) => {
+  const { id } = b;
   const response = await csrfFetch("/api/bookings", {
     method: "DELETE",
     body: JSON.stringify({

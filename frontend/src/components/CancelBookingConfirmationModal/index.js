@@ -3,7 +3,7 @@ import { MySecondModal } from "../../context/CancelBookingConfirmation";
 import ConfirmationForm from "./ConfirmationForm";
 import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
 import styles2 from "../../components/CancelBookingConfirmationModal/index.module.css";
-function CancelBookingConfirmationModal( {bookingId, startDate, endDate, name, username}) {
+function CancelBookingConfirmationModal( {booking, bookingId, startDate, endDate, name, username}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ function CancelBookingConfirmationModal( {bookingId, startDate, endDate, name, u
       </div>
       {showModal && (
         <MySecondModal onClose={() => setShowModal(false)}>
-          <ConfirmationForm bookingId={bookingId} startDate={startDate} endDate={endDate} name={name} username={username}/>
+          <ConfirmationForm booking={booking} bookingId={bookingId} startDate={startDate} endDate={endDate} name={name} username={username}/>
         </MySecondModal>
       )}
     </>

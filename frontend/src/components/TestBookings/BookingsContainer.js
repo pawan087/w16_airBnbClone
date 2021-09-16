@@ -57,7 +57,9 @@ export default function BookingsContainer() {
   };
 
   let giveMeName = (id) => {
-    return spots[id].name;
+    if (spots[id]) {
+      return spots[id].name;
+    } else return null;
   };
 
   return (
@@ -80,7 +82,12 @@ export default function BookingsContainer() {
             <div className={styles.results}>
               <div className={styles.detailContainer}></div>
 
-              <span className={styles.spotName}>{booking.Spot.name}</span>
+              <div
+                onClick={() => linkMe(booking)}
+                className={styles2.spotName}
+              >
+                {booking.Spot.name}
+              </div>
 
               <div className={styles.divisor} />
 
@@ -92,6 +99,7 @@ export default function BookingsContainer() {
               </p>
               <div className={styles.btnContainer}>
                 <CancelBookingConfirmationModal
+                  booking={booking}
                   bookingId={booking.id}
                   endDate={booking.endDate}
                   startDate={booking.startDate}

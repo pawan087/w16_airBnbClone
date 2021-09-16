@@ -5,18 +5,21 @@ import { getSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 import { Redirect } from "react-router-dom";
-import * as bookingActions from "../../store/bookings";
-function ConfirmationForm({ bookingId, startDate, endDate, name, username }) {
+import delBooking from "../../store/bookings";
+function ConfirmationForm({ booking, bookingId, startDate, endDate, name, username }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [userId, setUserId] = useState();
+  // console.log(booking.id);
   const [spotId, setSpotId] = useState();
   const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
-
+  const deleteBooking = (b) => {
+    dispatch(delBooking(b));
+  };
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());
@@ -58,7 +61,12 @@ function ConfirmationForm({ bookingId, startDate, endDate, name, username }) {
           <button onClick={cancelMe} className={styles.btnCancel}>
             Go Back
           </button>
-          <button className={styles.btnSubmit}>Cancel Reservation</button>
+          <button
+            onClick={() => deleteBooking(booking)}
+            className={styles.btnSubmit}
+          >
+            Cancel Reservation
+          </button>
         </div>
       </div>
     </div>
