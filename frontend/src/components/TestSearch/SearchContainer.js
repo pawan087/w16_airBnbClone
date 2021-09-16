@@ -29,6 +29,8 @@ export default function SearchContainer() {
   const bookingArr = Object.values(bookings);
   let searchResultsObj = {};
 
+  console.log(startDate, endDate);
+
   // console.log(spotsArr[0].Images[0].url); // imgUrl
   // console.log(spotsArr[0].city); // location
 
@@ -70,8 +72,6 @@ export default function SearchContainer() {
       }
     }
   });
-
-  console.log(searchResultsObj);
 
   const arr = Object.values(searchResultsObj);
   let today = new Date();
@@ -172,7 +172,10 @@ export default function SearchContainer() {
           <div className={styles.divisor2} />
 
           {arr.map((spot) => (
-            <div onClick={() => linkMe(spot)} className={styles.resultsContainer}>
+            <div
+              onClick={() => linkMe(spot)}
+              className={styles.resultsContainer}
+            >
               <div className={styles.cardContainer}>
                 <div className={styles.imgContainer}>
                   <img

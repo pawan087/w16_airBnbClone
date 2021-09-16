@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, Route } from "react-router-dom";
 import { getImages } from "../../store/images";
@@ -8,9 +8,23 @@ import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
 import AllReviewsComponent from "./AllReviewsComponent";
+
 export default function SpotsContainer() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
+  const searchCriteria = useSelector((state) => state.search);
+  let searchedStartDate = searchCriteria.startDate;
+  let searchedEndDate = searchCriteria.endDate;
+  if (searchCriteria.startDate)
+    searchedStartDate = searchedStartDate.toISOString().split("T")[0];
+  if (searchCriteria.endDate)
+    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
+  const [startDate, setStartDate] = useState(searchedStartDate);
+  const [endDate, setEndDate] = useState(searchedEndDate);
+  const x = new Date(startDate);
+  const y = new Date(endDate);
+  const dayCount = (y - x) / 60 / 60 / 1000 / 24;
+  let today = new Date();
   const spots = useSelector((state) => state.spot);
   const images = useSelector((state) => state.images);
   const reviews = useSelector((state) => state.review);
@@ -32,12 +46,11 @@ export default function SpotsContainer() {
   } else {
     image = "";
   }
-
   useEffect(() => {
     dispatch(getSpots());
     dispatch(getReviews());
     dispatch(getImages());
-  }, [dispatch]);
+  }, [dispatch, searchCriteria]);
 
   if (!spot) return <Redirect to="/" />;
 
@@ -46,6 +59,7 @@ export default function SpotsContainer() {
       <li>{review.review}</li>
     ))}
   </ul>;
+
 
   return (
     <>
@@ -81,8 +95,8 @@ export default function SpotsContainer() {
           </div>
         </div>
       )}
-      <ReserveFormComponent />
-      <ReviewFormContainer />
+      <ReserveFormComponent spot={spot} startDate={startDate} endDate={endDate} />
+      <ReviewFormContainer  />
       <AllReviewsComponent reviewsArr={specificReviews} />
     </>
   );
