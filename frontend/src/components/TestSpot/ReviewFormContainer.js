@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
 import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
-export default function ReviewFormContainer({spot}) {
+export default function ReviewFormContainer({ spot }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   let spotId;
@@ -12,8 +12,11 @@ export default function ReviewFormContainer({spot}) {
   }
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
+  let userId;
+  if (sessionUser) {
+    userId = sessionUser.id;
+  }
 
-  let userId = sessionUser.id;
   // if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
@@ -50,7 +53,12 @@ export default function ReviewFormContainer({spot}) {
         </div>
 
         <div className={styles.textAreaContainer}>
-          <textarea onChange={(e) => setReview(e.target.value)} value={review} className={styles.textArea} type="textarea"></textarea>
+          <textarea
+            onChange={(e) => setReview(e.target.value)}
+            value={review}
+            className={styles.textArea}
+            type="textarea"
+          ></textarea>
         </div>
         <div className={styles.btnContainer}>
           <button className={styles.btn} type="submit">

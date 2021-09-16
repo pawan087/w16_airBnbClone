@@ -80,6 +80,7 @@
   padding-bottom: 0.5em;
   padding-left: 0.5em;
   border-radius: 0.5em;
+  transition-duration: 150ms;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   color: rgb(107, 114, 128);

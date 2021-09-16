@@ -5,10 +5,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { ModalProvider } from "./context/Modal";
-
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
+import { BookingConfirmationProvider } from "./context/BookingConfirmation";
 
 const store = configureStore();
 
@@ -24,9 +24,11 @@ function Root() {
   return (
     <Provider store={store}>
       <ModalProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <BookingConfirmationProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </BookingConfirmationProvider>
       </ModalProvider>
     </Provider>
   );
