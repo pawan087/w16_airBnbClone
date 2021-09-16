@@ -62,7 +62,7 @@ export default function ReserveFormComponent({ spot, spotId }) {
         </div>
         <div className={styles.guestInputContainer}>
           <label className={styles.guestLabel}>Guests</label>
-          <input className={styles.guestInput} type="number"></input>
+          <input defaultValue='0' min='0' className={styles.guestInput} type="number"></input>
         </div>
       </div>
       <div className={styles.btnContainer}>

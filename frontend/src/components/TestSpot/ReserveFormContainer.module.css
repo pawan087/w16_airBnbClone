@@ -123,6 +123,10 @@
   box-sizing: border-box;
 }
 
+.guestInput {
+  padding-left: .5em;
+}
+
 .btnContainer {
   cursor: pointer;
   width: 73%;

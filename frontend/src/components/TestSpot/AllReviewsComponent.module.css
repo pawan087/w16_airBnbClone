@@ -5,18 +5,31 @@
 }
 
 .outerContainer {
+  box-sizing: border-box;
   display: grid;
+  width: 75%;
   gap: 1em;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
-  padding-left: 5em;
-  padding-right: 5em;
   margin-top: 2.5em;
   margin-bottom: 5em;
   position: relative;
   overflow-y: scroll;
+  padding-left: 0em;
+  padding-right: 2.5em;
   max-height: 21em;
 }
+
+.outerContainer::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.outerContainer::-webkit-scrollbar-thumb {
+  background-color: #009cd5;
+  outline: .25em solid transparent;
+}
+
+
 .reviewContainer {
   width: 100%;
   border-radius: 0.5em;
@@ -31,12 +44,6 @@
   position: relative;
 }
 
-.reviewContainer:hover {
-  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
 
 .leftContainer {
   display: flex;
@@ -76,6 +83,22 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   color: rgb(107, 114, 128);
+}
+
+.reviewContent::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.reviewContent::-webkit-scrollbar-thumb {
+  background-color: #009cd5;
+  outline: .25em solid transparent;
+}
+
+.reviewContent:hover {
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .deleteContainer {
