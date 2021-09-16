@@ -30,4 +30,16 @@ router.post(
   })
 );
 
+router.delete(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { id } = req.body;
+    const booking = await Booking.findByPk(id);
+
+    await booking.destroy();
+
+    res.end(); // whenever not returning JSON ... 
+  })
+);
+
 module.exports = router;

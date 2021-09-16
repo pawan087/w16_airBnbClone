@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { getBookings } from "../../store/bookings";
+// import { getBookings } from "../../store/bookings";
 import { getSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 import { Redirect } from "react-router-dom";
-import delBooking from "../../store/bookings";
-function ConfirmationForm({ booking, bookingId, startDate, endDate, name, username }) {
+import { delBooking } from "../../store/bookings";
+
+function ConfirmationForm({
+  booking,
+  bookingId,
+  startDate,
+  endDate,
+  name,
+  username,
+}) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [userId, setUserId] = useState();
   // console.log(booking.id);
   const [spotId, setSpotId] = useState();
-  const bookings = useSelector((state) => state.booking);
+  // const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
   const spotsArr = Object.values(spots);
-  const bookingArr = Object.values(bookings);
-  const deleteBooking = (b) => {
-    dispatch(delBooking(b));
+  // const bookingArr = Object.values(bookings);
+  // const specificBooking = bookingArr.filter((b) => b.id === bookingId);
+  // console.log(specificBooking[0].id);
+
+  const deleteBooking = (e, b) => {
+    e.preventDefault();
+    return dispatch(delBooking(b));
   };
+
   useEffect(() => {
-    dispatch(getBookings());
     dispatch(getSpots());
   }, [dispatch]);
   const cancelMe = () => {
@@ -62,7 +74,7 @@ function ConfirmationForm({ booking, bookingId, startDate, endDate, name, userna
             Go Back
           </button>
           <button
-            onClick={() => deleteBooking(booking)}
+            onClick={(e) => deleteBooking(e, booking)}
             className={styles.btnSubmit}
           >
             Cancel Reservation

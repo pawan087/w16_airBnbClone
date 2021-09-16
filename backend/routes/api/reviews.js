@@ -35,10 +35,9 @@ router.delete(
 
     const reviewToDelete = await Review.findByPk(id);
 
-    reviewToDelete.destroy();
+    await reviewToDelete.destroy();
 
-    const reviews = await Review.findAll();
-    return res.json(reviews);
+    res.end();
   })
 );
 

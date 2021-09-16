@@ -1,23 +1,27 @@
 import { csrfFetch } from "./csrf";
 
 const SET_BOOKINGS = "bookings/setBookings";
+const DELETE_BOOKING = "bookings/deleteBooking";
 
 const setBookings = (bookings) => ({
   type: SET_BOOKINGS,
   bookings,
 });
 
+const deleteBooking = (id) => ({
+  type: DELETE_BOOKING,
+  id: id,
+});
+
 export const delBooking = (b) => async (dispatch) => {
   const { id } = b;
-  const response = await csrfFetch("/api/bookings", {
+  await csrfFetch("/api/bookings", {
     method: "DELETE",
     body: JSON.stringify({
       id,
     }),
   });
-  // const bookings = await response.json();
-  // dispatch(setBookings(bookings));
-  // return response;
+  dispatch(deleteBooking(id));
 };
 
 export const create = (booking) => async (dispatch) => {
@@ -42,6 +46,10 @@ export const getBookings = () => async (dispatch) => {
 };
 
 const initialState = {};
+/* case DELETE_THING:
+const id = action.thingId
+delete state[id]
+return { ...state }; */
 
 const bookingReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -49,6 +57,11 @@ const bookingReducer = (state = initialState, action) => {
       const newState = {};
       action.bookings.forEach((booking) => (newState[booking.id] = booking));
       return newState;
+    case DELETE_BOOKING:
+      const id = action.id;
+      console.log('------------------------------------------',id);
+      delete state[id];
+      return { ...state };
     default:
       return state;
   }
