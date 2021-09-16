@@ -1,6 +1,7 @@
 import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { getBookings } from "../../store/bookings";
 export default function ReserveFormComponent({ spot, spotId }) {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ export default function ReserveFormComponent({ spot, spotId }) {
   let specificBookings = bookingArr.filter(
     (booking) => (booking.spotId = spotId)
   );
-
   const x = new Date(startDate);
   const y = new Date(endDate);
   let today = new Date();
@@ -71,7 +71,7 @@ export default function ReserveFormComponent({ spot, spotId }) {
         </div>
       </div>
       <div className={styles.btnContainer}>
-        <button className={styles.btn}>Reserve</button>
+        <BookingConfirmationModal total={total} spot={spot} startDate={startDate} endDate={endDate} />
       </div>
       <div className={styles.detailsContainer}>
         <div className={styles.detailContainer}>

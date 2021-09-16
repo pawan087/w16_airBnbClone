@@ -205,7 +205,6 @@ export default function HeaderComponent() {
           </div>
         )}
       </div>
-      }
       {searchInput && (
         <div className={styles.dateRangePickerContainer}>
           <DateRangePicker

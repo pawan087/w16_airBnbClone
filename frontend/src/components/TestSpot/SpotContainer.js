@@ -95,7 +95,6 @@ export default function SpotsContainer() {
           </div>
         </div>
       )}
-      <BookingConfirmationModal />
       <ReserveFormComponent
         spot={spot}
         startDate={startDate}
