@@ -57,8 +57,8 @@ export default function AllReviewsComponent({ reviewsArr }) {
                 />
               </svg>
             </div>
-          </div>
-        ))}
+            </div>
+            ))}
     </div>
   );
 }
