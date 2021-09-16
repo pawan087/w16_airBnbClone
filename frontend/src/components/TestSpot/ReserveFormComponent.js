@@ -1,19 +1,63 @@
 import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
-export default function ReserveFormComponent() {
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getBookings } from "../../store/bookings";
+export default function ReserveFormComponent({ spot, spotId }) {
+  const dispatch = useDispatch();
+  const searchCriteria = useSelector((state) => state.search);
+  let searchedStartDate = searchCriteria.startDate;
+  let searchedEndDate = searchCriteria.endDate;
+  if (searchCriteria.startDate)
+    searchedStartDate = searchedStartDate.toISOString().split("T")[0];
+  if (searchCriteria.endDate)
+    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
+
+  const [startDate, setStartDate] = useState(searchedStartDate);
+  const [endDate, setEndDate] = useState(searchedEndDate);
+  const bookings = useSelector((state) => state.booking);
+  const bookingArr = Object.values(bookings);
+  let specificBookings = bookingArr.filter(
+    (booking) => (booking.spotId = spotId)
+  );
+
+  const x = new Date(startDate);
+  const y = new Date(endDate);
+  let today = new Date();
+  useEffect(() => {
+    dispatch(getBookings());
+  }, [startDate, endDate, dispatch, searchCriteria]);
+  const dayCount = (y - x) / 60 / 60 / 1000 / 24;
+  let price;
+  let total;
+  if (spot[0]) {
+    price = spot[0].price;
+    if (typeof dayCount == "number") total = price * dayCount;
+  }
   return (
     <div className={styles.outerContainer}>
       <div className={styles.header}>
-        $489<span className={styles.perNight}>/night</span>
+        ${price}
+        <span className={styles.perNight}>/night</span>
       </div>
       <div className={styles.inputsContainer}>
         <div className={styles.datesInputContainer}>
           <div className={styles.inputContainer}>
             <label className={styles.label}>Check-In</label>
-            <input className={styles.dateInput} type="date"></input>
+            <input
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className={styles.dateInput}
+              type="date"
+            ></input>
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.label}>Check-Out</label>
-            <input className={styles.dateInput} type="date"></input>
+            <input
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className={styles.dateInput}
+              type="date"
+            ></input>
           </div>
         </div>
         <div className={styles.guestInputContainer}>
@@ -26,31 +70,54 @@ export default function ReserveFormComponent() {
       </div>
       <div className={styles.detailsContainer}>
         <div className={styles.detailContainer}>
-          <div className={styles.detail}>$515 x 7 nights</div>
-          <div className={styles.detailTotal}>$3,604</div>
+          {!!dayCount && (
+            <div className={styles.detail}>
+              ${price} x {dayCount} nights
+            </div>
+          )}
+          {!!dayCount && <div className={styles.detailTotal}>${total}</div>}
         </div>
         <div className={styles.detailContainer}>
-          <div className={styles.detail}>Weekly discount</div>
-          <div className={styles.detailTotal}>-$180</div>
+          {!!dayCount && <div className={styles.detail}>Special discount</div>}
+          {!!dayCount && (
+            <div className={styles.detailTotal}>-${total * 0.025}</div>
+          )}
         </div>
         <div className={styles.detailContainer}>
-          <div className={styles.detail}>Cleaning fee</div>
-          <div className={styles.detailTotal}>$275</div>
+          {!!dayCount && <div className={styles.detail}>Cleaning fee</div>}
+          {!!dayCount && (
+            <div className={styles.detailTotal}>${total * 0.15}</div>
+          )}
         </div>
         <div className={styles.detailContainer}>
-          <div className={styles.detail}>Service fee</div>
-          <div className={styles.detailTotal}>$522</div>
+          {!!dayCount && <div className={styles.detail}>Service fee</div>}
+          {!!dayCount && (
+            <div className={styles.detailTotal}>${total * 0.1}</div>
+          )}
         </div>
         <div className={styles.detailContainer}>
-          <div className={styles.detail}>Occupancy taxes and fees</div>
-          <div className={styles.detailTotal}>$444</div>
+          {!!dayCount && (
+            <div className={styles.detail}>Occupancy taxes and fees</div>
+          )}
+          {!!dayCount && (
+            <div className={styles.detailTotal}>${total * 0.0625}</div>
+          )}
         </div>
       </div>
       <div className={styles.divisorContainer}>
-        <p className={styles.divisor}></p>
+        {!!dayCount && <p className={styles.divisor}></p>}
         <div className={styles.footer}>
-          <div className={styles.footerDetail}>Total</div>
-          <div className={styles.footerDetail}>$4,665</div>
+          {!!dayCount && <div className={styles.footerDetail}>Total</div>}
+          {!!dayCount && (
+            <div className={styles.footerDetail}>
+              $
+              {total -
+                total * 0.025 +
+                total * 0.15 +
+                total * 0.1 +
+                total * 0.0625}
+            </div>
+          )}
         </div>
       </div>
     </div>
