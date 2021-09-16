@@ -7,6 +7,7 @@ import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
 import styles2 from "../../components/TestBookings/BookingContainer.module.css";
+import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
 export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export default function BookingsContainer() {
 
   const linkMe = (booking) => {
     const { spotId } = booking;
-    history.push(`/spots/${spotId}`);
+    // history.push(`/spots/${spotId}`);
   };
 
   return (
@@ -89,21 +90,8 @@ export default function BookingsContainer() {
                 {booking.startDate.slice(0, 10)} through{" "}
                 {booking.endDate.slice(0, 10)}
               </p>
-              <div className={styles2.deleteContainer}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+              <div className={styles.btnContainer}>
+                <CancelBookingConfirmationModal />
               </div>
             </div>
           </div>
@@ -112,3 +100,20 @@ export default function BookingsContainer() {
     </>
   );
 }
+
+// <div className={styles2.deleteContainer}>
+//   <svg
+//     xmlns="http://www.w3.org/2000/svg"
+//     className="h-6 w-6"
+//     fill="none"
+//     viewBox="0 0 24 24"
+//     stroke="currentColor"
+//   >
+//     <path
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       strokeWidth={2}
+//       d="M6 18L18 6M6 6l12 12"
+//     />
+//   </svg>
+// </div>

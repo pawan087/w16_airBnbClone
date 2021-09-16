@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as bookingActions from "../../store/bookings";
-
+import CancelBookingConfirmaitonModal from "../BookingConfirmationModal/index";
 export default function NewBookingForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
