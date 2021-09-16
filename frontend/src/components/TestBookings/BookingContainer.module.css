@@ -57,3 +57,15 @@
   font-size: 1.75em;
   cursor: pointer;
 }
+
+.edit {
+  margin-left: 4.25em;
+  margin-top: 0.25em;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition-duration: 200ms;
+}
+
+.edit:hover {
+  color: #009cd5;
+}

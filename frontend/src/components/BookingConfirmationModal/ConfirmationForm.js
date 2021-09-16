@@ -57,12 +57,16 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (arr.length) {
-      return dispatch(
+      dispatch(
         bookingActions.create({ userId, spotId, startDate, endDate })
       ).catch(async (res) => {
         const data = await res.json();
       });
     }
+    // history.push("/bookings");
+    setTimeout(() => {
+      history.push("/bookings");
+    }, 1000);
   };
 
   const cancelMe = () => {
@@ -96,7 +100,6 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
               5
             )} through ${endDate.slice(5)}`}</div>
           )}
-        
 
           <div className={styles.label}>Total:</div>
           <div className={styles.detail}>

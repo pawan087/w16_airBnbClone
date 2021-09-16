@@ -10,6 +10,7 @@ import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import { BookingConfirmationProvider } from "./context/BookingConfirmation";
 import { CancelBookingConfirmationProvider } from "./context/CancelBookingConfirmation";
+import { EditBookingProvider } from "./context/EditBooking";
 
 const store = configureStore();
 
@@ -27,9 +28,11 @@ function Root() {
       <ModalProvider>
         <BookingConfirmationProvider>
           <CancelBookingConfirmationProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            <EditBookingProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </EditBookingProvider>
           </CancelBookingConfirmationProvider>
         </BookingConfirmationProvider>
       </ModalProvider>
