@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
 import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
-export default function ReviewFormContainer() {
+export default function ReviewFormContainer({spot}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [userId, setUserId] = useState("");
-  const [spotId, setSpotId] = useState("");
+  let spotId;
+  if (spot[0]) {
+    spotId = spot[0].id;
+  }
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
 
+  let userId = sessionUser.id;
   // if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
@@ -25,7 +28,7 @@ export default function ReviewFormContainer() {
 
   return (
     <>
-      <form className={styles.outerContainer}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.outerContainer}>
         <div className={styles.labelContainer}>
           <div className={styles.icon}>
             <svg
@@ -47,7 +50,7 @@ export default function ReviewFormContainer() {
         </div>
 
         <div className={styles.textAreaContainer}>
-          <textarea className={styles.textArea} type="textarea"></textarea>
+          <textarea onChange={(e) => setReview(e.target.value)} value={review} className={styles.textArea} type="textarea"></textarea>
         </div>
         <div className={styles.btnContainer}>
           <button className={styles.btn} type="submit">
