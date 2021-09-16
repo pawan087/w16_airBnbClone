@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MyThirdModal } from "../../context/EditBooking";
 import styles from "../../components/EditBookingModal/index.module.css";
 import EditBookingForm from "./EditBookingForm";
-function EditBookingModal() {
+function EditBookingModal({name, username, booking}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ function EditBookingModal() {
 
       {showModal && (
         <MyThirdModal onClose={() => setShowModal(false)}>
-          <EditBookingForm />
+          <EditBookingForm name={name} username={username} booking={booking} />
         </MyThirdModal>
       )}
     </>

@@ -7,12 +7,20 @@ import { delBooking } from "../../store/bookings";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-function EditBookingForm() {
+function EditBookingForm({ name, username, booking }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  let initialStartDate = new Date(
+    new Date(booking.startDate).valueOf() + 1000 * 3600 * 24
+  );
+  let initialEndDate = new Date(
+    new Date(booking.endDate).valueOf() + 1000 * 3600 * 24
+  );
+  const [startDate, setStartDate] = useState(initialStartDate);
+  const [endDate, setEndDate] = useState(initialEndDate);
+
+  const [errors, setErrors] = useState([]);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -36,11 +44,13 @@ function EditBookingForm() {
 
       <div className={styles.cardContainer}>
         <div className={styles.topCardContainer}>
-        <div className={styles.title}>{"Bnb on Daybreak"}</div>
-        <div className={styles.subtitle}>{"Errors:"}</div>
+          <div className={styles.title}>{name}</div>
+          {errors.length !== 0 && (
+            <div className={styles.subtitle}>{"Errors:"}</div>
+          )}
         </div>
         <div className={styles.middleContainer}>
-          <div className={styles.middleHeader}>{"Pawan"}'s Itinerary</div>
+          <div className={styles.middleHeader}>{username}'s Itinerary</div>
           <div className={styles.divisor}></div>
 
           <div className={styles.label}></div>

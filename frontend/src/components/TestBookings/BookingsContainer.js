@@ -83,16 +83,17 @@ export default function BookingsContainer() {
             <div className={styles.results}>
               <div className={styles.detailContainer}></div>
 
-              <div
-                onClick={() => linkMe(booking)}
-                className={styles2.spotName}
-              >
+              <div onClick={() => linkMe(booking)} className={styles2.spotName}>
                 {booking.Spot.name}
               </div>
 
               <div className={styles.divisor} />
 
-              <EditBookingModal/>
+              <EditBookingModal
+                name={giveMeName(booking.spotId)}
+                username={username}
+                booking={booking}
+              />
 
               <p className={styles.detail}>
                 {" "}
