@@ -7,7 +7,7 @@
 .outerContainer {
   box-sizing: border-box;
   display: grid;
-  width: 75%;
+  width: 100%;
   gap: 1em;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
@@ -15,8 +15,8 @@
   margin-bottom: 5em;
   position: relative;
   overflow-y: scroll;
-  padding-left: 0em;
-  padding-right: 2.5em;
+  padding-left: 5em;
+  padding-right: 5em;
   max-height: 21em;
 }
 
