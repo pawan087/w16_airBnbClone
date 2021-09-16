@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, Route } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
+import { getImages } from "../../store/images";
 import { getSpots } from "../../store/spots";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
 export default function BookingsContainer() {
@@ -9,14 +10,17 @@ export default function BookingsContainer() {
   const session = useSelector((state) => state.session);
   const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
+  const images = useSelector((state) => state.images);
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
+  const imagesArr = Object.values(images);
 
   // console.log(bookings[5].Spot.name);
 
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());
+    dispatch(getImages());
   }, [dispatch]);
 
   if (!session.user) return <Redirect to="/" />;
@@ -26,6 +30,20 @@ export default function BookingsContainer() {
   const userBookings = bookingArr.filter(
     (booking) => booking.userId === userId
   );
+
+  console.log(userBookings);
+
+  for (let bookingObj of userBookings) {
+    for (let imageObj of imagesArr) {
+      console.log(imageObj.spotId);
+      console.log(bookingObj.spotId);
+      if (imageObj.spotId === bookingObj.spotId) {
+        bookingObj["imgUrl"] = imageObj.url;
+        console.log(bookingObj);
+        console.log("yee");
+      }
+    }
+  }
 
   const dayCount = (startDate, endDate) => {
     const x = new Date(startDate);
@@ -49,10 +67,10 @@ export default function BookingsContainer() {
                 className={styles.img}
                 layout="fill"
                 objectFit="cover"
-                src={""}
+                src={booking.imgUrl}
               />
             </div>
-            {console.log(booking.endDate - booking.startDate)}
+
             <div className={styles.results}>
               <div className={styles.detailContainer}></div>
 
@@ -62,8 +80,8 @@ export default function BookingsContainer() {
 
               <p className={styles.detail}>
                 {" "}
-                {dayCount(booking.startDate, booking.endDate)} night stay: {" "}
-                {booking.startDate.slice(0, 10)} through {" "}
+                {dayCount(booking.startDate, booking.endDate)} night stay:{" "}
+                {booking.startDate.slice(0, 10)} through{" "}
                 {booking.endDate.slice(0, 10)}
               </p>
             </div>
