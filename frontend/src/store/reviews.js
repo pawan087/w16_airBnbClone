@@ -14,9 +14,9 @@ const createReview = (review) => ({
   review,
 });
 
-const deleteReview = (review) => ({
+const deleteReview = (id) => ({
   type: DELETE_REVIEW,
-  review,
+  id: id,
 });
 
 export const delReview = (r) => async (dispatch) => {
@@ -27,9 +27,8 @@ export const delReview = (r) => async (dispatch) => {
       id,
     }),
   });
-  const reviews = await response.json();
-  dispatch(setReviews(reviews));
-  return response;
+
+  dispatch(deleteReview(id));
 };
 
 export const create = (r) => async (dispatch) => {
@@ -66,6 +65,11 @@ const reviewReducer = (state = initialState, action) => {
       let newState = { ...state };
       newState[action.review.id] = action.review;
       return newState;
+    }
+    case DELETE_REVIEW: {
+      const id = action.id;
+      delete state[id];
+      return { ...state };
     }
     default:
       return state;

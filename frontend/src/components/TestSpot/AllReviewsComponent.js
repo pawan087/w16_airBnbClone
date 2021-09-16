@@ -13,6 +13,7 @@ export default function AllReviewsComponent({ reviewsArr }) {
   const deleteReview = (r) => {
     dispatch(delReview(r));
   };
+  
   return (
     <div className={styles.outerContainer}>
       {reviewsArr
