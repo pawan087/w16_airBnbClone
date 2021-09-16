@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_REVIEWS = "reviews/setReviews";
 const CREATE_REVIEW = "reviews/createReview";
+const DELETE_REVIEW = "reviews/deleteReview";
 
 const setReviews = (reviews) => ({
   type: SET_REVIEWS,
@@ -12,6 +13,24 @@ const createReview = (review) => ({
   type: CREATE_REVIEW,
   review,
 });
+
+const deleteReview = (review) => ({
+  type: DELETE_REVIEW,
+  review,
+});
+
+export const delReview = (r) => async (dispatch) => {
+  const { id } = r;
+  const response = await csrfFetch("/api/reviews", {
+    method: "DELETE",
+    body: JSON.stringify({
+      id,
+    }),
+  });
+  const reviews = await response.json();
+  dispatch(setReviews(reviews));
+  return response;
+};
 
 export const create = (r) => async (dispatch) => {
   const { userId, spotId, review } = r;

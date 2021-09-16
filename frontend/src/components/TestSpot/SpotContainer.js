@@ -96,7 +96,7 @@ export default function SpotsContainer() {
         </div>
       )}
       <ReserveFormComponent spot={spot} startDate={startDate} endDate={endDate} />
-      <ReviewFormContainer  />
+      <ReviewFormContainer spot={spot} />
       <AllReviewsComponent reviewsArr={specificReviews} />
     </>
   );
