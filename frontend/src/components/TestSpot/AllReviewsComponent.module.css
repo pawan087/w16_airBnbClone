@@ -66,10 +66,10 @@
   display: flex;
   justify-content: left;
   padding-top: 0.5em;
+  padding-bottom: 0.5em;
   padding-left: 0.5em;
   border-radius: 0.5em;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  font-size: 1em;
   color: rgb(107, 114, 128);
 }

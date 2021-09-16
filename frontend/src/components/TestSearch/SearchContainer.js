@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
 import { getSpots } from "../../store/spots";
+import { useHistory } from "react-router-dom";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
 export default function SearchContainer() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const searchCriteria = useSelector((state) => state.search);
@@ -93,6 +95,11 @@ export default function SearchContainer() {
   //   }
   // });
 
+  const linkMe = (spot) => {
+    const { id } = spot;
+    history.push(`/spots/${id}`);
+  };
+
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());
@@ -165,7 +172,7 @@ export default function SearchContainer() {
           <div className={styles.divisor2} />
 
           {arr.map((spot) => (
-            <div className={styles.resultsContainer}>
+            <div onClick={() => linkMe(spot)} className={styles.resultsContainer}>
               <div className={styles.cardContainer}>
                 <div className={styles.imgContainer}>
                   <img
