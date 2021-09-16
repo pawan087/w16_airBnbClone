@@ -40,11 +40,11 @@ export default function SpotsContainer() {
 
   if (!spot) return <Redirect to="/" />;
 
-    <ul>
+  <ul>
     {specificReviews.map((review) => (
       <li>{review.review}</li>
     ))}
-  </ul>
+  </ul>;
 
   return (
     <>
@@ -82,6 +82,11 @@ export default function SpotsContainer() {
       )}
       <ReserveFormComponent />
       <ReviewFormContainer />
+      <ul>
+        {specificReviews.map((review) => (
+          <li>{review.review}</li>
+        ))}
+      </ul>
     </>
   );
 }

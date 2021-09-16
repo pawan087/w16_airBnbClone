@@ -29,6 +29,10 @@ export default function HeaderComponent() {
     key: "selection",
   };
 
+  if (searchInput) {
+    document.getElementById("navbar").style.background = "#F3F4F6";
+  }
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);

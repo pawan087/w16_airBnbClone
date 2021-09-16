@@ -91,14 +91,14 @@
 }
 
 .label {
-  font-size: 0.68em;
+  font-size: 0.75em;
   color: rgb(75, 85, 99);
   font-weight: bold;
 
 }
 
 .guestLabel {
-  font-size: 0.68em;
+  font-size: 0.75em;
   color: rgb(75, 85, 99);
   font-weight: bold;
 
@@ -167,7 +167,6 @@
 }
 
 .detail {
-  font-weight: bold;
 
   font-size: 0.75em;
   color: rgb(75, 85, 99);
@@ -175,6 +174,7 @@
 .detailTotal {
   font-size: 0.75em;
   color: rgb(75, 85, 99);
+  font-weight: bold;
 }
 
 .divisorContainer {
@@ -196,4 +196,5 @@
   font-weight: bold;
   color: #009cd5;
   font-size: 0.75em;
+
 }

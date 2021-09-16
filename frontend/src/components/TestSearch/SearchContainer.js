@@ -154,7 +154,9 @@ export default function SearchContainer() {
               {startDate} and {endDate}.
             </p>
           )}
-          {arr.length > 0 && <h3 className={styles.subHeader}>{arr.length} Spot(s) Available</h3>}
+          {arr.length > 0 && (
+            <h3 className={styles.subHeader}>{arr.length} Spot(s) Available</h3>
+          )}
 
           {arr.length > 0 && (
             <h1 className={styles.resultsHeader}>Stays in {location}</h1>
@@ -162,45 +164,42 @@ export default function SearchContainer() {
 
           <div className={styles.divisor2} />
 
-          {
-            arr.map((spot) => (
-              <div className={styles.resultsContainer}>
-                <div className={styles.cardContainer}>
-                  <div className={styles.imgContainer}>
-                    <img
-                      className={styles.img}
-                      layout="fill"
-                      objectFit="cover"
-                      src={spot.Images[0].url}
-                    />
-                  </div>
+          {arr.map((spot) => (
+            <div className={styles.resultsContainer}>
+              <div className={styles.cardContainer}>
+                <div className={styles.imgContainer}>
+                  <img
+                    className={styles.img}
+                    layout="fill"
+                    objectFit="cover"
+                    src={spot.Images[0].url}
+                  />
+                </div>
 
-                  <div className={styles.results}>
-                    <div className={styles.detailContainer}>
+                <div className={styles.results}>
+                  <div className={styles.detailContainer}></div>
 
+                  <span className={styles.spotName}>{spot.name}</span>
 
+                  <div className={styles.divisor} />
 
-                    </div>
+                  <p className={styles.detail}>
+                    {spot.address}, {spot.city}, {spot.country}
+                  </p>
 
-                    <span className={styles.spotName}>{spot.name}</span>
+                  <div className={styles.priceDetail}>
+                    <div>
+                      <p className={styles.price}>${spot.price}/night</p>
 
-                    <div className={styles.divisor} />
-
-                    <p className={styles.detail}>
-                      {spot.address}, {spot.city}, {spot.country}
-                    </p>
-
-                    <div className={styles.priceDetail}>
-                      <div>
-                        <p className={styles.price}>${spot.price}/night</p>
-
-                        <p className={styles.total}>total ${spot.price * dayCount}</p>
-                      </div>
+                      <p className={styles.total}>
+                        total ${spot.price * dayCount}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </section>
       </main>
     </>
