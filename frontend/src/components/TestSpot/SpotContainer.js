@@ -5,7 +5,9 @@ import { getImages } from "../../store/images";
 import { getReviews } from "../../store/reviews";
 import { getSpots } from "../../store/spots";
 import ReviewFormContainer from "./ReviewFormContainer";
-import styles from "../../components/TestSearch/SearchContainer.module.css";
+import styles from "../../components/TestSpot/SpotContainer.module.css";
+import ReserveFormComponent from "./ReserveFormComponent";
+import AllReviewsComponent from "./AllReviewsComponent";
 export default function SpotsContainer() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ export default function SpotsContainer() {
   if (specificImages[0]) {
     image = specificImages[0].url;
   } else {
-    image = '';
+    image = "";
   }
 
   useEffect(() => {
@@ -39,45 +41,49 @@ export default function SpotsContainer() {
 
   if (!spot) return <Redirect to="/" />;
 
-/*   <ul>
+  <ul>
     {specificReviews.map((review) => (
       <li>{review.review}</li>
     ))}
-  </ul> */
+  </ul>;
 
   return (
     <>
-      {showSpot && <div className={styles.resultsContainer}>
-        <div className={styles.cardContainer}>
-          <div className={styles.imgContainer}>
-            <img
-              className={styles.img}
-              layout="fill"
-              objectFit="cover"
-              src={image}
-            />
-          </div>
+      {showSpot && (
+        <div className={styles.resultsContainer}>
+          <div className={styles.cardContainer}>
+            <div className={styles.imgContainer}>
+              <img
+                className={styles.img}
+                layout="fill"
+                objectFit="cover"
+                src={image}
+              />
+            </div>
 
-          <div className={styles.results}>
-            <div className={styles.detailContainer}></div>
+            <div className={styles.results}>
+              <div className={styles.detailContainer}></div>
 
-            <span className={styles.spotName}>{spot[0].name}</span>
+              <span className={styles.spotName}>{spot[0].name}</span>
 
-            <div className={styles.divisor} />
+              <div className={styles.divisor} />
 
-            <p className={styles.detail}>
-              {spot[0].address}, {spot[0].city}, {spot[0].country}
-            </p>
+              <p className={styles.detail}>
+                {spot[0].address}, {spot[0].city}, {spot[0].country}
+              </p>
 
-            <div className={styles.priceDetail}>
-              <div>
-                <p className={styles.price}>${spot[0].price}/night</p>
+              <div className={styles.priceDetail}>
+                <div>
+                  <p className={styles.price}>${spot[0].price}/night</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>}
+      )}
+      <ReserveFormComponent />
       <ReviewFormContainer />
+      <AllReviewsComponent reviewsArr={specificReviews} />
     </>
   );
 }

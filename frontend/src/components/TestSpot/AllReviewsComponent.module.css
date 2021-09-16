@@ -1,0 +1,77 @@
+.userIcon {
+  width: 3em;
+  height: 3em;
+  color: #009cd5;
+}
+
+.outerContainer {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+  padding-left: 5em;
+  padding-top: 2.5em;
+  margin-bottom: 5em;
+  position: relative;
+}
+.reviewContainer {
+  width: 100%;
+  border-radius: .5em;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  transition: 0.2s ease all;
+}
+
+.reviewContainer:hover {
+
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0em;
+  padding-right: .5em;
+  padding-left: .5em;
+}
+
+.userInfo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(107, 114, 128);
+  width: 1em;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.reviewContent {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  width: 100%;
+  height: 5em;
+  overflow: auto;
+  display: flex;
+  justify-content: left;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  border-radius: .5em;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 1em;
+  font-style: italic;
+  color:rgb(107, 114, 128)
+}

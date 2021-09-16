@@ -1,75 +1,74 @@
-import { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Redirect, Route } from "react-router-dom";
-import { getImages } from "../../store/images";
-import { getReviews } from "../../store/reviews";
-import { getSpots } from "../../store/spots";
-import ReviewFormContainer from "./ReviewFormContainer";
-import styles from "../../components/TestSearch/SearchContainer.module.css";
-export default function SpotsContainer() {
-  const { spotId } = useParams();
+import { Redirect } from "react-router-dom";
+import * as reviewActions from "../../store/reviews";
+import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
+export default function ReviewFormContainer() {
   const dispatch = useDispatch();
-  const spots = useSelector((state) => state.spot);
-  const images = useSelector((state) => state.images);
-  const reviews = useSelector((state) => state.review);
-  const spotsArr = Object.values(spots);
-  const reviewsArr = Object.values(reviews);
-  const spot = spotsArr.filter((spot) => spot["id"] === +spotId);
-  const specificReviews = reviewsArr.filter(
-    (review) => review["spotId"] === +spotId
-  );
-  const imagesArr = Object.values(images);
-  const specificImages = imagesArr.filter((image) => image.spotId === +spotId);
+  const sessionUser = useSelector((state) => state.session.user);
+  const [userId, setUserId] = useState("");
+  const [spotId, setSpotId] = useState("");
+  const [review, setReview] = useState("");
+  const [errors, setErrors] = useState([]);
 
-  // const image = specificImages[0].url;
+  // if (!sessionUser) return <Redirect to="/" />;
 
-  useEffect(() => {
-    dispatch(getSpots());
-    dispatch(getReviews());
-    dispatch(getImages());
-  }, [dispatch]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  if (!spot) return <Redirect to="/" />;
-
-/*   <ul>
-    {specificReviews.map((review) => (
-      <li>{review.review}</li>
-    ))}
-  </ul> */
+    return dispatch(reviewActions.create({ userId, spotId, review })).catch(
+      async (res) => {
+        // const data = await res.json();
+      }
+    );
+  };
 
   return (
     <>
-      <div className={styles.resultsContainer}>
-        <div className={styles.cardContainer}>
-          <div className={styles.imgContainer}>
-            <img
-              className={styles.img}
-              layout="fill"
-              objectFit="cover"
-              src={''}
-            />
-          </div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          userId
+          <input
+            type="number"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          spotId
+          <input
+            type="number"
+            value={spotId}
+            onChange={(e) => setSpotId(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Leave a review
+          <input
+            type="textarea"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
 
-          <div className={styles.results}>
-            <div className={styles.detailContainer}></div>
-
-            <span className={styles.spotName}>{spot[0].name}</span>
-
-            <div className={styles.divisor} />
-
-            <p className={styles.detail}>
-              {spot[0].address}, {spot[0].city}, {spot[0].country}
-            </p>
-
-            <div className={styles.priceDetail}>
-              <div>
-                <p className={styles.price}>${spot[0].price}/night</p>
-              </div>
-            </div>
-          </div>
+      <form className={styles.outerContainer}>
+        <div className={styles.labelContainer}>
+          <label className={styles.label}>Add a written rview</label>
         </div>
-      </div>
-      <ReviewFormContainer />
+        <div className={styles.textAreaContainer}>
+          <input className={styles.input} type="textarea"></input>
+        </div>
+        <div className={styles.btnContainer}>
+          <button className={styles.btn} type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
     </>
   );
 }

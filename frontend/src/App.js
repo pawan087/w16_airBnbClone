@@ -12,6 +12,7 @@ import TestSearch from "./components/TestSearch/SearchContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import BannerComponent from "./components/Banner/BannerComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
+import ReserveFormComponent from "./components/TestSpot/ReserveFormComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path="/search">
             <TestSearch />
+          </Route>
+          <Route path="/reserve">
+            <ReserveFormComponent />
           </Route>
         </Switch>
       )}
