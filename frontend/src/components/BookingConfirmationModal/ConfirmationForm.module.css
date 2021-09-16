@@ -1,0 +1,11 @@
+.testing {
+    height: 50%;
+    width: 50%;
+    background-color: grey;
+}
+.testing {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

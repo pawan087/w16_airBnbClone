@@ -8,6 +8,7 @@ import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
 import AllReviewsComponent from "./AllReviewsComponent";
+import BookingConfirmationModal from "../BookingConfirmationModal/index";
 
 export default function SpotsContainer() {
   const { spotId } = useParams();
@@ -60,7 +61,6 @@ export default function SpotsContainer() {
     ))}
   </ul>;
 
-
   return (
     <>
       {showSpot && (
@@ -95,7 +95,12 @@ export default function SpotsContainer() {
           </div>
         </div>
       )}
-      <ReserveFormComponent spot={spot} startDate={startDate} endDate={endDate} />
+      <BookingConfirmationModal />
+      <ReserveFormComponent
+        spot={spot}
+        startDate={startDate}
+        endDate={endDate}
+      />
       <ReviewFormContainer spot={spot} />
       <AllReviewsComponent reviewsArr={specificReviews} />
     </>

@@ -6,8 +6,10 @@ import { delReview } from "../../store/reviews";
 export default function AllReviewsComponent({ reviewsArr }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  let name;
-  console.log(user.username);
+  let username;
+  if (user) {
+    username = user.username;
+  }
   const deleteReview = (r) => {
     dispatch(delReview(r));
   };
@@ -33,7 +35,7 @@ export default function AllReviewsComponent({ reviewsArr }) {
                   />
                 </svg>
               </div>
-              <div className={styles.userInfo}>{user.username}</div>
+              <div className={styles.userInfo}>{username}</div>
             </div>
             <div className={styles.reviewContent}>{review["review"]}</div>
             <div
