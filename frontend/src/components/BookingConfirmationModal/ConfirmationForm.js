@@ -1,39 +1,123 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { getBookings } from "../../store/bookings";
+import { getSpots } from "../../store/spots";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
-function ConfirmationForm() {
+import { Redirect } from "react-router-dom";
+import * as bookingActions from "../../store/bookings";
+function ConfirmationForm({ total, spot, startDate, endDate }) {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  const [userId, setUserId] = useState(sessionUser.id);
+  const [spotId, setSpotId] = useState(spot[0].id);
+  const bookings = useSelector((state) => state.booking);
+  const spots = useSelector((state) => state.spot);
+  const spotsArr = Object.values(spots);
+  const bookingArr = Object.values(bookings);
+  let location = spot[0].city;
+  let searchResultsObj = {};
+  spotsArr.forEach((spot) => {
+    if (spot.city === location) {
+      searchResultsObj[spot.id] = spot;
+    }
+  });
+  bookingArr.forEach((booking) => {
+    if (booking["Spot"]["city"] === location && startDate && endDate) {
+      if (booking.startDate < startDate && endDate < booking.endDate) {
+        // searchResultsObj[booking["Spot"]["id"]] = null;
+        delete searchResultsObj[booking["Spot"]["id"]];
+      }
+      if (
+        startDate < booking.startDate &&
+        booking.startDate < endDate &&
+        endDate < booking.endDate
+      ) {
+        // searchResultsObj[booking["Spot"]["id"]] = null;
+        delete searchResultsObj[booking["Spot"]["id"]];
+      }
+      if (startDate < booking.startDate && booking.endDate < endDate) {
+        // searchResultsObj[booking["Spot"]["id"]] = null;
+        delete searchResultsObj[booking["Spot"]["id"]];
+      }
+      if (booking.startDate < startDate && booking.endDate < endDate) {
+        // searchResultsObj[booking["Spot"]["id"]] = null;
+        delete searchResultsObj[booking["Spot"]["id"]];
+      }
+    }
+  });
+  const arr = Object.values(searchResultsObj);
+  console.log(arr.length);
+  useEffect(() => {
+    dispatch(getBookings());
+    dispatch(getSpots());
+    // dispatch(getImages());
+  }, [dispatch]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (arr.length) {
+      return dispatch(
+        bookingActions.create({ userId, spotId, startDate, endDate })
+      ).catch(async (res) => {
+        const data = await res.json();
+      });
+    }
+  };
 
+  const cancelMe = () => {
+    window.location.reload();
+  };
   return (
     <div className={styles.outerContainer}>
       <div className={styles.logoContainer}>
-        <img className={styles.logo} src={'https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png'} className={styles.logo}></img>
+        <img
+          className={styles.logo}
+          src={
+            "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
+          }
+          className={styles.logo}
+        ></img>
       </div>
 
       <div className={styles.cardContainer}>
         <div className={styles.topCardContainer}>
-          <div className={styles.title}>Success</div>
-          <div className={styles.subtitle}>Snoop's booking with Sally has been confirmed.</div>
+          <div className={styles.title}>Reservation Confirmation</div>
+          {spot[0] && <div className={styles.subtitle}>{spot[0].name}</div>}
         </div>
         <div className={styles.middleContainer}>
-          <div className={styles.middleHeader}>Snoop's Itinerary</div>
+          <div className={styles.middleHeader}>
+            {sessionUser.username}'s Itinerary
+          </div>
           <div className={styles.divisor}></div>
           <div className={styles.label}>Date(s)</div>
-          <div className={styles.detail}>Jan .05</div>
+          {startDate && endDate && (
+            <div className={styles.detail}>{`${startDate.slice(
+              5
+            )} through ${endDate.slice(5)}`}</div>
+          )}
           <div className={styles.label}>Owner:</div>
-          <div className={styles.detail}>Owen</div>
-          <div className={styles.label}>Sitter</div>
-          <div className={styles.detail}>Sally</div>
-          <div className={styles.label}>You Paid:</div>
-          <div className={styles.detail}>$21.00</div>
+          {spot[0] && <div className={styles.detail}>{spot[0].userId}</div>}
+          <div className={styles.label}>Total:</div>
+          <div className={styles.detail}>
+            $
+            {total -
+              total * 0.025 +
+              total * 0.15 +
+              total * 0.1 +
+              total * 0.0625}
+          </div>
           <div className={styles.middleFooter}>
-            Your sitter or dog walker will receive payment two days after the
-            stay or walk ends.
+            The owner will receive payment two days after your stay ends.
           </div>
         </div>
         <div className={styles.btnsContainer}>
-        <button className={styles.btnCancel}>Modify Reservation</button>
-        <button className={styles.btnSubmit}>Send a Message</button>
+          <button onClick={cancelMe} className={styles.btnCancel}>
+            Cancel
+          </button>
+          <button onClick={handleSubmit} className={styles.btnSubmit}>
+            Confirm Reservation
+          </button>
         </div>
       </div>
     </div>

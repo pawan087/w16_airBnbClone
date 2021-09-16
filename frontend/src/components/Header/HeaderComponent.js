@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
+import NewSubMenu from "./NewSubMenu";
 
 export default function HeaderComponent() {
   const dispatch = useDispatch();
@@ -83,7 +84,6 @@ export default function HeaderComponent() {
           ></img>
         </a>
       </div>
-
       <div className={styles.middleHeader}>
         <input
           className={styles.searchInput}
@@ -110,7 +110,6 @@ export default function HeaderComponent() {
           </svg>
         </div>
       </div>
-
       <div className={styles.rightHeader}>
         <div className={styles.rightIconsContainer} onClick={openMenu}>
           <div className={styles.menuIcon}>
@@ -148,7 +147,7 @@ export default function HeaderComponent() {
           </div>
         </div>
 
-        {showMenu && (
+        {false && (
           <div className={styles.dropDownMenu}>
             <div className={styles.dropDownHeader}>Welcome, Pawan.</div>
             {user ? (
@@ -182,6 +181,27 @@ export default function HeaderComponent() {
                 <LoginForm />
               </Modal>
             )}
+          </div>
+        )}
+        {showMenu && (
+          <div className={styles.outerContainer}>
+          {!user ? <div className={styles.menuItem}>Demo User</div> : null}
+            {user ? (
+              <NavLink className={styles.menuItem} to="/bookings">
+                Bookings
+              </NavLink>
+            ) : null}
+            {user ? (
+              <div className={styles.menuItem} onClick={logout}>
+                Log Out
+              </div>
+            ) : null}
+            {!user ? <div className={styles.menuItem}>Log In</div> : null}
+            {!user ? (
+              <NavLink to="/signup" className={styles.menuItem}>
+                Sign Up
+              </NavLink>
+            ) : null}
           </div>
         )}
       </div>
