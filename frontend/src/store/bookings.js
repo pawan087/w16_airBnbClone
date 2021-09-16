@@ -15,9 +15,9 @@ export const delBooking = (b) => async (dispatch) => {
       id,
     }),
   });
-  const bookings = await response.json();
-  dispatch(setBookings(bookings));
-  return response;
+  // const bookings = await response.json();
+  // dispatch(setBookings(bookings));
+  // return response;
 };
 
 export const create = (booking) => async (dispatch) => {
