@@ -3,14 +3,16 @@
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: right;
   align-items: center;
   left: 0;
+  bottom: 0;
+
+  transition: 0.625s ease all;
   width: 100%;
-  opacity: 85%;
-  border-top: 0.25em solid #009cd5;
+  /* border-top: 0.25em solid #009cd5; */
 }
 
 .footerLogo {

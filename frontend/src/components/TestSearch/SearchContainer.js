@@ -129,7 +129,7 @@ export default function SearchContainer() {
   };
 
   return (
-    <>
+    <div className={styles.componentContainer}>
       <form onSubmit={handleSubmit}>
         <label>
           Location
@@ -230,6 +230,6 @@ export default function SearchContainer() {
           )}
         </section>
       </main>
-    </>
+    </div>
   );
 }

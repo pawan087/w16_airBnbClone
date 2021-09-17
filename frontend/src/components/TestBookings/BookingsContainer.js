@@ -65,7 +65,7 @@ export default function BookingsContainer() {
   };
 
   return (
-    <>
+    <div className={styles.componentContainer}>
       {userBookings.map((booking) => (
         <div className={styles2.resultsContainer}>
           <div className={styles.cardContainer}>
@@ -116,7 +116,7 @@ export default function BookingsContainer() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

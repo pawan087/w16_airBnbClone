@@ -27,13 +27,11 @@ function App() {
   <Navigation isLoaded={isLoaded} />;
   return (
     <>
-      <Navigation isLoaded={isLoaded} />;
+      <HeaderComponent />
       {isLoaded && (
         <Switch location={location} key={location.pathname}>
           <Route exact path="/">
-            <HeaderComponent />
             <BannerComponent />
-            <FooterComponent />;
           </Route>
 
           <Route path="/signup">
@@ -59,6 +57,8 @@ function App() {
           </Route>
         </Switch>
       )}
+      <FooterComponent />;
+
     </>
   );
 }
