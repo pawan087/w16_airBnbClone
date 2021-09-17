@@ -26,49 +26,40 @@ function App() {
   <FooterComponent />;
   <Navigation isLoaded={isLoaded} />;
   return (
-    <AnimatePresence exitBeforeEnter>
-    <Navigation isLoaded={isLoaded} />;
-
-
+    <>
+      <Navigation isLoaded={isLoaded} />;
       {isLoaded && (
         <Switch location={location} key={location.pathname}>
-          <motion.div
-            initial={{opacity:.5}}
-            animate={{ opacity:1  }}
-            exit={{opacity:.5 }}
-          >
           <Route exact path="/">
-          <HeaderComponent />
-          <BannerComponent />
-
-          <FooterComponent />;
+            <HeaderComponent />
+            <BannerComponent />
+            <FooterComponent />;
           </Route>
 
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-            <Route exact path="/spots">
-              <TestSpots />
-            </Route>
-            <Route path="/spots/:spotId">
-              <TestSpot />
-            </Route>
-            <Route exact path="/bookings">
-              <TestBookings />
-            </Route>
-            <Route path="/bookings/new">
-              <TestNewBooking />
-            </Route>
-            <Route path="/search">
-              <TestSearch />
-            </Route>
-            <Route path="/reserve">
-              <ReserveFormComponent />
-            </Route>
-          </motion.div>
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
+          <Route exact path="/spots">
+            <TestSpots />
+          </Route>
+          <Route path="/spots/:spotId">
+            <TestSpot />
+          </Route>
+          <Route exact path="/bookings">
+            <TestBookings />
+          </Route>
+          <Route path="/bookings/new">
+            <TestNewBooking />
+          </Route>
+          <Route path="/search">
+            <TestSearch />
+          </Route>
+          <Route path="/reserve">
+            <ReserveFormComponent />
+          </Route>
         </Switch>
       )}
-    </AnimatePresence>
+    </>
   );
 }
 
