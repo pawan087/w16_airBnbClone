@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import TestSpots from "./components/TestSpots/SpotsContainer";
 import TestSpot from "./components/TestSpot/SpotContainer";
@@ -14,6 +14,7 @@ import BannerComponent from "./components/Banner/BannerComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
 import ReserveFormComponent from "./components/TestSpot/ReserveFormComponent";
 
+import { AnimatePresence, motion } from "framer-motion";
 function App() {
   const dispatch = useDispatch();
 
@@ -21,41 +22,53 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
+  const location = useLocation();
   <FooterComponent />;
   <Navigation isLoaded={isLoaded} />;
   return (
-    <>
-      <HeaderComponent />
-      <BannerComponent />
-      <FooterComponent />;
-      <Navigation isLoaded={isLoaded} />
+    <AnimatePresence exitBeforeEnter>
+    <Navigation isLoaded={isLoaded} />;
+
+
       {isLoaded && (
-        <Switch>
-          <Route path="/signup">
-            <SignupFormPage />
+        <Switch location={location} key={location.pathname}>
+          <motion.div
+            initial={{opacity:.5}}
+            animate={{ opacity:1  }}
+            exit={{opacity:.5 }}
+          >
+          <Route exact path="/">
+          <HeaderComponent />
+          <BannerComponent />
+
+          <FooterComponent />;
           </Route>
-          <Route exact path="/spots">
-            <TestSpots />
-          </Route>
-          <Route path="/spots/:spotId">
-            <TestSpot />
-          </Route>
-          <Route exact path="/bookings">
-            <TestBookings />
-          </Route>
-          <Route path="/bookings/new">
-            <TestNewBooking />
-          </Route>
-          <Route path="/search">
-            <TestSearch />
-          </Route>
-          <Route path="/reserve">
-            <ReserveFormComponent />
-          </Route>
+
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path="/spots">
+              <TestSpots />
+            </Route>
+            <Route path="/spots/:spotId">
+              <TestSpot />
+            </Route>
+            <Route exact path="/bookings">
+              <TestBookings />
+            </Route>
+            <Route path="/bookings/new">
+              <TestNewBooking />
+            </Route>
+            <Route path="/search">
+              <TestSearch />
+            </Route>
+            <Route path="/reserve">
+              <ReserveFormComponent />
+            </Route>
+          </motion.div>
         </Switch>
       )}
-    </>
+    </AnimatePresence>
   );
 }
 

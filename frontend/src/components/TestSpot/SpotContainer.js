@@ -9,7 +9,7 @@ import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
 import AllReviewsComponent from "./AllReviewsComponent";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
-
+import { AnimatePresence, motion } from "framer-motion";
 export default function SpotsContainer() {
   const { spotId } = useParams();
   const dispatch = useDispatch();

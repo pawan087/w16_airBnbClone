@@ -9,6 +9,7 @@ import styles from "../../components/TestSearch/SearchContainer.module.css";
 import styles2 from "../../components/TestBookings/BookingContainer.module.css";
 import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
 import EditBookingModal from "../EditBookingModal/index";
+import { AnimatePresence, motion } from "framer-motion";
 export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();

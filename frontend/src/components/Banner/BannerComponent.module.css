@@ -3,14 +3,14 @@
   background-color: black;
 }
 
-@keyframes fadein {
+/* @keyframes fadein {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
-}
+} */
 
 .bannerImg {
   width: 100%;
