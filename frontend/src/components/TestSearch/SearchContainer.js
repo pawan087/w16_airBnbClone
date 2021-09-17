@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
+import getCenter from "geolib/es/getCenter";
 import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
 import MapComponent from "../Map/MapComponent";
@@ -101,6 +102,16 @@ export default function SearchContainer() {
     const { id } = spot;
     history.push(`/spots/${id}`);
   };
+  let center;
+  if (arr[0]) {
+    const coordinates = arr.map((x) => ({
+      longitude: +x.lng,
+      latitude: +x.lat,
+    }));
+    center = getCenter(coordinates);
+    console.log(center.latitude);
+    console.log(center.longitude);
+  }
 
   useEffect(() => {
     dispatch(getBookings());
@@ -214,7 +225,9 @@ export default function SearchContainer() {
           ))}
         </section>
         <section className={styles.map}>
-          <MapComponent arr={arr} />
+          {arr.length > 0 && (
+            <MapComponent lat={center.latitude} lng={center.longitude} />
+          )}
         </section>
       </main>
     </>
