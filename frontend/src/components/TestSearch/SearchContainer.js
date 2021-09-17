@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
+import getCenter from "geolib/es/getCenter";
 import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
+import MapComponent from "../Map/MapComponent";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
 export default function SearchContainer() {
   const history = useHistory();
@@ -26,6 +28,7 @@ export default function SearchContainer() {
   const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
   const spotsArr = Object.values(spots);
+
   const bookingArr = Object.values(bookings);
   let searchResultsObj = {};
 
@@ -99,6 +102,16 @@ export default function SearchContainer() {
     const { id } = spot;
     history.push(`/spots/${id}`);
   };
+  let center;
+  if (arr[0]) {
+    const coordinates = arr.map((x) => ({
+      longitude: +x.lng,
+      latitude: +x.lat,
+    }));
+    center = getCenter(coordinates);
+    console.log(center.latitude);
+    console.log(center.longitude);
+  }
 
   useEffect(() => {
     dispatch(getBookings());
@@ -153,7 +166,7 @@ export default function SearchContainer() {
         <button type="submit">Search</button>
       </form>
 
-      <main>
+      <main className={styles.outerContainer}>
         <section>
           {!arr.length && startDate && endDate && (
             <p className={styles.subHeader}>
@@ -210,6 +223,11 @@ export default function SearchContainer() {
               </div>
             </div>
           ))}
+        </section>
+        <section className={styles.map}>
+          {arr.length > 0 && (
+            <MapComponent arr={arr} lat={center.latitude} lng={center.longitude} />
+          )}
         </section>
       </main>
     </>

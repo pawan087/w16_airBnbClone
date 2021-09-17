@@ -283,7 +283,7 @@
 }
 
 .submitSearchBtn:hover {
-  transform: scale(1.25);
+  transform: scale(1.125);
   opacity: 100%;
 }
 .submitSearchBtn:active {

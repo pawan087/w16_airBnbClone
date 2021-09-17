@@ -17,3 +17,7 @@ body::-webkit-scrollbar-thumb {
   background-color: #009cd5;
   outline: .25em solid transparent;
 }
+
+.progressBar {
+  z-index: 50;
+}

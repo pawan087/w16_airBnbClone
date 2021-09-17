@@ -9,6 +9,7 @@ import styles from "../../components/TestSearch/SearchContainer.module.css";
 import styles2 from "../../components/TestBookings/BookingContainer.module.css";
 import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
 import EditBookingModal from "../EditBookingModal/index";
+import { AnimatePresence, motion } from "framer-motion";
 export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ export default function BookingsContainer() {
                 booking={booking}
               />
 
-              <p className={styles.detail}>
+              <p className={styles2.detail}>
                 {" "}
                 {dayCount(booking.startDate, booking.endDate)} night stay:{" "}
                 {booking.startDate.slice(0, 10)} through{" "}

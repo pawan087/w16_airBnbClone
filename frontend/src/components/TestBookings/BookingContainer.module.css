@@ -6,6 +6,7 @@
   cursor: pointer;
   position: absolute;
   right: 1em;
+  transition: 0.2s ease all;
 }
 
 .deleteContainer:hover {
@@ -68,4 +69,10 @@
 
 .edit:hover {
   color: #009cd5;
+}
+
+
+.detail {
+  position: relative;
+  left: 3.65em;
 }

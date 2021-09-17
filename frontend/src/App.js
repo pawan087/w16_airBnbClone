@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import TestSpots from "./components/TestSpots/SpotsContainer";
 import TestSpot from "./components/TestSpot/SpotContainer";
@@ -14,6 +14,7 @@ import BannerComponent from "./components/Banner/BannerComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
 import ReserveFormComponent from "./components/TestSpot/ReserveFormComponent";
 
+import { AnimatePresence, motion } from "framer-motion";
 function App() {
   const dispatch = useDispatch();
 
@@ -21,17 +22,20 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
+  const location = useLocation();
   <FooterComponent />;
   <Navigation isLoaded={isLoaded} />;
   return (
     <>
-      <HeaderComponent />
-      <BannerComponent />
-      <FooterComponent />;
-      <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded} />;
       {isLoaded && (
-        <Switch>
+        <Switch location={location} key={location.pathname}>
+          <Route exact path="/">
+            <HeaderComponent />
+            <BannerComponent />
+            <FooterComponent />;
+          </Route>
+
           <Route path="/signup">
             <SignupFormPage />
           </Route>

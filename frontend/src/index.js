@@ -12,6 +12,7 @@ import { BookingConfirmationProvider } from "./context/BookingConfirmation";
 import { CancelBookingConfirmationProvider } from "./context/CancelBookingConfirmation";
 import { EditBookingProvider } from "./context/EditBooking";
 
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {

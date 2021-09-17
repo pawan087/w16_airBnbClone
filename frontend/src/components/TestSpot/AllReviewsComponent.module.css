@@ -8,7 +8,7 @@
   box-sizing: border-box;
   display: grid;
   width: 100%;
-  gap: 1em;
+  gap: 1.5em;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
   margin-top: 2.5em;

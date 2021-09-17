@@ -1,5 +1,6 @@
 .outerContainer {
-  margin-top: 1em;
+  margin-top: 0em;
+  margin-bottom: 5em;
   width: 50%;
   height: 24.25em;
   --tw-bg-opacity: 1;
@@ -63,14 +64,14 @@
   resize: none;
   padding: 1em;
   outline: none;
-  border: 0.0625em solid rgb(156, 163, 175);
+  border: 0.125em solid rgb(156, 163, 175);
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(107, 114, 128);
   border-radius: 0.75em;
 }
 
 .textArea:hover {
-  border: 0.0625em solid #009cd5;
+  border: 0.125em solid #009cd5;
 }
 
 .btnContainer {
