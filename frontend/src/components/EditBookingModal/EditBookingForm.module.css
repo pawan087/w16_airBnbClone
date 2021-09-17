@@ -8,8 +8,8 @@
 }
 
 .outerContainer {
-  --tw-bg-opacity: 1;
-  background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+	--tw-bg-opacity: 1;
+background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
   border-radius: 1em;
   width: 46em;
   display: flex;
@@ -66,8 +66,8 @@
   padding-top: 1em;
   align-self: center;
   width: 90%;
-  --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+	--tw-bg-opacity: 1;
+background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
 .title,
@@ -80,7 +80,7 @@
 
   align-content: center;
   align-items: center;
-  font-size: 1.125em;
+  font-size: 1.25em;
 }
 
 .subtitle {

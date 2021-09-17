@@ -138,7 +138,7 @@ export default function SearchContainer() {
 
   return (
     <div className={styles.componentContainer}>
-      {isEmpty() && <SorryComponent />}
+      {!arr && <SorryComponent />}
       {arr.length !== 0 && (
         <main className={styles.outerContainer}>
           <section>

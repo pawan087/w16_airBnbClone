@@ -26,6 +26,8 @@
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-bg-opacity: 1;
+    background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
 
 .outerContainer:hover {
@@ -66,8 +68,8 @@
   padding-top: 1em;
   align-self: center;
   width: 90%;
-  --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+	--tw-bg-opacity: 1;
+background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
 .title,

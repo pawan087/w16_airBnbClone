@@ -28,6 +28,7 @@ function App() {
   <Navigation isLoaded={isLoaded} />;
   return (
     <>
+
       <HeaderComponent />
       {isLoaded && (
         <Switch location={location} key={location.pathname}>

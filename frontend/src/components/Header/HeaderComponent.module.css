@@ -78,7 +78,7 @@
 }
 
 .searchInput {
-  border-radius: 9999px;
+  border-radius: .5em;
   padding: 1em 2em;
   font-size: 0.8em;
   border: none;
@@ -124,7 +124,7 @@
   display: flex;
   flex-direction: row-reverse;
   border: 0.0625em solid black;
-  border-radius: 9999px;
+  border-radius: .5em;
   --tw-border-opacity: 1;
   border-color: rgba(209, 213, 219, var(--tw-border-opacity));
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -323,6 +323,8 @@
   animation: fadein 0.5s;
   width: 5.5em;
   height: 5em;
+
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -358,10 +360,12 @@
   align-self: center;
   border-bottom: 0.0625em solid #009cd5;
   color: #009cd5;
-  
+
 }
 
 .menuItem {
+
+  border: .0625 solid #009cd5;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;

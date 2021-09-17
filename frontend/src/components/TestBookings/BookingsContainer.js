@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect, Route } from "react-router-dom";
-import { getBookings } from "../../store/bookings";
+import { getBookings, getUserBookings } from "../../store/bookings";
 import { getImages } from "../../store/images";
 import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
@@ -10,6 +10,8 @@ import styles2 from "../../components/TestBookings/BookingContainer.module.css";
 import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
 import EditBookingModal from "../EditBookingModal/index";
 import { AnimatePresence, motion } from "framer-motion";
+import SorryComponent from "../Sorry/SorryComponent";
+
 export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -17,17 +19,18 @@ export default function BookingsContainer() {
   const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
   const images = useSelector((state) => state.images);
-  const spotsArr = Object.values(spots);
-  const bookingArr = Object.values(bookings);
   const imagesArr = Object.values(images);
+  let userBookingsArr = Object.values(bookings);
+
   // console.log('yee',spots['4'].name)
 
   // console.log(bookings[5].Spot.name);
 
   useEffect(() => {
-    dispatch(getBookings());
     dispatch(getSpots());
     dispatch(getImages());
+    dispatch(getUserBookings(session.user.id));
+    // console.log(session.user.id);
   }, [dispatch]);
 
   if (!session.user) return <Redirect to="/" />;
@@ -35,11 +38,7 @@ export default function BookingsContainer() {
   const userId = session.user.id;
   const username = session.user.username;
 
-  const userBookings = bookingArr.filter(
-    (booking) => booking.userId === userId
-  );
-
-  for (let bookingObj of userBookings) {
+  for (let bookingObj of userBookingsArr) {
     for (let imageObj of imagesArr) {
       if (imageObj.spotId === bookingObj.spotId) {
         bookingObj["imgUrl"] = imageObj.url;
@@ -66,7 +65,8 @@ export default function BookingsContainer() {
 
   return (
     <div className={styles.componentContainer}>
-      {userBookings.map((booking) => (
+      {!userBookingsArr && <SorryComponent noBookings={true} />}
+      {userBookingsArr.map((booking) => (
         <div className={styles2.resultsContainer}>
           <div className={styles.cardContainer}>
             <div
