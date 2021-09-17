@@ -65,8 +65,8 @@ export default function HeaderComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(searchAction.getSearchResults({ searchInput, startDate, endDate }));
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
-
     setSearchInput('');
     history.push("/search");
   };

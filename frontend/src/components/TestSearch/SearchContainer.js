@@ -14,97 +14,25 @@ export default function SearchContainer() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const searchCriteria = useSelector((state) => state.search);
-  const images = useSelector((state) => state.images);
-  let searchedStartDate = searchCriteria.startDate;
-  let searchedEndDate = searchCriteria.endDate;
-
-  if (searchCriteria.startDate)
-    searchedStartDate = searchedStartDate.toISOString().split("T")[0];
-  if (searchCriteria.endDate)
-    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
-
+  const searchResults = useSelector((state) => state.searchResults);
+  const searchResultsArr = Object.values(searchResults);
   const [location, setLocation] = useState(searchCriteria.searchInput);
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
+  const [startDate, setStartDate] = useState(searchCriteria.startDate);
+  const [endDate, setEndDate] = useState(searchCriteria.endDate);
   const [errors, setErrors] = useState([]);
-  const bookings = useSelector((state) => state.booking);
-  const spots = useSelector((state) => state.spot);
-  const spotsArr = Object.values(spots);
-
-  const bookingArr = Object.values(bookings);
-  let searchResultsObj = {};
-
-  // console.log(spotsArr[0].Images[0].url); // imgUrl
-  // console.log(spotsArr[0].city); // location
 
   const x = new Date(startDate);
   const y = new Date(endDate);
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
-
-  spotsArr.forEach((spot) => {
-    if (spot.city === location) {
-      searchResultsObj[spot.id] = spot;
-    }
-  });
-
-  // console.log(bookingArr[0].Spot.city) // location
-  // console.log(bookingArr[0].Spot.startDate) // startDate
-  // console.log(bookingArr[0].Spot.endDate) // endDate
-
-  bookingArr.forEach((booking) => {
-    if (booking["Spot"]["city"] === location && startDate && endDate) {
-      if (booking.startDate < startDate && endDate < booking.endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (
-        startDate < booking.startDate &&
-        booking.startDate < endDate &&
-        endDate < booking.endDate
-      ) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (startDate < booking.startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (booking.startDate < startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-    }
-  });
-
-  const arr = Object.values(searchResultsObj);
-  let today = new Date();
-
-  // bookingArr.forEach((booking) => {
-  //   if (booking["Spot"]["city"] === location && startDate && endDate) {
-  //     if (!(booking.startDate < startDate && endDate < booking.endDate)) {
-  //       if (
-  //         !(
-  //           startDate < booking.startDate &&
-  //           booking.startDate < endDate &&
-  //           endDate < booking.endDate
-  //         )
-  //       )
-  //         if (!(startDate < booking.startDate && booking.endDate < endDate)) {
-  //           if (!(booking.startDate < startDate && booking.endDate < endDate)) {
-  //             arr.push(booking["Spot"]);
-  //           }
-  //         }
-  //     }
-  //   }
-  // });
+  console.log(searchCriteria);
 
   const linkMe = (spot) => {
     const { id } = spot;
     history.push(`/spots/${id}`);
   };
   let center;
-  if (arr[0]) {
-    const coordinates = arr.map((x) => ({
+  if (searchResultsArr[0]) {
+    const coordinates = searchResultsArr.map((x) => ({
       longitude: +x.lng,
       latitude: +x.lat,
     }));
@@ -115,46 +43,29 @@ export default function SearchContainer() {
   //   history.push(`/sorry`);
   // }
 
-  useEffect(() => {
-    dispatch(getBookings());
-    dispatch(getSpots());
-    // dispatch(getImages());
-  }, [dispatch, searchCriteria]);
+  useEffect(() => {}, [dispatch, searchCriteria]);
 
   // if (!sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(location);
-    console.log(startDate);
-    console.log(endDate);
-  };
-
-  const isEmpty = () => {
-    if (arr.length === 0) {
-      return true;
-    }
-  };
-
   return (
     <div className={styles.componentContainer}>
-      {!arr && <SorryComponent />}
-      {arr.length !== 0 && (
+      {searchResultsArr.length === 0 && <SorryComponent />}
+      {searchResultsArr && (
         <main className={styles.outerContainer}>
           <section>
-            {arr.length > 0 && (
+            {searchResultsArr.length > 0 && (
               <h3 className={styles.subHeader}>
-                {arr.length} Spot(s) Available
+                {searchResultsArr.length} Spot(s) Available
               </h3>
             )}
 
-            {arr.length > 0 && (
+            {searchResultsArr.length > 0 && (
               <h1 className={styles.resultsHeader}>Stays in {location}</h1>
             )}
 
             <div className={styles.divisor2} />
 
-            {arr.map((spot) => (
+            {searchResultsArr.map((spot) => (
               <div
                 onClick={() => linkMe(spot)}
                 className={styles.resultsContainer}
@@ -195,12 +106,8 @@ export default function SearchContainer() {
             ))}
           </section>
           <section className={styles.map}>
-            {arr.length > 0 && (
-              <MapComponent
-                arr={arr}
-                lat={center.latitude}
-                lng={center.longitude}
-              />
+            {searchResultsArr.length > 0 && (
+              <MapComponent lat={center.latitude} lng={center.longitude} />
             )}
           </section>
         </main>

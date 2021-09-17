@@ -29,16 +29,13 @@ export default function MapComponent({ id, lat, lng }) {
   const [location, setLocation] = useState(searchCriteria.searchInput);
   const [startDate, setStartDate] = useState(searchedStartDate);
   const [endDate, setEndDate] = useState(searchedEndDate);
-  const spotsArr = Object.values(spots);
+  const searchResults = useSelector((state) => state.searchResults);
+  const searchResultsArr = Object.values(searchResults);
 
   const bookingArr = Object.values(bookings);
   let spot = spots[id];
   let searchResultsObj = {};
-  spotsArr.forEach((spot) => {
-    if (spot.city === location) {
-      searchResultsObj[spot.id] = spot;
-    }
-  });
+
   bookingArr.forEach((booking) => {
     if (booking["Spot"]["city"] === location && startDate && endDate) {
       if (booking.startDate < startDate && endDate < booking.endDate) {
@@ -82,7 +79,7 @@ export default function MapComponent({ id, lat, lng }) {
       mapStyle="mapbox://styles/pawan087/cktnrdl4f0jyb17mqmnp5osxq"
       mapboxApiAccessToken="pk.eyJ1IjoicGF3YW4wODciLCJhIjoiY2t0bnI5MDllMDVtajJ2cG0xbWNkaDIyMSJ9.ro5h9hxSsdwWYS0c9gbnEg"
     >
-      {arr.length === 0 && (
+      {searchResultsArr.length === 0 && (
         <div key={spot.lat}>
           <Marker
             longitude={+spot.lng}
@@ -111,7 +108,7 @@ export default function MapComponent({ id, lat, lng }) {
         </div>
       )}
 
-      {arr.map((x) => (
+      {searchResultsArr.map((x) => (
         <div key={x.lat}>
           <Marker
             longitude={+x.lng}

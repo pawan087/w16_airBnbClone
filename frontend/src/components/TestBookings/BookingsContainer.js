@@ -22,16 +22,12 @@ export default function BookingsContainer() {
   const imagesArr = Object.values(images);
   let userBookingsArr = Object.values(bookings);
 
-  // console.log('yee',spots['4'].name)
-
-  // console.log(bookings[5].Spot.name);
 
 
   useEffect(() => {
     dispatch(getSpots());
     dispatch(getImages());
     dispatch(getUserBookings(session.user.id));
-    // console.log(session.user.id);
   }, [dispatch]);
 
   if (!session.user) return <Redirect to="/" />;
@@ -52,7 +48,7 @@ export default function BookingsContainer() {
     const y = new Date(endDate);
     return (y - x) / 60 / 60 / 1000 / 24;
   };
-console.log(userBookingsArr);
+
   const linkMe = (booking) => {
     const { spotId } = booking;
     history.push(`/spots/${spotId}`);
