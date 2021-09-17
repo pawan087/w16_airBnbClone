@@ -16,7 +16,7 @@ export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
-  const bookings = useSelector((state) => state.booking);
+  const bookings = useSelector((state) => state.userBookings);
   const spots = useSelector((state) => state.spot);
   const images = useSelector((state) => state.images);
   const imagesArr = Object.values(images);
@@ -25,6 +25,7 @@ export default function BookingsContainer() {
   // console.log('yee',spots['4'].name)
 
   // console.log(bookings[5].Spot.name);
+
 
   useEffect(() => {
     dispatch(getSpots());
@@ -51,7 +52,7 @@ export default function BookingsContainer() {
     const y = new Date(endDate);
     return (y - x) / 60 / 60 / 1000 / 24;
   };
-
+console.log(userBookingsArr);
   const linkMe = (booking) => {
     const { spotId } = booking;
     history.push(`/spots/${spotId}`);
