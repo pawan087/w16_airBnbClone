@@ -66,6 +66,15 @@ export const getBookings = () => async (dispatch) => {
   dispatch(setBookings(bookings));
 };
 
+export const getUserBookings = (id) => async (dispatch) => {
+  const res = await fetch("/api/bookings");
+  const bookings = await res.json();
+  let userBookings = bookings.filter(booking => (
+    booking.userId === id
+  ))
+  dispatch(setBookings(userBookings));
+};
+
 const initialState = {};
 /* case DELETE_THING:
 const id = action.thingId

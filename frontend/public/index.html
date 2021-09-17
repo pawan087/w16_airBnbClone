@@ -26,6 +26,17 @@
         } else {
           document.getElementById("navbar").style.background = "#F3F4F6";
         }
+
+
+
+        if (
+          document.body.scrollTop > 25 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          document.getElementById("footer").style.backgroundColor = "#F3F4F6";
+        } else {
+          document.getElementById("footer").style.backgroundColor = "transparent";
+        }
       }
     </script>
 

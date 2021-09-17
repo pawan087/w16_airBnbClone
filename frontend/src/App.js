@@ -15,6 +15,7 @@ import FooterComponent from "./components/Footer/FooterComponent";
 import ReserveFormComponent from "./components/TestSpot/ReserveFormComponent";
 
 import { AnimatePresence, motion } from "framer-motion";
+import SorryComponent from "./components/Sorry/SorryComponent";
 function App() {
   const dispatch = useDispatch();
 
@@ -27,13 +28,12 @@ function App() {
   <Navigation isLoaded={isLoaded} />;
   return (
     <>
-      <Navigation isLoaded={isLoaded} />;
+
+      <HeaderComponent />
       {isLoaded && (
         <Switch location={location} key={location.pathname}>
           <Route exact path="/">
-            <HeaderComponent />
             <BannerComponent />
-            <FooterComponent />;
           </Route>
 
           <Route path="/signup">
@@ -57,8 +57,12 @@ function App() {
           <Route path="/reserve">
             <ReserveFormComponent />
           </Route>
+          <Route path="/sorry">
+            <SorryComponent />
+          </Route>
         </Switch>
       )}
+      <FooterComponent />
     </>
   );
 }

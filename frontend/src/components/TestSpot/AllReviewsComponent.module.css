@@ -12,12 +12,13 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
   margin-top: 2.5em;
-  margin-bottom: 5em;
+  margin-bottom: 7.5em;
   position: relative;
   overflow-y: scroll;
   padding-left: 5em;
   padding-right: 5em;
   max-height: 21em;
+
 }
 
 .outerContainer::-webkit-scrollbar {

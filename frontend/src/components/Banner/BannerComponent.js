@@ -1,6 +1,11 @@
 import styles from "../../components/Banner/BannerComponent.module.css";
-
+import { useHistory } from "react-router-dom";
 export default function BannerComponent() {
+  const history = useHistory();
+  const linkMe = (e) => {
+    e.preventDefault();
+    history.push(`/spots`);
+  };
   let imgUrl =
     "https://a0.muscache.com/im/pictures/57b9f708-bb12-498c-bc33-769f8fc43e63.jpg?im_w=2560";
   return (
@@ -8,7 +13,9 @@ export default function BannerComponent() {
       <img className={styles.bannerImg} src={imgUrl}></img>
       <div className={styles.splashText}>
         <p>Not sure where to go? Perfect.</p>
-        <button className={styles.splashBtn}>I'm flexible</button>
+        <button onClick={(e) => linkMe(e)} className={styles.splashBtn}>
+          I'm flexible
+        </button>
       </div>
     </div>
   );

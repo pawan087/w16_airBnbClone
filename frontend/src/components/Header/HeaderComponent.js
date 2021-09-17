@@ -66,7 +66,8 @@ export default function HeaderComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
-    setSearchInput("");
+
+    setSearchInput('');
     history.push("/search");
   };
 
@@ -76,7 +77,7 @@ export default function HeaderComponent() {
   return (
     <header id="navbar" className={styles.headerContainer}>
       <div className={styles.leftHeader}>
-        <a href="/">
+        <a className={styles.imgContainer} href="/">
           <img
             className={styles.logo}
             src={imgUrl}
