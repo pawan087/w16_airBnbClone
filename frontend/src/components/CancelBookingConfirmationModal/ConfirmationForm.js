@@ -30,7 +30,7 @@ function ConfirmationForm({
 
   const deleteBooking = (e, b) => {
     e.preventDefault();
-    return dispatch(delBooking(b));
+    dispatch(delBooking(b));
   };
 
   useEffect(() => {
@@ -66,7 +66,8 @@ function ConfirmationForm({
           <div className={styles.label}></div>
           <div className={styles.detail}></div>
           <div className={styles.middleFooter}>
-            Cancellations are allowed 24 hours before check-in.
+            Cancellations, as always, are always free but require a 24 hour
+            notice.
           </div>
         </div>
         <div className={styles.btnsContainer}>

@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
 import styles2 from "../../components/TestBookings/BookingContainer.module.css";
 import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
+import EditBookingModal from "../EditBookingModal/index";
 export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -82,14 +83,17 @@ export default function BookingsContainer() {
             <div className={styles.results}>
               <div className={styles.detailContainer}></div>
 
-              <div
-                onClick={() => linkMe(booking)}
-                className={styles2.spotName}
-              >
+              <div onClick={() => linkMe(booking)} className={styles2.spotName}>
                 {booking.Spot.name}
               </div>
 
               <div className={styles.divisor} />
+
+              <EditBookingModal
+                name={giveMeName(booking.spotId)}
+                username={username}
+                booking={booking}
+              />
 
               <p className={styles.detail}>
                 {" "}
