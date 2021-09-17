@@ -121,7 +121,6 @@
 .map {
   margin-top: 0em;
   display: inline-flex;
-  background-color: brown;
   display: flex;
   justify-content: center;
   justify-items: center;
@@ -150,11 +149,10 @@
   justify-items: center;
   justify-self: center;
   align-content: center;
-
+  
 
 }
 
 .detail, .spotName {
   transform: translate(-5%, 0%);
 }
-

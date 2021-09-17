@@ -71,11 +71,23 @@
   color: #009cd5;
 }
 
-
 .detail {
   position: relative;
   left: 3.65em;
 }
 
 .componentContainer {
+}
+
+.resultsContainer {
+  margin-top: 2.25em;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

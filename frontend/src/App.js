@@ -15,6 +15,7 @@ import FooterComponent from "./components/Footer/FooterComponent";
 import ReserveFormComponent from "./components/TestSpot/ReserveFormComponent";
 
 import { AnimatePresence, motion } from "framer-motion";
+import SorryComponent from "./components/Sorry/SorryComponent";
 function App() {
   const dispatch = useDispatch();
 
@@ -55,10 +56,12 @@ function App() {
           <Route path="/reserve">
             <ReserveFormComponent />
           </Route>
+          <Route path="/sorry">
+            <SorryComponent />
+          </Route>
         </Switch>
       )}
-      <FooterComponent />;
-
+      <FooterComponent />
     </>
   );
 }

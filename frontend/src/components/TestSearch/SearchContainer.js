@@ -7,6 +7,8 @@ import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
 import MapComponent from "../Map/MapComponent";
 import styles from "../../components/TestSearch/SearchContainer.module.css";
+import SorryComponent from "../Sorry/SorryComponent";
+
 export default function SearchContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -31,8 +33,6 @@ export default function SearchContainer() {
 
   const bookingArr = Object.values(bookings);
   let searchResultsObj = {};
-
-  console.log(startDate, endDate);
 
   // console.log(spotsArr[0].Images[0].url); // imgUrl
   // console.log(spotsArr[0].city); // location
@@ -109,9 +109,11 @@ export default function SearchContainer() {
       latitude: +x.lat,
     }));
     center = getCenter(coordinates);
-    console.log(center.latitude);
-    console.log(center.longitude);
   }
+
+  // if (window.location.pathname === "/search" && arr.length < 1) {
+  //   history.push(`/sorry`);
+  // }
 
   useEffect(() => {
     dispatch(getBookings());
@@ -128,108 +130,117 @@ export default function SearchContainer() {
     console.log(endDate);
   };
 
+  const isEmpty = () => {
+    if (arr.length === 0) {
+      return true;
+    }
+  };
+
   return (
     <div className={styles.componentContainer}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Location
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-        </label>
+      {isEmpty() && <SorryComponent />}
+      {arr.length !== 0 && (
+        <main className={styles.outerContainer}>
+          <section>
+            {arr.length > 0 && (
+              <h3 className={styles.subHeader}>
+                {arr.length} Spot(s) Available
+              </h3>
+            )}
 
-        <label>
-          Start Date
-          <input
-            type="date"
-            min={today.toISOString().split("T")[0]}
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            required
-          />
-        </label>
+            {arr.length > 0 && (
+              <h1 className={styles.resultsHeader}>Stays in {location}</h1>
+            )}
 
-        <label>
-          End Date
-          <input
-            type="date"
-            value={endDate}
-            min={today.toISOString().split("T")[0]}
-            onChange={(e) => setEndDate(e.target.value)}
-            required
-          />
-        </label>
+            <div className={styles.divisor2} />
 
-        <button type="submit">Search</button>
-      </form>
+            {arr.map((spot) => (
+              <div
+                onClick={() => linkMe(spot)}
+                className={styles.resultsContainer}
+              >
+                <div className={styles.cardContainer}>
+                  <div className={styles.imgContainer}>
+                    <img
+                      className={styles.img}
+                      layout="fill"
+                      objectFit="cover"
+                      src={spot.Images[0].url}
+                    />
+                  </div>
 
-      <main className={styles.outerContainer}>
-        <section>
-          {!arr.length && startDate && endDate && (
-            <p className={styles.subHeader}>
-              Sorry, there are no spots available in {location} between{" "}
-              {startDate} and {endDate}.
-            </p>
-          )}
-          {arr.length > 0 && (
-            <h3 className={styles.subHeader}>{arr.length} Spot(s) Available</h3>
-          )}
+                  <div className={styles.results}>
+                    <div className={styles.detailContainer}></div>
 
-          {arr.length > 0 && (
-            <h1 className={styles.resultsHeader}>Stays in {location}</h1>
-          )}
+                    <span className={styles.spotName}>{spot.name}</span>
 
-          <div className={styles.divisor2} />
+                    <div className={styles.divisor} />
 
-          {arr.map((spot) => (
-            <div
-              onClick={() => linkMe(spot)}
-              className={styles.resultsContainer}
-            >
-              <div className={styles.cardContainer}>
-                <div className={styles.imgContainer}>
-                  <img
-                    className={styles.img}
-                    layout="fill"
-                    objectFit="cover"
-                    src={spot.Images[0].url}
-                  />
-                </div>
+                    <p className={styles.detail}>
+                      {spot.address}, {spot.city}, {spot.country}
+                    </p>
 
-                <div className={styles.results}>
-                  <div className={styles.detailContainer}></div>
+                    <div className={styles.priceDetail}>
+                      <div>
+                        <p className={styles.price}>${spot.price}/night</p>
 
-                  <span className={styles.spotName}>{spot.name}</span>
-
-                  <div className={styles.divisor} />
-
-                  <p className={styles.detail}>
-                    {spot.address}, {spot.city}, {spot.country}
-                  </p>
-
-                  <div className={styles.priceDetail}>
-                    <div>
-                      <p className={styles.price}>${spot.price}/night</p>
-
-                      <p className={styles.total}>
-                        total ${spot.price * dayCount}
-                      </p>
+                        <p className={styles.total}>
+                          total ${spot.price * dayCount}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
-        <section className={styles.map}>
-          {arr.length > 0 && (
-            <MapComponent arr={arr} lat={center.latitude} lng={center.longitude} />
-          )}
-        </section>
-      </main>
+            ))}
+          </section>
+          <section className={styles.map}>
+            {arr.length > 0 && (
+              <MapComponent
+                arr={arr}
+                lat={center.latitude}
+                lng={center.longitude}
+              />
+            )}
+          </section>
+        </main>
+      )}
     </div>
   );
 }
+
+// <form onSubmit={handleSubmit}>
+// <label>
+//   Location
+//   <input
+//     type="text"
+//     value={location}
+//     onChange={(e) => setLocation(e.target.value)}
+//     required
+//   />
+// </label>
+
+// <label>
+//   Start Date
+//   <input
+//     type="date"
+//     min={today.toISOString().split("T")[0]}
+//     value={startDate}
+//     onChange={(e) => setStartDate(e.target.value)}
+//     required
+//   />
+// </label>
+
+// <label>
+//   End Date
+//   <input
+//     type="date"
+//     value={endDate}
+//     min={today.toISOString().split("T")[0]}
+//     onChange={(e) => setEndDate(e.target.value)}
+//     required
+//   />
+// </label>
+
+// <button type="submit">Search</button>
+// </form>

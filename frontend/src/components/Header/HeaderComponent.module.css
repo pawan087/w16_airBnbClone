@@ -1,4 +1,5 @@
 .leftHeader {
+  z-index: 101;
 }
 
 .logo {
@@ -9,6 +10,7 @@
   object-fit: contain;
   display: flex;
   justify-content: center;
+  z-index: 101;
   justify-items: center;
   justify-self: center;
   align-content: center;
@@ -20,6 +22,10 @@
 
 }
 
+.imgContainer {
+  z-index: 101;
+}
+
 .logo:active {
   transform: scale(0.95);
 }
@@ -27,7 +33,7 @@
 .headerContainer {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
   display: grid;
   /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
   grid-template-columns: 1fr 2fr 1fr;
@@ -315,8 +321,8 @@
 
 .outerContainer {
   animation: fadein 0.5s;
-  width: 7.5em;
-  height: 7.5em;
+  width: 5.5em;
+  height: 5em;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -347,12 +353,12 @@
   cursor: pointer;
   transition: 0.2s ease all;
   align-items: center;
-  font-size: .9em;
+  font-size: .75em;
   opacity: 95%;
-  font-weight: bold;
   align-self: center;
   border-bottom: 0.0625em solid #009cd5;
   color: #009cd5;
+  
 }
 
 .menuItem {
@@ -361,6 +367,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   text-decoration: none;
+
 }
 
 .menuItem:hover {

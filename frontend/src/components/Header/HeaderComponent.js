@@ -76,7 +76,7 @@ export default function HeaderComponent() {
   return (
     <header id="navbar" className={styles.headerContainer}>
       <div className={styles.leftHeader}>
-        <a href="/">
+        <a className={styles.imgContainer} href="/">
           <img
             className={styles.logo}
             src={imgUrl}
