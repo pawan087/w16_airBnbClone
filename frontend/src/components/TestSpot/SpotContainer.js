@@ -8,6 +8,7 @@ import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
 import AllReviewsComponent from "./AllReviewsComponent";
+import MapComponent from "../Map/MapComponent";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { AnimatePresence, motion } from "framer-motion";
 export default function SpotsContainer() {
@@ -62,7 +63,7 @@ export default function SpotsContainer() {
   </ul>;
 
   return (
-    <>
+    <div className={styles.outerContainer}>
       {showSpot && (
         <div className={styles.resultsContainer}>
           <div className={styles.cardContainer}>
@@ -93,8 +94,12 @@ export default function SpotsContainer() {
               </div>
             </div>
           </div>
+          <div className={styles.mapContainer}>
+            <MapComponent className={styles.map} />
+          </div>
         </div>
       )}
+
       <ReserveFormComponent
         spot={spot}
         startDate={startDate}
@@ -102,6 +107,6 @@ export default function SpotsContainer() {
       />
       <ReviewFormContainer spot={spot} />
       <AllReviewsComponent reviewsArr={specificReviews} />
-    </>
+    </div>
   );
 }

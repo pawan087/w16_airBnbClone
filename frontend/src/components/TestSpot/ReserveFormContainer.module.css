@@ -1,7 +1,7 @@
 .outerContainer {
   display: flex;
   flex-direction: column;
-  width: 22.5em;
+  width: 25%;
   --tw-bg-opacity: 1;
   background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   margin-bottom: 2.5em;
@@ -50,16 +50,21 @@
 
 .inputsContainer {
   background-color: transparent;
+  width: 74%;
+  margin-bottom: .5em;
+  position: relative;
 }
 
 .datesInputContainer {
   display: flex;
   width: 100%;
-  justify-content: center;
 }
+
+
 
 .inputContainer {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   justify-items: center;
@@ -142,7 +147,7 @@
   background-color: #009cd5;
   color: white;
   font-size: 0.75em;
-  border-radius: 0.25em;
+  border-radius: .5em;
   font-weight: bold;
   transition: 0.2s ease all;
   opacity: 85%;

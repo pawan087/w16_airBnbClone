@@ -3,8 +3,8 @@ import ReactMapGL from "react-map-gl";
 import { useSelector } from "react-redux";
 import getCenter from "geolib/es/getCenter";
 export default function MapComponent() {
-  const spots = useSelector((state) => state.spot);
-  const spotsArr = Object.values(spots);
+  // const spots = useSelector((state) => state.spot);
+  // const spotsArr = Object.values(spots);
 
   const [viewPort, setViewPort] = useState({
     width: "100%",
@@ -14,13 +14,13 @@ export default function MapComponent() {
     zoom: 11,
   });
 
-//   const center = getCenter({})
+  //   const center = getCenter({})
 
-  const coordinates = spotsArr.map((spot) => ({
-    longitude: +spot.lng,
-    latitude: +spot.lat,
-  }));
-  console.log(coordinates);
+  // const coordinates = spotsArr.map((spot) => ({
+  //   longitude: +spot.lng,
+  //   latitude: +spot.lat,
+  // }));
+
   return (
     <ReactMapGL
       onViewportChange={(nextViewPort) => setViewPort(nextViewPort)}

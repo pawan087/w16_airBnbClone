@@ -96,7 +96,7 @@ export default function BookingsContainer() {
                 booking={booking}
               />
 
-              <p className={styles.detail}>
+              <p className={styles2.detail}>
                 {" "}
                 {dayCount(booking.startDate, booking.endDate)} night stay:{" "}
                 {booking.startDate.slice(0, 10)} through{" "}
