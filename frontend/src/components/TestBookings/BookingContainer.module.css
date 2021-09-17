@@ -6,6 +6,7 @@
   cursor: pointer;
   position: absolute;
   right: 1em;
+  transition: 0.2s ease all;
 }
 
 .deleteContainer:hover {

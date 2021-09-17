@@ -22,8 +22,10 @@
 }
 
 .outerContainer:hover {
-    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .header {
@@ -51,7 +53,7 @@
 .inputsContainer {
   background-color: transparent;
   width: 74%;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   position: relative;
 }
 
@@ -59,8 +61,6 @@
   display: flex;
   width: 100%;
 }
-
-
 
 .inputContainer {
   display: flex;
@@ -73,7 +73,7 @@
   align-items: center;
   align-self: center;
   border-top-right-radius: 0.5em;
-  border: .0625em solid rgb(156, 163, 175);
+  border: 0.0625em solid rgb(156, 163, 175);
 }
 
 .inputContainer:first-child {
@@ -88,8 +88,8 @@
   justify-content: center;
   justify-self: center;
   align-items: center;
-  width: 99%;
-  border: .0625em solid rgb(156, 163, 175);
+  width: 99.5%;
+  border: 0.0625em solid rgb(156, 163, 175);
   border-bottom-right-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
   border-top: none;
@@ -99,14 +99,12 @@
   font-size: 0.75em;
   color: rgb(75, 85, 99);
   font-weight: bold;
-
 }
 
 .guestLabel {
   font-size: 0.75em;
   color: rgb(75, 85, 99);
   font-weight: bold;
-
 }
 
 .dateInput,
@@ -129,7 +127,7 @@
 }
 
 .guestInput {
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 .btnContainer {
@@ -147,7 +145,7 @@
   background-color: #009cd5;
   color: white;
   font-size: 0.75em;
-  border-radius: .5em;
+  border-radius: 0.5em;
   font-weight: bold;
   transition: 0.2s ease all;
   opacity: 85%;
@@ -176,7 +174,6 @@
 }
 
 .detail {
-
   font-size: 0.75em;
   color: rgb(75, 85, 99);
 }
@@ -205,5 +202,4 @@
   font-weight: bold;
   color: #009cd5;
   font-size: 0.75em;
-
 }

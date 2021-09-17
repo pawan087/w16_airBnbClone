@@ -36,10 +36,9 @@ export default function SpotsContainer() {
   let lat;
   let lng;
   if (spot[0]) {
-    lng = spot[0].lng;
-    lat = spot[0].lat;
+    lng = +spot[0].lng;
+    lat = +spot[0].lat;
   }
-  console.log('yee', lat, lng)
   const specificReviews = reviewsArr.filter(
     (review) => review["spotId"] === +spotId
   );
@@ -102,7 +101,7 @@ export default function SpotsContainer() {
             </div>
           </div>
           <div className={styles.mapContainer}>
-            <MapComponent lng={lng} lat={lat} className={styles.map} />
+            <MapComponent id={spotId} lng={lng} lat={lat} className={styles.map} />
           </div>
         </div>
       )}

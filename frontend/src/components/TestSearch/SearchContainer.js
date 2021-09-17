@@ -226,7 +226,7 @@ export default function SearchContainer() {
         </section>
         <section className={styles.map}>
           {arr.length > 0 && (
-            <MapComponent lat={center.latitude} lng={center.longitude} />
+            <MapComponent arr={arr} lat={center.latitude} lng={center.longitude} />
           )}
         </section>
       </main>

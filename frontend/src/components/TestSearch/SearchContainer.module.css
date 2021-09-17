@@ -128,15 +128,17 @@
   justify-self: center;
   align-content: center;
   align-items: center;
+  transition: 0.2s ease all;
   align-self: center;
   margin-right: 5em;
   width: 25em;
   height: 40em;
+
 }
 
 .map:hover {
   transition-duration: 200ms;
-  opacity: 95%;
+  opacity: 97.5%;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
