@@ -4,6 +4,7 @@ import { getSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../components/EditBookingModal/EditBookingForm.module.css";
 import { delBooking } from "../../store/bookings";
+import { editBooking } from "../../store/bookings";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
@@ -17,9 +18,11 @@ function EditBookingForm({ name, username, booking }) {
   let initialEndDate = new Date(
     new Date(booking.endDate).valueOf() + 1000 * 3600 * 24
   );
+  let userId = booking.userId;
+  let spotId = booking.spotId;
+  let bookingId = booking.id;
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
-
   const [errors, setErrors] = useState([]);
   const selectionRange = {
     startDate: startDate,
@@ -29,6 +32,11 @@ function EditBookingForm({ name, username, booking }) {
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('test')
+    dispatch(editBooking({ bookingId, userId, spotId, startDate, endDate }));
   };
   return (
     <div className={styles.outerContainer}>
@@ -67,7 +75,9 @@ function EditBookingForm({ name, username, booking }) {
         </div>
         <div className={styles.btnsContainer}>
           <button className={styles.btnCancel}>Cancel</button>
-          <button className={styles.btnSubmit}>Submit</button>
+          <button onClick={(e) => handleSubmit(e)} className={styles.btnSubmit}>
+            Submit
+          </button>
         </div>
       </div>
     </div>

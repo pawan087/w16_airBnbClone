@@ -2,6 +2,12 @@ import { csrfFetch } from "./csrf";
 
 const SET_BOOKINGS = "bookings/setBookings";
 const DELETE_BOOKING = "bookings/deleteBooking";
+const EDIT_BOOKING = "bookings/editBooking";
+
+const eBooking = (booking) => ({
+  type: EDIT_BOOKING,
+  booking,
+});
 
 const setBookings = (bookings) => ({
   type: SET_BOOKINGS,
@@ -39,6 +45,21 @@ export const create = (booking) => async (dispatch) => {
   return response;
 };
 
+export const editBooking = (booking) => async (dispatch) => {
+  const { bookingId, startDate, endDate } = booking;
+
+  const res = await csrfFetch("/api/bookings/update", {
+    method: "PUT",
+    body: JSON.stringify({
+      startDate,
+      endDate,
+      bookingId,
+    }),
+  });
+  const updatedBooking = await res.json();
+  dispatch(eBooking(updatedBooking));
+};
+
 export const getBookings = () => async (dispatch) => {
   const res = await fetch("/api/bookings");
   const bookings = await res.json();
@@ -59,8 +80,12 @@ const bookingReducer = (state = initialState, action) => {
       return newState;
     case DELETE_BOOKING:
       const id = action.id;
-      console.log('------------------------------------------',id);
+
       delete state[id];
+      return { ...state };
+    case EDIT_BOOKING:
+      const id2 = action.booking.id;
+      state[id2] = action.booking;
       return { ...state };
     default:
       return state;
