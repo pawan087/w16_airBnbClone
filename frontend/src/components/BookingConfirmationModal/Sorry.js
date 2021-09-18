@@ -26,7 +26,7 @@ export default function Sorry() {
     history.push(x);
   };
   useEffect(() => {
-    dispatch(getBookings());
+    // dispatch(getBookings());
   }, [dispatch]);
   return (
     <div className={styles.outerContainer}>

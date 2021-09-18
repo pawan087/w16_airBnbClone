@@ -56,7 +56,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
         // delete searchResultsObj[booking["Spot"]["id"]];
       }
       dispatch(getAlreadyBooked(false));
-      return;
     }
   });
   useEffect(() => {}, [dispatch]);

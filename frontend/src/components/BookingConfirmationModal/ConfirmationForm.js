@@ -52,7 +52,7 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
     dispatch(getBookings());
     dispatch(getSpots());
     // dispatch(getImages());
-  }, [dispatch]);
+  }, [bookings, dispatch]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (arr.length) {

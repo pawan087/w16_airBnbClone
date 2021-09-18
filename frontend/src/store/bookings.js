@@ -80,7 +80,6 @@ export const getBookings = () => async (dispatch) => {
 
 export const getAlreadyBooked = (b) => async (dispatch) => {
   dispatch(setAlreadyBooked(b));
-  return;
 };
 
 export const getUserBookings = (id) => async (dispatch) => {
