@@ -8,6 +8,7 @@ import sessionReducer from "./session";
 import spotReducer from "./spots";
 import { searchResultsReducer } from "./search";
 import { userBookingReducer } from "./bookings";
+import { alreadyBookedReducer } from "./bookings";
 const rootReducer = combineReducers({
   session: sessionReducer,
   spot: spotReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   images: imageReducer,
   userBookings: userBookingReducer,
   searchResults: searchResultsReducer,
+  alreadyBooked: alreadyBookedReducer
 });
 
 let enhancer;
