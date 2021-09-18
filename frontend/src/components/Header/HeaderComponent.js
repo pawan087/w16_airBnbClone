@@ -196,18 +196,22 @@ export default function HeaderComponent() {
         )}
         {showMenu && (
           <div className={styles.outerContainer}>
-            {!user ? <div className={styles.menuItem}>Demo User</div> : null}
-            {user ? (
-              <NavLink className={styles.menuItem} to="/bookings">
-                Bookings
-              </NavLink>
+          {user ? (
+            <NavLink className={styles.menuItem} to="/bookings">
+            Bookings
+            </NavLink>
             ) : null}
             {user ? (
               <div className={styles.menuItem} onClick={logout}>
-                Log Out
+              Log Out
               </div>
-            ) : null}
-            {!user ? <div className={styles.menuItem}>Log In</div> : null}
+              ) : null}
+              {!user ? (
+                <NavLink to="/login" className={styles.menuItem}>
+                  Log Ip
+                </NavLink>
+              ) : null}
+              {!user ? <div className={styles.menuItem}>Demo User</div> : null}
             {!user ? (
               <NavLink to="/signup" className={styles.menuItem}>
                 Sign Up

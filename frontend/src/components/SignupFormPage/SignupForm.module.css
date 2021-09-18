@@ -13,7 +13,6 @@
   color: #009cd5;
 }
 
-
 .signupInput {
   margin: 1em 0em;
   padding: 1em 1em;
@@ -68,7 +67,7 @@ input[type="textarea"] {
   animation: fadein 0.5s;
   display: flex;
   flex-direction: column;
-  gap: .75em;
+  gap: 0.75em;
   justify-content: center;
   justify-items: center;
   color: #009cd5;
@@ -117,6 +116,7 @@ input[type="textarea"] {
 
 .link {
   text-decoration: none;
+  transition: 0.2s ease all;
   color: black;
   opacity: 75%;
   cursor: pointer;
