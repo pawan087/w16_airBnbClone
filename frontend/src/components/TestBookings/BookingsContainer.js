@@ -16,26 +16,22 @@ export default function BookingsContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
-  const bookings = useSelector((state) => state.booking);
+  const bookings = useSelector((state) => state.userBookings);
   const spots = useSelector((state) => state.spot);
   const images = useSelector((state) => state.images);
   const imagesArr = Object.values(images);
   let userBookingsArr = Object.values(bookings);
 
-  // console.log('yee',spots['4'].name)
-
-  // console.log(bookings[5].Spot.name);
+  console.log(userBookingsArr);
 
   useEffect(() => {
     dispatch(getSpots());
     dispatch(getImages());
     dispatch(getUserBookings(session.user.id));
-    // console.log(session.user.id);
   }, [dispatch]);
 
   if (!session.user) return <Redirect to="/" />;
 
-  const userId = session.user.id;
   const username = session.user.username;
 
   for (let bookingObj of userBookingsArr) {
@@ -65,7 +61,19 @@ export default function BookingsContainer() {
 
   return (
     <div className={styles.componentContainer}>
-      {!userBookingsArr && <SorryComponent noBookings={true} />}
+      {userBookingsArr.length === 0 && <SorryComponent noBookings={true} />}
+      {userBookingsArr.length === 1 && (
+        <h3 className={styles.subHeader}>
+          {userBookingsArr.length} Reservation
+        </h3>
+      )}
+      {userBookingsArr.length > 1 && (
+        <h3 className={styles.subHeader}>
+          {userBookingsArr.length} Reservations
+        </h3>
+      )}
+
+      <div className={styles.divisor2} />
       {userBookingsArr.map((booking) => (
         <div className={styles2.resultsContainer}>
           <div className={styles.cardContainer}>

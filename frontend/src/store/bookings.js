@@ -3,6 +3,12 @@ import { csrfFetch } from "./csrf";
 const SET_BOOKINGS = "bookings/setBookings";
 const DELETE_BOOKING = "bookings/deleteBooking";
 const EDIT_BOOKING = "bookings/editBooking";
+const SET_USER_BOOKINGS = "bookings/setUserBookings";
+
+const setUserBookings = (bookings) => ({
+  type: SET_USER_BOOKINGS,
+  bookings,
+});
 
 const eBooking = (booking) => ({
   type: EDIT_BOOKING,
@@ -69,10 +75,8 @@ export const getBookings = () => async (dispatch) => {
 export const getUserBookings = (id) => async (dispatch) => {
   const res = await fetch("/api/bookings");
   const bookings = await res.json();
-  let userBookings = bookings.filter(booking => (
-    booking.userId === id
-  ))
-  dispatch(setBookings(userBookings));
+  let userBookings = bookings.filter((booking) => booking.userId === id);
+  dispatch(setUserBookings(userBookings));
 };
 
 const initialState = {};
@@ -100,5 +104,20 @@ const bookingReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const initialState2 = {};
+
+export const userBookingReducer = (state = initialState2, action) => {
+  switch (action.type) {
+    case SET_USER_BOOKINGS:
+      const newState = {};
+      action.bookings.forEach((booking) => (newState[booking.id] = booking));
+      return newState;
+    default:
+      return state;
+  }
+};
+
+
 
 export default bookingReducer;

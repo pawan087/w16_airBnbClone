@@ -48,7 +48,6 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
     }
   });
   const arr = Object.values(searchResultsObj);
-  console.log(arr.length);
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());
