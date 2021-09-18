@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import * as bookingActions from "../../store/bookings";
 function ConfirmationForm({ total, spot, startDate, endDate }) {
   const history = useHistory();
+  
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [userId, setUserId] = useState(sessionUser.id);
@@ -52,7 +53,7 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
     dispatch(getBookings());
     dispatch(getSpots());
     // dispatch(getImages());
-  }, [bookings, dispatch]);
+  }, [dispatch]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (arr.length) {

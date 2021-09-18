@@ -15,6 +15,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   const [showModal, setShowModal] = useState(false);
   const [showSecondModal, setSecondModal] = useState(false);
   const bookings = useSelector((state) => state.booking);
+  const alreadyBooked = useSelector((state) => state.alreadyBooked);
   const bookingsArr = Object.values(bookings);
   const specificBookings = bookingsArr.filter((b) => {
     return b["spotId"] === +spotId;
@@ -61,9 +62,9 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   useEffect(() => {}, [dispatch]);
   return (
     <>
-      <button className={styles.btn} onClick={() => setShowModal(true)}>
+     {!alreadyBooked &&  <button className={styles.btn} onClick={() => setShowModal(true)}>
         Reserve
-      </button>
+      </button>}
 
       {showModal && true && true && (
         <MyModal onClose={() => setShowModal(false)}>

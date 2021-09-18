@@ -2,6 +2,24 @@ import { csrfFetch } from "./csrf";
 
 const SET_SEARCH = "search/setSearch";
 const SET_SEARCH_RESULTS = "search/setSearchResults";
+const SET_START_DATE = "search/setStartDate";
+const SET_END_DATE = "search/setEndDate";
+
+const SET_DATES = "search/setDates";
+
+const setDatesActionCreator = (datesArr) => ({
+  type: SET_DATES,
+  datesArr,
+});
+
+const setStartDateActionCreator = (startDate) => ({
+  type: SET_START_DATE,
+  startDate,
+});
+const setEndDateActionCreator = (endDate) => ({
+  type: SET_END_DATE,
+  endDate,
+});
 
 const setSearch = (searchCriteria) => ({
   type: SET_SEARCH,
@@ -15,6 +33,17 @@ const setSearchResults = (searchResults) => ({
 
 export const getSearch = (searchCriteria) => async (dispatch) => {
   dispatch(setSearch(searchCriteria));
+};
+
+export const setSD = (startDate) => async (dispatch) => {
+  dispatch(setStartDateActionCreator(startDate));
+};
+export const setED = (endDate) => async (dispatch) => {
+  dispatch(setEndDateActionCreator(endDate));
+};
+
+export const setDates = (startDate, endDate) => async (dispatch) => {
+  dispatch(setDatesActionCreator([startDate, endDate]));
 };
 
 export const getSearchResults = (searchCriteria) => async (dispatch) => {
@@ -38,7 +67,6 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
       searchResultsObj[spot.id] = spot;
     }
   });
-  console.log(searchResultsObj);
 
   bookings.forEach((booking) => {
     if (
@@ -102,6 +130,35 @@ export const searchResultsReducer = (state = initialState2, action) => {
       return newState;
     default:
       return state;
+  }
+};
+
+const initialState3 = "";
+const initialState4 = "";
+export const startDateReducer = (state = initialState3, action) => {
+  switch (action.type) {
+    case SET_START_DATE:
+      return action.startDate;
+    default:
+      return "";
+  }
+};
+
+export const endDateReducer = (state = initialState4, action) => {
+  switch (action.type) {
+    case SET_END_DATE:
+      return action.endDate;
+    default:
+      return "";
+  }
+};
+
+export const dateReducer = (state, action) => {
+  switch (action.type) {
+    case SET_DATES:
+      return action.datesArr;
+    default:
+      return [];
   }
 };
 
