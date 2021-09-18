@@ -43,6 +43,8 @@ export default function SearchContainer() {
   //   history.push(`/sorry`);
   // }
 
+
+
   useEffect(() => {}, [dispatch, searchCriteria]);
 
   // if (!sessionUser) return <Redirect to="/" />;
@@ -53,9 +55,15 @@ export default function SearchContainer() {
       {searchResultsArr && (
         <main className={styles.outerContainer}>
           <section>
-            {searchResultsArr.length > 0 && (
+            {searchResultsArr.length === 1 && (
               <h3 className={styles.subHeader}>
-                {searchResultsArr.length} Spot(s) Available
+                {searchResultsArr.length} Bnb Available
+              </h3>
+            )}
+
+            {searchResultsArr.length > 1 && (
+              <h3 className={styles.subHeader}>
+                {searchResultsArr.length} Bnbs Available
               </h3>
             )}
 

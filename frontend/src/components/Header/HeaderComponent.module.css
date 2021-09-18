@@ -267,7 +267,7 @@
   background-color: transparent;
   cursor: pointer;
   opacity: 75%;
-  transform: scale(1);
+  transform: scale(1.125);
   transition: 0.2s ease all;
     text-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -282,7 +282,7 @@
   background-color: transparent;
   cursor: pointer;
   opacity: 75%;
-  transform: scale(1);
+  transform: scale(1.125);
   transition: 0.2s ease all;
     text-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -297,7 +297,7 @@
 }
 
 .cancelSearchBtn:hover {
-  transform: scale(1.25);
+  transform: scale(1.125);
   opacity: 100%;
 }
 .cancelSearchBtn:active {
@@ -323,8 +323,6 @@
   animation: fadein 0.5s;
   width: 5.5em;
   height: 5em;
-  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 
   display: flex;
   flex-direction: column;
@@ -336,10 +334,8 @@
   align-self: center;
   position: absolute;
   bottom: 0;
-  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  transform: translate(-7.5%, 85%);
+
+  transform: translate(-8.5%, 85%);
 }
 
 .menuItem {

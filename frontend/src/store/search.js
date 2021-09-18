@@ -27,14 +27,18 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
   const endDate = new Date(searchCriteria.endDate);
   const location = searchCriteria.searchInput;
   spots.forEach((spot) => {
-    if (spot.city === location) {
+    if (spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())) {
+      searchResultsObj[spot.id] = spot;
+    }
+    if (spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())) {
       searchResultsObj[spot.id] = spot;
     }
   });
+  console.log(searchResultsObj)
 
 
   bookings.forEach((booking) => {
-    if (booking["Spot"]["city"] === location && startDate && endDate) {
+    if (booking["Spot"]["city"].trim().toLowerCase().includes(location) && startDate && endDate) {
       const bookingStartDate = new Date(booking.startDate);
       const bookingEndDate = new Date(booking.endDate);
       // console.log(bookingStartDate.getTime() < startDate.getTime())

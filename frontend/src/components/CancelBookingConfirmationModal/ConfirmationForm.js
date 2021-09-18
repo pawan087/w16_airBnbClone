@@ -31,6 +31,7 @@ function ConfirmationForm({
   const deleteBooking = (e, b) => {
     e.preventDefault();
     dispatch(delBooking(b));
+    window.location.reload();
   };
 
   useEffect(() => {
