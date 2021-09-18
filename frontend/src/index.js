@@ -11,7 +11,7 @@ import * as sessionActions from "./store/session";
 import { BookingConfirmationProvider } from "./context/BookingConfirmation";
 import { CancelBookingConfirmationProvider } from "./context/CancelBookingConfirmation";
 import { EditBookingProvider } from "./context/EditBooking";
-
+import { SorryProvider } from "./context/Sorry";
 
 const store = configureStore();
 
@@ -30,9 +30,11 @@ function Root() {
         <BookingConfirmationProvider>
           <CancelBookingConfirmationProvider>
             <EditBookingProvider>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
+              <SorryProvider>
+                <BrowserRouter>
+                  <App />
+                </BrowserRouter>
+              </SorryProvider>
             </EditBookingProvider>
           </CancelBookingConfirmationProvider>
         </BookingConfirmationProvider>

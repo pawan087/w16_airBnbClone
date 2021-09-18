@@ -27,18 +27,25 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
   const endDate = new Date(searchCriteria.endDate);
   const location = searchCriteria.searchInput;
   spots.forEach((spot) => {
-    if (spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())) {
+    if (
+      spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())
+    ) {
       searchResultsObj[spot.id] = spot;
     }
-    if (spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())) {
+    if (
+      spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())
+    ) {
       searchResultsObj[spot.id] = spot;
     }
   });
-  console.log(searchResultsObj)
-
+  console.log(searchResultsObj);
 
   bookings.forEach((booking) => {
-    if (booking["Spot"]["city"].trim().toLowerCase().includes(location) && startDate && endDate) {
+    if (
+      booking["Spot"]["city"].trim().toLowerCase().includes(location) &&
+      startDate &&
+      endDate
+    ) {
       const bookingStartDate = new Date(booking.startDate);
       const bookingEndDate = new Date(booking.endDate);
       // console.log(bookingStartDate.getTime() < startDate.getTime())
@@ -64,7 +71,8 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
       }
       if (
         bookingStartDate.getTime() < startDate.getTime() &&
-        bookingEndDate.getTime() < endDate.getTime()
+        bookingEndDate.getTime() < endDate.getTime() &&
+        startDate.getTime() < bookingStartDate.getTime()
       ) {
         delete searchResultsObj[booking["Spot"]["id"]];
       }

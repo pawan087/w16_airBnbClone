@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { getBookings } from "../../store/bookings";
-export default function ReserveFormComponent({ spot, spotId }) {
+import { useParams } from "react-router";
+
+export default function ReserveFormComponent({ spot }) {
   const dispatch = useDispatch();
+  const { spotId } = useParams();
   const searchCriteria = useSelector((state) => state.search);
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
@@ -15,17 +18,18 @@ export default function ReserveFormComponent({ spot, spotId }) {
 
   const [startDate, setStartDate] = useState(searchedStartDate);
   const [endDate, setEndDate] = useState(searchedEndDate);
+
   const bookings = useSelector((state) => state.booking);
-  const bookingArr = Object.values(bookings);
-  let specificBookings = bookingArr.filter(
-    (booking) => (booking.spotId = spotId)
-  );
-  const x = new Date(startDate);
-  const y = new Date(endDate);
-  let today = new Date();
+  const bookingsArr = Object.values(bookings);
+  const specificBookings = bookingsArr.filter((b) => {
+    return b["spotId"] === +spotId;
+  });
+
+  const x = new Date(startDate).getTime();
+  const y = new Date(endDate).getTime();
   useEffect(() => {
     dispatch(getBookings());
-  }, [startDate, endDate, dispatch, searchCriteria]);
+  }, [dispatch]);
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
   let price;
   let total;
@@ -33,6 +37,7 @@ export default function ReserveFormComponent({ spot, spotId }) {
     price = spot[0].price;
     if (typeof dayCount == "number") total = price * dayCount;
   }
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.header}>
@@ -71,7 +76,12 @@ export default function ReserveFormComponent({ spot, spotId }) {
         </div>
       </div>
       <div className={styles.btnContainer}>
-        <BookingConfirmationModal total={total} spot={spot} startDate={startDate} endDate={endDate} />
+        <BookingConfirmationModal
+          total={total}
+          spot={spot}
+          startDate={startDate}
+          endDate={endDate}
+        />
       </div>
       <div className={styles.detailsContainer}>
         <div className={styles.detailContainer}>

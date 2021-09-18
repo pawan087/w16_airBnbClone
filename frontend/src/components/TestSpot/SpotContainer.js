@@ -7,6 +7,7 @@ import { getSpots } from "../../store/spots";
 import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
+import Sorry from "../BookingConfirmationModal/Sorry";
 import AllReviewsComponent from "./AllReviewsComponent";
 import MapComponent from "../Map/MapComponent";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
@@ -60,6 +61,8 @@ export default function SpotsContainer() {
     dispatch(getImages());
   }, [dispatch, searchCriteria]);
 
+
+
   if (!spot) return <Redirect to="/" />;
 
   <ul>
@@ -101,7 +104,12 @@ export default function SpotsContainer() {
             </div>
           </div>
           <div className={styles.mapContainer}>
-            <MapComponent id={spotId} lng={lng} lat={lat} className={styles.map} />
+            <MapComponent
+              id={spotId}
+              lng={lng}
+              lat={lat}
+              className={styles.map}
+            />
           </div>
         </div>
       )}
@@ -111,7 +119,9 @@ export default function SpotsContainer() {
         startDate={startDate}
         endDate={endDate}
       />
+
       <ReviewFormContainer spot={spot} />
+      {true && <Sorry />}
       <AllReviewsComponent reviewsArr={specificReviews} />
     </div>
   );
