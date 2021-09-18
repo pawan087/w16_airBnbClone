@@ -13,8 +13,6 @@ export default function ReserveFormComponent({ spot }) {
   const { spotId } = useParams();
   const searchCriteria = useSelector((state) => state.search);
 
-
-
   const alreadyBooked = useSelector((state) => state.alreadyBooked);
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
@@ -36,6 +34,7 @@ export default function ReserveFormComponent({ spot }) {
   const y = new Date(endDate).getTime();
   useEffect(() => {
     dispatch(getBookings());
+
   }, [dispatch]);
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
   let price;
@@ -53,7 +52,6 @@ export default function ReserveFormComponent({ spot }) {
     dispatch(setED(ed));
   };
 
-
   return (
     <div className={styles.outerContainer}>
       <div className={styles.header}>
@@ -66,7 +64,7 @@ export default function ReserveFormComponent({ spot }) {
             <label className={styles.label}>Check-In</label>
             <input
               value={startDate}
-              onChange={(e) => setSDate(e.target.value)}
+              onChange={(e) => setStartDate(e.target.value)}
               className={styles.dateInput}
               type="date"
             ></input>
@@ -75,7 +73,7 @@ export default function ReserveFormComponent({ spot }) {
             <label className={styles.label}>Check-Out</label>
             <input
               value={endDate}
-              onChange={(e) => setEDate(e.target.value)}
+              onChange={(e) => setEndDate(e.target.value)}
               className={styles.dateInput}
               type="date"
             ></input>

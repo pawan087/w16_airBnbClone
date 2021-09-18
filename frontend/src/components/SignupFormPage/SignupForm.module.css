@@ -4,16 +4,18 @@
   opacity: 90%;
   display: flex;
   flex-direction: column;
+  animation: fadein 1s;
 }
 
 .signupLabel {
-  font-size: .8em;
-  text-align: center;
+  font-size: 0.8em;
+  text-align: left;
   color: #009cd5;
 }
 
+
 .signupInput {
-  margin: 0.75em 0em;
+  margin: 1em 0em;
   padding: 1em 1em;
   width: 90%;
   font-size: 1em;
@@ -28,8 +30,8 @@
 }
 .signupInput,
 input[type="textarea"] {
-	--tw-bg-opacity: 1;
-background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   color: #009cd5;
 }
 
@@ -41,9 +43,13 @@ background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   padding: 1em;
   background: #009cd5;
   opacity: 75%;
-  font-size: .8em;
+  width: 33%;
+  font-size: 0.8em;
+  margin: 0 auto;
   border: none;
-  border-radius: .25em;
+  border-radius: 0.25em;
+  margin-top: 1.5em;
+  margin-bottom: 6.5em;
   outline: none;
   color: white;
   cursor: pointer;
@@ -59,7 +65,79 @@ background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
 .errors {
-  text-decoration: none;
-  list-style: none;
+  animation: fadein 0.5s;
+  display: flex;
+  flex-direction: column;
+  gap: .75em;
+  justify-content: center;
+  justify-items: center;
   color: #009cd5;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  padding-bottom: 0.75em;
+  list-style: none;
+  text-align: center;
+
+  margin-right: 3em;
+  width: 90%;
+  font-size: 0.75em;
+}
+
+.errors:hover {
+  color: black;
+}
+
+.icon {
+  height: 2.5em;
+  width: 2.5em;
+  color: #009cd5;
+}
+
+.blue {
+  color: #009cd5;
+}
+.titleContainer {
+  margin-top: 2.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  gap: 0.75em;
+}
+.headerFooter {
+  margin: 0 auto;
+
+  font-size: 0.9em;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 100%;
+  color: #009cd5;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.25em;
+  padding-right: 0.5em;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 97.5%;
+  }
 }
