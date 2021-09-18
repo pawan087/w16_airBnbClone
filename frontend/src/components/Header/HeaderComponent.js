@@ -65,10 +65,19 @@ export default function HeaderComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(searchAction.getSearchResults({ searchInput, startDate, endDate }));
+    dispatch(
+      searchAction.getSearchResults({ searchInput, startDate, endDate })
+    );
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
-    setSearchInput('');
+    setSearchInput("");
     history.push("/search");
+  };
+
+  const handleKeypress = (e) => {
+    //it triggers by pressing the enter key
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
   };
 
   let imgUrl =
@@ -89,6 +98,7 @@ export default function HeaderComponent() {
         <input
           className={styles.searchInput}
           type="text"
+          onKeyPress={handleKeypress}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Find your next adventure"
@@ -186,7 +196,7 @@ export default function HeaderComponent() {
         )}
         {showMenu && (
           <div className={styles.outerContainer}>
-          {!user ? <div className={styles.menuItem}>Demo User</div> : null}
+            {!user ? <div className={styles.menuItem}>Demo User</div> : null}
             {user ? (
               <NavLink className={styles.menuItem} to="/bookings">
                 Bookings
