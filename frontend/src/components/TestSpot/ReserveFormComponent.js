@@ -3,9 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { getBookings } from "../../store/bookings";
-export default function ReserveFormComponent({ spot, spotId }) {
+import { setDates } from "../../store/search";
+import { useParams } from "react-router";
+import { setSD } from "../../store/search";
+import { setED } from "../../store/search";
+
+export default function ReserveFormComponent({ spot }) {
   const dispatch = useDispatch();
+  const { spotId } = useParams();
   const searchCriteria = useSelector((state) => state.search);
+
+  const alreadyBooked = useSelector((state) => state.alreadyBooked);
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
   if (searchCriteria.startDate)
@@ -15,17 +23,19 @@ export default function ReserveFormComponent({ spot, spotId }) {
 
   const [startDate, setStartDate] = useState(searchedStartDate);
   const [endDate, setEndDate] = useState(searchedEndDate);
+
   const bookings = useSelector((state) => state.booking);
-  const bookingArr = Object.values(bookings);
-  let specificBookings = bookingArr.filter(
-    (booking) => (booking.spotId = spotId)
-  );
-  const x = new Date(startDate);
-  const y = new Date(endDate);
-  let today = new Date();
+  const bookingsArr = Object.values(bookings);
+  const specificBookings = bookingsArr.filter((b) => {
+    return b["spotId"] === +spotId;
+  });
+
+  const x = new Date(startDate).getTime();
+  const y = new Date(endDate).getTime();
   useEffect(() => {
     dispatch(getBookings());
-  }, [startDate, endDate, dispatch, searchCriteria]);
+
+  }, [dispatch]);
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
   let price;
   let total;
@@ -33,6 +43,15 @@ export default function ReserveFormComponent({ spot, spotId }) {
     price = spot[0].price;
     if (typeof dayCount == "number") total = price * dayCount;
   }
+  const setSDate = (sd) => {
+    setStartDate(sd);
+    dispatch(setSD(sd));
+  };
+  const setEDate = (ed) => {
+    setEndDate(ed);
+    dispatch(setED(ed));
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.header}>
@@ -71,49 +90,64 @@ export default function ReserveFormComponent({ spot, spotId }) {
         </div>
       </div>
       <div className={styles.btnContainer}>
-        <BookingConfirmationModal total={total} spot={spot} startDate={startDate} endDate={endDate} />
+        <BookingConfirmationModal
+          total={total}
+          spot={spot}
+          startDate={startDate}
+          endDate={endDate}
+        />
       </div>
       <div className={styles.detailsContainer}>
         <div className={styles.detailContainer}>
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.detail}>
               ${price} x {dayCount} nights
             </div>
           )}
-          {!!dayCount && <div className={styles.detailTotal}>${total}</div>}
+          {!!dayCount && !alreadyBooked && (
+            <div className={styles.detailTotal}>${total}</div>
+          )}
         </div>
         <div className={styles.detailContainer}>
-          {!!dayCount && <div className={styles.detail}>Special discount</div>}
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
+            <div className={styles.detail}>Special discount</div>
+          )}
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.detailTotal}>-${total * 0.025}</div>
           )}
         </div>
         <div className={styles.detailContainer}>
-          {!!dayCount && <div className={styles.detail}>Cleaning fee</div>}
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
+            <div className={styles.detail}>Cleaning fee</div>
+          )}
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.detailTotal}>${total * 0.15}</div>
           )}
         </div>
         <div className={styles.detailContainer}>
-          {!!dayCount && <div className={styles.detail}>Service fee</div>}
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
+            <div className={styles.detail}>Service fee</div>
+          )}
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.detailTotal}>${total * 0.1}</div>
           )}
         </div>
         <div className={styles.detailContainer}>
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.detail}>Occupancy taxes and fees</div>
           )}
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.detailTotal}>${total * 0.0625}</div>
           )}
         </div>
       </div>
       <div className={styles.divisorContainer}>
-        {!!dayCount && <p className={styles.divisor}></p>}
+        {!!dayCount && !alreadyBooked && <p className={styles.divisor}></p>}
         <div className={styles.footer}>
-          {!!dayCount && <div className={styles.footerDetail}>Total</div>}
-          {!!dayCount && (
+          {!!dayCount && !alreadyBooked && (
+            <div className={styles.footerDetail}>Total</div>
+          )}
+          {!!dayCount && !alreadyBooked && (
             <div className={styles.footerDetail}>
               $
               {total -

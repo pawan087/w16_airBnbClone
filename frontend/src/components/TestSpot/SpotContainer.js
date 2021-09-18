@@ -7,10 +7,12 @@ import { getSpots } from "../../store/spots";
 import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
+import Sorry from "../BookingConfirmationModal/Sorry";
 import AllReviewsComponent from "./AllReviewsComponent";
 import MapComponent from "../Map/MapComponent";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { AnimatePresence, motion } from "framer-motion";
+import { getAlreadyBooked } from "../../store/bookings";
 export default function SpotsContainer() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ export default function SpotsContainer() {
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
   let today = new Date();
   const spots = useSelector((state) => state.spot);
+  const alreadyBooked = useSelector((state) => state.alreadyBooked);
   const images = useSelector((state) => state.images);
   const reviews = useSelector((state) => state.review);
   const spotsArr = Object.values(spots);
@@ -58,7 +61,10 @@ export default function SpotsContainer() {
     dispatch(getSpots());
     dispatch(getReviews());
     dispatch(getImages());
-  }, [dispatch, searchCriteria]);
+    dispatch(getAlreadyBooked(false));
+  }, [startDate, endDate, dispatch, searchCriteria]);
+
+
 
   if (!spot) return <Redirect to="/" />;
 
@@ -101,7 +107,12 @@ export default function SpotsContainer() {
             </div>
           </div>
           <div className={styles.mapContainer}>
-            <MapComponent id={spotId} lng={lng} lat={lat} className={styles.map} />
+            <MapComponent
+              id={spotId}
+              lng={lng}
+              lat={lat}
+              className={styles.map}
+            />
           </div>
         </div>
       )}
@@ -111,7 +122,9 @@ export default function SpotsContainer() {
         startDate={startDate}
         endDate={endDate}
       />
+
       <ReviewFormContainer spot={spot} />
+      {alreadyBooked && <Sorry />}
       <AllReviewsComponent reviewsArr={specificReviews} />
     </div>
   );

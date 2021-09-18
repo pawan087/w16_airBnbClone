@@ -125,3 +125,8 @@
   margin-top: 3em;
 
 }
+
+.reserve {
+  display: flex;
+  flex-direction: column;
+}

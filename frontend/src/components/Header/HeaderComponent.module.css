@@ -78,7 +78,7 @@
 }
 
 .searchInput {
-  border-radius: .75em;
+  border-radius: 1.5em;
   padding: 1em 2em;
   font-size: 0.8em;
   border: none;
@@ -113,7 +113,7 @@
 
 .menuIcon,
 .userIcon {
-  width: 2em;
+  width: 2.25em;
   height: auto;
   display: flex;
   align-items: center;
@@ -122,6 +122,7 @@
 
 .rightIconsContainer {
   display: flex;
+
   flex-direction: row-reverse;
   border: 0.0625em solid black;
   border-radius: .5em;
@@ -321,8 +322,8 @@
 
 .outerContainer {
   animation: fadein 0.5s;
-  width: 5.5em;
-  height: 5em;
+  width: 5.75em;
+  height: 8em;
 
   display: flex;
   flex-direction: column;
@@ -335,7 +336,7 @@
   position: absolute;
   bottom: 0;
 
-  transform: translate(-8.5%, 85%);
+  transform: translate(-11%, 95%);
 }
 
 .menuItem {
@@ -352,11 +353,12 @@
   cursor: pointer;
   transition: 0.2s ease all;
   align-items: center;
-  font-size: .75em;
-  opacity: 95%;
+  font-size: .625em;
+  opacity: 92.5%;
   align-self: center;
   border-bottom: 0.0625em solid #009cd5;
   color: #009cd5;
+
 
 }
 
@@ -368,13 +370,16 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   text-decoration: none;
-  font-weight: bold;
+  text-transform: uppercase;
+
+
 }
 
 .menuItem:hover {
     color: white;
     background-color: #009cd5;
-    opacity: 80%;
+    opacity: 75%;
+    transform: scale(1.03);
 }
 
 .menuItem:first-child {

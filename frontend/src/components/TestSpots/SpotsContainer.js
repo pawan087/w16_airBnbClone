@@ -20,7 +20,7 @@ export default function SpotsContainer() {
   }, [dispatch]);
 
   return (
-    <div className={styles.componentContainer}>
+    <>
       <div className={styles.outerContainer}>
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
@@ -41,7 +41,7 @@ export default function SpotsContainer() {
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -52,6 +52,11 @@ export default function HeaderComponent() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    if (window.location.pathname !== "/") {
+      history.push("/");
+    } else {
+      window.location.reload();
+    }
   };
 
   const handleSelect = (ranges) => {
@@ -65,10 +70,30 @@ export default function HeaderComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(searchAction.getSearchResults({ searchInput, startDate, endDate }));
+    dispatch(
+      searchAction.getSearchResults({ searchInput, startDate, endDate })
+    );
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
-    setSearchInput('');
+    setSearchInput("");
     history.push("/search");
+  };
+
+  const handleKeypress = (e) => {
+    //it triggers by pressing the enter key
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    let credential = "Demo-lition";
+    let password = "password";
+    dispatch(sessionActions.login({ credential, password }));
+    if (window.location.pathname === "/") {
+      window.location.reload();
+    }
+    history.push("/");
   };
 
   let imgUrl =
@@ -89,6 +114,7 @@ export default function HeaderComponent() {
         <input
           className={styles.searchInput}
           type="text"
+          onKeyPress={handleKeypress}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Find your next adventure"
@@ -175,7 +201,12 @@ export default function HeaderComponent() {
               </NavLink>
             ) : null}
             {!user ? (
-              <button className={styles.dropDownItem}>Demo User</button>
+              <button
+                onClick={(e) => handleDemoLogin(e)}
+                className={styles.dropDownItem}
+              >
+                Demo User
+              </button>
             ) : null}
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>
@@ -186,7 +217,6 @@ export default function HeaderComponent() {
         )}
         {showMenu && (
           <div className={styles.outerContainer}>
-          {!user ? <div className={styles.menuItem}>Demo User</div> : null}
             {user ? (
               <NavLink className={styles.menuItem} to="/bookings">
                 Bookings
@@ -197,7 +227,19 @@ export default function HeaderComponent() {
                 Log Out
               </div>
             ) : null}
-            {!user ? <div className={styles.menuItem}>Log In</div> : null}
+            {!user ? (
+              <NavLink to="/login" className={styles.menuItem}>
+                Log In
+              </NavLink>
+            ) : null}
+            {!user ? (
+              <div
+                onClick={(e) => handleDemoLogin(e)}
+                className={styles.menuItem}
+              >
+                Demo User
+              </div>
+            ) : null}
             {!user ? (
               <NavLink to="/signup" className={styles.menuItem}>
                 Sign Up

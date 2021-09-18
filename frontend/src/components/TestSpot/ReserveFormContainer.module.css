@@ -1,7 +1,7 @@
 .outerContainer {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 27.5%;
   --tw-bg-opacity: 1;
   background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   margin-bottom: 2.5em;

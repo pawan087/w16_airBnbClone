@@ -1,0 +1,211 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.outerContainer {
+  --tw-bg-opacity: 1;
+  margin: 0 auto;
+  background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+  border-radius: 1em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  transition-duration: 150ms;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  animation: fadein 0.33s;
+  align-self: center;
+	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  margin-bottom: 5em;
+}
+
+.outerContainer:hover {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.logoContainer {
+  display: flex;
+  height: 2.5em;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.logo {
+  width: 7.5em;
+  height: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  border-radius: 1.5em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  align-content: center;
+  align-items: center;
+  padding-top: 1em;
+  margin-left: 5.5em;
+  margin-right: 5.5em;
+  align-self: center;
+  width: 90%;
+  --tw-bg-opacity: 1;
+  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+}
+
+.title,
+.subtitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+
+  font-size: 1.25em;
+}
+
+.subtitle {
+  margin-top: 1em;
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+.middleContainer {
+  margin-top: 0em;
+  padding-top: 1em;
+  width: 87.5%;
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+}
+
+.middleHeader {
+  font-weight: bold;
+
+  font-size: 1.125em;
+  grid-column: span 2 / span 2;
+}
+
+.divisor {
+  width: 100%;
+  margin-top: 0.5em;
+  border-bottom: 0.0625em solid #009cd5;
+  grid-column: span 2 / span 2;
+}
+
+.label,
+.detail {
+  margin-top: 1.5em;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  color: #009cd5;
+}
+
+.detail {
+  font-size: 1em;
+  margin-left: 0.5em;
+}
+
+.middleFooter {
+  margin-top: 1em;
+  font-weight: lighter;
+  font-size: 0.75em;
+  grid-column: span 2 / span 2;
+}
+
+.btnsContainer {
+  margin-top: 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.btnSubmit {
+  margin-left: 1em;
+}
+
+.btnCancel {
+  margin-top: 0.5em;
+  margin-right: 1em;
+}
+
+.btnSubmit,
+.btnCancel {
+  width: 7.5em;
+  height: 4em;
+  font-size: 0.85rem;
+  outline: none;
+  border: none;
+  color: white;
+  opacity: 80%;
+  transition-duration: 150ms;
+  border-radius: 0.5em;
+  cursor: pointer;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.btnSubmit:hover,
+.btnCancel:hover {
+  opacity: 100%;
+}
+
+.btnSubmit:active,
+.btnCancel:active {
+  opacity: 100%;
+  transform: scale(0.925);
+}
+
+.btnSubmit {
+  background-color: #009cd5;
+}
+
+.btnCancel {
+  --tw-bg-opacity: 1;
+  background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
+}
+
+.reserve {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    justify-items: center;
+    justify-self: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
