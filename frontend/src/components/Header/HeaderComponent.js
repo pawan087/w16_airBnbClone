@@ -208,7 +208,7 @@ export default function HeaderComponent() {
               ) : null}
               {!user ? (
                 <NavLink to="/login" className={styles.menuItem}>
-                  Log Ip
+                  Log In
                 </NavLink>
               ) : null}
               {!user ? <div className={styles.menuItem}>Demo User</div> : null}

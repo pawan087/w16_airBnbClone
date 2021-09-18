@@ -64,7 +64,7 @@
   width: 100%;
   object-fit: cover;
   opacity: 90%;
-  transition: 0.2s ease all;
+  transition: 0.33s ease all;
   border-radius: 0.5em;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -119,5 +119,5 @@
 }
 
 .heart:hover {
-  color: rgb(75, 85, 99);
+  color: #009cd5;
 }
