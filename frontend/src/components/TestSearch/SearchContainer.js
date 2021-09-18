@@ -28,7 +28,7 @@ export default function SearchContainer() {
 
   const linkMe = (spot) => {
     const { id } = spot;
-    history.push(`/spots`);
+    history.push(`/spots/${id}`);
   };
   let center;
   if (searchResultsArr[0]) {

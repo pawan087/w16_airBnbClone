@@ -52,6 +52,11 @@ export default function HeaderComponent() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    if (window.location.pathname !== "/") {
+      history.push("/");
+    } else {
+      window.location.reload();
+    }
   };
 
   const handleSelect = (ranges) => {
@@ -78,6 +83,17 @@ export default function HeaderComponent() {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
+  };
+
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    let credential = "Demo-lition";
+    let password = "password";
+    dispatch(sessionActions.login({ credential, password }));
+    if (window.location.pathname === "/") {
+      window.location.reload();
+    }
+    history.push("/");
   };
 
   let imgUrl =
@@ -185,7 +201,12 @@ export default function HeaderComponent() {
               </NavLink>
             ) : null}
             {!user ? (
-              <button className={styles.dropDownItem}>Demo User</button>
+              <button
+                onClick={(e) => handleDemoLogin(e)}
+                className={styles.dropDownItem}
+              >
+                Demo User
+              </button>
             ) : null}
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>
@@ -196,22 +217,29 @@ export default function HeaderComponent() {
         )}
         {showMenu && (
           <div className={styles.outerContainer}>
-          {user ? (
-            <NavLink className={styles.menuItem} to="/bookings">
-            Bookings
-            </NavLink>
+            {user ? (
+              <NavLink className={styles.menuItem} to="/bookings">
+                Bookings
+              </NavLink>
             ) : null}
             {user ? (
               <div className={styles.menuItem} onClick={logout}>
-              Log Out
+                Log Out
               </div>
-              ) : null}
-              {!user ? (
-                <NavLink to="/login" className={styles.menuItem}>
-                  Log In
-                </NavLink>
-              ) : null}
-              {!user ? <div className={styles.menuItem}>Demo User</div> : null}
+            ) : null}
+            {!user ? (
+              <NavLink to="/login" className={styles.menuItem}>
+                Log In
+              </NavLink>
+            ) : null}
+            {!user ? (
+              <div
+                onClick={(e) => handleDemoLogin(e)}
+                className={styles.menuItem}
+              >
+                Demo User
+              </div>
+            ) : null}
             {!user ? (
               <NavLink to="/signup" className={styles.menuItem}>
                 Sign Up
