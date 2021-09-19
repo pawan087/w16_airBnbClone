@@ -18,38 +18,38 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
   let location = spot[0].city;
-  let searchResultsObj = {};
+  // let searchResultsObj = {};
 
-  spotsArr.forEach((spot) => {
-    if (spot.city === location) {
-      searchResultsObj[spot.id] = spot;
-    }
-  });
-  bookingArr.forEach((booking) => {
-    if (booking["Spot"]["city"] === location && startDate && endDate) {
-      if (booking.startDate < startDate && endDate < booking.endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (
-        startDate < booking.startDate &&
-        booking.startDate < endDate &&
-        endDate < booking.endDate
-      ) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (startDate < booking.startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (booking.startDate < startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-    }
-  });
-  const arr = Object.values(searchResultsObj);
+  // spotsArr.forEach((spot) => {
+  //   if (spot.city === location) {
+  //     searchResultsObj[spot.id] = spot;
+  //   }
+  // });
+  // bookingArr.forEach((booking) => {
+  //   if (booking["Spot"]["city"] === location && startDate && endDate) {
+  //     if (booking.startDate < startDate && endDate < booking.endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (
+  //       startDate < booking.startDate &&
+  //       booking.startDate < endDate &&
+  //       endDate < booking.endDate
+  //     ) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (startDate < booking.startDate && booking.endDate < endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (booking.startDate < startDate && booking.endDate < endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //   }
+  // });
+  // const arr = Object.values(searchResultsObj);
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());

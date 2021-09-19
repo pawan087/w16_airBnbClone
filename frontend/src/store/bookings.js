@@ -60,8 +60,11 @@ export const create = (booking) => async (dispatch) => {
       endDate,
     }),
   });
-  const b = await response.json();
-  dispatch(addBooking(b));
+  // const b = await response.json();
+  // dispatch(addBooking(b));
+  // const res = await fetch("/api/bookings");
+  // const bookings = await res.json();
+  // dispatch(setBookings(bookings));
 
 };
 
@@ -88,6 +91,7 @@ export const getBookings = () => async (dispatch) => {
 
 export const getAlreadyBooked = (b) => async (dispatch) => {
   dispatch(setAlreadyBooked(b));
+
 };
 
 export const getUserBookings = (id) => async (dispatch) => {

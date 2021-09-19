@@ -30,7 +30,7 @@ export default function SpotsContainer() {
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
   let today = new Date();
   const spots = useSelector((state) => state.spot);
-  const alreadyBooked = useSelector((state) => state.alreadyBooked);
+  // const alreadyBooked = useSelector((state) => state.alreadyBooked);
   const images = useSelector((state) => state.images);
   const reviews = useSelector((state) => state.review);
   const spotsArr = Object.values(spots);
@@ -83,7 +83,7 @@ export default function SpotsContainer() {
               <img
                 className={styles.img}
                 layout="fill"
-                objectFit="cover"
+                objectfit="cover"
                 src={image}
               />
             </div>
@@ -122,10 +122,11 @@ export default function SpotsContainer() {
         startDate={startDate}
         endDate={endDate}
       />
-
       <ReviewFormContainer spot={spot} />
-      {alreadyBooked && <Sorry />}
+      {true && <Sorry />}
       <AllReviewsComponent reviewsArr={specificReviews} />
-    </div>
-  );
-}
+      </div>
+      );
+    }
+
+    // {alreadyBooked && <Sorry />}
