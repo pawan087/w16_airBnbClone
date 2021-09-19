@@ -1,18 +1,23 @@
 Important:
 
 validate edit booking when editing booking
-fix san diego booking
+when spot has no bookings reserve button doesnt allow for booking reservation
 not logged in functionality, like not being able to review or make booking
+dont allow reserve button to work if dates arent set
+
 seedData!
 favicon/html title
 make prettier than prettier, remove console.logs and potential errors show in console 
-
+heroku
 
 Unimportant:
 
 maybe: header doesnt stay sticky on spots page toward bottom of page
 maybe: bugging out when attempting to rebook a user booked spot at same time
+maybe: errors out when attempting to make a booking for same booking at another time
 maybe: not able to book next day, need 24 hours beforehand
 maybe: viewport customization
 maybe: more realistic sign up validaitons
 maybe: bugging out when attempting to rebook a user booked spot at same time
+maybe: sort bookings/reservations chronological order of event happening not when booking event
+maybe: thanks pop up doesn't appear when sorry shown
