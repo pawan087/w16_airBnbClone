@@ -19,51 +19,53 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   const [showSecondModal, setSecondModal] = useState(false);
   const bookings = useSelector((state) => state.booking);
 
-
   const bookingsArr = Object.values(bookings);
 
   const specificBookings = bookingsArr.filter((b) => {
     return b["spotId"] === +spotId;
   });
+  if (specificBookings.length === 0) {
+    bool = true;
+  } else {
+    specificBookings.forEach((booking) => {
+      if (startDate < endDate) {
+        if (booking.startDate < startDate && endDate < booking.endDate) {
+          // dispatch(getAlreadyBooked(true));
 
-  specificBookings.forEach((booking) => {
-    if (startDate < endDate) {
-      if (booking.startDate < startDate && endDate < booking.endDate) {
-        // dispatch(getAlreadyBooked(true));
-        
-        bool = false;
-        return;
+          bool = false;
+          return;
+        }
+        if (
+          startDate < booking.startDate &&
+          booking.startDate < endDate &&
+          endDate < booking.endDate
+        ) {
+          bool = false;
+
+          // dispatch(getAlreadyBooked(true));
+          return;
+        }
+        if (startDate < booking.startDate && booking.endDate < endDate) {
+          bool = false;
+
+          // dispatch(getAlreadyBooked(true));
+          return;
+        }
+        if (
+          booking.startDate < startDate &&
+          booking.endDate < endDate &&
+          startDate < booking.endDate
+        ) {
+          bool = false;
+
+          // dispatch(getAlreadyBooked(true));
+          return;
+        }
+        // dispatch(getAlreadyBooked(false));
+        bool = true;
       }
-      if (
-        startDate < booking.startDate &&
-        booking.startDate < endDate &&
-        endDate < booking.endDate
-      ) {
-        bool = false;
-        
-        // dispatch(getAlreadyBooked(true));
-        return;
-      }
-      if (startDate < booking.startDate && booking.endDate < endDate) {
-        bool = false;
-        
-        // dispatch(getAlreadyBooked(true));
-        return;
-      }
-      if (
-        booking.startDate < startDate &&
-        booking.endDate < endDate &&
-        startDate < booking.endDate
-      ) {
-        bool = false;
-        
-        // dispatch(getAlreadyBooked(true));
-        return;
-      }
-      // dispatch(getAlreadyBooked(false));
-      bool = true;
-    }
-  });
+    });
+  }
   useEffect(() => {
     getAlreadyBooked(false);
   }, [dispatch]);
@@ -73,13 +75,8 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
         <button className={styles.btn} onClick={() => setShowModal(true)}>
           Reserve
         </button>
-      )}  {bool === false && (
-        <button className={styles.btn2} >
-          Reserve
-        </button>
-      )}
-
-
+      )}{" "}
+      {bool === false && <button className={styles.btn2}>Reserve</button>}
       {showModal && true && true && (
         <MyModal onClose={() => setShowModal(false)}>
           <ConfirmationForm
