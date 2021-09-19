@@ -30,9 +30,7 @@ export default function Sorry() {
   }, [dispatch]);
   return (
     <div className={styles.outerContainer}>
-      <div className={styles.logoContainer}>
-
-      </div>
+      <div className={styles.logoContainer}></div>
 
       <div className={styles.cardContainer}>
         <div className={styles.topCardContainer}>
@@ -42,7 +40,9 @@ export default function Sorry() {
 
           {true && (
             <div className={styles.subtitle}>
-              {"Please choose a time period apart from what's listed below:"}
+              {
+                "Please consider another time period, apart from what's listed below:"
+              }
             </div>
           )}
         </div>
@@ -58,9 +58,7 @@ export default function Sorry() {
             </>
           ))}
         </div>
-        <div className={styles.btnsContainer}>
-
-        </div>
+        <div className={styles.btnsContainer}></div>
       </div>
     </div>
   );

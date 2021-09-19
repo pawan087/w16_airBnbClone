@@ -10,23 +10,35 @@ export default function ReviewFormContainer({ spot }) {
   if (spot[0]) {
     spotId = spot[0].id;
   }
+
   const [review, setReview] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [showError, setShowError] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
   let userId;
   if (sessionUser) {
     userId = sessionUser.id;
+  }
+  if (showThankYou) {
+    setTimeout(() => {
+      setShowThankYou(false);
+    }, 2000);
   }
 
   // if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    return dispatch(reviewActions.create({ userId, spotId, review })).catch(
-      async (res) => {
-        // const data = await res.json();
-      }
-    );
+    if (review.length > 5 && review.length < 100) {
+      dispatch(reviewActions.create({ userId, spotId, review }));
+      setReview("");
+      setShowError(false);
+      setShowThankYou(true);
+      setTimeout(() => {
+        setShowThankYou(false);
+      }, 1500);
+    } else {
+      setShowError(true);
+    }
   };
 
   return (
@@ -60,8 +72,14 @@ export default function ReviewFormContainer({ spot }) {
             type="textarea"
           ></textarea>
         </div>
+        {showError && (
+          <p className={styles.error}>
+            Please enter a review between 5 and 1,000 characters
+          </p>
+        )}
+        {showThankYou && <p className={styles.thankYou}>Thanks!</p>}
         <div className={styles.btnContainer}>
-          <button className={styles.btn} type="submit">
+          <button id="btn" className={styles.btn} type="submit">
             Submit
           </button>
         </div>

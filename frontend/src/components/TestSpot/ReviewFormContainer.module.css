@@ -92,6 +92,7 @@
   margin-top: 1em;
   height: 5em;
   width: 75%;
+
   outline: none;
   color: rgb(229, 231, 235);
   opacity: 90%;
@@ -116,4 +117,36 @@
 
 .btn:active {
   transform: scale(0.85);
+}
+
+
+.error {
+  animation: fadein 0.5s;
+  position: absolute;
+top: 61.5em;
+left: 10.5em;
+  color: #009cd5;
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.thankYou {
+
+  animation: fadein .75s;
+  position: absolute;
+top: 61.5em;
+left: 10.5em;
+  color: #009cd5;
+  font-size: .75em;
+  font-weight: bold;
+
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -32,11 +32,19 @@ export default function ReserveFormComponent({ spot }) {
 
   const x = new Date(startDate).getTime();
   const y = new Date(endDate).getTime();
+  let today = new Date();
+  let tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+  today = today.toISOString().split("T")[0];
+  tomorrow = tomorrow.toISOString().split("T")[0];
+
   useEffect(() => {
     dispatch(getBookings());
-
   }, [dispatch]);
-  const dayCount = (y - x) / 60 / 60 / 1000 / 24;
+  let dayCount = false;
+  if (y > x) {
+    dayCount = (y - x) / 60 / 60 / 1000 / 24;
+  }
   let price;
   let total;
   if (spot[0]) {
@@ -63,6 +71,7 @@ export default function ReserveFormComponent({ spot }) {
           <div className={styles.inputContainer}>
             <label className={styles.label}>Check-In</label>
             <input
+              min={tomorrow}
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className={styles.dateInput}
@@ -72,6 +81,7 @@ export default function ReserveFormComponent({ spot }) {
           <div className={styles.inputContainer}>
             <label className={styles.label}>Check-Out</label>
             <input
+              min={tomorrow}
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               className={styles.dateInput}

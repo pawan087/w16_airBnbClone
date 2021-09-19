@@ -9,7 +9,7 @@
   border-radius: 0.5em;
 
   display: grid;
-  gap: 1em;
+  gap: .75em;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -88,6 +88,10 @@
 .img:hover {
   opacity: 100%;
   transform: scale(1.025);
+}
+.img:active {
+
+  transform: scale(.95);
 }
 
 .detailLowerContainer {

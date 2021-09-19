@@ -20,16 +20,22 @@ export default function HeaderComponent() {
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
   const user = useSelector((state) => state.session.user);
+  let today = new Date();
+  let tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 2);
+  today = today.toISOString().split("T")[0];
+  let minDate = tomorrow;
+  // tomorrow = tomorrow.toISOString().split("T")[0];
+  console.log(minDate);
 
+  const [startDate, setStartDate] = useState(minDate);
+  const [endDate, setEndDate] = useState(minDate);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
-
   if (searchInput) {
     document.getElementById("navbar").style.background = "#F3F4F6";
   }
@@ -254,7 +260,7 @@ export default function HeaderComponent() {
             className={styles.dateRangePicker}
             onChange={handleSelect}
             rangeColors={["#009cd5"]}
-            minDate={new Date()}
+            minDate={minDate}
             ranges={[selectionRange]}
           />
           <div className={styles.searchBtnsContainer}>

@@ -7,7 +7,7 @@
 .outerContainer {
   box-sizing: border-box;
   display: grid;
-  width: 100%;
+  width: 92.5%;
   gap: 1.5em;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
@@ -15,8 +15,7 @@
   margin-bottom: 7.5em;
   position: relative;
   overflow-y: scroll;
-  padding-left: 5em;
-  padding-right: 5em;
+
   max-height: 21em;
 
 }
@@ -30,19 +29,30 @@
   outline: .25em solid transparent;
 }
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 .reviewContainer {
   width: 100%;
   border-radius: 0.5em;
   display: flex;
   justify-content: space-between;
+  animation: fadein 0.75s;
   justify-items: center;
   justify-self: center;
   align-content: center;
   align-items: center;
   align-self: center;
-  transition: 0.2s ease all;
+  transition: 0.5s ease all;
   position: relative;
+
 }
 
 
@@ -78,8 +88,10 @@
   display: flex;
   justify-content: left;
   padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  word-break: break-all;
+  padding-bottom: 1em;
   padding-left: 0.5em;
+  padding-right: 1.5em;
   border-radius: 0.5em;
   transition-duration: 150ms;
   border-top-left-radius: 0;
