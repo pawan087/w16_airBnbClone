@@ -21,9 +21,10 @@ export default function ReserveFormComponent({ spot }) {
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
-
+  // const [startDate, setStartDate] = useState(searchedStartDate);
+  // const [endDate, setEndDate] = useState(searchedEndDate);
+  const [startDate, setStartDate] = useState('2021-10-29');
+  const [endDate, setEndDate] = useState('2021-10-30');
   const bookings = useSelector((state) => state.booking);
   const bookingsArr = Object.values(bookings);
   const specificBookings = bookingsArr.filter((b) => {

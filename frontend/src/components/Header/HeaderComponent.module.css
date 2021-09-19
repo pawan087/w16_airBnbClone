@@ -117,7 +117,7 @@
   width: 2em;
   animation: fadein2 0.25s;
   color: rgb(229, 231, 235);
-  margin-right: .9em;
+  margin-right: 0.9em;
   font-size: 1em;
   opacity: 0.775;
   font-weight: bold;
@@ -127,9 +127,9 @@
   justify-self: center;
   align-content: center;
   align-items: center;
-  border: .075em solid black;
-	--tw-border-opacity: 1;
-border-color: rgba(75, 85, 99, var(--tw-border-opacity));
+
+  --tw-border-opacity: 1;
+  border-color: rgba(75, 85, 99, var(--tw-border-opacity));
   align-self: center;
 }
 
