@@ -30,7 +30,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
     if (startDate < endDate) {
       if (booking.startDate < startDate && endDate < booking.endDate) {
         // dispatch(getAlreadyBooked(true));
-        console.log("yee11");
+        
         bool = false;
         return;
       }
@@ -40,13 +40,13 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
         endDate < booking.endDate
       ) {
         bool = false;
-        console.log("yee12");
+        
         // dispatch(getAlreadyBooked(true));
         return;
       }
       if (startDate < booking.startDate && booking.endDate < endDate) {
         bool = false;
-        console.log("yee13");
+        
         // dispatch(getAlreadyBooked(true));
         return;
       }
@@ -56,7 +56,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
         startDate < booking.endDate
       ) {
         bool = false;
-        console.log("yee14");
+        
         // dispatch(getAlreadyBooked(true));
         return;
       }
@@ -71,6 +71,10 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
     <>
       {bool === true && (
         <button className={styles.btn} onClick={() => setShowModal(true)}>
+          Reserve
+        </button>
+      )}  {bool === false && (
+        <button className={styles.btn2} >
           Reserve
         </button>
       )}

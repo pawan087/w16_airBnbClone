@@ -4,6 +4,7 @@ import bookingReducer from "./bookings";
 import imageReducer from "./images";
 import reviewReducer from "./reviews";
 import searchReducer from "./search";
+import { searchReducer2 } from "./search";
 import sessionReducer from "./session";
 import spotReducer from "./spots";
 import { searchResultsReducer } from "./search";
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   startDate: startDateReducer,
   endDate: endDateReducer,
   datesArr: dateReducer,
+  search2: searchReducer2,
 });
 
 let enhancer;

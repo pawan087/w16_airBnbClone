@@ -5,8 +5,9 @@ import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { getAlreadyBooked, getBookings } from "../../store/bookings";
 import { setDates } from "../../store/search";
 import { useParams } from "react-router";
-import { setSD } from "../../store/search";
-import { setED } from "../../store/search";
+import { getSearch2 } from "../../store/search.js";
+// import { setSD } from "../../store/search";
+// import { setED } from "../../store/search";
 
 export default function ReserveFormComponent({ spot }) {
   const dispatch = useDispatch();
@@ -43,7 +44,6 @@ export default function ReserveFormComponent({ spot }) {
   specificBookings.forEach((booking) => {
     if (startDate < endDate) {
       if (booking.startDate < startDate && endDate < booking.endDate) {
-        console.log("yee1");
         // dispatch(getAlreadyBooked(true));
         bool = false;
         return;
@@ -53,13 +53,11 @@ export default function ReserveFormComponent({ spot }) {
         booking.startDate < endDate &&
         endDate < booking.endDate
       ) {
-        console.log("yee2");
         bool = false;
         // dispatch(getAlreadyBooked(true));
         return;
       }
       if (startDate < booking.startDate && booking.endDate < endDate) {
-        console.log("yee3");
         bool = false;
         // dispatch(getAlreadyBooked(true));
         return;
@@ -70,11 +68,11 @@ export default function ReserveFormComponent({ spot }) {
         startDate < booking.endDate
       ) {
         bool = false;
-        console.log("yee4");
+
         // dispatch(getAlreadyBooked(true));
         return;
       }
-      bool = true
+      bool = true;
       // dispatch(getAlreadyBooked(false));
     }
   });
@@ -95,11 +93,13 @@ export default function ReserveFormComponent({ spot }) {
   }
   const setSDate = (sd) => {
     setStartDate(sd);
-    dispatch(setSD(sd));
+    setEndDate(endDate);
+    dispatch(getSearch2({ startDate: sd, endDate: endDate }));
   };
   const setEDate = (ed) => {
     setEndDate(ed);
-    dispatch(setED(ed));
+    setStartDate(startDate);
+    dispatch(getSearch2({ startDate: startDate, endDate: ed }));
   };
 
   return (
@@ -115,7 +115,7 @@ export default function ReserveFormComponent({ spot }) {
             <input
               min={tomorrow}
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={(e) => setSDate(e.target.value)}
               className={styles.dateInput}
               type="date"
             ></input>
@@ -125,7 +125,7 @@ export default function ReserveFormComponent({ spot }) {
             <input
               min={tomorrow}
               value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              onChange={(e) => setEDate(e.target.value)}
               className={styles.dateInput}
               type="date"
             ></input>
