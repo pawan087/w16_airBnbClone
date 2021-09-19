@@ -40,44 +40,49 @@ export default function ReserveFormComponent({ spot }) {
   const specificBookings = bookingsArr.filter((b) => {
     return b["spotId"] === +spotId;
   });
-  if (specificBookings.length === 0) {
-    bool = true;
+  const user = useSelector((state) => state.session.user);
+  if (user === undefined) {
+    bool = false;
   } else {
-    specificBookings.forEach((booking) => {
-      if (startDate < endDate) {
-        if (booking.startDate < startDate && endDate < booking.endDate) {
-          // dispatch(getAlreadyBooked(true));
-          bool = false;
-          return;
-        }
-        if (
-          startDate < booking.startDate &&
-          booking.startDate < endDate &&
-          endDate < booking.endDate
-        ) {
-          bool = false;
-          // dispatch(getAlreadyBooked(true));
-          return;
-        }
-        if (startDate < booking.startDate && booking.endDate < endDate) {
-          bool = false;
-          // dispatch(getAlreadyBooked(true));
-          return;
-        }
-        if (
-          booking.startDate < startDate &&
-          booking.endDate < endDate &&
-          startDate < booking.endDate
-        ) {
-          bool = false;
+    if (specificBookings.length === 0) {
+      bool = true;
+    } else {
+      specificBookings.forEach((booking) => {
+        if (startDate < endDate) {
+          if (booking.startDate < startDate && endDate < booking.endDate) {
+            // dispatch(getAlreadyBooked(true));
+            bool = false;
+            return;
+          }
+          if (
+            startDate < booking.startDate &&
+            booking.startDate < endDate &&
+            endDate < booking.endDate
+          ) {
+            bool = false;
+            // dispatch(getAlreadyBooked(true));
+            return;
+          }
+          if (startDate < booking.startDate && booking.endDate < endDate) {
+            bool = false;
+            // dispatch(getAlreadyBooked(true));
+            return;
+          }
+          if (
+            booking.startDate < startDate &&
+            booking.endDate < endDate &&
+            startDate < booking.endDate
+          ) {
+            bool = false;
 
-          // dispatch(getAlreadyBooked(true));
-          return;
+            // dispatch(getAlreadyBooked(true));
+            return;
+          }
+          bool = true;
+          // dispatch(getAlreadyBooked(false));
         }
-        bool = true;
-        // dispatch(getAlreadyBooked(false));
-      }
-    });
+      });
+    }
   }
 
   useEffect(() => {

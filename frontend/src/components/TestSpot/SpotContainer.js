@@ -17,6 +17,7 @@ import { getAlreadyBooked } from "../../store/bookings";
 export default function SpotsContainer() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
+
   const searchCriteria = useSelector((state) => state.search);
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
@@ -74,7 +75,7 @@ export default function SpotsContainer() {
     specificBookings.forEach((booking) => {
       let y = booking.endDate.slice(0, 10);
       let x = booking.startDate.slice(0, 10);
-   
+
 
       if (x === ed) {
         bool = true;
