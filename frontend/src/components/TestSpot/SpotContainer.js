@@ -111,7 +111,7 @@ export default function SpotsContainer() {
         if (
           booking.startDate < sd &&
           booking.endDate < ed &&
-          startDate < booking.endDate
+          sd < booking.endDate
         ) {
           bool = true;
           console.log("yee414");
