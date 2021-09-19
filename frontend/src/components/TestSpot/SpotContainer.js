@@ -8,6 +8,7 @@ import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
 import Sorry from "../BookingConfirmationModal/Sorry";
+import { getSearch2 } from "../../store/search";
 import AllReviewsComponent from "./AllReviewsComponent";
 import MapComponent from "../Map/MapComponent";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
@@ -138,6 +139,8 @@ export default function SpotsContainer() {
     dispatch(getReviews());
     dispatch(getImages());
     dispatch(getAlreadyBooked(false));
+    dispatch(getSearch2({ startDate: '', endDate: '' }));
+
   }, [startDate, endDate, dispatch, searchCriteria]);
 
 
@@ -191,18 +194,17 @@ export default function SpotsContainer() {
             />
           </div>
         </div>
-      )}
+        )}
 
-      {bool === true && <Sorry />}
+        {bool === true && <Sorry />}
       <ReserveFormComponent
-        spot={spot}
-        startDate={startDate}
-        endDate={endDate}
+      spot={spot}
+      startDate={startDate}
+      endDate={endDate}
       />
       <ReviewFormContainer spot={spot} />
       <AllReviewsComponent reviewsArr={specificReviews} />
       </div>
       );
     }
-
-    // {alreadyBooked && <Sorry />}
+    // {bool === true && <Sorry />}
