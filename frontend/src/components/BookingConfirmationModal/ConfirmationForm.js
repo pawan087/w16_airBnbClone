@@ -58,11 +58,10 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (arr.length) {
+
       dispatch(
         bookingActions.create({ userId, spotId, startDate, endDate })
       )
-    }
 
 
 

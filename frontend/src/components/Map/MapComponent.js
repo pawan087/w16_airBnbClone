@@ -32,36 +32,36 @@ export default function MapComponent({ id, lat, lng }) {
   const searchResults = useSelector((state) => state.searchResults);
   const searchResultsArr = Object.values(searchResults);
 
-  const bookingArr = Object.values(bookings);
   let spot = spots[id];
-  let searchResultsObj = {};
+  // const bookingArr = Object.values(bookings);
+  // let searchResultsObj = {};
 
-  bookingArr.forEach((booking) => {
-    if (booking["Spot"]["city"] === location && startDate && endDate) {
-      if (booking.startDate < startDate && endDate < booking.endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (
-        startDate < booking.startDate &&
-        booking.startDate < endDate &&
-        endDate < booking.endDate
-      ) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (startDate < booking.startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (booking.startDate < startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-    }
-  });
+  // bookingArr.forEach((booking) => {
+  //   if (booking["Spot"]["city"] === location && startDate && endDate) {
+  //     if (booking.startDate < startDate && endDate < booking.endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (
+  //       startDate < booking.startDate &&
+  //       booking.startDate < endDate &&
+  //       endDate < booking.endDate
+  //     ) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (startDate < booking.startDate && booking.endDate < endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (booking.startDate < startDate && booking.endDate < endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //   }
+  // });
 
-  const arr = Object.values(searchResultsObj);
+  // const arr = Object.values(searchResultsObj);
   //   const center = getCenter({})
 
   // const coordinates = spotsArr.map((spot) => ({
