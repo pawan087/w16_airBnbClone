@@ -27,7 +27,8 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   });
   let bool2 = true;
   const user = useSelector((state) => state.session.user);
-  if (user === undefined) {
+  console.log(user);
+  if (user === undefined || user === null) {
     bool = false;
     bool2 = false;
   } else {

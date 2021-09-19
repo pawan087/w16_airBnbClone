@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
 import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
 export default function ReviewFormContainer({ spot }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   let spotId;
   if (spot[0]) {
     spotId = spot[0].id;
   }
-
+  const user = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
   const [showError, setShowError] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
@@ -28,6 +30,10 @@ export default function ReviewFormContainer({ spot }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (user === null || user === undefined) {
+      history.push('/login');
+      return;
+    }
     if (review.length > 5 && review.length < 100) {
       dispatch(reviewActions.create({ userId, spotId, review }));
       setReview("");

@@ -183,8 +183,18 @@
   opacity: 50%;
 }
 
+.btn3:hover {
+
+  opacity: 85%;
+}
+
+
+.btn3:active {
+  transform: scale(0.95);
+}
+
 .btn:hover {
-  opacity: 100%;
+  opacity: 85%;
 }
 
 .btn:active {
