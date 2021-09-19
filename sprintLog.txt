@@ -1,0 +1,18 @@
+Important:
+
+validate edit booking when editing booking
+fix san diego booking
+not logged in functionality, like not being able to review or make booking
+seedData!
+favicon/html title
+make prettier than prettier, remove console.logs and potential errors show in console 
+
+
+Unimportant:
+
+maybe: header doesnt stay sticky on spots page toward bottom of page
+maybe: bugging out when attempting to rebook a user booked spot at same time
+maybe: not able to book next day, need 24 hours beforehand
+maybe: viewport customization
+maybe: more realistic sign up validaitons
+maybe: bugging out when attempting to rebook a user booked spot at same time

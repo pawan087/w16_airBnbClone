@@ -22,7 +22,7 @@ export default function BookingsContainer() {
   const imagesArr = Object.values(images);
   let userBookingsArr = Object.values(bookings);
 
-  console.log(userBookingsArr);
+
 
   useEffect(() => {
     dispatch(getSpots());

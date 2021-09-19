@@ -21,13 +21,17 @@ export default function HeaderComponent() {
   const [showModal, setShowModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const user = useSelector((state) => state.session.user);
+  let initial = "";
+  if (user) {
+    initial = user.username[0];
+  }
+  console.log(initial);
   let today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 2);
   today = today.toISOString().split("T")[0];
   let minDate = tomorrow;
   // tomorrow = tomorrow.toISOString().split("T")[0];
-  console.log(minDate);
 
   const [startDate, setStartDate] = useState(minDate);
   const [endDate, setEndDate] = useState(minDate);
@@ -60,8 +64,6 @@ export default function HeaderComponent() {
     dispatch(sessionActions.logout());
     if (window.location.pathname !== "/") {
       history.push("/");
-    } else {
-      window.location.reload();
     }
   };
 
@@ -95,11 +97,13 @@ export default function HeaderComponent() {
     e.preventDefault();
     let credential = "Demo-lition";
     let password = "password";
+
     dispatch(sessionActions.login({ credential, password }));
     if (window.location.pathname === "/") {
-      window.location.reload();
+      // window.location.reload();
+    } else {
+      history.push("/");
     }
-    history.push("/");
   };
 
   let imgUrl =
@@ -143,7 +147,11 @@ export default function HeaderComponent() {
           </svg>
         </div>
       </div>
+
       <div className={styles.rightHeader}>
+        <div className={styles.userContainer}>
+          {initial && <div data-tooltip="This is a tooltip" className={styles.user}>{initial}</div>}
+        </div>
         <div className={styles.rightIconsContainer} onClick={openMenu}>
           <div className={styles.menuIcon}>
             <svg
@@ -221,6 +229,7 @@ export default function HeaderComponent() {
             )}
           </div>
         )}
+
         {showMenu && (
           <div className={styles.outerContainer}>
             {user ? (

@@ -64,8 +64,8 @@ function App() {
             <LogInComponent />
           </Route>
           <Route>
-            <SorryComponent />
-          </Route>
+          <SorryComponent />
+        </Route>
         </Switch>
       )}
       <FooterComponent />

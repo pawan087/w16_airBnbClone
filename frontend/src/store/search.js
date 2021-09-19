@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const SET_SEARCH = "search/setSearch";
+const SET_SEARCH2 = "search2/setSearch2";
 const SET_SEARCH_RESULTS = "search/setSearchResults";
 const SET_START_DATE = "search/setStartDate";
 const SET_END_DATE = "search/setEndDate";
@@ -26,6 +27,11 @@ const setSearch = (searchCriteria) => ({
   searchCriteria,
 });
 
+const setSearch2 = (searchCriteria) => ({
+  type: SET_SEARCH2,
+  searchCriteria,
+});
+
 const setSearchResults = (searchResults) => ({
   type: SET_SEARCH_RESULTS,
   searchResults,
@@ -33,6 +39,11 @@ const setSearchResults = (searchResults) => ({
 
 export const getSearch = (searchCriteria) => async (dispatch) => {
   dispatch(setSearch(searchCriteria));
+};
+
+export const getSearch2 = (searchCriteria) => async (dispatch) => {
+
+  dispatch(setSearch2(searchCriteria));
 };
 
 export const setSD = (startDate) => async (dispatch) => {
@@ -114,6 +125,16 @@ const initialState = {};
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SEARCH:
+      const newState = { ...action.searchCriteria };
+      return newState;
+    default:
+      return state;
+  }
+};
+
+export const searchReducer2 = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_SEARCH2:
       const newState = { ...action.searchCriteria };
       return newState;
     default:

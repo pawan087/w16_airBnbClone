@@ -1,3 +1,4 @@
+import { batch } from "react-redux";
 import { csrfFetch } from "./csrf";
 
 const SET_BOOKINGS = "bookings/setBookings";
@@ -5,6 +6,12 @@ const DELETE_BOOKING = "bookings/deleteBooking";
 const EDIT_BOOKING = "bookings/editBooking";
 const SET_USER_BOOKINGS = "bookings/setUserBookings";
 const ALREADY_BOOKED = "bookings/setAlreadyBooked";
+const ADD_BOOKING = "bookings/addBooking";
+
+const addBooking = (booking) => ({
+  type: ADD_BOOKING,
+  booking,
+});
 
 const setAlreadyBooked = (bool) => ({
   type: ALREADY_BOOKED,
@@ -53,8 +60,12 @@ export const create = (booking) => async (dispatch) => {
       endDate,
     }),
   });
-  const data = await response.json();
-  return response;
+  // const b = await response.json();
+  // dispatch(addBooking(b));
+  // const res = await fetch("/api/bookings");
+  // const bookings = await res.json();
+  // dispatch(setBookings(bookings));
+
 };
 
 export const editBooking = (booking) => async (dispatch) => {
@@ -80,6 +91,7 @@ export const getBookings = () => async (dispatch) => {
 
 export const getAlreadyBooked = (b) => async (dispatch) => {
   dispatch(setAlreadyBooked(b));
+
 };
 
 export const getUserBookings = (id) => async (dispatch) => {
@@ -110,6 +122,11 @@ const bookingReducer = (state = initialState, action) => {
       const id2 = action.booking.id;
       state[id2] = action.booking;
       return { ...state };
+
+    case ADD_BOOKING:
+
+
+      return { ...state, ...action.booking };
     default:
       return state;
   }

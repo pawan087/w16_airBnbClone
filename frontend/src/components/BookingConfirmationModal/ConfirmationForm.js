@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import * as bookingActions from "../../store/bookings";
 function ConfirmationForm({ total, spot, startDate, endDate }) {
   const history = useHistory();
-  
+
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [userId, setUserId] = useState(sessionUser.id);
@@ -18,55 +18,58 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
   const spotsArr = Object.values(spots);
   const bookingArr = Object.values(bookings);
   let location = spot[0].city;
-  let searchResultsObj = {};
-  spotsArr.forEach((spot) => {
-    if (spot.city === location) {
-      searchResultsObj[spot.id] = spot;
-    }
-  });
-  bookingArr.forEach((booking) => {
-    if (booking["Spot"]["city"] === location && startDate && endDate) {
-      if (booking.startDate < startDate && endDate < booking.endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (
-        startDate < booking.startDate &&
-        booking.startDate < endDate &&
-        endDate < booking.endDate
-      ) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (startDate < booking.startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-      if (booking.startDate < startDate && booking.endDate < endDate) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-    }
-  });
-  const arr = Object.values(searchResultsObj);
+  // let searchResultsObj = {};
+
+  // spotsArr.forEach((spot) => {
+  //   if (spot.city === location) {
+  //     searchResultsObj[spot.id] = spot;
+  //   }
+  // });
+  // bookingArr.forEach((booking) => {
+  //   if (booking["Spot"]["city"] === location && startDate && endDate) {
+  //     if (booking.startDate < startDate && endDate < booking.endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (
+  //       startDate < booking.startDate &&
+  //       booking.startDate < endDate &&
+  //       endDate < booking.endDate
+  //     ) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (startDate < booking.startDate && booking.endDate < endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //     if (booking.startDate < startDate && booking.endDate < endDate) {
+  //       // searchResultsObj[booking["Spot"]["id"]] = null;
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //   }
+  // });
+  // const arr = Object.values(searchResultsObj);
   useEffect(() => {
     dispatch(getBookings());
     dispatch(getSpots());
     // dispatch(getImages());
   }, [dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (arr.length) {
+
       dispatch(
         bookingActions.create({ userId, spotId, startDate, endDate })
-      ).catch(async (res) => {
-        const data = await res.json();
-      });
-    }
-    // history.push("/bookings");
-    setTimeout(() => {
-      history.push("/bookings");
-    }, 1000);
+      )
+
+
+
+
+
+
+    history.push("/bookings");
+
   };
 
   const cancelMe = () => {

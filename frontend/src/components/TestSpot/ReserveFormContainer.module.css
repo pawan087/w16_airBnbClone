@@ -151,6 +151,22 @@
   opacity: 85%;
 }
 
+.btn2 {
+  margin-top: 1em;
+  height: 2.75em;
+
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #009cd5;
+  color: white;
+  font-size: 0.75em;
+  border-radius: 0.5em;
+
+  transition: 0.2s ease all;
+  opacity: 33%;
+}
+
 .btn:hover {
   opacity: 100%;
 }
@@ -158,6 +174,9 @@
 .btn:active {
   transform: scale(0.95);
 }
+
+
+
 .detailsContainer {
   width: 75%;
   display: grid;

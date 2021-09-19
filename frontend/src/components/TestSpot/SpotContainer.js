@@ -8,6 +8,7 @@ import ReviewFormContainer from "./ReviewFormContainer";
 import styles from "../../components/TestSpot/SpotContainer.module.css";
 import ReserveFormComponent from "./ReserveFormComponent";
 import Sorry from "../BookingConfirmationModal/Sorry";
+import { getSearch2 } from "../../store/search";
 import AllReviewsComponent from "./AllReviewsComponent";
 import MapComponent from "../Map/MapComponent";
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
@@ -25,12 +26,7 @@ export default function SpotsContainer() {
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
   const [startDate, setStartDate] = useState(searchedStartDate);
   const [endDate, setEndDate] = useState(searchedEndDate);
-  const x = new Date(startDate);
-  const y = new Date(endDate);
-  const dayCount = (y - x) / 60 / 60 / 1000 / 24;
-  let today = new Date();
   const spots = useSelector((state) => state.spot);
-  const alreadyBooked = useSelector((state) => state.alreadyBooked);
   const images = useSelector((state) => state.images);
   const reviews = useSelector((state) => state.review);
   const spotsArr = Object.values(spots);
@@ -57,11 +53,94 @@ export default function SpotsContainer() {
   } else {
     image = "";
   }
+
+
+
+
+  const search2 = useSelector((state) => state.search2);
+  let sd = search2.startDate;
+  let ed = search2.endDate;
+
+
+
+  let bool = false;
+
+  const bookings = useSelector((state) => state.booking);
+
+  const bookingsArr = Object.values(bookings);
+
+  const specificBookings = bookingsArr.filter((b) => {
+    return b["spotId"] === +spotId;
+  });
+
+  specificBookings.forEach((booking) => {
+
+    if (sd < ed) {
+      if (booking.startDate < sd && ed < booking.endDate) {
+        console.log("yee111");
+        // dispatch(getAlreadyBooked(true));
+        bool = true;
+        return;
+      }
+      if (
+        sd < booking.startDate &&
+        booking.startDate < ed &&
+        ed < booking.endDate
+      ) {
+        console.log("yee212");
+        bool = true;
+        // dispatch(getAlreadyBooked(true));
+        return;
+      }
+      if (sd < booking.startDate && booking.endDate < ed) {
+        console.log("yee313");
+        bool = true;
+        // dispatch(getAlreadyBooked(true));
+        return;
+      }
+      if (
+        booking.startDate < sd &&
+        booking.endDate < ed &&
+        startDate < booking.endDate
+      ) {
+        bool = true;
+        console.log("yee414");
+        // dispatch(getAlreadyBooked(true));
+        return;
+      }
+      bool = false
+      // dispatch(getAlreadyBooked(false));
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   useEffect(() => {
     dispatch(getSpots());
     dispatch(getReviews());
     dispatch(getImages());
     dispatch(getAlreadyBooked(false));
+    dispatch(getSearch2({ startDate: '', endDate: '' }));
+
   }, [startDate, endDate, dispatch, searchCriteria]);
 
 
@@ -83,7 +162,7 @@ export default function SpotsContainer() {
               <img
                 className={styles.img}
                 layout="fill"
-                objectFit="cover"
+                objectfit="cover"
                 src={image}
               />
             </div>
@@ -115,17 +194,17 @@ export default function SpotsContainer() {
             />
           </div>
         </div>
-      )}
+        )}
 
+        {bool === true && <Sorry />}
       <ReserveFormComponent
-        spot={spot}
-        startDate={startDate}
-        endDate={endDate}
+      spot={spot}
+      startDate={startDate}
+      endDate={endDate}
       />
-
       <ReviewFormContainer spot={spot} />
-      {alreadyBooked && <Sorry />}
       <AllReviewsComponent reviewsArr={specificReviews} />
-    </div>
-  );
-}
+      </div>
+      );
+    }
+    // {bool === true && <Sorry />}
