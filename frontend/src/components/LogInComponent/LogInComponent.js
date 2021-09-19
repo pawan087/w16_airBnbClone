@@ -69,7 +69,7 @@ function LogInComponent() {
       </label>
 
       <button className={styles.signupBtn} type="submit">
-        Log In
+        Sign In
       </button>
       <div className={styles.headerFooter}>
         Don't have an account?{" "}

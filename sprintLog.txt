@@ -2,13 +2,14 @@ Important:
 
 validate edit booking when editing booking
 when spot has no bookings reserve button doesnt allow for booking reservation
+old bookings shouldn't show in bookings page
 not logged in functionality, like not being able to review or make booking
-dont allow reserve button to work if dates arent set
 
 seedData!
 favicon/html title
 make prettier than prettier, remove console.logs and potential errors show in console 
 heroku
+
 
 Unimportant:
 
@@ -21,3 +22,7 @@ maybe: more realistic sign up validaitons
 maybe: bugging out when attempting to rebook a user booked spot at same time
 maybe: sort bookings/reservations chronological order of event happening not when booking event
 maybe: thanks pop up doesn't appear when sorry shown
+maybe: branch out to different cities other than california
+maybe: better date format for bookings page
+maybe: change searchbar placeholder to 'search by californian city'
+maybe: fix 24 hour notice cancellation bug
