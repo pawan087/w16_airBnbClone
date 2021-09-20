@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getSpots } from "../../store/spots";
-import { getBookings } from "../../store/bookings";
+import { alreadyBookedReducer, getBookings } from "../../store/bookings";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../components/EditBookingModal/EditBookingForm.module.css";
 import { delBooking, getAlreadyBooked } from "../../store/bookings";
@@ -24,7 +24,7 @@ function EditBookingForm({ name, username, booking }) {
   let bookingId = booking.id;
 
   const bookings = useSelector((state) => state.booking);
-
+  const alreadyBooked = useSelector((state) => state.alreadyBooked);
   const bookingsArr = Object.values(bookings);
 
   const specificBookings = bookingsArr.filter((b) => {
@@ -45,47 +45,55 @@ function EditBookingForm({ name, username, booking }) {
     if (x === ed) {
       bool = true;
       console.log("yee1");
+      dispatch(getAlreadyBooked(true));
       return;
     }
     if (sd === y) {
       bool = true;
       console.log("yee2");
+      dispatch(getAlreadyBooked(true));
       return;
     }
     if (sd < ed) {
       if (x < sd && ed < y) {
         console.log("yee3");
-        // dispatch(getAlreadyBookendDate(true));
+        dispatch(getAlreadyBooked(true));
+
         bool = true;
         return;
       }
       if (sd < x && x < ed && ed < y) {
-        console.log("yee4 test");
+        console.log("yee4");
+        dispatch(getAlreadyBooked(true));
         bool = true;
-        console.log(bool);
-        // dispatch(getAlreadyBookendDate(true));
         return;
       }
       if (sd < x && y < ed) {
         console.log("yee5");
+        dispatch(getAlreadyBooked(true));
         bool = true;
         // dispatch(getAlreadyBookendDate(true));
         return;
       }
       if (x < sd && y < ed && sd < y) {
         console.log("yee6");
+        dispatch(getAlreadyBooked(true));
         bool = true;
         // dispatch(getAlreadyBooked(true));
         return;
       }
-      bool = false;
+
+
+      return;
       // dispatch(getAlreadyBooked(false));
     }
+    bool = false;
   });
 
   useEffect(() => {
     dispatch(getBookings());
-    // dispatch(getAlreadyBooked());
+
+    dispatch(getAlreadyBooked(false));
   }, [bool, dispatch]);
   const selectionRange = {
     startDate: startDate,
@@ -99,6 +107,7 @@ function EditBookingForm({ name, username, booking }) {
   };
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
+
     setEndDate(ranges.selection.endDate);
   };
   const handleSubmit = (e) => {

@@ -10,6 +10,7 @@ import spotReducer from "./spots";
 import { searchResultsReducer } from "./search";
 import { userBookingReducer } from "./bookings";
 import { alreadyBookedReducer } from "./bookings";
+import { notAlreadyBookedReducer } from "./bookings";
 import { startDateReducer } from "./search";
 import { endDateReducer } from "./search";
 import { dateReducer } from "./search";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   userBookings: userBookingReducer,
   searchResults: searchResultsReducer,
   alreadyBooked: alreadyBookedReducer,
+  notAlreadyBooked: notAlreadyBookedReducer,
   startDate: startDateReducer,
   endDate: endDateReducer,
   datesArr: dateReducer,
