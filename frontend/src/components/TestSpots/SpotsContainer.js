@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
-import styles from "./SpotsContainer.module.css";
+
+import { getSpots } from "../../store/spots";
 import DetailCardComponent from "./DetailCardComponent";
+
+import styles from "./SpotsContainer.module.css";
+
 export default function SpotsContainer() {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const spots = useSelector((state) => state.spot);
   const spotsArr = Object.values(spots);
 
@@ -25,18 +29,23 @@ export default function SpotsContainer() {
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
+
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
+
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
+
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
+
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
+
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
@@ -44,22 +53,3 @@ export default function SpotsContainer() {
     </>
   );
 }
-
-/*    <a key={spot.id} href={`http://localhost:3000/spots/${spot.id}`}>
-{spot.name}
-</a> */
-
-/* <div className={styles.outerContainer}>
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-  <DetailCardComponent />
-</div> */

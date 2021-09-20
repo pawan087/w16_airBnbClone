@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+
 const BookingConfirmationContext = React.createContext();
 
 export function BookingConfirmationProvider({ children }) {

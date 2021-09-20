@@ -2,7 +2,6 @@
   display: absolute;
   background-color: black;
   margin: 0;
-
   padding: 0;
 }
 
@@ -17,9 +16,7 @@
 
 .bannerImg {
   width: 100%;
-  /* height: 100%; */
   height: 100vh;
-  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
   --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -36,7 +33,6 @@
   transition-duration: 150ms;
   left: 50%;
   transform: translate(-50%, -50%);
-  -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
   animation: fadein 0.5s;
   color: #009cd5;
 }
@@ -78,6 +74,7 @@
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
 .splashBtn:active {
   transform: scale(0.85);
 }

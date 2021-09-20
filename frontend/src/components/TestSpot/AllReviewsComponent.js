@@ -1,19 +1,24 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../../components/TestSpot/AllReviewsComponent.module.css";
+
 import { delReview } from "../../store/reviews";
+
+import styles from "../../components/TestSpot/AllReviewsComponent.module.css";
 
 export default function AllReviewsComponent({ reviewsArr }) {
   const dispatch = useDispatch();
+
   const user = useSelector((state) => state.session.user);
+
   let username;
+
   if (user) {
     username = user.username;
   }
+
   const deleteReview = (r) => {
     dispatch(delReview(r));
   };
-  
+
   return (
     <div className={styles.outerContainer}>
       {reviewsArr
@@ -38,7 +43,9 @@ export default function AllReviewsComponent({ reviewsArr }) {
               </div>
               <div className={styles.userInfo}>{username}</div>
             </div>
+
             <div className={styles.reviewContent}>{review["review"]}</div>
+
             <div
               className={styles.deleteContainer}
               onClick={() => deleteReview(review)}
@@ -58,8 +65,8 @@ export default function AllReviewsComponent({ reviewsArr }) {
                 />
               </svg>
             </div>
-            </div>
-            ))}
+          </div>
+        ))}
     </div>
   );
 }

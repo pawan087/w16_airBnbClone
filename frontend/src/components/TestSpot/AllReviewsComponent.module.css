@@ -15,9 +15,7 @@
   margin-bottom: 7.5em;
   position: relative;
   overflow-y: scroll;
-
   max-height: 21em;
-
 }
 
 .outerContainer::-webkit-scrollbar {
@@ -26,7 +24,7 @@
 
 .outerContainer::-webkit-scrollbar-thumb {
   background-color: #009cd5;
-  outline: .25em solid transparent;
+  outline: 0.25em solid transparent;
 }
 
 @keyframes fadein {
@@ -37,7 +35,6 @@
     opacity: 1;
   }
 }
-
 
 .reviewContainer {
   width: 100%;
@@ -52,9 +49,7 @@
   align-self: center;
   transition: 0.5s ease all;
   position: relative;
-
 }
-
 
 .leftContainer {
   display: flex;
@@ -105,7 +100,7 @@
 
 .reviewContent::-webkit-scrollbar-thumb {
   background-color: #009cd5;
-  outline: .25em solid transparent;
+  outline: 0.25em solid transparent;
 }
 
 .reviewContent:hover {

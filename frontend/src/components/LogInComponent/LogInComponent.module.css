@@ -1,165 +1,163 @@
 .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  .login-form * {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0.25em;
-  }
+.login-form * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.25em;
+}
 
-  .signupForm {
-    margin: 0 auto 0 auto;
-    width: 25%;
-    opacity: 90%;
-    display: flex;
-    flex-direction: column;
-    animation: fadein .5s;
-  }
+.signupForm {
+  margin: 0 auto 0 auto;
+  width: 25%;
+  opacity: 90%;
+  display: flex;
+  flex-direction: column;
+  animation: fadein 0.5s;
+}
 
-  .signupLabel {
-    font-size: 0.8em;
-    text-align: left;
-    color: #009cd5;
-  }
+.signupLabel {
+  font-size: 0.8em;
+  text-align: left;
+  color: #009cd5;
+}
 
-  .signupInput {
-    margin: 1em 0em;
-    padding: 1em 1em;
-    width: 90%;
-    font-size: 1em;
-    outline: none;
-    border: 1px solid #bbb;
-    border-radius: 0.5em;
-    --tw-border-opacity: 1;
-    border-color: rgba(229, 231, 235, var(--tw-border-opacity));
-    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  }
-  .signupInput,
-  input[type="textarea"] {
-    --tw-bg-opacity: 1;
-    background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
-    color: #009cd5;
-  }
+.signupInput {
+  margin: 1em 0em;
+  padding: 1em 1em;
+  width: 90%;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 0.5em;
+  --tw-border-opacity: 1;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.signupInput,
+input[type="textarea"] {
+  --tw-bg-opacity: 1;
+  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+  color: #009cd5;
+}
 
-  .signupInput:focus {
-    border-color: #009cd5;
-  }
+.signupInput:focus {
+  border-color: #009cd5;
+}
 
-  .signupBtn {
-    padding: 1em;
-    background: #009cd5;
-    opacity: 75%;
-    width: 33%;
-    font-size: 0.8em;
-    margin: 0 auto;
-    border: none;
-    border-radius: 0.25em;
-    margin-top: 2.5em;
-    margin-bottom: 3.25em;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s ease all;
-    border-color: rgba(229, 231, 235, var(--tw-border-opacity));
-    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  }
+.signupBtn {
+  padding: 1em;
+  background: #009cd5;
+  opacity: 75%;
+  width: 33%;
+  font-size: 0.8em;
+  margin: 0 auto;
+  border: none;
+  border-radius: 0.25em;
+  margin-top: 2.5em;
+  margin-bottom: 3.25em;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease all;
+  border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 
-  .signupBtn:hover {
-    opacity: 85%;
-  }
+.signupBtn:hover {
+  opacity: 85%;
+}
 
-  .errors {
-    animation: fadein 0.5s;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75em;
-    justify-content: center;
-    justify-items: center;
-    color: rgb(107, 114, 128);
-    align-content: center;
-    align-items: center;
-    align-self: center;
-    padding-bottom: 0.75em;
-    list-style: none;
-    text-align: center;
+.errors {
+  animation: fadein 0.5s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  justify-content: center;
+  justify-items: center;
+  color: rgb(107, 114, 128);
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  padding-bottom: 0.75em;
+  list-style: none;
+  text-align: center;
 
-    margin-right: 3em;
-    width: 90%;
-    font-size: 0.75em;
-  }
+  margin-right: 3em;
+  width: 90%;
+  font-size: 0.75em;
+}
 
-  .errors:hover {
-    color: black;
-  }
+.errors:hover {
+  color: black;
+}
 
-  .icon {
-    height: 2.5em;
-    width: 2.5em;
-    color: #009cd5;
-    margin-bottom: .5em;
-  }
+.icon {
+  height: 2.5em;
+  width: 2.5em;
+  color: #009cd5;
+  margin-bottom: 0.5em;
+}
 
-  .blue {
-    color: #009cd5;
-  }
-  .titleContainer {
-    margin-top: 2.5em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    justify-self: center;
-    align-content: center;
-    align-items: center;
-    align-self: center;
-    gap: 0.75em;
-  }
-  .headerFooter {
-    margin: 0 auto;
-    color: rgb(107, 114, 128);
-    font-size: 0.9em;
+.blue {
+  color: #009cd5;
+}
+.titleContainer {
+  margin-top: 2.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  gap: 0.75em;
+}
+.headerFooter {
+  margin: 0 auto;
+  color: rgb(107, 114, 128);
+  font-size: 0.9em;
+  font-size: 0.75em;
+}
 
-    font-size: .75em;
-  }
+.link {
+  text-decoration: none;
+  transition: 0.2s ease all;
+  color: black;
+  opacity: 75%;
+  cursor: pointer;
+}
 
-  .link {
-    text-decoration: none;
-    transition: 0.2s ease all;
-    color: black;
-    opacity: 75%;
-    cursor: pointer;
-  }
+.link:hover {
+  opacity: 100%;
+  color: #009cd5;
+}
 
-  .link:hover {
-    opacity: 100%;
-    color: #009cd5;
-  }
+.title {
+  font-weight: bold;
+  font-size: 1.25em;
+  padding-right: 0.5em;
+}
 
-  .title {
-    font-weight: bold;
-    font-size: 1.25em;
-    padding-right: 0.5em;
-
+@keyframes fadein {
+  from {
+    opacity: 0;
   }
-
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 97.5%;
-    }
+  to {
+    opacity: 97.5%;
   }
+}

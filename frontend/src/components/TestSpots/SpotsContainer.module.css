@@ -7,25 +7,22 @@
   height: 50em;
   margin-top: 2em;
   border-radius: 0.5em;
-
   display: grid;
-  gap: .75em;
+  gap: 0.75em;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-
   transition: 0.2s ease all;
 }
 
 .detailContainer {
   animation: fadein 1s;
   display: grid;
- height: 27.5em;
-  gap: .75em;
+  height: 27.5em;
+  gap: 0.75em;
   grid-template-rows: 1fr 0.25fr;
-
 }
 
 .detailUpperContainer {
@@ -86,8 +83,7 @@
   transform: scale(1.025);
 }
 .img:active {
-
-  transform: scale(.95);
+  transform: scale(0.95);
 }
 
 .detailLowerContainer {
@@ -98,7 +94,6 @@
   display: flex;
   font-size: 0.95em;
   justify-content: space-evenly;
-
   align-items: flex-start;
 }
 

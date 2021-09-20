@@ -17,6 +17,7 @@
 .deleteContainer:active {
   transform: scale(0.75);
 }
+
 .edit {
   margin-left: 4.25em;
   margin-top: 0.25em;

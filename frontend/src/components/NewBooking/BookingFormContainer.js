@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+
 import * as bookingActions from "../../store/bookings";
-import CancelBookingConfirmaitonModal from "../BookingConfirmationModal/index";
+
 export default function NewBookingForm() {
   const dispatch = useDispatch();
+
   const sessionUser = useSelector((state) => state.session.user);
+
   const [userId, setUserId] = useState("");
   const [spotId, setSpotId] = useState("");
   const [startDate, setStateDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/" />;
 
@@ -35,6 +37,7 @@ export default function NewBookingForm() {
           required
         />
       </label>
+
       <label>
         spotId
         <input
@@ -44,6 +47,7 @@ export default function NewBookingForm() {
           required
         />
       </label>
+
       <label>
         Start Date
         <input
@@ -53,6 +57,7 @@ export default function NewBookingForm() {
           required
         />
       </label>
+
       <label>
         End Date
         <input
@@ -62,6 +67,7 @@ export default function NewBookingForm() {
           required
         />
       </label>
+
       <button type="submit">Book!</button>
     </form>
   );

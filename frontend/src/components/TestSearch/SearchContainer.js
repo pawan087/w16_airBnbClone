@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { getBookings } from "../../store/bookings";
-import getCenter from "geolib/es/getCenter";
-import { getSpots } from "../../store/spots";
 import { useHistory } from "react-router-dom";
+import getCenter from "geolib/es/getCenter";
+
 import MapComponent from "../Map/MapComponent";
-import styles from "../../components/TestSearch/SearchContainer.module.css";
 import SorryComponent from "../Sorry/SorryComponent";
+
+import styles from "../../components/TestSearch/SearchContainer.module.css";
 
 export default function SearchContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+
   const searchCriteria = useSelector((state) => state.search);
   const searchResults = useSelector((state) => state.searchResults);
-  const searchResultsArr = Object.values(searchResults);
+
   const [location, setLocation] = useState(searchCriteria.searchInput);
   const [startDate, setStartDate] = useState(searchCriteria.startDate);
   const [endDate, setEndDate] = useState(searchCriteria.endDate);
-  const [errors, setErrors] = useState([]);
-
+  const searchResultsArr = Object.values(searchResults);
   const x = new Date(startDate);
   const y = new Date(endDate);
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
-  console.log(searchCriteria);
+  let center;
 
   const linkMe = (spot) => {
     const { id } = spot;
     history.push(`/spots/${id}`);
   };
-  let center;
+
   if (searchResultsArr[0]) {
     const coordinates = searchResultsArr.map((x) => ({
       longitude: +x.lng,
@@ -39,15 +37,7 @@ export default function SearchContainer() {
     center = getCenter(coordinates);
   }
 
-  // if (window.location.pathname === "/search" && arr.length < 1) {
-  //   history.push(`/sorry`);
-  // }
-
-
-
   useEffect(() => {}, [dispatch, searchCriteria]);
-
-  // if (!sessionUser) return <Redirect to="/" />;
 
   return (
     <div className={styles.componentContainer}>
@@ -113,6 +103,7 @@ export default function SearchContainer() {
               </div>
             ))}
           </section>
+
           <section className={styles.map}>
             {searchResultsArr.length > 0 && (
               <MapComponent lat={center.latitude} lng={center.longitude} />
@@ -123,39 +114,3 @@ export default function SearchContainer() {
     </div>
   );
 }
-
-// <form onSubmit={handleSubmit}>
-// <label>
-//   Location
-//   <input
-//     type="text"
-//     value={location}
-//     onChange={(e) => setLocation(e.target.value)}
-//     required
-//   />
-// </label>
-
-// <label>
-//   Start Date
-//   <input
-//     type="date"
-//     min={today.toISOString().split("T")[0]}
-//     value={startDate}
-//     onChange={(e) => setStartDate(e.target.value)}
-//     required
-//   />
-// </label>
-
-// <label>
-//   End Date
-//   <input
-//     type="date"
-//     value={endDate}
-//     min={today.toISOString().split("T")[0]}
-//     onChange={(e) => setEndDate(e.target.value)}
-//     required
-//   />
-// </label>
-
-// <button type="submit">Search</button>
-// </form>

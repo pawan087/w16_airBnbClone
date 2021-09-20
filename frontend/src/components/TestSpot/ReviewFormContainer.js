@@ -1,39 +1,46 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+
 import * as reviewActions from "../../store/reviews";
+
 import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
+
 export default function ReviewFormContainer({ spot }) {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const sessionUser = useSelector((state) => state.session.user);
-  let spotId;
-  if (spot[0]) {
-    spotId = spot[0].id;
-  }
   const user = useSelector((state) => state.session.user);
+
   const [review, setReview] = useState("");
   const [showError, setShowError] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+  let spotId;
   let userId;
+
+  if (spot[0]) {
+    spotId = spot[0].id;
+  }
+
   if (sessionUser) {
     userId = sessionUser.id;
   }
+
   if (showThankYou) {
     setTimeout(() => {
       setShowThankYou(false);
     }, 2000);
   }
 
-  // if (!sessionUser) return <Redirect to="/" />;
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (user === null || user === undefined) {
-      history.push('/login');
+      history.push("/login");
       return;
     }
+
     if (review.length > 5 && review.length < 100) {
       dispatch(reviewActions.create({ userId, spotId, review }));
       setReview("");
@@ -67,6 +74,7 @@ export default function ReviewFormContainer({ spot }) {
               />
             </svg>
           </div>
+
           <label className={styles.label}>Add a written review</label>
         </div>
 
@@ -78,11 +86,13 @@ export default function ReviewFormContainer({ spot }) {
             type="textarea"
           ></textarea>
         </div>
+
         {showError && (
           <p className={styles.error}>
             Please enter a review between 5 and 1,000 characters
           </p>
         )}
+
         {showThankYou && <p className={styles.thankYou}>Thanks!</p>}
         <div className={styles.btnContainer}>
           <button id="btn" className={styles.btn} type="submit">

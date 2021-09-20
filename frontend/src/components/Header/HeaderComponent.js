@@ -1,45 +1,49 @@
-import styles from "../../components/Header/HeaderComponent.module.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import * as searchAction from "../../store/search";
-import * as sessionActions from "../../store/session";
+import { DateRangePicker } from "react-date-range";
+import { useHistory } from "react-router-dom";
+
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
-import { useHistory } from "react-router-dom";
+import * as searchAction from "../../store/search";
+import * as sessionActions from "../../store/session";
+
+import styles from "../../components/Header/HeaderComponent.module.css";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
-import NewSubMenu from "./NewSubMenu";
 
 export default function HeaderComponent() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showMenu, setShowMenu] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+
   const user = useSelector((state) => state.session.user);
+
+  let today = new Date();
+  let tomorrow = new Date();
+
+  tomorrow.setDate(today.getDate() + 2);
+  today = today.toISOString().split("T")[0];
+
+  let minDate = tomorrow;
   let initial = "";
+  
+  const [startDate, setStartDate] = useState(minDate);
+  const [endDate, setEndDate] = useState(minDate);
+  const [showMenu, setShowMenu] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+
   if (user) {
     initial = user.username[0];
   }
-  console.log(initial);
-  let today = new Date();
-  let tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 2);
-  today = today.toISOString().split("T")[0];
-  let minDate = tomorrow;
-  // tomorrow = tomorrow.toISOString().split("T")[0];
 
-  const [startDate, setStartDate] = useState(minDate);
-  const [endDate, setEndDate] = useState(minDate);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
+
   if (searchInput) {
     document.getElementById("navbar").style.background = "#F3F4F6";
   }
@@ -48,17 +52,10 @@ export default function HeaderComponent() {
     if (showMenu) return;
     setShowMenu(true);
   };
-  useEffect(() => {
-    if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  let imgUrl =
+    "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png";
 
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu, searchInput]);
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
@@ -106,8 +103,17 @@ export default function HeaderComponent() {
     }
   };
 
-  let imgUrl =
-    "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png";
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu, searchInput]);
 
   return (
     <header id="navbar" className={styles.headerContainer}>
@@ -120,6 +126,7 @@ export default function HeaderComponent() {
           ></img>
         </a>
       </div>
+
       <div className={styles.middleHeader}>
         <input
           className={styles.searchInput}
@@ -150,8 +157,13 @@ export default function HeaderComponent() {
 
       <div className={styles.rightHeader}>
         <div className={styles.userContainer}>
-          {initial && <div data-tooltip="This is a tooltip" className={styles.user}>{initial}</div>}
+          {initial && (
+            <div data-tooltip="This is a tooltip" className={styles.user}>
+              {initial}
+            </div>
+          )}
         </div>
+
         <div className={styles.rightIconsContainer} onClick={openMenu}>
           <div className={styles.menuIcon}>
             <svg
@@ -188,48 +200,6 @@ export default function HeaderComponent() {
           </div>
         </div>
 
-        {false && (
-          <div className={styles.dropDownMenu}>
-            <div className={styles.dropDownHeader}>Welcome, Pawan.</div>
-            {user ? (
-              <NavLink className={styles.headerNavLink} to="/bookings">
-                Bookings
-              </NavLink>
-            ) : null}
-            {user ? (
-              <button className={styles.dropDownItem} onClick={logout}>
-                Log Out
-              </button>
-            ) : null}
-            {!user ? (
-              <button
-                className={styles.dropDownItem}
-                onClick={() => setShowModal(true)}
-              >
-                Log In
-              </button>
-            ) : null}
-            {!user ? (
-              <NavLink to="/signup" className={styles.headerNavLink}>
-                Sign Up
-              </NavLink>
-            ) : null}
-            {!user ? (
-              <button
-                onClick={(e) => handleDemoLogin(e)}
-                className={styles.dropDownItem}
-              >
-                Demo User
-              </button>
-            ) : null}
-            {showModal && (
-              <Modal onClose={() => setShowModal(false)}>
-                <LoginForm />
-              </Modal>
-            )}
-          </div>
-        )}
-
         {showMenu && (
           <div className={styles.outerContainer}>
             {user ? (
@@ -237,16 +207,19 @@ export default function HeaderComponent() {
                 Bookings
               </NavLink>
             ) : null}
+
             {user ? (
               <div className={styles.menuItem} onClick={logout}>
                 Log Out
               </div>
             ) : null}
+
             {!user ? (
               <NavLink to="/login" className={styles.menuItem}>
                 Log In
               </NavLink>
             ) : null}
+
             {!user ? (
               <div
                 onClick={(e) => handleDemoLogin(e)}
@@ -255,6 +228,7 @@ export default function HeaderComponent() {
                 Demo User
               </div>
             ) : null}
+
             {!user ? (
               <NavLink to="/signup" className={styles.menuItem}>
                 Sign Up
@@ -263,6 +237,7 @@ export default function HeaderComponent() {
           </div>
         )}
       </div>
+
       {searchInput && (
         <div className={styles.dateRangePickerContainer}>
           <DateRangePicker
@@ -272,10 +247,12 @@ export default function HeaderComponent() {
             minDate={minDate}
             ranges={[selectionRange]}
           />
+
           <div className={styles.searchBtnsContainer}>
             <button onClick={resetInput} className={styles.cancelSearchBtn}>
               Cancel
             </button>
+
             <button onClick={handleSubmit} className={styles.submitSearchBtn}>
               Search
             </button>

@@ -1,119 +1,116 @@
 .imgContainer {
-    position: relative;
-    width: 20em;
-    height: 15rem;
-    flex-shrink: 0;
-    justify-content: space-between;
+  position: relative;
+  width: 20em;
+  height: 15rem;
+  flex-shrink: 0;
+  justify-content: space-between;
+}
 
-  }
+.img {
+  position: absolute;
+  width: 20rem;
+  object-fit: cover;
+  height: 15rem;
+}
 
-  .img {
-    position: absolute;
-    width: 20rem;
-    object-fit: cover;
-    height: 15rem;
+.heartIcon {
+  width: 1.75em;
+}
 
-  }
+.detailContainer {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
 
-  .heartIcon {
-    width: 1.75em;
-  }
+.results {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 
-  .detailContainer {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-  }
+.cardContainer {
+  display: flex;
+}
 
-  .results {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+.spotMain {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
 
-    /* padding-left: 10em; */
-  }
+.detail {
+  font-size: 1rem;
+  margin-top: 1.5em;
+  margin-left: 3.75em;
+  --tw-text-opacity: 1;
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
+  flex-grow: 1;
+}
 
-  .cardContainer {
-    display: flex;
-  }
+.resultsHeader {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  margin-left: 2.5em;
+}
 
-  .spotMain {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-radius: 1rem;
+  margin-right: 5em;
+  margin-left: 5em;
+  margin-bottom: 5em;
+}
 
-  .detail {
-    font-size: 1rem;
-    margin-top: 1.5em;
-    margin-left: 3.75em;
-    --tw-text-opacity: 1;
-    color: rgba(107, 114, 128, var(--tw-text-opacity));
-    flex-grow: 1;
-  }
+.resultsContainer:hover {
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 
-  .resultsHeader {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 600;
-    margin-left: 2.5em;
-  }
+.priceDetail {
+  display: flex;
+  justify-content: right;
+  align-self: right;
+  margin-right: 1.5em;
+  margin-bottom: 0.5em;
+}
 
-  .resultsContainer {
-    display: flex;
-    flex-direction: column;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    border-radius: 1rem;
-    margin-right: 5em;
-    margin-left: 5em;
-    margin-bottom: 5em;
-  }
+.price {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #009cd5;
+}
 
-  .resultsContainer:hover {
-    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  }
+.total {
+  text-align: right;
+  font-weight: 200;
+  font-size: 1em;
+}
 
-  .priceDetail {
-    display: flex;
-    justify-content: right;
-    align-self: right;
-    margin-right: 1.5em;
-    margin-bottom: .5em;
-  }
+.divisor2 {
+  border-bottom: 0.125em solid #009cd5;
+  width: 20em;
+  margin-bottom: 2em;
+  margin-left: 5em;
+}
 
-  .price {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #009cd5;
-  }
+.subHeader {
+  font-size: 1.25em;
+  margin-left: 3.75em;
+  margin-top: 2.5em;
+  color: #009cd5;
+}
 
-  .total {
-    text-align: right;
-    font-weight: 200;
-    font-size: 1.00em;
-  }
-
-  .divisor2 {
-    border-bottom: 0.125em solid #009cd5;
-    width: 20em;
-    margin-bottom: 2em;
-    margin-left: 5em;
-  }
-
-  .subHeader {
-
-    font-size: 1.25em;
-    margin-left: 3.75em;
-    margin-top: 2.5em;
-    color: #009cd5;
-  }
-
-  .spotName {
-    margin-left: 2em;
-    margin-top: 0.5em;
-    font-size: 1.75em;
-  }
+.spotName {
+  margin-left: 2em;
+  margin-top: 0.5em;
+  font-size: 1.75em;
+}
 
 .mapContainer {
   display: flex;
@@ -123,7 +120,6 @@
 
 .outerContainer {
   margin-top: 3em;
-
 }
 
 .reserve {

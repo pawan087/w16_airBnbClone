@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+
+import * as sessionActions from "../../store/session";
+
 import styles from "./LogInComponent.module.css";
 
 function LogInComponent() {
   const dispatch = useDispatch();
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -39,19 +42,22 @@ function LogInComponent() {
             />
           </svg>
         </div>
+
         <div className={styles.title}>Sign in</div>
+
         <ul className={styles.errors}>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
       </div>
+
       <label className={styles.signupLabel}>
         Username or Email
         <input
           className={styles.signupInput}
           type="text"
-          placeholder='Demo-lition'
+          placeholder="Demo-lition"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
@@ -62,7 +68,7 @@ function LogInComponent() {
         Password
         <input
           className={styles.signupInput}
-          placeholder='password'
+          placeholder="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -73,6 +79,7 @@ function LogInComponent() {
       <button className={styles.signupBtn} type="submit">
         Sign In
       </button>
+
       <div className={styles.headerFooter}>
         Don't have an account?{" "}
         <a className={styles.link} href={"/signup"}>
