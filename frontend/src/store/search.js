@@ -3,23 +3,12 @@ import { csrfFetch } from "./csrf";
 const SET_SEARCH = "search/setSearch";
 const SET_SEARCH2 = "search2/setSearch2";
 const SET_SEARCH_RESULTS = "search/setSearchResults";
-const SET_START_DATE = "search/setStartDate";
-const SET_END_DATE = "search/setEndDate";
 
 const SET_DATES = "search/setDates";
 
 const setDatesActionCreator = (datesArr) => ({
   type: SET_DATES,
   datesArr,
-});
-
-const setStartDateActionCreator = (startDate) => ({
-  type: SET_START_DATE,
-  startDate,
-});
-const setEndDateActionCreator = (endDate) => ({
-  type: SET_END_DATE,
-  endDate,
 });
 
 const setSearch = (searchCriteria) => ({
@@ -42,15 +31,7 @@ export const getSearch = (searchCriteria) => async (dispatch) => {
 };
 
 export const getSearch2 = (searchCriteria) => async (dispatch) => {
-
   dispatch(setSearch2(searchCriteria));
-};
-
-export const setSD = (startDate) => async (dispatch) => {
-  dispatch(setStartDateActionCreator(startDate));
-};
-export const setED = (endDate) => async (dispatch) => {
-  dispatch(setEndDateActionCreator(endDate));
 };
 
 export const setDates = (startDate, endDate) => async (dispatch) => {
@@ -60,12 +41,16 @@ export const setDates = (startDate, endDate) => async (dispatch) => {
 export const getSearchResults = (searchCriteria) => async (dispatch) => {
   const res = await fetch("/api/bookings");
   const bookings = await res.json();
+
   const res2 = await fetch("/api/spots");
   const spots = await res2.json();
+
   const searchResultsObj = {};
+
   const startDate = new Date(searchCriteria.startDate);
   const endDate = new Date(searchCriteria.endDate);
   const location = searchCriteria.searchInput;
+
   spots.forEach((spot) => {
     if (
       spot.city.trim().toLowerCase().includes(location.trim().toLowerCase())
@@ -87,14 +72,14 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
     ) {
       const bookingStartDate = new Date(booking.startDate);
       const bookingEndDate = new Date(booking.endDate);
-      // console.log(bookingStartDate.getTime() < startDate.getTime())
+
       if (
         bookingStartDate.getTime() < startDate.getTime() &&
         endDate.getTime() < bookingEndDate.getTime()
       ) {
-        // searchResultsObj[booking["Spot"]["id"]] = null;
         delete searchResultsObj[booking["Spot"]["id"]];
       }
+
       if (
         startDate.getTime() < bookingStartDate.getTime() &&
         bookingStartDate.getTime() < endDate.getTime() &&
@@ -102,12 +87,14 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
       ) {
         delete searchResultsObj[booking["Spot"]["id"]];
       }
+
       if (
         startDate.getTime() < bookingStartDate.getTime() &&
         bookingEndDate.getTime() < endDate.getTime()
       ) {
         delete searchResultsObj[booking["Spot"]["id"]];
       }
+
       if (
         bookingStartDate.getTime() < startDate.getTime() &&
         bookingEndDate.getTime() < endDate.getTime() &&
@@ -117,6 +104,7 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
       }
     }
   });
+
   dispatch(setSearchResults(searchResultsObj));
 };
 
@@ -151,26 +139,6 @@ export const searchResultsReducer = (state = initialState2, action) => {
       return newState;
     default:
       return state;
-  }
-};
-
-const initialState3 = "";
-const initialState4 = "";
-export const startDateReducer = (state = initialState3, action) => {
-  switch (action.type) {
-    case SET_START_DATE:
-      return action.startDate;
-    default:
-      return "";
-  }
-};
-
-export const endDateReducer = (state = initialState4, action) => {
-  switch (action.type) {
-    case SET_END_DATE:
-      return action.endDate;
-    default:
-      return "";
   }
 };
 

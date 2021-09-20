@@ -7,7 +7,6 @@ import { getSearch2 } from "../../store/search";
 import { getImages } from "../../store/images";
 import { getReviews } from "../../store/reviews";
 import { getSpots } from "../../store/spots";
-import { getAlreadyBooked } from "../../store/bookings";
 import ReviewFormContainer from "./ReviewFormContainer";
 import ReserveFormComponent from "./ReserveFormComponent";
 import Sorry from "../BookingConfirmationModal/Sorry";
@@ -90,15 +89,18 @@ export default function SpotsContainer() {
         bool = true;
         return;
       }
+
       if (sd === y) {
         bool = true;
         return;
       }
+
       if (sd < ed) {
         if (booking.startDate < sd && ed < booking.endDate) {
           bool = true;
           return;
         }
+
         if (
           sd < booking.startDate &&
           booking.startDate < ed &&
@@ -107,11 +109,12 @@ export default function SpotsContainer() {
           bool = true;
           return;
         }
+
         if (sd < booking.startDate && booking.endDate < ed) {
           bool = true;
-
           return;
         }
+
         if (
           booking.startDate < sd &&
           booking.endDate < ed &&
@@ -120,6 +123,7 @@ export default function SpotsContainer() {
           bool = true;
           return;
         }
+
         bool = false;
       }
     });
@@ -129,7 +133,6 @@ export default function SpotsContainer() {
     dispatch(getSpots());
     dispatch(getReviews());
     dispatch(getImages());
-    dispatch(getAlreadyBooked(false));
     dispatch(getSearch2({ startDate: "", endDate: "" }));
   }, [startDate, endDate, dispatch, searchCriteria]);
 

@@ -1,18 +1,17 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
 const SET_IMAGES = "reviews/setImages";
-
 
 const setImages = (images) => ({
   type: SET_IMAGES,
   images,
 });
 
-
-
 export const getImages = () => async (dispatch) => {
   const res = await fetch("/api/images");
+
   const images = await res.json();
+  
   dispatch(setImages(images));
 };
 

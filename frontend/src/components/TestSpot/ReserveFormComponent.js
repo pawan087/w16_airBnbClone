@@ -65,6 +65,7 @@ export default function ReserveFormComponent({ spot }) {
             bool = false;
             return;
           }
+
           if (
             startDate < booking.startDate &&
             booking.startDate < endDate &&
@@ -73,10 +74,12 @@ export default function ReserveFormComponent({ spot }) {
             bool = false;
             return;
           }
+
           if (startDate < booking.startDate && booking.endDate < endDate) {
             bool = false;
             return;
           }
+
           if (
             booking.startDate < startDate &&
             booking.endDate < endDate &&
@@ -85,6 +88,7 @@ export default function ReserveFormComponent({ spot }) {
             bool = false;
             return;
           }
+          
           bool = true;
         }
       });

@@ -3,7 +3,6 @@ import { DateRangePicker } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getBookings } from "../../store/bookings";
-import { getAlreadyBooked } from "../../store/bookings";
 import { editBooking } from "../../store/bookings";
 
 import "react-date-range/dist/styles.css"; // main style file
@@ -98,8 +97,6 @@ function EditBookingForm({ name, username, booking }) {
   };
   useEffect(() => {
     dispatch(getBookings());
-
-    dispatch(getAlreadyBooked(false));
   }, [bool, dispatch]);
 
   return (

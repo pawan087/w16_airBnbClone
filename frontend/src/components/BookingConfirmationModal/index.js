@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 
 import { MyModal } from "../../context/BookingConfirmation";
 import { MyFourthModal } from "../../context/Sorry";
-import { getAlreadyBooked } from "../../store/bookings";
 import ConfirmationForm from "./ConfirmationForm";
 import Sorry from "./Sorry";
 
@@ -42,6 +41,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             bool = false;
             return;
           }
+
           if (
             startDate < booking.startDate &&
             booking.startDate < endDate &&
@@ -51,18 +51,19 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
 
             return;
           }
+
           if (startDate < booking.startDate && booking.endDate < endDate) {
             bool = false;
 
             return;
           }
+
           if (
             booking.startDate < startDate &&
             booking.endDate < endDate &&
             startDate < booking.endDate
           ) {
             bool = false;
-
             return;
           }
 
@@ -75,10 +76,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
     e.preventDefault();
     history.push("/login");
   };
-
-  useEffect(() => {
-    getAlreadyBooked(false);
-  }, [dispatch]);
 
   return (
     <>
