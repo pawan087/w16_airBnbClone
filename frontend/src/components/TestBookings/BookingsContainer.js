@@ -74,10 +74,12 @@ export default function BookingsContainer() {
     } else return null;
   };
 
+  console.log(futureBookings);
+
   return (
     <>
       <div className={styles.componentContainer}>
-        {userBookingsArr.length === 0 && (
+        {futureBookings.length === 0 && (
           <SorryComponent noBookings={true} />
         )}
 
@@ -152,7 +154,7 @@ export default function BookingsContainer() {
       </div>
 
       <div className={styles.componentContainer}>
-        {pastBookings.length === 0 && <SorryComponent noBookings={true} />}
+        {pastBookings.length === 0 && futureBookings.length === 0 && <SorryComponent noBookings={true} />}
         {pastBookings.length === 1 && (
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
@@ -161,7 +163,7 @@ export default function BookingsContainer() {
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
 
-        <div className={styles.divisor2} />
+        {pastBookings.length > 0 && <div className={styles.divisor2} />}
 
         {pastBookings.map((booking) => (
           <div className={styles2.resultsContainer}>

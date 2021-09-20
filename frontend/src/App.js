@@ -54,20 +54,8 @@ function App() {
             <TestBookings />
           </Route>
 
-          <Route path="/bookings/new">
-            <TestNewBooking />
-          </Route>
-
           <Route path="/search">
             <TestSearch />
-          </Route>
-
-          <Route path="/reserve">
-            <ReserveFormComponent />
-          </Route>
-
-          <Route path="/sorry">
-            <SorryComponent />
           </Route>
 
           <Route path="/login">
