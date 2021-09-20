@@ -74,8 +74,6 @@ export default function BookingsContainer() {
     } else return null;
   };
 
-  console.log(futureBookings);
-
   return (
     <>
       <div className={styles.componentContainer}>

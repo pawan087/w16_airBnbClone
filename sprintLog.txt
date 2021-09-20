@@ -1,28 +1,16 @@
-Important:
-
-validate edit booking when editing booking
-when spot has no bookings reserve button doesnt allow for booking reservation
-old bookings shouldn't show in bookings page
-not logged in functionality, like not being able to review or make booking
-
-seedData!
-favicon/html title
-make prettier than prettier, remove console.logs and potential errors show in console 
-heroku
-
-
-Unimportant:
-
-maybe: header doesnt stay sticky on spots page toward bottom of page
-maybe: bugging out when attempting to rebook a user booked spot at same time
-maybe: errors out when attempting to make a booking for same booking at another time
-maybe: not able to book next day, need 24 hours beforehand
-maybe: viewport customization
-maybe: more realistic sign up validaitons
-maybe: bugging out when attempting to rebook a user booked spot at same time
-maybe: sort bookings/reservations chronological order of event happening not when booking event
-maybe: thanks pop up doesn't appear when sorry shown
-maybe: branch out to different cities other than california
-maybe: better date format for bookings page
-maybe: change searchbar placeholder to 'search by californian city'
-maybe: fix 24 hour notice cancellation bug
+page shows sorry before quickly rendering bookings, loading popup with settimeout?
+header doesnt stay sticky on spots page toward bottom of page
+not able to book next day, need 24 hours beforehand
+viewport customization
+stronger sign up validaitons
+bugging out when attempting to rebook a user booked spot at same time
+sort bookings/reservations chronological order of event happening not when booking event
+branch out to different cities other than cali
+make reviews seeder data
+footer covers lower portion of search results
+better date format for bookings page
+fix 24 hour notice cancellation bug
+disparity between booking/reservation login/signin
+remove demo login placeholder suggestion and add demo user btn
+1 day off error editBooking, 24 hour notice bug?
+favicon
