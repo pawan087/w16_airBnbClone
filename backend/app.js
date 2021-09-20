@@ -7,15 +7,14 @@ const cookieParser = require("cookie-parser");
 const { ValidationError } = require("sequelize");
 
 const { environment } = require("./config");
-const isProduction = environment === "production";
-
 const routes = require("./routes");
-
 const app = express();
 
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
+
+const isProduction = environment === "production";
 
 // Security Middleware
 if (!isProduction) {
@@ -65,7 +64,9 @@ app.use((err, _req, _res, next) => {
 // Error formatter
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
+
   console.error(err);
+
   res.json({
     title: err.title || "Server Error",
     message: err.message,
