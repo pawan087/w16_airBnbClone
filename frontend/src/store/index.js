@@ -1,19 +1,17 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+
 import bookingReducer from "./bookings";
 import imageReducer from "./images";
 import reviewReducer from "./reviews";
 import searchReducer from "./search";
-import { searchReducer2 } from "./search";
 import sessionReducer from "./session";
 import spotReducer from "./spots";
+import { searchReducer2 } from "./search";
 import { searchResultsReducer } from "./search";
 import { userBookingReducer } from "./bookings";
-import { alreadyBookedReducer } from "./bookings";
-import { notAlreadyBookedReducer } from "./bookings";
-import { startDateReducer } from "./search";
-import { endDateReducer } from "./search";
 import { dateReducer } from "./search";
+
 const rootReducer = combineReducers({
   session: sessionReducer,
   spot: spotReducer,
@@ -23,10 +21,7 @@ const rootReducer = combineReducers({
   images: imageReducer,
   userBookings: userBookingReducer,
   searchResults: searchResultsReducer,
-  alreadyBooked: alreadyBookedReducer,
-  notAlreadyBooked: notAlreadyBookedReducer,
-  startDate: startDateReducer,
-  endDate: endDateReducer,
+
   datesArr: dateReducer,
   search2: searchReducer2,
 });

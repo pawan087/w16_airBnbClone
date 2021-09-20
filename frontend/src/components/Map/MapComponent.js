@@ -1,13 +1,14 @@
 import { useState } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { useSelector } from "react-redux";
-import getCenter from "geolib/es/getCenter";
-import styles from "../Map/MapComponent.module.css";
 import { useHistory } from "react-router";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import getCenter from "geolib/es/getCenter";
+
+import styles from "../Map/MapComponent.module.css";
+
 export default function MapComponent({ id, lat, lng }) {
   const history = useHistory();
-  // const spots = useSelector((state) => state.spot);
-  // const spotsArr = Object.values(spots);
+
   const [selectedLocation, setSelectedLocation] = useState({});
   const [viewPort, setViewPort] = useState({
     width: "100%",
@@ -16,9 +17,12 @@ export default function MapComponent({ id, lat, lng }) {
     longitude: lng,
     zoom: 11,
   });
+
+
   const searchCriteria = useSelector((state) => state.search);
-  const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
+  const searchResults = useSelector((state) => state.searchResults);
+
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
 
@@ -26,52 +30,15 @@ export default function MapComponent({ id, lat, lng }) {
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
-  const [location, setLocation] = useState(searchCriteria.searchInput);
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
-  const searchResults = useSelector((state) => state.searchResults);
-  const searchResultsArr = Object.values(searchResults);
 
   let spot = spots[id];
-  // const bookingArr = Object.values(bookings);
-  // let searchResultsObj = {};
+  const searchResultsArr = Object.values(searchResults);
 
-  // bookingArr.forEach((booking) => {
-  //   if (booking["Spot"]["city"] === location && startDate && endDate) {
-  //     if (booking.startDate < startDate && endDate < booking.endDate) {
-  //       // searchResultsObj[booking["Spot"]["id"]] = null;
-  //       delete searchResultsObj[booking["Spot"]["id"]];
-  //     }
-  //     if (
-  //       startDate < booking.startDate &&
-  //       booking.startDate < endDate &&
-  //       endDate < booking.endDate
-  //     ) {
-  //       // searchResultsObj[booking["Spot"]["id"]] = null;
-  //       delete searchResultsObj[booking["Spot"]["id"]];
-  //     }
-  //     if (startDate < booking.startDate && booking.endDate < endDate) {
-  //       // searchResultsObj[booking["Spot"]["id"]] = null;
-  //       delete searchResultsObj[booking["Spot"]["id"]];
-  //     }
-  //     if (booking.startDate < startDate && booking.endDate < endDate) {
-  //       // searchResultsObj[booking["Spot"]["id"]] = null;
-  //       delete searchResultsObj[booking["Spot"]["id"]];
-  //     }
-  //   }
-  // });
-
-  // const arr = Object.values(searchResultsObj);
-  //   const center = getCenter({})
-
-  // const coordinates = spotsArr.map((spot) => ({
-  //   longitude: +spot.lng,
-  //   latitude: +spot.lat,
-  // }));
   const linkMe = (e, id) => {
     e.preventDefault();
     history.push(`/spots/${id}`);
   };
+
   return (
     <ReactMapGL
       onViewportChange={(nextViewPort) => setViewPort(nextViewPort)}

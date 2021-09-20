@@ -1,8 +1,8 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
 
+const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User } = require("../../db/models");
 
@@ -47,6 +47,7 @@ router.post(
 // Log out
 router.delete("/", (_req, res) => {
   res.clearCookie("token");
+  
   return res.json({ message: "success" });
 });
 

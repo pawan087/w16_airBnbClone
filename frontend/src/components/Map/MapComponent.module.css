@@ -1,9 +1,10 @@
 .pin {
   opacity: 67.5%;
   transition: 0.2s ease all;
-  animation: bounce .75s infinite;
+  animation: bounce 0.75s infinite;
   cursor: pointer;
 }
+
 @keyframes bounce {
   0%,
   100% {
@@ -21,7 +22,7 @@
   opacity: 50%;
   display: flex;
   justify-content: center;
-  font-size: .65em;
+  font-size: 0.65em;
   justify-items: center;
   justify-self: center;
   align-content: center;

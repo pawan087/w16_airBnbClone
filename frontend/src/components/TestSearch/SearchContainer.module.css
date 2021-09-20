@@ -4,7 +4,6 @@
   height: 15rem;
   flex-shrink: 0;
   justify-content: space-between;
-
 }
 
 .img {
@@ -12,7 +11,6 @@
   width: 20rem;
   object-fit: cover;
   height: 15rem;
-
 }
 
 .heartIcon {
@@ -29,8 +27,6 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  /* padding-left: 10em; */
 }
 
 .cardContainer {
@@ -72,8 +68,10 @@
 
 .resultsContainer:hover {
   opacity: 95%;
-  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .priceDetail {
@@ -81,7 +79,7 @@
   justify-content: right;
   align-self: right;
   margin-right: 1.5em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .price {
@@ -93,7 +91,7 @@
 .total {
   text-align: right;
   font-weight: 200;
-  font-size: 1.00em;
+  font-size: 1em;
 }
 
 .divisor2 {
@@ -104,7 +102,6 @@
 }
 
 .subHeader {
-
   font-size: 1.25em;
   margin-left: 3.75em;
   margin-top: 2.5em;
@@ -116,7 +113,6 @@
   margin-top: 0.5em;
   font-size: 1.75em;
 }
-
 
 .map {
   margin-top: 0em;
@@ -132,14 +128,15 @@
   margin-right: 5em;
   width: 25em;
   height: 40em;
-
 }
 
 .map:hover {
   transition-duration: 200ms;
   opacity: 97.5%;
-  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .outerContainer {
@@ -149,10 +146,9 @@
   justify-items: center;
   justify-self: center;
   align-content: center;
-  
-
 }
 
-.detail, .spotName {
+.detail,
+.spotName {
   transform: translate(-5%, 0%);
 }

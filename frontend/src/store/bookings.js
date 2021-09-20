@@ -1,28 +1,10 @@
-import { batch } from "react-redux";
 import { csrfFetch } from "./csrf";
 
 const SET_BOOKINGS = "bookings/setBookings";
 const DELETE_BOOKING = "bookings/deleteBooking";
 const EDIT_BOOKING = "bookings/editBooking";
 const SET_USER_BOOKINGS = "bookings/setUserBookings";
-const ALREADY_BOOKED = "bookings/setAlreadyBooked";
-const NOT_ALREADY_BOOKED = "bookings/setNotAlreadyBooked";
 const ADD_BOOKING = "bookings/addBooking";
-
-const addBooking = (booking) => ({
-  type: ADD_BOOKING,
-  booking,
-});
-
-const setAlreadyBooked = (bool) => ({
-  type: ALREADY_BOOKED,
-  bool,
-});
-
-const setNotAlreadyBooked = (bool) => ({
-  type: NOT_ALREADY_BOOKED,
-  bool,
-});
 
 const setUserBookings = (bookings) => ({
   type: SET_USER_BOOKINGS,
@@ -46,17 +28,20 @@ const deleteBooking = (id) => ({
 
 export const delBooking = (b) => async (dispatch) => {
   const { id } = b;
+
   await csrfFetch("/api/bookings", {
     method: "DELETE",
     body: JSON.stringify({
       id,
     }),
   });
+
   dispatch(deleteBooking(id));
 };
 
 export const create = (booking) => async (dispatch) => {
   const { userId, spotId, startDate, endDate } = booking;
+  
   const response = await csrfFetch("/api/bookings/new", {
     method: "POST",
     body: JSON.stringify({
@@ -66,12 +51,6 @@ export const create = (booking) => async (dispatch) => {
       endDate,
     }),
   });
-  // const b = await response.json();
-  // dispatch(addBooking(b));
-  // const res = await fetch("/api/bookings");
-  // const bookings = await res.json();
-  // dispatch(setBookings(bookings));
-
 };
 
 export const editBooking = (booking) => async (dispatch) => {
@@ -85,38 +64,31 @@ export const editBooking = (booking) => async (dispatch) => {
       bookingId,
     }),
   });
+
   const updatedBooking = await res.json();
+
   dispatch(eBooking(updatedBooking));
 };
 
 export const getBookings = () => async (dispatch) => {
   const res = await fetch("/api/bookings");
+
   const bookings = await res.json();
+
   dispatch(setBookings(bookings));
-};
-
-export const getAlreadyBooked = (b) => async (dispatch) => {
-  dispatch(setAlreadyBooked(b));
-
-};
-
-export const getNotAlreadyBooked = (b) => async (dispatch) => {
-  dispatch(setNotAlreadyBooked(b));
-
 };
 
 export const getUserBookings = (id) => async (dispatch) => {
   const res = await fetch("/api/bookings");
+
   const bookings = await res.json();
+
   let userBookings = bookings.filter((booking) => booking.userId === id);
+
   dispatch(setUserBookings(userBookings));
 };
 
 const initialState = {};
-/* case DELETE_THING:
-const id = action.thingId
-delete state[id]
-return { ...state }; */
 
 const bookingReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -126,17 +98,13 @@ const bookingReducer = (state = initialState, action) => {
       return newState;
     case DELETE_BOOKING:
       const id = action.id;
-
       delete state[id];
       return { ...state };
     case EDIT_BOOKING:
       const id2 = action.booking.id;
       state[id2] = action.booking;
       return { ...state };
-
     case ADD_BOOKING:
-
-
       return { ...state, ...action.booking };
     default:
       return state;
@@ -153,26 +121,6 @@ export const userBookingReducer = (state = initialState2, action) => {
       return newState;
     default:
       return state;
-  }
-};
-
-const initialState3 = {};
-
-export const alreadyBookedReducer = (state = initialState3, action) => {
-  switch (action.type) {
-    case ALREADY_BOOKED:
-      return action.bool;
-    default:
-      return false;
-  }
-};
-
-export const notAlreadyBookedReducer = (state = initialState3, action) => {
-  switch (action.type) {
-    case ALREADY_BOOKED:
-      return action.bool;
-    default:
-      return false;
   }
 };
 

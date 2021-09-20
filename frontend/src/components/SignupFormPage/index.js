@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import styles from "../../components/SignupFormPage/SignupForm.module.css";
+
 import * as sessionActions from "../../store/session";
+
+import styles from "../../components/SignupFormPage/SignupForm.module.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+
   const sessionUser = useSelector((state) => state.session.user);
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -51,9 +55,11 @@ function SignupFormPage() {
               />
             </svg>
           </div>
+
           <div className={styles.title}>
             Create your <span className={styles.blue}>airBnb</span> account
           </div>
+
           <div className={styles.headerFooter}>
             Already have an account?{" "}
             <a className={styles.link} href={"/login"}>
@@ -61,12 +67,14 @@ function SignupFormPage() {
             </a>
             .
           </div>
+
           <ul className={styles.errors}>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
         </div>
+
         <label className={styles.signupLabel}>
           Email
           <input
@@ -77,6 +85,7 @@ function SignupFormPage() {
             required
           />
         </label>
+
         <label className={styles.signupLabel}>
           Username
           <input
@@ -87,6 +96,7 @@ function SignupFormPage() {
             required
           />
         </label>
+
         <label className={styles.signupLabel}>
           Password
           <input
@@ -97,6 +107,7 @@ function SignupFormPage() {
             required
           />
         </label>
+
         <label className={styles.signupLabel}>
           Confirm Password
           <input
@@ -107,6 +118,7 @@ function SignupFormPage() {
             required
           />
         </label>
+
         <button className={styles.signupBtn} type="submit">
           Sign Up
         </button>

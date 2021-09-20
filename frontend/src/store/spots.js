@@ -7,7 +7,9 @@ const setSpots = (spots) => ({
 
 export const getSpots = () => async (dispatch) => {
   const res = await fetch("/api/spots");
+
   const spots = await res.json();
+
   dispatch(setSpots(spots));
 };
 

@@ -7,7 +7,6 @@
   margin-bottom: 2.5em;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
   justify-content: center;
   justify-items: center;
   border-radius: 0.5em;
@@ -146,7 +145,6 @@
   color: white;
   font-size: 0.75em;
   border-radius: 0.5em;
-
   transition: 0.2s ease all;
   opacity: 85%;
 }
@@ -154,7 +152,6 @@
 .btn2 {
   margin-top: 1em;
   height: 2.75em;
-
   width: 100%;
   outline: none;
   border: none;
@@ -162,7 +159,6 @@
   color: white;
   font-size: 0.75em;
   border-radius: 0.5em;
-
   transition: 0.2s ease all;
   opacity: 33%;
 }
@@ -178,16 +174,13 @@
   color: white;
   font-size: 0.75em;
   border-radius: 0.5em;
-
   transition: 0.2s ease all;
   opacity: 50%;
 }
 
 .btn3:hover {
-
   opacity: 85%;
 }
-
 
 .btn3:active {
   transform: scale(0.95);

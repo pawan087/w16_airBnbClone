@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+
+import * as sessionActions from "../../store/session";
+
 import "./LoginForm.css";
 
 function LoginForm() {
   const dispatch = useDispatch();
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -27,6 +30,7 @@ function LoginForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
+
       <label>
         Username or Email
         <input
@@ -36,6 +40,7 @@ function LoginForm() {
           required
         />
       </label>
+
       <label>
         Password
         <input
@@ -45,6 +50,7 @@ function LoginForm() {
           required
         />
       </label>
+      
       <button type="submit">Log In</button>
     </form>
   );

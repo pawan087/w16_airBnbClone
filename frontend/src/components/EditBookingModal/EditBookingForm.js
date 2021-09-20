@@ -1,42 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { getSpots } from "../../store/spots";
-import { alreadyBookedReducer, getBookings } from "../../store/bookings";
+import { DateRangePicker } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../../components/EditBookingModal/EditBookingForm.module.css";
-import { delBooking, getAlreadyBooked } from "../../store/bookings";
+
+import { getBookings } from "../../store/bookings";
 import { editBooking } from "../../store/bookings";
+
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
+import styles from "../../components/EditBookingModal/EditBookingForm.module.css";
+
 function EditBookingForm({ name, username, booking }) {
   const dispatch = useDispatch();
+
+  const bookings = useSelector((state) => state.booking);
 
   let initialStartDate = new Date(
     new Date(booking.startDate).valueOf() + 1000 * 3600 * 24
   );
+
   let initialEndDate = new Date(
     new Date(booking.endDate).valueOf() + 1000 * 3600 * 24
   );
 
+  const [startDate, setStartDate] = useState(initialStartDate);
+  const [endDate, setEndDate] = useState(initialEndDate);
   let userId = booking.userId;
   let spotId = booking.spotId;
   let bookingId = booking.id;
-
-  const bookings = useSelector((state) => state.booking);
-  const alreadyBooked = useSelector((state) => state.alreadyBooked);
   const bookingsArr = Object.values(bookings);
+  let sd = new Date(startDate);
+  let ed = new Date(endDate);
+  let bool = false;
 
   const specificBookings = bookingsArr.filter((b) => {
     return b["spotId"] === +spotId;
   });
-
-  const [startDate, setStartDate] = useState(initialStartDate);
-  const [endDate, setEndDate] = useState(initialEndDate);
-  let bool = false;
-
-  let sd = new Date(startDate);
-  let ed = new Date(endDate);
 
   specificBookings.forEach((booking) => {
     let x = new Date(booking.startDate);
@@ -44,78 +42,63 @@ function EditBookingForm({ name, username, booking }) {
 
     if (x === ed) {
       bool = true;
-      console.log("yee1");
-      dispatch(getAlreadyBooked(true));
       return;
     }
     if (sd === y) {
       bool = true;
-      console.log("yee2");
-      dispatch(getAlreadyBooked(true));
       return;
     }
     if (sd < ed) {
       if (x < sd && ed < y) {
-        console.log("yee3");
-        dispatch(getAlreadyBooked(true));
-
         bool = true;
         return;
       }
       if (sd < x && x < ed && ed < y) {
-        console.log("yee4");
-        dispatch(getAlreadyBooked(true));
         bool = true;
         return;
       }
       if (sd < x && y < ed) {
-        console.log("yee5");
-        dispatch(getAlreadyBooked(true));
         bool = true;
-        // dispatch(getAlreadyBookendDate(true));
         return;
       }
       if (x < sd && y < ed && sd < y) {
-        console.log("yee6");
-        dispatch(getAlreadyBooked(true));
         bool = true;
-        // dispatch(getAlreadyBooked(true));
         return;
       }
-
-
       return;
-      // dispatch(getAlreadyBooked(false));
     }
     bool = false;
   });
 
-  useEffect(() => {
-    dispatch(getBookings());
-
-    dispatch(getAlreadyBooked(false));
-  }, [bool, dispatch]);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
+
   const refreshMe = (e) => {
     e.preventDefault();
 
     window.location.reload();
   };
+
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
 
     setEndDate(ranges.selection.endDate);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(editBooking({ bookingId, userId, spotId, startDate, endDate }));
+
     window.location.reload();
   };
+  useEffect(() => {
+    dispatch(getBookings());
+  }, [bool, dispatch]);
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.logoContainer}>
@@ -131,18 +114,23 @@ function EditBookingForm({ name, username, booking }) {
       <div className={styles.cardContainer}>
         <div className={styles.topCardContainer}>
           <div className={styles.title}>{name}</div>
+
           {bool === true && (
             <div className={styles.subtitle}>
               {"Sorry, those dates are unavailable at this time."}
             </div>
           )}
         </div>
+
         <div className={styles.middleContainer}>
           <div className={styles.middleHeader}>{username}'s Itinerary</div>
+
           <div className={styles.divisor}></div>
 
           <div className={styles.label}></div>
+
           <div className={styles.detail}></div>
+
           <div className={styles.dateRangePickerContainer}>
             <DateRangePicker
               className={styles.dateRangePicker}
@@ -153,10 +141,12 @@ function EditBookingForm({ name, username, booking }) {
             />
           </div>
         </div>
+
         <div className={styles.btnsContainer}>
           <button onClick={(e) => refreshMe(e)} className={styles.btnCancel}>
             Cancel
           </button>
+
           {bool === false && (
             <button
               onClick={(e) => handleSubmit(e)}
@@ -165,6 +155,7 @@ function EditBookingForm({ name, username, booking }) {
               Submit
             </button>
           )}
+
           {bool === true && (
             <button className={styles.btnSubmit2}>Submit</button>
           )}

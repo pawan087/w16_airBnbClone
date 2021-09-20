@@ -1,0 +1,240 @@
+[33mcommit 192365403d9d8da61e26e5dcef013f9e107785d8[m[33m ([m[1;36mHEAD -> [m[1;32mprettier[m[33m)[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 20:47:09 2021 -0700
+
+    attempting to fix bugs with bookings
+
+[33mcommit 260cd3b713467bf2708bf888349ab9c3c68c3fca[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 20:46:40 2021 -0700
+
+    attempting to fix bug with showing bookigs
+
+[33mcommit 2cfa7907b3a990ba30e14f1aa20f498a367f2cec[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 20:15:32 2021 -0700
+
+    added better seeder data for spots
+
+[33mcommit 92f5ab943d246126228a2b4daa5d9d0aa06f9a4f[m[33m ([m[1;31morigin/prettier[m[33m)[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 19:12:23 2021 -0700
+
+    refactored all of code for better readability
+
+[33mcommit 1813ce7cdf668f245222983d5baeec2e3b1a5f16[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 18:54:41 2021 -0700
+
+    cleaned all but store and main app file
+
+[33mcommit 793218373d75a2b5509c03abb453500787de5288[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 17:54:16 2021 -0700
+
+    refactored backend and working on frontend
+
+[33mcommit e1eae6352ed14df5579932dc58c06e86eb281a7d[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: a4efd31 52f1dcc
+Author: Pawan Chahal <82420423+pawan087@users.noreply.github.com>
+Date:   Sun Sep 19 17:14:15 2021 -0700
+
+    Merge pull request #40 from pawan087/editBookingRestriction
+    
+    Edit booking restriction
+
+[33mcommit 52f1dccfb33e7aa631aad2d81ae058aa1e94e698[m[33m ([m[1;31morigin/editBookingRestriction[m[33m, [m[1;32meditBookingRestriction[m[33m)[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 17:13:56 2021 -0700
+
+    finished overlapping booking bug in edit reservation
+
+[33mcommit 1867099067cc46689fd1da951291af48a4d320e9[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 16:44:44 2021 -0700
+
+    working but small bug with overlapping dates
+
+[33mcommit a4efd31f7056d15e38da8e41fedee39dc4b7a02b[m
+Merge: ae23f5c 28caf46
+Author: Pawan Chahal <82420423+pawan087@users.noreply.github.com>
+Date:   Sun Sep 19 15:44:28 2021 -0700
+
+    Merge pull request #39 from pawan087/loggedOutUserRestrictions
+    
+    Logged out user restrictions
+
+[33mcommit 28caf46375c1253409fc367836b3857d440adda1[m[33m ([m[1;31morigin/loggedOutUserRestrictions[m[33m, [m[1;32mloggedOutUserRestrictions[m[33m)[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 15:44:08 2021 -0700
+
+    fixed restrictions for logged out user as well as diferentiated between past and future bookings
+
+[33mcommit d22b0ac03e5999331725c67b057c0871bfe426e7[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 15:26:45 2021 -0700
+
+    fixed loggedout user restriction for creating new review
+
+[33mcommit 60f730bcdad133d22e6ddedd73810ff5bd6a1891[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 15:07:51 2021 -0700
+
+    fixed restriction to loggedout user to make booking
+
+[33mcommit ba245374ee2026bddfa53adb94af888d8849a02e[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 14:51:44 2021 -0700
+
+    fixed booking creation bug with overlapping dates
+
+[33mcommit ae23f5cd7ff9941829548ab8e56e59991313113e[m
+Merge: f9fa0cd 2a8709d
+Author: Pawan Chahal <82420423+pawan087@users.noreply.github.com>
+Date:   Sun Sep 19 01:08:45 2021 -0700
+
+    Merge pull request #38 from pawan087/loggedOutUserRestrictions
+    
+    forgot gameplan txt
+
+[33mcommit 2a8709dc4512237928a27c89b5369c103d7bd757[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 01:08:15 2021 -0700
+
+    forgot gameplan txt
+
+[33mcommit f9fa0cd90c7164adf167fb39e2e9b7dc994748b7[m
+Merge: 4bf64da cf5ad09
+Author: Pawan Chahal <82420423+pawan087@users.noreply.github.com>
+Date:   Sun Sep 19 01:07:26 2021 -0700
+
+    Merge pull request #37 from pawan087/loggedOutUserRestrictions
+    
+    Logged out user restrictions
+
+[33mcommit cf5ad0946c30cf51cd9d6cf42d87a3da181819c4[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 01:07:06 2021 -0700
+
+    working on non booked bug
+
+[33mcommit bc582f4707571c607d8623ce2edccf77b2f57e56[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sun Sep 19 00:45:39 2021 -0700
+
+    fixed sorry bug
+
+[33mcommit 886ce3be98a853e720a7a50974ae621fde2befeb[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 23:49:15 2021 -0700
+
+    fixed bug in not allowing already booked reservations
+
+[33mcommit d47074af22c32aa5fd71a03610e7839242e28daa[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 21:42:01 2021 -0700
+
+    fixed booking bug
+
+[33mcommit fc0b80131b0903cbaec3a8b14cfa7fcbc99c3da3[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 21:41:26 2021 -0700
+
+    fixed booking bug
+
+[33mcommit fb6d5892aa782208d6c49abac291978efbfff598[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 21:27:05 2021 -0700
+
+    attempting to fix booking bug
+
+[33mcommit b85bee613375232e2e02c33d4144df4698fc067c[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 19:47:40 2021 -0700
+
+    refactored loggedin indiactor
+
+[33mcommit d95aba18a83e2f50a104d8dc515282b1f0ee6ffa[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 19:35:52 2021 -0700
+
+    fixed logged-in indiactor in top header'
+
+[33mcommit 4bf64dabf5a961b57e81b0c2ba8634f2fe61c1ce[m
+Author: Pawan Chahal <82420423+pawan087@users.noreply.github.com>
+Date:   Sat Sep 18 18:40:01 2021 -0700
+
+    Update README.md
+
+[33mcommit 7e7390f399d852d0a64c4fc1a8f62285b4474bb3[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 18:38:56 2021 -0700
+
+    fixed bugs in reviewSubmit component (validations, confirmation etc.)
+
+[33mcommit e77c06964a999d9bc7b93f579380b1eb6c837a5c[m
+Merge: fae5255 f55cd17
+Author: Pawan Chahal <82420423+pawan087@users.noreply.github.com>
+Date:   Sat Sep 18 01:01:04 2021 -0700
+
+    Merge pull request #36 from pawan087/confirmationBookingCheck
+    
+    Confirmation booking check
+
+[33mcommit f55cd17d257e406441ff7eedc9a30b86b08f1fd3[m[33m ([m[1;31morigin/confirmationBookingCheck[m[33m, [m[1;32mconfirmationBookingCheck[m[33m)[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 01:00:49 2021 -0700
+
+    finished login/signup pages and restyled header components
+
+[33mcommit 884d19b0709d6c7e4c6168fa0e3502360decb5ec[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Sat Sep 18 00:30:32 2021 -0700
+
+    styled submenu and fixated login/signup pages with styles
+
+[33mcommit 9ab017aed36d1199781810bac8a80416ef424bf4[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 23:52:08 2021 -0700
+
+    added login page
+
+[33mcommit 2171eac8d799b355d60e5a3be40ca8fb322bf419[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 23:39:54 2021 -0700
+
+    styled signup form
+
+[33mcommit 58a88ba0fff5b52dc8b0e2baaf71c0709aa459f9[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 22:47:24 2021 -0700
+
+    attempting to make reducer for start and end date selections
+
+[33mcommit 25ef358952035d2cdc0a8cf311ced535bbe49fbe[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 21:47:00 2021 -0700
+
+    fixed bug where alreadyBooked kept re-rendering state
+
+[33mcommit 2e65e02571961348d1d8375aad5e3ed77f89de27[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 21:34:14 2021 -0700
+
+    working alreadyBooked bool in state
+
+[33mcommit ddc8fb53f9db1bfe1f2b158408877d584f30a08c[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 20:49:15 2021 -0700
+
+    refactored search func
+
+[33mcommit cc87999339773d1e1f2682f8aecc86f6ef8277c0[m
+Author: Pawan Chahal <chahal.pawanpreet@gmail.com>
+Date:   Fri Sep 17 17:29:05 2021 -0700
+
+    added enter key usage for search
+
+[33mcommit fae52559c0e347c3f98564213b1f5b7e9330870a[m
+Merge: 0e3f047 a409912
+Author: Pawan Chahal <82420

@@ -1,17 +1,24 @@
+import { useHistory } from "react-router-dom";
+
 import styles from "./SpotsContainer.module.css";
 
-import { useHistory } from "react-router-dom";
 export default function DetailCardComponent({ spot }) {
   const history = useHistory();
+
   const linkMe = (e, id) => {
     e.preventDefault();
     history.push(`/spots/${id}`);
   };
+
   return (
     <>
       <div className={styles.detailContainer}>
         <div className={styles.detailUpperContainer}>
-          <img onClick={(e) => linkMe(e, spot.id)} className={styles.img} src={spot.Images[0].url}></img>
+          <img
+            onClick={(e) => linkMe(e, spot.id)}
+            className={styles.img}
+            src={spot.Images[0].url}
+          ></img>
           <div className={styles.heart}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -29,8 +36,10 @@ export default function DetailCardComponent({ spot }) {
             </svg>
           </div>
         </div>
+
         <div className={styles.detailLowerContainer}>
           <div className={styles.detailTitle}>{spot.city}</div>
+
           <div className={styles.detailSubtitle}> ${spot.price}/night</div>
         </div>
       </div>
