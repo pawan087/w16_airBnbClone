@@ -29,26 +29,6 @@ export default function SpotsContainer() {
         {spotsArr.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
-
-        {spotsArr.map((spot) => (
-          <DetailCardComponent linkMe={linkMe} spot={spot} />
-        ))}
-
-        {spotsArr.map((spot) => (
-          <DetailCardComponent linkMe={linkMe} spot={spot} />
-        ))}
-
-        {spotsArr.map((spot) => (
-          <DetailCardComponent linkMe={linkMe} spot={spot} />
-        ))}
-
-        {spotsArr.map((spot) => (
-          <DetailCardComponent linkMe={linkMe} spot={spot} />
-        ))}
-
-        {spotsArr.map((spot) => (
-          <DetailCardComponent linkMe={linkMe} spot={spot} />
-        ))}
       </div>
     </>
   );

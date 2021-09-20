@@ -77,7 +77,7 @@ export default function BookingsContainer() {
   return (
     <>
       <div className={styles.componentContainer}>
-        {futureBookings.length === 0 && pastBookings.length === 0 && (
+        {userBookingsArr.length === 0 && (
           <SorryComponent noBookings={true} />
         )}
 
@@ -95,7 +95,7 @@ export default function BookingsContainer() {
 
         {futureBookings.length !== 0 && <div className={styles.divisor2} />}
 
-        {futureBookings.map((booking) => (
+        {userBookingsArr.map((booking) => (
           <div className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
