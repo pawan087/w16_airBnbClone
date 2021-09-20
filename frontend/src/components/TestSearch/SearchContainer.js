@@ -18,6 +18,7 @@ export default function SearchContainer() {
   const [location, setLocation] = useState(searchCriteria.searchInput);
   const [startDate, setStartDate] = useState(searchCriteria.startDate);
   const [endDate, setEndDate] = useState(searchCriteria.endDate);
+
   const searchResultsArr = Object.values(searchResults);
   const x = new Date(startDate);
   const y = new Date(endDate);
@@ -93,9 +94,9 @@ export default function SearchContainer() {
                       <div>
                         <p className={styles.price}>${spot.price}/night</p>
 
-                        <p className={styles.total}>
+                       {startDate !== endDate && <p className={styles.total}>
                           total ${spot.price * dayCount}
-                        </p>
+                        </p>}
                       </div>
                     </div>
                   </div>

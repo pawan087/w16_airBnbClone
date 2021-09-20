@@ -70,10 +70,10 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
           <div className={styles.detail}>
             $
             {total -
-              total * 0.025 +
+              total * 0.02 +
               total * 0.15 +
-              total * 0.1 +
-              total * 0.0625}
+              total * 0.12 +
+              total * 0.06}
           </div>
 
           <div className={styles.middleFooter}>

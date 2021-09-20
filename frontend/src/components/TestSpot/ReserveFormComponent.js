@@ -88,7 +88,7 @@ export default function ReserveFormComponent({ spot }) {
             bool = false;
             return;
           }
-          
+
           bool = true;
         }
       });
@@ -189,7 +189,7 @@ export default function ReserveFormComponent({ spot }) {
           )}
 
           {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>-${total * 0.025}</div>
+            <div className={styles.detailTotal}>-${total * 0.02}</div>
           )}
         </div>
 
@@ -209,7 +209,7 @@ export default function ReserveFormComponent({ spot }) {
           )}
 
           {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>${total * 0.1}</div>
+            <div className={styles.detailTotal}>${total * 0.12}</div>
           )}
         </div>
 
@@ -219,7 +219,7 @@ export default function ReserveFormComponent({ spot }) {
           )}
 
           {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>${total * 0.0625}</div>
+            <div className={styles.detailTotal}>${total * 0.06}</div>
           )}
         </div>
       </div>
@@ -235,10 +235,10 @@ export default function ReserveFormComponent({ spot }) {
             <div className={styles.footerDetail}>
               $
               {total -
-                total * 0.025 +
+                total * 0.02 +
                 total * 0.15 +
-                total * 0.1 +
-                total * 0.0625}
+                total * 0.12 +
+                total * 0.06}
             </div>
           )}
         </div>

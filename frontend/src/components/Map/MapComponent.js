@@ -18,8 +18,8 @@ export default function MapComponent({ id, lat, lng }) {
     zoom: 11,
   });
 
+
   const searchCriteria = useSelector((state) => state.search);
-  const bookings = useSelector((state) => state.booking);
   const spots = useSelector((state) => state.spot);
   const searchResults = useSelector((state) => state.searchResults);
 
