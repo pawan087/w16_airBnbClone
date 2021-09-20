@@ -84,7 +84,7 @@ background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
 .subtitle {
-  margin-top: 0.5em;
+  margin-top: .75em;
   font-size: 1rem;
   color: #009cd5;
   font-weight: normal;
@@ -207,4 +207,34 @@ background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
   align-items: center;
   align-self: center;
   cursor: pointer;
+}
+
+
+.btnSubmit2 {
+  margin-left: 1em;
+}
+
+
+
+.btnSubmit2 {
+  width: 7.5em;
+  height: 4em;
+  font-size: 0.85rem;
+  outline: none;
+  border: none;
+  color: white;
+  opacity: 40%;
+  transition-duration: 150ms;
+  border-radius: 0.5em;
+
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+
+
+
+.btnSubmit2 {
+  background-color: #009cd5;
 }

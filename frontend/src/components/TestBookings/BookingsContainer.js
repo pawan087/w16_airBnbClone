@@ -146,10 +146,10 @@ export default function BookingsContainer() {
       <div className={styles.componentContainer}>
         {pastBookings.length === 0 && <SorryComponent noBookings={true} />}
         {pastBookings.length === 1 && (
-          <h3 className={styles.subHeader}>Previous Reservation</h3>
+          <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
         {pastBookings.length > 1 && (
-          <h3 className={styles.subHeader}>Previous Reservations</h3>
+          <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
 
         <div className={styles.divisor2} />
@@ -180,11 +180,7 @@ export default function BookingsContainer() {
 
                 <div className={styles.divisor} />
 
-                <EditBookingModal
-                  name={giveMeName(booking.spotId)}
-                  username={username}
-                  booking={booking}
-                />
+
 
                 <p className={styles2.detail}>
                   {" "}
@@ -192,16 +188,7 @@ export default function BookingsContainer() {
                   {booking.startDate.slice(0, 10)} through{" "}
                   {booking.endDate.slice(0, 10)}
                 </p>
-                <div className={styles.btnContainer}>
-                  <CancelBookingConfirmationModal
-                    booking={booking}
-                    bookingId={booking.id}
-                    endDate={booking.endDate}
-                    startDate={booking.startDate}
-                    name={giveMeName(booking.spotId)}
-                    username={username}
-                  />
-                </div>
+
               </div>
             </div>
           </div>

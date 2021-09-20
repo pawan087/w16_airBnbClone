@@ -51,6 +51,7 @@ function LogInComponent() {
         <input
           className={styles.signupInput}
           type="text"
+          placeholder='Demo-lition'
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
@@ -61,6 +62,7 @@ function LogInComponent() {
         Password
         <input
           className={styles.signupInput}
+          placeholder='password'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

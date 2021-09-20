@@ -6,6 +6,7 @@ const DELETE_BOOKING = "bookings/deleteBooking";
 const EDIT_BOOKING = "bookings/editBooking";
 const SET_USER_BOOKINGS = "bookings/setUserBookings";
 const ALREADY_BOOKED = "bookings/setAlreadyBooked";
+const NOT_ALREADY_BOOKED = "bookings/setNotAlreadyBooked";
 const ADD_BOOKING = "bookings/addBooking";
 
 const addBooking = (booking) => ({
@@ -15,6 +16,11 @@ const addBooking = (booking) => ({
 
 const setAlreadyBooked = (bool) => ({
   type: ALREADY_BOOKED,
+  bool,
+});
+
+const setNotAlreadyBooked = (bool) => ({
+  type: NOT_ALREADY_BOOKED,
   bool,
 });
 
@@ -94,6 +100,11 @@ export const getAlreadyBooked = (b) => async (dispatch) => {
 
 };
 
+export const getNotAlreadyBooked = (b) => async (dispatch) => {
+  dispatch(setNotAlreadyBooked(b));
+
+};
+
 export const getUserBookings = (id) => async (dispatch) => {
   const res = await fetch("/api/bookings");
   const bookings = await res.json();
@@ -148,6 +159,15 @@ export const userBookingReducer = (state = initialState2, action) => {
 const initialState3 = {};
 
 export const alreadyBookedReducer = (state = initialState3, action) => {
+  switch (action.type) {
+    case ALREADY_BOOKED:
+      return action.bool;
+    default:
+      return false;
+  }
+};
+
+export const notAlreadyBookedReducer = (state = initialState3, action) => {
   switch (action.type) {
     case ALREADY_BOOKED:
       return action.bool;
