@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+
 
 import * as sessionActions from "../../store/session";
 
 import styles from "./LogInComponent.module.css";
 
 function LogInComponent() {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const user = useSelector((state) => state.session.user);
+
+  if (user !== null) {
+    history.push('/')
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    dispatch(sessionActions.login({ credential, password }))
+
+    if (window.location.pathname === '/login') {
+      history.push('/')
+    }
   };
 
   return (

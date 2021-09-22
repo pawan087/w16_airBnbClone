@@ -69,11 +69,11 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
 
           <div className={styles.detail}>
             $
-            {total -
+            {(total -
               total * 0.02 +
               total * 0.15 +
               total * 0.12 +
-              total * 0.06}
+              total * 0.06).toFixed(2)}
           </div>
 
           <div className={styles.middleFooter}>

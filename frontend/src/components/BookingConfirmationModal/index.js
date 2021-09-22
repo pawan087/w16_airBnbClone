@@ -38,6 +38,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
       specificBookings.forEach((booking) => {
         if (startDate < endDate) {
           if (booking.startDate < startDate && endDate < booking.endDate) {
+            console.log('yee11')
             bool = false;
             return;
           }
@@ -48,13 +49,13 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             endDate < booking.endDate
           ) {
             bool = false;
-
+            console.log('yee2')
             return;
           }
 
           if (startDate < booking.startDate && booking.endDate < endDate) {
             bool = false;
-
+            console.log('yee3')
             return;
           }
 
@@ -64,6 +65,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             startDate < booking.endDate
           ) {
             bool = false;
+            console.log('yee4')
             return;
           }
 
