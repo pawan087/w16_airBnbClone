@@ -1,7 +1,7 @@
 {
   "name": "airBnbClone",
   "version": "1.0.0",
-  "description": "",
+  "description": "airBnbClone is a website designed to let users make accommodations around the world.",
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pawan087/w16_airBnbClone"
+    "url": "git+https://github.com/pawan087/w16_airBnbClone.git"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +24,7 @@
   "homepage": "https://github.com/pawan087/w16_airBnbClone#readme",
   "dependencies": {
     "@heroicons/react": "^1.0.4"
-  }
+  },
+  "devDependencies": {},
+  "keywords": []
 }
