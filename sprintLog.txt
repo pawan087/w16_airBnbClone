@@ -16,3 +16,5 @@ remove demo login placeholder suggestion and add demo user btn
 favicon
 not able to go to log in page after hitting signup page (go from signup to login 'hav account')
 going from spots page to spot page doest go to top and opens oddly in middle of page
+reserve button shows but no reservation is made (spot 15)
+total is coming out as NaN in booking confirmation form
