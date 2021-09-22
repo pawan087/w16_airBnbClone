@@ -21,9 +21,7 @@ export default function NewBookingForm() {
 
     return dispatch(
       bookingActions.create({ userId, spotId, startDate, endDate })
-    ).catch(async (res) => {
-      const data = await res.json();
-    });
+    );
   };
 
   return (

@@ -33,8 +33,8 @@ export default function SpotsContainer() {
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
+  const [startDate] = useState(searchedStartDate);
+  const [endDate] = useState(searchedEndDate);
   const spotsArr = Object.values(spots);
   const reviewsArr = Object.values(reviews);
   const imagesArr = Object.values(images);
@@ -145,6 +145,7 @@ export default function SpotsContainer() {
           <div className={styles.cardContainer}>
             <div className={styles.imgContainer}>
               <img
+                alt='spotImg'
                 className={styles.img}
                 layout="fill"
                 objectfit="cover"

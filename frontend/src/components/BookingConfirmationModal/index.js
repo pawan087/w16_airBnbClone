@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import { MyModal } from "../../context/BookingConfirmation";
@@ -12,7 +12,6 @@ import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
 
 function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   const history = useHistory();
-  const dispatch = useDispatch();
   const { spotId } = useParams();
 
   const bookings = useSelector((state) => state.booking);
@@ -21,7 +20,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   let bool = false;
   let bool2 = true;
   const [showModal, setShowModal] = useState(false);
-  const [showSecondModal, setSecondModal] = useState(false);
+  const [showSecondModal] = useState(false);
   const bookingsArr = Object.values(bookings);
 
   const specificBookings = bookingsArr.filter((b) => {

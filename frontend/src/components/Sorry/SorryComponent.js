@@ -1,11 +1,10 @@
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import styles from "../../components/Sorry/SorryComponent.module.css";
 
 export default function SorryComponent({ noBookings }) {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const user = useSelector((state) => state.session.user);
@@ -20,7 +19,7 @@ export default function SorryComponent({ noBookings }) {
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [location, setLocation] = useState(searchCriteria.searchInput);
+  const [location] = useState(searchCriteria.searchInput);
 
   if (!location) {
     message = "Sorry we couldn't find what you were looking for.";
@@ -48,7 +47,7 @@ export default function SorryComponent({ noBookings }) {
 
   return (
     <div className={styles.splashContainer}>
-      <img className={styles.bannerImg} src={imgUrl}></img>
+      <img alt='backgroundImg' className={styles.bannerImg} src={imgUrl}></img>
 
       <div className={styles.splashText}>
         <p className={styles.message}>{message}</p>

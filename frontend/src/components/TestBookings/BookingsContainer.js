@@ -43,7 +43,7 @@ export default function BookingsContainer() {
     dispatch(getSpots());
     dispatch(getImages());
     dispatch(getUserBookings(session.user.id));
-  }, [dispatch]);
+  }, [dispatch, session.user.id]);
 
   if (!session.user) return <Redirect to="/" />;
 
@@ -106,6 +106,7 @@ export default function BookingsContainer() {
                   className={styles.img}
                   layout="fill"
                   objectFit="cover"
+                  alt='bookingImg'
                   src={booking.imgUrl}
                 />
               </div>
@@ -172,6 +173,7 @@ export default function BookingsContainer() {
               >
                 <img
                   className={styles.img}
+                  alt='bookingImg'
                   layout="fill"
                   objectFit="cover"
                   src={booking.imgUrl}

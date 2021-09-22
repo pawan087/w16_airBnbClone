@@ -13,8 +13,8 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
 
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [userId, setUserId] = useState(sessionUser.id);
-  const [spotId, setSpotId] = useState(spot[0].id);
+  const [userId] = useState(sessionUser.id);
+  const [spotId] = useState(spot[0].id);
 
   useEffect(() => {
     dispatch(getSpots());
@@ -37,10 +37,10 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
       <div className={styles.logoContainer}>
         <img
           className={styles.logo}
+          alt='airBnbCloneLogo'
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
-          className={styles.logo}
         ></img>
       </div>
 

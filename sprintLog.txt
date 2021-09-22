@@ -14,4 +14,5 @@ disparity between booking/reservation login/signin
 remove demo login placeholder suggestion and add demo user btn
 1 day off error editBooking, 24 hour notice bug?
 favicon
-not able to go to log in page
+not able to go to log in page after hitting signup page (go from signup to login 'hav account')
+going from spots page to spot page doest go to top and opens oddly in middle of page

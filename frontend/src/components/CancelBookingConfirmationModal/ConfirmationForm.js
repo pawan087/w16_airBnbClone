@@ -34,11 +34,11 @@ function ConfirmationForm({
     <div className={styles.outerContainer}>
       <div className={styles.logoContainer}>
         <img
+          alt="airBnbCloneLogo"
           className={styles.logo}
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
-          className={styles.logo}
         ></img>
       </div>
 

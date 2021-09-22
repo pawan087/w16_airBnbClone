@@ -15,9 +15,9 @@ export default function SearchContainer() {
   const searchCriteria = useSelector((state) => state.search);
   const searchResults = useSelector((state) => state.searchResults);
 
-  const [location, setLocation] = useState(searchCriteria.searchInput);
-  const [startDate, setStartDate] = useState(searchCriteria.startDate);
-  const [endDate, setEndDate] = useState(searchCriteria.endDate);
+  const [location] = useState(searchCriteria.searchInput);
+  const [startDate] = useState(searchCriteria.startDate);
+  const [endDate] = useState(searchCriteria.endDate);
 
   const searchResultsArr = Object.values(searchResults);
   const x = new Date(startDate);
@@ -74,6 +74,7 @@ export default function SearchContainer() {
                     <img
                       className={styles.img}
                       layout="fill"
+                      alt='spotImg'
                       objectFit="cover"
                       src={spot.Images[0].url}
                     />

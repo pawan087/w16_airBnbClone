@@ -104,10 +104,10 @@ function EditBookingForm({ name, username, booking }) {
       <div className={styles.logoContainer}>
         <img
           className={styles.logo}
+          alt="airBnbCloneLogo"
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
-          className={styles.logo}
         ></img>
       </div>
 

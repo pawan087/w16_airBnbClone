@@ -15,6 +15,7 @@ export default function DetailCardComponent({ spot }) {
       <div className={styles.detailContainer}>
         <div className={styles.detailUpperContainer}>
           <img
+            alt='spotImg'
             onClick={(e) => linkMe(e, spot.id)}
             className={styles.img}
             src={spot.Images[0].url}

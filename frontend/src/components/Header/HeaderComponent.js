@@ -4,9 +4,6 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { DateRangePicker } from "react-date-range";
 import { useHistory } from "react-router-dom";
-
-import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm";
 import * as searchAction from "../../store/search";
 import * as sessionActions from "../../store/session";
 
@@ -28,7 +25,7 @@ export default function HeaderComponent() {
 
   let minDate = tomorrow;
   let initial = "";
-  
+
   const [startDate, setStartDate] = useState(minDate);
   const [endDate, setEndDate] = useState(minDate);
   const [showMenu, setShowMenu] = useState(false);
