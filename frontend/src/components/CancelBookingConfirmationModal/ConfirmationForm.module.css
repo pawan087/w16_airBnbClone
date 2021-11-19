@@ -13,6 +13,7 @@
   border-radius: 1em;
   width: 100%;
   display: flex;
+
   flex-direction: column;
   justify-content: center;
   transition-duration: 150ms;
@@ -22,6 +23,10 @@
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.backContainer {
+  position: relative;
 }
 
 .outerContainer:hover {

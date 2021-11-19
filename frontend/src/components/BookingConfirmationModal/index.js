@@ -85,9 +85,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
       {(!startDate || !endDate) && (
         <button className={styles.btn4}>Reserve</button>
       )}{" "}
-      {bool === false && bool2 === true && (
-        <button className={styles.btn2}>Reserve</button>
-      )}
+
       {bool2 === false && (
         <button onClick={(e) => redirectMe(e)} className={styles.btn3}>
           Please Log-in

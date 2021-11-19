@@ -9,7 +9,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import styles from "../../components/EditBookingModal/EditBookingForm.module.css";
 
-function EditBookingForm({ name, username, booking }) {
+function EditBookingForm({ name, username, booking, setShowModal }) {
   const dispatch = useDispatch();
 
   const bookings = useSelector((state) => state.booking);
@@ -109,7 +109,7 @@ function EditBookingForm({ name, username, booking }) {
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
-          alt='bnbLogo'
+          alt="bnbLogo"
           className={styles.logo}
         ></img>
       </div>
@@ -146,7 +146,10 @@ function EditBookingForm({ name, username, booking }) {
         </div>
 
         <div className={styles.btnsContainer}>
-          <button onClick={(e) => refreshMe(e)} className={styles.btnCancel}>
+          <button
+            onClick={() => setShowModal(false)}
+            className={styles.btnCancel}
+          >
             Cancel
           </button>
 
@@ -159,9 +162,7 @@ function EditBookingForm({ name, username, booking }) {
             </button>
           )}
 
-          {bool && (
-            <button className={styles.btnSubmit2}>Submit</button>
-          )}
+          {bool && <button className={styles.btnSubmit2}>Submit</button>}
         </div>
       </div>
     </div>

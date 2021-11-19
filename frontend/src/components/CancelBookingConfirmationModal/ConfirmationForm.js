@@ -1,24 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getSpots } from "../../store/spots";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getImages } from "../../store/images";
 import { delBooking } from "../../store/bookings";
+import { getUserBookings } from "../../store/bookings";
+import ReactLoading from "react-loading";
 
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 
-function ConfirmationForm({ booking, startDate, endDate, name, username }) {
+function ConfirmationForm({
+  booking,
+  startDate,
+  endDate,
+  name,
+  username,
+  setShowModal,
+}) {
   const dispatch = useDispatch();
 
-  const deleteBooking = (e, b) => {
+  const session = useSelector((state) => state.session);
+
+  const [load, setLoad] = useState(false);
+
+  const deleteBooking = async (e, b) => {
     e.preventDefault();
 
-    dispatch(delBooking(b));
+    setLoad(true);
 
-    window.location.reload();
-  };
+    await dispatch(delBooking(b));
 
-  const cancelMe = () => {
-    window.location.reload();
+    await dispatch(getSpots());
+
+    await dispatch(getImages());
+
+    await dispatch(getUserBookings(session.user.id));
+
+    setShowModal(false);
+    setLoad(false);
   };
 
   useEffect(() => {
@@ -66,7 +84,10 @@ function ConfirmationForm({ booking, startDate, endDate, name, username }) {
         </div>
 
         <div className={styles.btnsContainer}>
-          <button onClick={cancelMe} className={styles.btnCancel}>
+          <button
+            onClick={() => setShowModal(false)}
+            className={styles.btnCancel}
+          >
             Go Back
           </button>
 

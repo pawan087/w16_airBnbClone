@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
@@ -9,6 +9,7 @@ import { getSpots } from "../../store/spots";
 import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
 import EditBookingModal from "../EditBookingModal/index";
 import SorryComponent from "../Sorry/SorryComponent";
+import ReactLoading from "react-loading";
 
 import styles from "../Search/SearchContainer.module.css";
 import styles2 from "./BookingContainer.module.css";
@@ -41,13 +42,32 @@ export default function BookingsContainer() {
     }
   }
 
-  useEffect(() => {
-    dispatch(getSpots());
+  const [load, setLoad] = useState(false);
 
-    dispatch(getImages());
+  useEffect(async () => {
+    (async () => {
+      await dispatch(getSpots());
 
-    dispatch(getUserBookings(session.user.id));
+      await dispatch(getImages());
+
+      await dispatch(getUserBookings(session.user.id));
+
+      setLoad(true);
+    })();
   }, [dispatch, session.user.id]);
+
+  if (!load) {
+    return (
+      <div className={styles2.loaderCotnainer}>
+        <ReactLoading
+          type={"cylon"}
+          color={"#009cd5"}
+          height={"0px"}
+          width={"57.5px"}
+        />
+      </div>
+    );
+  }
 
   if (!session.user) return <Redirect to="/" />;
 
@@ -80,6 +100,18 @@ export default function BookingsContainer() {
       return spots[id].name;
     } else return null;
   };
+
+  userBookingsArr.sort(function (a, b) {
+    if (new Date(a.startDate) < new Date(b.startDate)) {
+      return -1;
+    }
+
+    if (new Date(a.startDate) > new Date(b.startDate)) {
+      return +1;
+    }
+
+    return 0;
+  });
 
   return (
     <>
@@ -119,11 +151,13 @@ export default function BookingsContainer() {
               <div className={styles.results}>
                 <div className={styles.detailContainer}></div>
 
-                <div
-                  onClick={() => linkMe(booking)}
-                  className={styles2.spotName}
-                >
-                  {booking.Spot.name}
+                <div className={styles2.spotName}>
+                  <span
+                    className={styles2.spotName2}
+                    onClick={() => linkMe(booking)}
+                  >
+                    {booking.Spot.name}
+                  </span>
                 </div>
 
                 <div className={styles.divisor} />

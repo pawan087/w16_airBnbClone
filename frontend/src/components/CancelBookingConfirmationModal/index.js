@@ -39,6 +39,7 @@ function CancelBookingConfirmationModal({
       {showModal && (
         <MySecondModal onClose={() => setShowModal(false)}>
           <ConfirmationForm
+            setShowModal={setShowModal}
             booking={booking}
             bookingId={bookingId}
             startDate={startDate}
