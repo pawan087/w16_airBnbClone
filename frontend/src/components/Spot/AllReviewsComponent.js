@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { delReview } from "../../store/reviews";
 
-import styles from "../../components/TestSpot/AllReviewsComponent.module.css";
+import styles from "../../components/Spot/AllReviewsComponent.module.css";
 
 export default function AllReviewsComponent({ reviewsArr }) {
   const dispatch = useDispatch();

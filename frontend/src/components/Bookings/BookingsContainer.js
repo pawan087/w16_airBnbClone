@@ -10,8 +10,8 @@ import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/in
 import EditBookingModal from "../EditBookingModal/index";
 import SorryComponent from "../Sorry/SorryComponent";
 
-import styles from "../../components/TestSearch/SearchContainer.module.css";
-import styles2 from "../../components/TestBookings/BookingContainer.module.css";
+import styles from "../Search/SearchContainer.module.css";
+import styles2 from "./BookingContainer.module.css";
 // import { AnimatePresence, motion } from "framer-motion";
 
 export default function BookingsContainer() {

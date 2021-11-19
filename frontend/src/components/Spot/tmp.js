@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import * as reviewActions from "../../store/reviews";
-import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
+import styles from "./ReviewFormContainer.module.css";
 
 export default function ReviewFormContainer() {
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ export default function ReviewFormContainer() {
         <div className={styles.textAreaContainer}>
           <input className={styles.input} type="textarea"></input>
         </div>
-        
+
         <div className={styles.btnContainer}>
           <button className={styles.btn} type="submit">
             Submit

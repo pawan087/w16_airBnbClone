@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import * as reviewActions from "../../store/reviews";
 
-import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
+import styles from "../../components/Spot/ReviewFormContainer.module.css";
 
 export default function ReviewFormContainer({ spot }) {
   const history = useHistory();
@@ -95,7 +95,7 @@ export default function ReviewFormContainer({ spot }) {
         )}
 
         {showThankYou && <p className={styles.thankYou}>Thanks!</p>}
-        
+
         <div className={styles.btnContainer}>
           <button id="btn" className={styles.btn} type="submit">
             Submit

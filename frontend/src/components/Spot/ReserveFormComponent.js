@@ -1,4 +1,4 @@
-import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
+import styles from "../../components/Spot/ReserveFormContainer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -20,7 +20,7 @@ export default function ReserveFormComponent({ spot }) {
 
   if (searchCriteria.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
-    
+
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 

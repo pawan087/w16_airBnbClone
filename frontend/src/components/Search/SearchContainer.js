@@ -6,7 +6,7 @@ import getCenter from "geolib/es/getCenter";
 import MapComponent from "../Map/MapComponent";
 import SorryComponent from "../Sorry/SorryComponent";
 
-import styles from "../../components/TestSearch/SearchContainer.module.css";
+import styles from "./SearchContainer.module.css";
 
 export default function SearchContainer() {
   const history = useHistory();

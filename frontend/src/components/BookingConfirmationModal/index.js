@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import { MyModal } from "../../context/BookingConfirmation";
 import ConfirmationForm from "./ConfirmationForm";
 
-import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
+import styles from "../../components/Spot/ReserveFormContainer.module.css";
 
 function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   const history = useHistory();
