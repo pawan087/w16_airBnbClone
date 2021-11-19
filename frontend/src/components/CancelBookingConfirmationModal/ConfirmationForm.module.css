@@ -160,7 +160,7 @@
   outline: none;
   border: none;
   color: white;
-  opacity: 80%;
+  opacity: .8;
   transition-duration: 150ms;
   border-radius: 0.5em;
   cursor: pointer;
@@ -171,12 +171,12 @@
 
 .btnSubmit:hover,
 .btnCancel:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .btnSubmit:active,
 .btnCancel:active {
-  opacity: 100%;
+  opacity: 1;
   transform: scale(0.925);
 }
 

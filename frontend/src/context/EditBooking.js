@@ -16,6 +16,7 @@ export function EditBookingProvider({ children }) {
       <EditBookingContext.Provider value={value}>
         {children}
       </EditBookingContext.Provider>
+
       <div ref={modalRef} />
     </>
   );
@@ -28,6 +29,7 @@ export function MyThirdModal({ onClose, children }) {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
+      
       <div id="modal-content">{children}</div>
     </div>,
     modalNode

@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import * as reviewActions from "../../store/reviews";
 import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
+
 export default function ReviewFormContainer() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [userId, setUserId] = useState("");
   const [spotId, setSpotId] = useState("");
   const [review, setReview] = useState("");
-  const [errors, setErrors] = useState([]);
 
-  // if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    return dispatch(reviewActions.create({ userId, spotId, review })).catch(
-      async (res) => {
-        // const data = await res.json();
-      }
-    );
+    return dispatch(reviewActions.create({ userId, spotId, review }))
   };
 
   return (
@@ -35,6 +29,7 @@ export default function ReviewFormContainer() {
             required
           />
         </label>
+
         <label>
           spotId
           <input
@@ -44,6 +39,7 @@ export default function ReviewFormContainer() {
             required
           />
         </label>
+
         <label>
           Leave a review
           <input
@@ -53,6 +49,7 @@ export default function ReviewFormContainer() {
             required
           />
         </label>
+
         <button type="submit">Submit</button>
       </form>
 
@@ -60,9 +57,11 @@ export default function ReviewFormContainer() {
         <div className={styles.labelContainer}>
           <label className={styles.label}>Add a written rview</label>
         </div>
+
         <div className={styles.textAreaContainer}>
           <input className={styles.input} type="textarea"></input>
         </div>
+        
         <div className={styles.btnContainer}>
           <button className={styles.btn} type="submit">
             Submit

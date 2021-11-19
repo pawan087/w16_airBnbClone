@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import { DateRangePicker } from "react-date-range";
 import { useHistory } from "react-router-dom";
 
-import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm";
 import * as searchAction from "../../store/search";
 import * as sessionActions from "../../store/session";
 
@@ -28,7 +26,7 @@ export default function HeaderComponent() {
 
   let minDate = tomorrow;
   let initial = "";
-  
+
   const [startDate, setStartDate] = useState(minDate);
   const [endDate, setEndDate] = useState(minDate);
   const [showMenu, setShowMenu] = useState(false);
@@ -58,7 +56,9 @@ export default function HeaderComponent() {
 
   const logout = (e) => {
     e.preventDefault();
+
     dispatch(sessionActions.logout());
+
     if (window.location.pathname !== "/") {
       history.push("/");
     }
@@ -78,8 +78,11 @@ export default function HeaderComponent() {
     dispatch(
       searchAction.getSearchResults({ searchInput, startDate, endDate })
     );
+
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
+
     setSearchInput("");
+
     history.push("/search");
   };
 
@@ -93,6 +96,7 @@ export default function HeaderComponent() {
   const handleDemoLogin = (e) => {
     e.preventDefault();
     let credential = "Demo-lition";
+
     let password = "password";
 
     dispatch(sessionActions.login({ credential, password }));

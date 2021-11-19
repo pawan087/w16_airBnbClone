@@ -41,9 +41,11 @@ export default function BookingsContainer() {
 
   useEffect(() => {
     dispatch(getSpots());
+
     dispatch(getImages());
+
     dispatch(getUserBookings(session.user.id));
-  }, [dispatch]);
+  }, [dispatch, session.user.id]);
 
   if (!session.user) return <Redirect to="/" />;
 
@@ -77,9 +79,7 @@ export default function BookingsContainer() {
   return (
     <>
       <div className={styles.componentContainer}>
-        {futureBookings.length === 0 && (
-          <SorryComponent noBookings={true} />
-        )}
+        {futureBookings.length === 0 && <SorryComponent noBookings={true} />}
 
         {futureBookings.length === 1 && (
           <h3 className={styles.subHeader}>
@@ -106,6 +106,7 @@ export default function BookingsContainer() {
                   className={styles.img}
                   layout="fill"
                   objectFit="cover"
+                  alt="bookingImg"
                   src={booking.imgUrl}
                 />
               </div>
@@ -152,7 +153,10 @@ export default function BookingsContainer() {
       </div>
 
       <div className={styles.componentContainer}>
-        {pastBookings.length === 0 && futureBookings.length === 0 && <SorryComponent noBookings={true} />}
+        {pastBookings.length === 0 && futureBookings.length === 0 && (
+          <SorryComponent noBookings={true} />
+        )}
+
         {pastBookings.length === 1 && (
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
@@ -173,6 +177,7 @@ export default function BookingsContainer() {
                 <img
                   className={styles.img}
                   layout="fill"
+                  alt="bookingImg2"
                   objectFit="cover"
                   src={booking.imgUrl}
                 />

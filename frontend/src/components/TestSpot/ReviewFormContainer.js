@@ -16,6 +16,7 @@ export default function ReviewFormContainer({ spot }) {
   const [review, setReview] = useState("");
   const [showError, setShowError] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+
   let spotId;
   let userId;
 
@@ -94,6 +95,7 @@ export default function ReviewFormContainer({ spot }) {
         )}
 
         {showThankYou && <p className={styles.thankYou}>Thanks!</p>}
+        
         <div className={styles.btnContainer}>
           <button id="btn" className={styles.btn} type="submit">
             Submit

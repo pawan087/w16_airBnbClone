@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
 const SET_SEARCH = "search/setSearch";
 const SET_SEARCH2 = "search2/setSearch2";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import MapComponent from "../Map/MapComponent";
@@ -33,11 +33,16 @@ export default function SpotsContainer() {
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
+  let startDate = searchedStartDate;
+  // const [startDate, setStartDate] = useState(searchedStartDate);
+
+  let endDate = searchedEndDate;
+  // const [endDate, setEndDate] = useState(searchedEndDate);
+
   const spotsArr = Object.values(spots);
   const reviewsArr = Object.values(reviews);
   const imagesArr = Object.values(images);
+
   let lat;
   let lng;
   let showSpot = false;
@@ -131,8 +136,11 @@ export default function SpotsContainer() {
 
   useEffect(() => {
     dispatch(getSpots());
+
     dispatch(getReviews());
+
     dispatch(getImages());
+
     dispatch(getSearch2({ startDate: "", endDate: "" }));
   }, [startDate, endDate, dispatch, searchCriteria]);
 
@@ -149,6 +157,7 @@ export default function SpotsContainer() {
                 layout="fill"
                 objectfit="cover"
                 src={image}
+                alt="bookingImg"
               />
             </div>
 

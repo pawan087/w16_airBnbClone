@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import { MyModal } from "../../context/BookingConfirmation";
-import { MyFourthModal } from "../../context/Sorry";
 import ConfirmationForm from "./ConfirmationForm";
-import Sorry from "./Sorry";
 
 import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
 
 function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   const history = useHistory();
-  const dispatch = useDispatch();
   const { spotId } = useParams();
 
   const bookings = useSelector((state) => state.booking);
@@ -20,8 +17,8 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
 
   let bool = false;
   let bool2 = true;
+
   const [showModal, setShowModal] = useState(false);
-  const [showSecondModal, setSecondModal] = useState(false);
   const bookingsArr = Object.values(bookings);
 
   const specificBookings = bookingsArr.filter((b) => {
@@ -38,7 +35,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
       specificBookings.forEach((booking) => {
         if (startDate < endDate) {
           if (booking.startDate < startDate && endDate < booking.endDate) {
-            console.log('yee11')
             bool = false;
             return;
           }
@@ -49,13 +45,11 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             endDate < booking.endDate
           ) {
             bool = false;
-            console.log('yee2')
             return;
           }
 
           if (startDate < booking.startDate && booking.endDate < endDate) {
             bool = false;
-            console.log('yee3')
             return;
           }
 
@@ -65,7 +59,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             startDate < booking.endDate
           ) {
             bool = false;
-            console.log('yee4')
             return;
           }
 
@@ -103,11 +96,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             endDate={endDate}
           />
         </MyModal>
-      )}
-      {showSecondModal && (
-        <MyFourthModal>
-          <Sorry />
-        </MyFourthModal>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import getCenter from "geolib/es/getCenter";
@@ -15,18 +15,26 @@ export default function SearchContainer() {
   const searchCriteria = useSelector((state) => state.search);
   const searchResults = useSelector((state) => state.searchResults);
 
-  const [location, setLocation] = useState(searchCriteria.searchInput);
-  const [startDate, setStartDate] = useState(searchCriteria.startDate);
-  const [endDate, setEndDate] = useState(searchCriteria.endDate);
+  let location = searchCriteria.searchInput;
+  // const [location, setLocation] = useState(searchCriteria.searchInput);
+
+  let startDate = searchCriteria.startDate;
+  // const [startDate, setStartDate] = useState(searchCriteria.startDate);
+
+  let endDate = searchCriteria.endDate;
+  // const [endDate, setEndDate] = useState(searchCriteria.endDate);
 
   const searchResultsArr = Object.values(searchResults);
+
   const x = new Date(startDate);
   const y = new Date(endDate);
   const dayCount = (y - x) / 60 / 60 / 1000 / 24;
+
   let center;
 
   const linkMe = (spot) => {
     const { id } = spot;
+
     history.push(`/spots/${id}`);
   };
 
@@ -35,6 +43,7 @@ export default function SearchContainer() {
       longitude: +x.lng,
       latitude: +x.lat,
     }));
+
     center = getCenter(coordinates);
   }
 
@@ -43,6 +52,7 @@ export default function SearchContainer() {
   return (
     <div className={styles.componentContainer}>
       {searchResultsArr.length === 0 && <SorryComponent />}
+
       {searchResultsArr && (
         <main className={styles.outerContainer}>
           <section>
@@ -75,6 +85,7 @@ export default function SearchContainer() {
                       className={styles.img}
                       layout="fill"
                       objectFit="cover"
+                      alt="spotImg"
                       src={spot.Images[0].url}
                     />
                   </div>
@@ -94,9 +105,11 @@ export default function SearchContainer() {
                       <div>
                         <p className={styles.price}>${spot.price}/night</p>
 
-                       {startDate !== endDate && <p className={styles.total}>
-                          total ${spot.price * dayCount}
-                        </p>}
+                        {startDate !== endDate && (
+                          <p className={styles.total}>
+                            total ${spot.price * dayCount}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>

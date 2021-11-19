@@ -6,14 +6,7 @@ import { delBooking } from "../../store/bookings";
 
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 
-function ConfirmationForm({
-  booking,
-  bookingId,
-  startDate,
-  endDate,
-  name,
-  username,
-}) {
+function ConfirmationForm({ booking, startDate, endDate, name, username }) {
   const dispatch = useDispatch();
 
   const deleteBooking = (e, b) => {
@@ -34,11 +27,11 @@ function ConfirmationForm({
     <div className={styles.outerContainer}>
       <div className={styles.logoContainer}>
         <img
-          className={styles.logo}
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
           className={styles.logo}
+          alt="bnbLogo"
         ></img>
       </div>
 

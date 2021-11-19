@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-
 import * as sessionActions from "../../store/session";
 
 import styles from "./LogInComponent.module.css";
@@ -18,16 +17,16 @@ function LogInComponent() {
   const user = useSelector((state) => state.session.user);
 
   if (user !== null) {
-    history.push('/')
+    history.push("/");
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    dispatch(sessionActions.login({ credential, password }))
+    dispatch(sessionActions.login({ credential, password }));
 
-    if (window.location.pathname === '/login') {
-      history.push('/')
+    if (window.location.pathname === "/login") {
+      history.push("/");
     }
   };
 

@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useHistory } from "react-router-dom";
 
 import styles from "./Sorry.module.css";
 
@@ -20,8 +18,6 @@ export default function Sorry() {
   for (let booking of specificBookings) {
     datesArr.push([booking.startDate, booking.endDate]);
   }
-
-  // useEffect(() => {}, [dispatch]);
 
   return (
     <div className={styles.outerContainer}>

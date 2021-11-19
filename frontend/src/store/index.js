@@ -21,7 +21,6 @@ const rootReducer = combineReducers({
   images: imageReducer,
   userBookings: userBookingReducer,
   searchResults: searchResultsReducer,
-
   datesArr: dateReducer,
   search2: searchReducer2,
 });

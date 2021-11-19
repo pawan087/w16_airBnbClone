@@ -24,10 +24,13 @@ function EditBookingForm({ name, username, booking }) {
 
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
+
   let userId = booking.userId;
   let spotId = booking.spotId;
   let bookingId = booking.id;
+
   const bookingsArr = Object.values(bookings);
+
   let sd = new Date(startDate);
   let ed = new Date(endDate);
   let bool = false;
@@ -103,10 +106,10 @@ function EditBookingForm({ name, username, booking }) {
     <div className={styles.outerContainer}>
       <div className={styles.logoContainer}>
         <img
-          className={styles.logo}
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
+          alt='bnbLogo'
           className={styles.logo}
         ></img>
       </div>

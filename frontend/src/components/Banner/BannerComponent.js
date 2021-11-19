@@ -15,7 +15,7 @@ export default function BannerComponent() {
 
   return (
     <div className={styles.splashContainer}>
-      <img className={styles.bannerImg} src={imgUrl}></img>
+      <img alt="bannerImg" className={styles.bannerImg} src={imgUrl}></img>
 
       <div className={styles.splashText}>
         <p>Not sure where to go? Perfect.</p>

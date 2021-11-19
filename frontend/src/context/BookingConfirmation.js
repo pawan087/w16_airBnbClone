@@ -16,6 +16,7 @@ export function BookingConfirmationProvider({ children }) {
       <BookingConfirmationContext.Provider value={value}>
         {children}
       </BookingConfirmationContext.Provider>
+
       <div ref={modalRef} />
     </>
   );
@@ -28,6 +29,7 @@ export function MyModal({ onClose, children }) {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
+
       <div id="modal-content">{children}</div>
     </div>,
     modalNode

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,8 +13,8 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
 
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [userId, setUserId] = useState(sessionUser.id);
-  const [spotId, setSpotId] = useState(spot[0].id);
+  const userId = sessionUser.id;
+  const spotId = spot[0]?.id;
 
   useEffect(() => {
     dispatch(getSpots());
@@ -36,11 +36,11 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
     <div className={styles.outerContainer}>
       <div className={styles.logoContainer}>
         <img
-          className={styles.logo}
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
           className={styles.logo}
+          alt="bnbLogo"
         ></img>
       </div>
 
@@ -69,11 +69,13 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
 
           <div className={styles.detail}>
             $
-            {(total -
+            {(
+              total -
               total * 0.02 +
               total * 0.15 +
               total * 0.12 +
-              total * 0.06).toFixed(2)}
+              total * 0.06
+            ).toFixed(2)}
           </div>
 
           <div className={styles.middleFooter}>

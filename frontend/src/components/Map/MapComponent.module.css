@@ -1,5 +1,5 @@
 .pin {
-  opacity: 67.5%;
+  opacity: .675;
   transition: 0.2s ease all;
   animation: bounce 0.75s infinite;
   cursor: pointer;
@@ -19,7 +19,7 @@
 
 .popUp {
   color: black;
-  opacity: 50%;
+  opacity: .5;
   display: flex;
   justify-content: center;
   font-size: 0.65em;
@@ -33,6 +33,6 @@
 }
 
 .popUp:hover {
-  opacity: 65%;
+  opacity: .65;
   color: #009cd5;
 }

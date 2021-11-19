@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import getCenter from "geolib/es/getCenter";
+// import getCenter from "geolib/es/getCenter";
 
 import styles from "../Map/MapComponent.module.css";
 
@@ -10,6 +10,7 @@ export default function MapComponent({ id, lat, lng }) {
   const history = useHistory();
 
   const [selectedLocation, setSelectedLocation] = useState({});
+
   const [viewPort, setViewPort] = useState({
     width: "100%",
     height: "100%",
@@ -19,17 +20,17 @@ export default function MapComponent({ id, lat, lng }) {
   });
 
 
-  const searchCriteria = useSelector((state) => state.search);
+  // const searchCriteria = useSelector((state) => state.search);
   const spots = useSelector((state) => state.spot);
   const searchResults = useSelector((state) => state.searchResults);
 
-  let searchedStartDate = searchCriteria.startDate;
-  let searchedEndDate = searchCriteria.endDate;
+  // let searchedStartDate = searchCriteria.startDate;
+  // let searchedEndDate = searchCriteria.endDate;
 
-  if (searchCriteria.startDate)
-    searchedStartDate = searchedStartDate.toISOString().split("T")[0];
-  if (searchCriteria.endDate)
-    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
+  // if (searchCriteria.startDate)
+  //   searchedStartDate = searchedStartDate.toISOString().split("T")[0];
+  // if (searchCriteria.endDate)
+  //   searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
   let spot = spots[id];
   const searchResultsArr = Object.values(searchResults);
@@ -59,7 +60,7 @@ export default function MapComponent({ id, lat, lng }) {
             </p>
           </Marker>
 
-          {selectedLocation.lng == spot.lng ? (
+          {selectedLocation.lng === spot.lng ? (
             <Popup
               onClose={() => setSelectedLocation({})}
               closeOnClick={true}
@@ -88,7 +89,7 @@ export default function MapComponent({ id, lat, lng }) {
             </p>
           </Marker>
 
-          {selectedLocation.lng == x.lng ? (
+          {selectedLocation.lng === x.lng ? (
             <Popup
               onClose={() => setSelectedLocation({})}
               closeOnClick={true}

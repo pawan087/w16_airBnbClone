@@ -17,8 +17,10 @@ export default function DetailCardComponent({ spot }) {
           <img
             onClick={(e) => linkMe(e, spot.id)}
             className={styles.img}
+            alt="detailImg"
             src={spot.Images[0].url}
           ></img>
+
           <div className={styles.heart}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

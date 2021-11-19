@@ -41,8 +41,8 @@ export const delBooking = (b) => async (dispatch) => {
 
 export const create = (booking) => async (dispatch) => {
   const { userId, spotId, startDate, endDate } = booking;
-  
-  const response = await csrfFetch("/api/bookings/new", {
+
+  await csrfFetch("/api/bookings/new", {
     method: "POST",
     body: JSON.stringify({
       userId,

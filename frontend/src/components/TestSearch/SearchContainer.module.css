@@ -67,7 +67,7 @@
 }
 
 .resultsContainer:hover {
-  opacity: 95%;
+  opacity: .95;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
@@ -132,7 +132,7 @@
 
 .map:hover {
   transition-duration: 200ms;
-  opacity: 97.5%;
+  opacity: .975;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
