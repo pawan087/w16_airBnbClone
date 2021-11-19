@@ -7,13 +7,16 @@
   }
 }
 
+
+
+
 .outerContainer {
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
   border-radius: 1em;
   width: 100%;
   display: flex;
-
+  position: relative;
   flex-direction: column;
   justify-content: center;
   transition-duration: 150ms;
@@ -28,6 +31,8 @@
 .backContainer {
   position: relative;
 }
+
+
 
 .outerContainer:hover {
   --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);

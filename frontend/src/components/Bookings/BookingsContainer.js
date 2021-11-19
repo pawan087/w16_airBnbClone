@@ -100,6 +100,8 @@ export default function BookingsContainer() {
     });
   };
 
+  console.log(bookings);
+
   let giveMeName = (id) => {
     if (spots[id]) {
       return spots[id].name;

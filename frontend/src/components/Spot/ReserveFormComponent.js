@@ -175,7 +175,7 @@ export default function ReserveFormComponent({ spot, bool2 }) {
         />
       </div>
 
-      <div className={styles.detailsContainer}>
+      {!bool2 && <div className={styles.detailsContainer}>
         <div className={styles.detailContainer}>
           {!!dayCount && bool === true && (
             <div className={styles.detail}>
@@ -224,7 +224,7 @@ export default function ReserveFormComponent({ spot, bool2 }) {
           )}
         </div>
 
-        <div className={styles.detailContainer}>
+        {!bool2 && <div className={styles.detailContainer}>
           {!!dayCount && bool === true && (
             <div className={styles.detail}>Occupancy taxes and fees</div>
           )}
@@ -234,8 +234,8 @@ export default function ReserveFormComponent({ spot, bool2 }) {
               ${(total * 0.06).toFixed()}
             </div>
           )}
-        </div>
-      </div>
+        </div>}
+      </div>}
 
       <div className={styles.divisorContainer}>
         {!!dayCount && bool && <p className={styles.divisor}></p>}

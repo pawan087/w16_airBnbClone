@@ -45,6 +45,17 @@ function ConfirmationForm({
 
   return (
     <div className={styles.outerContainer}>
+      {load && (
+        <div className={styles.loaderCotnainer}>
+          <ReactLoading
+            type={"cylon"}
+            color={"#009cd5"}
+            height={"0px"}
+            width={"57.5px"}
+          />
+        </div>
+      )}
+
       <div className={styles.logoContainer}>
         <img
           src={

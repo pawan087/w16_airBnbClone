@@ -75,32 +75,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
     history.push("/login");
   };
 
-  let dimReserveButton = false;
-
-  if (!startDate) {
-    dimReserveButton = true;
-  } else {
-    dimReserveButton = false;
-  }
-
-  if (!endDate) {
-    dimReserveButton = true;
-  } else {
-    dimReserveButton = false;
-  }
-
-  if (startDate > endDate) {
-    dimReserveButton = false;
-  } else {
-    dimReserveButton = true;
-  }
-
-  if (startDate === endDate) {
-    dimReserveButton = false;
-  } else {
-    dimReserveButton = true;
-  }
-
   return (
     <>
       {startDate < endDate &&

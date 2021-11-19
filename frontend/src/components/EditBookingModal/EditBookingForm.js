@@ -15,12 +15,23 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
   const bookings = useSelector((state) => state.booking);
 
   let initialStartDate = new Date(
-    new Date(booking?.startDate).valueOf() + 1000 * 3600 * 24
+    // new Date(booking?.startDate).valueOf() + 1000 * 3600 * 24
+
+    new Date(booking?.startDate).valueOf()
   );
 
   let initialEndDate = new Date(
-    new Date(booking?.endDate).valueOf() + 1000 * 3600 * 24
+    // new Date(booking?.endDate).valueOf() + 1000 * 3600 * 24
+    new Date(booking?.endDate).valueOf()
   );
+
+  if (String(initialStartDate)[16] === "1") {
+    initialStartDate = new Date(initialStartDate.valueOf() + 1000 * 3600 * 8);
+  }
+
+  if (String(initialEndDate)[16] === "1") {
+    initialEndDate = new Date(initialEndDate.valueOf() + 1000 * 3600 * 8);
+  }
 
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
@@ -36,7 +47,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
   let bool = false;
 
   const specificBookings = bookingsArr?.filter((b) => {
-    return b["spotId"] === +spotId;
+    return b["spotId"] === +spotId && b.id !== booking.id;
   });
 
   specificBookings?.forEach((booking) => {
@@ -70,6 +81,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
       }
       return;
     }
+
     bool = false;
   });
 
@@ -79,16 +91,13 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     key: "selection",
   };
 
-  const refreshMe = (e) => {
-    e.preventDefault();
-
-    window.location.reload();
-  };
+  const [showWarning, setShowWarning] = useState(false);
 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
-
     setEndDate(ranges.selection.endDate);
+
+    setShowWarning(true);
   };
 
   const handleSubmit = (e) => {
@@ -118,7 +127,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
         <div className={styles.topCardContainer}>
           <div className={styles.title}>{name}</div>
 
-          {bool && (
+          {showWarning && bool && (
             <div className={styles.subtitle}>
               {"Sorry, those dates are unavailable at this time."}
             </div>
