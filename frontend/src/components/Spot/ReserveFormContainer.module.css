@@ -101,7 +101,6 @@
   border: none;
   color: rgb(75, 85, 99);
   background-color: transparent;
-  cursor: pointer;
   justify-content: center;
   align-items: center;
   height: 2.25em;
@@ -110,6 +109,10 @@
 
 .guestInput {
   padding-left: 0.5em;
+}
+
+.inputContainer input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
 
 .btnContainer {

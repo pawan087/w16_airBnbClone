@@ -93,6 +93,11 @@ export default function BookingsContainer() {
     const { spotId } = booking;
 
     history.push(`/spots/${spotId}`);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   let giveMeName = (id) => {
@@ -101,7 +106,19 @@ export default function BookingsContainer() {
     } else return null;
   };
 
-  userBookingsArr.sort(function (a, b) {
+  pastBookings.sort(function (a, b) {
+    if (new Date(a.startDate) < new Date(b.startDate)) {
+      return -1;
+    }
+
+    if (new Date(a.startDate) > new Date(b.startDate)) {
+      return +1;
+    }
+
+    return 0;
+  });
+
+  futureBookings.sort(function (a, b) {
     if (new Date(a.startDate) < new Date(b.startDate)) {
       return -1;
     }
@@ -132,7 +149,7 @@ export default function BookingsContainer() {
 
         {futureBookings?.length !== 0 && <div className={styles.divisor2} />}
 
-        {userBookingsArr?.map((booking) => (
+        {futureBookings?.map((booking) => (
           <div className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
@@ -225,11 +242,13 @@ export default function BookingsContainer() {
               <div className={styles.results}>
                 <div className={styles.detailContainer}></div>
 
-                <div
-                  onClick={() => linkMe(booking)}
-                  className={styles2.spotName}
-                >
-                  {booking.Spot.name}
+                <div className={styles2.spotName}>
+                  <span
+                    className={styles2.spotName2}
+                    onClick={() => linkMe(booking)}
+                  >
+                    {booking.Spot.name}
+                  </span>
                 </div>
 
                 <div className={styles.divisor} />
