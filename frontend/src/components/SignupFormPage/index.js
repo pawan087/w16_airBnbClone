@@ -32,10 +32,14 @@ function SignupFormPage() {
         if (data && data.errors) setErrors(data.errors);
       });
     }
-    
+
     return setErrors([
-      "Confirm Password field must be the same as the Password field",
+      "Confirm password field must be the same as the password field",
     ]);
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   return (
@@ -73,7 +77,7 @@ function SignupFormPage() {
 
           <ul className={styles.errors}>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx}>{capitalizeFirstLetter(error)}</li>
             ))}
           </ul>
         </div>

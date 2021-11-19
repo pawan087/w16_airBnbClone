@@ -7,7 +7,7 @@ import { getSpots } from "../../store/spots";
 
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 
-function ConfirmationForm({ total, spot, startDate, endDate }) {
+function ConfirmationForm({ total, spot, startDate, endDate, setShowModal }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -29,7 +29,7 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
   };
 
   const cancelMe = () => {
-    window.location.reload();
+    setShowModal(false);
   };
 
   return (
@@ -60,7 +60,7 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
           <div className={styles.detail}>{`${startDate?.slice(
             5
           )} through ${endDate?.slice(5)}`}</div>
-          )<div className={styles.label}>Total:</div>
+          <div className={styles.label}>Total:</div>
           <div className={styles.detail}>
             $
             {(

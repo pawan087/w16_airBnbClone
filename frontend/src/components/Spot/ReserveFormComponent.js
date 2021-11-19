@@ -123,6 +123,7 @@ export default function ReserveFormComponent({ spot }) {
     <div className={styles.outerContainer}>
       <div className={styles.header}>
         ${price}
+
         <span className={styles.perNight}>/night</span>
       </div>
 

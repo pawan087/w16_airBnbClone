@@ -17,6 +17,12 @@ export default function SpotsContainer() {
   const linkMe = (e, id) => {
     e.preventDefault();
 
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+
     history.push(`/spots/${id}`);
   };
 
@@ -25,12 +31,10 @@ export default function SpotsContainer() {
   }, [dispatch]);
 
   return (
-    <>
-      <div className={styles.outerContainer}>
-        {spotsArr?.map((spot) => (
-          <DetailCardComponent linkMe={linkMe} spot={spot} />
-        ))}
-      </div>
-    </>
+    <div className={styles.outerContainer}>
+      {spotsArr?.map((spot) => (
+        <DetailCardComponent spot={spot} />
+      ))}
+    </div>
   );
 }

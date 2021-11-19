@@ -109,7 +109,7 @@ input[type="textarea"] {
 }
 
 .link {
-  text-decoration: none;
+  text-decoration: underline;
   transition: 0.2s ease all;
   color: black;
   opacity: .75;

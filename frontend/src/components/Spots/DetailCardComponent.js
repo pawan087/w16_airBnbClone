@@ -7,8 +7,14 @@ export default function DetailCardComponent({ spot }) {
 
   const linkMe = (e, id) => {
     e.preventDefault();
-    
+
     history.push(`/spots/${id}`);
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (

@@ -132,6 +132,21 @@
   opacity: .85;
 }
 
+.btn4 {
+  margin-top: 1em;
+  height: 2.75em;
+  cursor: default;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #009cd5;
+  color: white;
+  font-size: 0.75em;
+  border-radius: 0.5em;
+  transition: 0.2s ease all;
+  opacity: .50;
+}
+
 .btn2 {
   margin-top: 1em;
   height: 2.75em;

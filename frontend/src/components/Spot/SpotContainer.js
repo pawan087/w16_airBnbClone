@@ -29,6 +29,7 @@ export default function SpotsContainer() {
 
   if (searchCriteria.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
+    
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 

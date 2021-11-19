@@ -32,7 +32,7 @@ export default function HeaderComponent() {
   const [showMenu, setShowMenu] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  initial = user?.username[0];
+  initial = user?.username[0]?.toUpperCase();
 
   const selectionRange = {
     startDate: startDate,
@@ -74,7 +74,7 @@ export default function HeaderComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     dispatch(
       searchAction.getSearchResults({ searchInput, startDate, endDate })
     );
