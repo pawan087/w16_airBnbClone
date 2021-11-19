@@ -29,4 +29,9 @@
 .edit span {
   transition-duration: 200ms;
   cursor: pointer;
+
+}
+
+.edit span:hover {
+  color: #009cd5
 }

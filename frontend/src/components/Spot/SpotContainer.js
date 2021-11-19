@@ -29,7 +29,7 @@ export default function SpotsContainer() {
 
   if (searchCriteria.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
-    
+
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
@@ -197,6 +197,7 @@ export default function SpotsContainer() {
         spot={spot}
         startDate={startDate}
         endDate={endDate}
+        bool2={bool}
       />
 
       <ReviewFormContainer spot={spot} />

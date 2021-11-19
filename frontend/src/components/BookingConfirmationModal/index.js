@@ -8,7 +8,7 @@ import ConfirmationForm from "./ConfirmationForm";
 
 import styles from "../../components/Spot/ReserveFormContainer.module.css";
 
-function BookingConfirmationModal({ total, spot, endDate, startDate }) {
+function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
   const history = useHistory();
   const { spotId } = useParams();
 
@@ -75,19 +75,47 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
     history.push("/login");
   };
 
+  let dimReserveButton = false;
+
+  if (!startDate) {
+    dimReserveButton = true;
+  } else {
+    dimReserveButton = false;
+  }
+
+  if (!endDate) {
+    dimReserveButton = true;
+  } else {
+    dimReserveButton = false;
+  }
+
+  if (startDate > endDate) {
+    dimReserveButton = false;
+  } else {
+    dimReserveButton = true;
+  }
+
+  if (startDate === endDate) {
+    dimReserveButton = false;
+  } else {
+    dimReserveButton = true;
+  }
+
   return (
     <>
-      {startDate < endDate && startDate && endDate && bool === true && (
-        <button className={styles.btn} onClick={() => setShowModal(true)}>
-          Reserve
-        </button>
-      )}{" "}
-      {!startDate ||
-        !endDate ||
-        startDate > endDate ||
-        (startDate === endDate && (
-          <button className={styles.btn4}>Reserve</button>
-        ))}{" "}
+      {startDate < endDate &&
+        startDate &&
+        endDate &&
+        bool === true &&
+        !bool3 && (
+          <button className={styles.btn} onClick={() => setShowModal(true)}>
+            Reserve
+          </button>
+        )}{" "}
+      {((!startDate || !endDate) || (startDate > endDate)) && (
+        <button className={styles.btn4}>Reserve</button>
+      )}
+      {bool3 && <button className={styles.btn4}>Reserve</button>}{" "}
       {bool2 === false && (
         <button onClick={(e) => redirectMe(e)} className={styles.btn3}>
           Please Log-in
