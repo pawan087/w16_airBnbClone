@@ -15,8 +15,8 @@ export default function ReserveFormComponent({ spot }) {
   const user = useSelector((state) => state.session.user);
   const bookings = useSelector((state) => state.booking);
 
-  let searchedStartDate = searchCriteria.startDate;
-  let searchedEndDate = searchCriteria.endDate;
+  let searchedStartDate = searchCriteria?.startDate;
+  let searchedEndDate = searchCriteria?.endDate;
 
   if (searchCriteria.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
@@ -26,12 +26,15 @@ export default function ReserveFormComponent({ spot }) {
 
   const [startDate, setStartDate] = useState(searchedStartDate);
   const [endDate, setEndDate] = useState(searchedEndDate);
+
   const x = new Date(startDate).getTime();
   const y = new Date(endDate).getTime();
+
   let today = new Date();
   let tomorrow = new Date();
   let bool = false;
   let dayCount = false;
+
   const bookingsArr = Object.values(bookings);
 
   if (y > x) {
@@ -57,10 +60,10 @@ export default function ReserveFormComponent({ spot }) {
   if (user === undefined) {
     bool = false;
   } else {
-    if (specificBookings.length === 0) {
+    if (specificBookings?.length === 0) {
       bool = true;
     } else {
-      specificBookings.forEach((booking) => {
+      specificBookings?.forEach((booking) => {
         if (startDate < endDate) {
           if (booking.startDate < startDate && endDate < booking.endDate) {
             bool = false;
@@ -219,20 +222,20 @@ export default function ReserveFormComponent({ spot }) {
             <div className={styles.detail}>Occupancy taxes and fees</div>
           )}
 
-          {!!dayCount && bool === true && (
+          {!!dayCount && bool && (
             <div className={styles.detailTotal}>${(total * 0.06).toFixed()}</div>
           )}
         </div>
       </div>
 
       <div className={styles.divisorContainer}>
-        {!!dayCount && bool === true && <p className={styles.divisor}></p>}
+        {!!dayCount && bool && <p className={styles.divisor}></p>}
         <div className={styles.footer}>
-          {!!dayCount && bool === true && (
+          {!!dayCount && bool && (
             <div className={styles.footerDetail}>Total</div>
           )}
 
-          {!!dayCount && bool === true && (
+          {!!dayCount && bool && (
             <div className={styles.footerDetail}>
               $
               {(total -

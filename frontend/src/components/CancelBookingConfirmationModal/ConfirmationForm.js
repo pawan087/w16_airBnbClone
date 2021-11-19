@@ -11,7 +11,9 @@ function ConfirmationForm({ booking, startDate, endDate, name, username }) {
 
   const deleteBooking = (e, b) => {
     e.preventDefault();
+
     dispatch(delBooking(b));
+
     window.location.reload();
   };
 
@@ -50,7 +52,7 @@ function ConfirmationForm({ booking, startDate, endDate, name, username }) {
           <div className={styles.label}>Date(s)</div>
 
           <div className={styles.detail}>
-            {startDate.slice(5, 10)} through {endDate.slice(5, 10)}
+            {startDate?.slice(5, 10)} through {endDate?.slice(5, 10)}
           </div>
 
           <div className={styles.label}></div>

@@ -7,6 +7,7 @@ export default function BannerComponent() {
 
   const linkMe = (e) => {
     e.preventDefault();
+    
     history.push(`/spots`);
   };
 

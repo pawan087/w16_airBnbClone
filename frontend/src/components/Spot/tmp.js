@@ -10,11 +10,10 @@ export default function ReviewFormContainer() {
   const [spotId, setSpotId] = useState("");
   const [review, setReview] = useState("");
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    return dispatch(reviewActions.create({ userId, spotId, review }))
+    return dispatch(reviewActions.create({ userId, spotId, review }));
   };
 
   return (

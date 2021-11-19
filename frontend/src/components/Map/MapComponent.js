@@ -19,7 +19,6 @@ export default function MapComponent({ id, lat, lng }) {
     zoom: 11,
   });
 
-
   // const searchCriteria = useSelector((state) => state.search);
   const spots = useSelector((state) => state.spot);
   const searchResults = useSelector((state) => state.searchResults);
@@ -47,11 +46,11 @@ export default function MapComponent({ id, lat, lng }) {
       mapStyle="mapbox://styles/pawan087/cktnrdl4f0jyb17mqmnp5osxq"
       mapboxApiAccessToken="pk.eyJ1IjoicGF3YW4wODciLCJhIjoiY2t0bnI5MDllMDVtajJ2cG0xbWNkaDIyMSJ9.ro5h9hxSsdwWYS0c9gbnEg"
     >
-      {searchResultsArr.length === 0 && (
-        <div key={spot.lat}>
+      {searchResultsArr?.length === 0 && (
+        <div key={spot?.lat}>
           <Marker
-            longitude={+spot.lng}
-            latitude={+spot.lat}
+            longitude={+spot?.lng}
+            latitude={+spot?.lat}
             offsetLeft={-20}
             offsetTop={-10}
           >
@@ -60,12 +59,12 @@ export default function MapComponent({ id, lat, lng }) {
             </p>
           </Marker>
 
-          {selectedLocation.lng === spot.lng ? (
+          {selectedLocation?.lng === spot?.lng ? (
             <Popup
               onClose={() => setSelectedLocation({})}
               closeOnClick={true}
-              latitude={+spot.lat}
-              longitude={+spot.lng}
+              latitude={+spot?.lat}
+              longitude={+spot?.lng}
               className={styles.popUp}
             >
               {spot.name}
@@ -76,11 +75,11 @@ export default function MapComponent({ id, lat, lng }) {
         </div>
       )}
 
-      {searchResultsArr.map((x) => (
+      {searchResultsArr?.map((x) => (
         <div key={x.lat}>
           <Marker
-            longitude={+x.lng}
-            latitude={+x.lat}
+            longitude={+x?.lng}
+            latitude={+x?.lat}
             offsetLeft={-20}
             offsetTop={-10}
           >
@@ -89,14 +88,14 @@ export default function MapComponent({ id, lat, lng }) {
             </p>
           </Marker>
 
-          {selectedLocation.lng === x.lng ? (
+          {selectedLocation?.lng === x?.lng ? (
             <Popup
               onClose={() => setSelectedLocation({})}
               closeOnClick={true}
-              latitude={+x.lat}
-              longitude={+x.lng}
+              latitude={+x?.lat}
+              longitude={+x?.lng}
               className={styles.popUp}
-              onClick={(e) => linkMe(e, x.id)}
+              onClick={(e) => linkMe(e, x?.id)}
             >
               {x.name}
             </Popup>

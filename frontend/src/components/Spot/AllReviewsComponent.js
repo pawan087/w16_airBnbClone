@@ -9,11 +9,7 @@ export default function AllReviewsComponent({ reviewsArr }) {
 
   const user = useSelector((state) => state.session.user);
 
-  let username;
-
-  if (user) {
-    username = user.username;
-  }
+  let username = user?.username;
 
   const deleteReview = (r) => {
     dispatch(delReview(r));
@@ -22,7 +18,7 @@ export default function AllReviewsComponent({ reviewsArr }) {
   return (
     <div className={styles.outerContainer}>
       {reviewsArr
-        .slice(0)
+        ?.slice(0)
         .reverse()
         .map((review) => (
           <div className={styles.reviewContainer}>

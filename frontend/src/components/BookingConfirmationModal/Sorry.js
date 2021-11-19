@@ -9,7 +9,7 @@ export default function Sorry() {
   const bookings = useSelector((state) => state.booking);
   let bookingsArr = Object.values(bookings);
 
-  let specificBookings = bookingsArr.filter((b) => {
+  let specificBookings = bookingsArr?.filter((b) => {
     return b.Spot.id === +spotId;
   });
 

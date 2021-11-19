@@ -13,7 +13,6 @@ import Sorry from "../BookingConfirmationModal/Sorry";
 import AllReviewsComponent from "./AllReviewsComponent";
 
 import styles from "../../components/Spot/SpotContainer.module.css";
-// import { AnimatePresence, motion } from "framer-motion";
 
 export default function SpotsContainer() {
   const { spotId } = useParams();

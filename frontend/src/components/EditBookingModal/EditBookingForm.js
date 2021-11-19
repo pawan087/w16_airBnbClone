@@ -15,19 +15,19 @@ function EditBookingForm({ name, username, booking }) {
   const bookings = useSelector((state) => state.booking);
 
   let initialStartDate = new Date(
-    new Date(booking.startDate).valueOf() + 1000 * 3600 * 24
+    new Date(booking?.startDate).valueOf() + 1000 * 3600 * 24
   );
 
   let initialEndDate = new Date(
-    new Date(booking.endDate).valueOf() + 1000 * 3600 * 24
+    new Date(booking?.endDate).valueOf() + 1000 * 3600 * 24
   );
 
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
 
-  let userId = booking.userId;
-  let spotId = booking.spotId;
-  let bookingId = booking.id;
+  let userId = booking?.userId;
+  let spotId = booking?.spotId;
+  let bookingId = booking?.id;
 
   const bookingsArr = Object.values(bookings);
 
@@ -35,11 +35,11 @@ function EditBookingForm({ name, username, booking }) {
   let ed = new Date(endDate);
   let bool = false;
 
-  const specificBookings = bookingsArr.filter((b) => {
+  const specificBookings = bookingsArr?.filter((b) => {
     return b["spotId"] === +spotId;
   });
 
-  specificBookings.forEach((booking) => {
+  specificBookings?.forEach((booking) => {
     let x = new Date(booking.startDate);
     let y = new Date(booking.endDate);
 
@@ -118,7 +118,7 @@ function EditBookingForm({ name, username, booking }) {
         <div className={styles.topCardContainer}>
           <div className={styles.title}>{name}</div>
 
-          {bool === true && (
+          {bool && (
             <div className={styles.subtitle}>
               {"Sorry, those dates are unavailable at this time."}
             </div>
@@ -159,7 +159,7 @@ function EditBookingForm({ name, username, booking }) {
             </button>
           )}
 
-          {bool === true && (
+          {bool && (
             <button className={styles.btnSubmit2}>Submit</button>
           )}
         </div>

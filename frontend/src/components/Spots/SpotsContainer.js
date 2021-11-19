@@ -16,6 +16,7 @@ export default function SpotsContainer() {
 
   const linkMe = (e, id) => {
     e.preventDefault();
+
     history.push(`/spots/${id}`);
   };
 
@@ -26,7 +27,7 @@ export default function SpotsContainer() {
   return (
     <>
       <div className={styles.outerContainer}>
-        {spotsArr.map((spot) => (
+        {spotsArr?.map((spot) => (
           <DetailCardComponent linkMe={linkMe} spot={spot} />
         ))}
       </div>

@@ -13,7 +13,7 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
 
   const sessionUser = useSelector((state) => state.session.user);
 
-  const userId = sessionUser.id;
+  const userId = sessionUser?.id;
   const spotId = spot[0]?.id;
 
   useEffect(() => {
@@ -47,26 +47,20 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
       <div className={styles.cardContainer}>
         <div className={styles.topCardContainer}>
           <div className={styles.title}>Reservation Confirmation</div>
-          {spot[0] && <div className={styles.subtitle}>{spot[0].name}</div>}
+
+          <div className={styles.subtitle}>{spot[0]?.name}</div>
         </div>
 
         <div className={styles.middleContainer}>
           <div className={styles.middleHeader}>
-            {sessionUser.username}'s Itinerary
+            {sessionUser?.username}'s Itinerary
           </div>
-
           <div className={styles.divisor}></div>
-
           <div className={styles.label}>Date(s)</div>
-
-          {startDate && endDate && (
-            <div className={styles.detail}>{`${startDate.slice(
-              5
-            )} through ${endDate.slice(5)}`}</div>
-          )}
-
-          <div className={styles.label}>Total:</div>
-
+          <div className={styles.detail}>{`${startDate?.slice(
+            5
+          )} through ${endDate?.slice(5)}`}</div>
+          )<div className={styles.label}>Total:</div>
           <div className={styles.detail}>
             $
             {(
@@ -77,7 +71,6 @@ function ConfirmationForm({ total, spot, startDate, endDate }) {
               total * 0.06
             ).toFixed(2)}
           </div>
-
           <div className={styles.middleFooter}>
             The owner will receive payment two days after your stay ends.
           </div>

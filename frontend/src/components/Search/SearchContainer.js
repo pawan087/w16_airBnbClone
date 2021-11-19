@@ -16,13 +16,10 @@ export default function SearchContainer() {
   const searchResults = useSelector((state) => state.searchResults);
 
   let location = searchCriteria.searchInput;
-  // const [location, setLocation] = useState(searchCriteria.searchInput);
 
   let startDate = searchCriteria.startDate;
-  // const [startDate, setStartDate] = useState(searchCriteria.startDate);
 
   let endDate = searchCriteria.endDate;
-  // const [endDate, setEndDate] = useState(searchCriteria.endDate);
 
   const searchResultsArr = Object.values(searchResults);
 
@@ -93,21 +90,21 @@ export default function SearchContainer() {
                   <div className={styles.results}>
                     <div className={styles.detailContainer}></div>
 
-                    <span className={styles.spotName}>{spot.name}</span>
+                    <span className={styles.spotName}>{spot?.name}</span>
 
                     <div className={styles.divisor} />
 
                     <p className={styles.detail}>
-                      {spot.address}, {spot.city}, {spot.country}
+                      {spot?.address}, {spot?.city}, {spot?.country}
                     </p>
 
                     <div className={styles.priceDetail}>
                       <div>
-                        <p className={styles.price}>${spot.price}/night</p>
+                        <p className={styles.price}>${spot?.price}/night</p>
 
                         {startDate !== endDate && (
                           <p className={styles.total}>
-                            total ${spot.price * dayCount}
+                            total ${spot?.price * dayCount}
                           </p>
                         )}
                       </div>

@@ -19,20 +19,22 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   let bool2 = true;
 
   const [showModal, setShowModal] = useState(false);
+
   const bookingsArr = Object.values(bookings);
 
-  const specificBookings = bookingsArr.filter((b) => {
+  const specificBookings = bookingsArr?.filter((b) => {
     return b["spotId"] === +spotId;
   });
 
   if (user === undefined || user === null) {
     bool = false;
+
     bool2 = false;
   } else {
-    if (specificBookings.length === 0) {
+    if (specificBookings?.length === 0) {
       bool = true;
     } else {
-      specificBookings.forEach((booking) => {
+      specificBookings?.forEach((booking) => {
         if (startDate < endDate) {
           if (booking.startDate < startDate && endDate < booking.endDate) {
             bool = false;
@@ -69,6 +71,7 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   }
   const redirectMe = (e) => {
     e.preventDefault();
+
     history.push("/login");
   };
 
@@ -79,15 +82,18 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
           Reserve
         </button>
       )}{" "}
+
       {bool === false && bool2 === true && (
         <button className={styles.btn2}>Reserve</button>
       )}
+
       {bool2 === false && (
         <button onClick={(e) => redirectMe(e)} className={styles.btn3}>
           Please Log-in
         </button>
       )}
-      {showModal && true && true && (
+
+      {showModal && (
         <MyModal onClose={() => setShowModal(false)}>
           <ConfirmationForm
             total={total}

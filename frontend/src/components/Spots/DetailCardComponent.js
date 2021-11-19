@@ -7,6 +7,7 @@ export default function DetailCardComponent({ spot }) {
 
   const linkMe = (e, id) => {
     e.preventDefault();
+    
     history.push(`/spots/${id}`);
   };
 

@@ -14,12 +14,11 @@ export default function SorryComponent({ noBookings }) {
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
 
-  if (searchCriteria.startDate)
+  if (searchCriteria?.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
-  if (searchCriteria.endDate)
-    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  // const [location, setLocation] = useState(searchCriteria.searchInput);
+  if (searchCriteria?.endDate)
+    searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
   let location = searchCriteria.searchInput;
 
@@ -39,6 +38,7 @@ export default function SorryComponent({ noBookings }) {
 
   const linkMe = (e) => {
     e.preventDefault();
+    
     history.push(`/spots`);
   };
 

@@ -31,7 +31,9 @@ export default function BookingsContainer() {
 
   for (let booking of userBookingsArr) {
     let today = new Date();
+
     let x = new Date(booking.startDate);
+
     if (x < today) {
       pastBookings.push(booking);
     } else {
@@ -61,12 +63,15 @@ export default function BookingsContainer() {
 
   const dayCount = (startDate, endDate) => {
     const x = new Date(startDate);
+
     const y = new Date(endDate);
+
     return (y - x) / 60 / 60 / 1000 / 24;
   };
 
   const linkMe = (booking) => {
     const { spotId } = booking;
+
     history.push(`/spots/${spotId}`);
   };
 
@@ -79,23 +84,23 @@ export default function BookingsContainer() {
   return (
     <>
       <div className={styles.componentContainer}>
-        {futureBookings.length === 0 && <SorryComponent noBookings={true} />}
+        {futureBookings?.length === 0 && <SorryComponent noBookings={true} />}
 
-        {futureBookings.length === 1 && (
+        {futureBookings?.length === 1 && (
           <h3 className={styles.subHeader}>
-            {futureBookings.length} Reservation
+            {futureBookings?.length} Reservation
           </h3>
         )}
 
-        {futureBookings.length > 1 && (
+        {futureBookings?.length > 1 && (
           <h3 className={styles.subHeader}>
-            {futureBookings.length} Reservations
+            {futureBookings?.length} Reservations
           </h3>
         )}
 
-        {futureBookings.length !== 0 && <div className={styles.divisor2} />}
+        {futureBookings?.length !== 0 && <div className={styles.divisor2} />}
 
-        {userBookingsArr.map((booking) => (
+        {userBookingsArr?.map((booking) => (
           <div className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
@@ -153,21 +158,21 @@ export default function BookingsContainer() {
       </div>
 
       <div className={styles.componentContainer}>
-        {pastBookings.length === 0 && futureBookings.length === 0 && (
+        {pastBookings?.length === 0 && futureBookings?.length === 0 && (
           <SorryComponent noBookings={true} />
         )}
 
-        {pastBookings.length === 1 && (
+        {pastBookings?.length === 1 && (
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
 
-        {pastBookings.length > 1 && (
+        {pastBookings?.length > 1 && (
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
 
-        {pastBookings.length > 0 && <div className={styles.divisor2} />}
+        {pastBookings?.length > 0 && <div className={styles.divisor2} />}
 
-        {pastBookings.map((booking) => (
+        {pastBookings?.map((booking) => (
           <div className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
