@@ -19,14 +19,57 @@ export default function SearchContainer() {
   const session = useSelector((state) => state.session);
   const searchCriteria = useSelector((state) => state.search);
   const searchResults = useSelector((state) => state.searchResults);
+  const usersBookings = useSelector((state) => state.userBookings);
+  const bookings = Object.values(usersBookings);
+  const searchResultsArr = Object.values(searchResults);
+  console.log(searchResultsArr);
+
+  const availableBookings = [];
+
+  bookings?.forEach((booking) => {
+    let x = new Date(booking.startDate);
+    let y = new Date(booking.endDate);
+
+    let sd = new Date(searchCriteria.startDate);
+    let ed = new Date(searchCriteria.endDate);
+
+    if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
+      // console.log("yee3");
+      return;
+    }
+    if (
+      sd.getTime() <= x.getTime() &&
+      x.getTime() <= ed.getTime() &&
+      ed.getTime() <= y.getTime()
+    ) {
+      // console.log("yee4");
+      return;
+    }
+    if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
+      // console.log("yee5");
+      return;
+    }
+    if (
+      x.getTime() <= sd.getTime() &&
+      y.getTime() <= ed.getTime() &&
+      sd.getTime() <= y.getTime()
+    ) {
+      // console.log("yee6");
+      return;
+    }
+
+    availableBookings.push(booking.id);
+
+    return;
+  });
+
+  const filteredSearchResults = searchResultsArr.filter((searchResult) => {
+    return availableBookings.includes(searchResult.id);
+  });
 
   let location = searchCriteria.searchInput;
-
   let startDate = searchCriteria.startDate;
-
   let endDate = searchCriteria.endDate;
-
-  const searchResultsArr = Object.values(searchResults);
 
   const x = new Date(startDate);
   const y = new Date(endDate);
@@ -40,8 +83,8 @@ export default function SearchContainer() {
     history.push(`/spots/${id}`);
   };
 
-  if (searchResultsArr[0]) {
-    const coordinates = searchResultsArr.map((x) => ({
+  if (filteredSearchResults[0]) {
+    const coordinates = filteredSearchResults.map((x) => ({
       longitude: +x.lng,
       latitude: +x.lat,
     }));
@@ -78,30 +121,30 @@ export default function SearchContainer() {
 
   return (
     <div className={styles.componentContainer}>
-      {searchResultsArr.length === 0 && <SorryComponent />}
+      {filteredSearchResults.length === 0 && <SorryComponent />}
 
-      {searchResultsArr && (
+      {filteredSearchResults && (
         <main className={styles.outerContainer}>
           <section>
-            {searchResultsArr.length === 1 && (
+            {filteredSearchResults.length === 1 && (
               <h3 className={styles.subHeader}>
-                {searchResultsArr.length} Bnb Available
+                {filteredSearchResults.length} Bnb Available
               </h3>
             )}
 
-            {searchResultsArr.length > 1 && (
+            {filteredSearchResults.length > 1 && (
               <h3 className={styles.subHeader}>
-                {searchResultsArr.length} Bnbs Available
+                {filteredSearchResults.length} Bnbs Available
               </h3>
             )}
 
-            {searchResultsArr.length > 0 && (
+            {filteredSearchResults.length > 0 && (
               <h1 className={styles.resultsHeader}>Stays in {location}</h1>
             )}
 
             <div className={styles.divisor2} />
 
-            {searchResultsArr.map((spot, i) => (
+            {filteredSearchResults.map((spot, i) => (
               <div
                 key={i}
                 onClick={() => linkMe(spot)}
@@ -146,7 +189,7 @@ export default function SearchContainer() {
           </section>
 
           <section className={styles.map}>
-            {searchResultsArr.length > 0 && (
+            {filteredSearchResults.length > 0 && (
               <MapComponent lat={center.latitude} lng={center.longitude} />
             )}
           </section>
