@@ -24,8 +24,8 @@ export default function ReserveFormComponent({ spot, bool2 }) {
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
+  const [startDate, setStartDate] = useState(searchedStartDate || "");
+  const [endDate, setEndDate] = useState(searchedEndDate || "");
 
   const x = new Date(startDate).getTime();
   const y = new Date(endDate).getTime();
@@ -102,7 +102,7 @@ export default function ReserveFormComponent({ spot, bool2 }) {
 
   useEffect(() => {
     dispatch(getBookings());
-  }, [dispatch]);
+  }, [dispatch, startDate]);
 
   const setSDate = (sd) => {
     setStartDate(sd);

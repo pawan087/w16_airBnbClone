@@ -7,9 +7,6 @@
   }
 }
 
-
-
-
 .outerContainer {
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
@@ -31,8 +28,6 @@
 .backContainer {
   position: relative;
 }
-
-
 
 .outerContainer:hover {
   --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -152,7 +147,7 @@
   outline: none;
   border: none;
   color: white;
-  opacity: .8;
+  opacity: 0.8;
   transition-duration: 150ms;
   border-radius: 0.5em;
   cursor: pointer;

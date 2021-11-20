@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,6 +31,15 @@ function ConfirmationForm({ total, spot, startDate, endDate, setShowModal }) {
   const cancelMe = () => {
     setShowModal(false);
   };
+
+    // Remove console error with the following from stackoverflow
+    const [didMount, setDidMount] = useState(false);
+    useEffect(() => {
+      setDidMount(true);
+      return () => setDidMount(false);
+    }, []);
+    if (!didMount) return null;
+    // End stackoverflow
 
   return (
     <div className={styles.outerContainer}>

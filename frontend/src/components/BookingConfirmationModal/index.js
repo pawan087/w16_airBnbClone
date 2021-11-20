@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -69,13 +69,25 @@ function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
       });
     }
 
-    return bool;
+    // return bool;
   }
   const redirectMe = (e) => {
     e.preventDefault();
 
     history.push("/login");
+
+    return bool;
   };
+
+    // Remove console error with the following from stackoverflow
+    const [didMount, setDidMount] = useState(false);
+    useEffect(() => {
+      setDidMount(true);
+      return () => setDidMount(false);
+    }, []);
+    if (!didMount) return null;
+    // End stackoverflow
+
 
   return (
     <>

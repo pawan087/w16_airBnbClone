@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DateRangePicker } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
+import ReactLoading from "react-loading";
 
 import { getUserBookings } from "../../store/bookings";
 import { getImages } from "../../store/images";
@@ -30,6 +31,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     initialEndDate = new Date(initialEndDate.valueOf() + 1000 * 3600 * 8);
   }
 
+  const [load, setLoad] = useState(false);
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
 
@@ -116,16 +118,22 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoad(true);
+
     if (
       startDate.getTime() === initialStartDate.getTime() &&
       endDate.getTime() === initialEndDate.getTime()
     ) {
       setShowModal(false);
+      setLoad(false);
+
       return;
     }
 
     if (startDate.getTime() === endDate.getTime()) {
       setShowModal(false);
+      setLoad(false);
+
       return;
     }
 
@@ -140,11 +148,27 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     await dispatch(getUserBookings(session.user.id));
 
     setShowModal(false);
+    setLoad(false);
+
+    return;
   };
 
   useEffect(() => {
     dispatch(getBookings());
   }, [dispatch]);
+
+  let today = new Date();
+  let tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+
+  // Remove console error with the following from stackoverflow
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => {
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
+  if (!didMount) return null;
+  // End stackoverflow
 
   return (
     <div className={styles.outerContainer}>
@@ -169,6 +193,17 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
           )}
         </div>
 
+        {load && (
+          <div className={styles.loaderCotnainer}>
+            <ReactLoading
+              type={"cylon"}
+              color={"#009cd5"}
+              height={"0px"}
+              width={"57.5px"}
+            />
+          </div>
+        )}
+
         <div className={styles.middleContainer}>
           <div className={styles.middleHeader}>{username}'s Itinerary</div>
 
@@ -183,7 +218,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
               className={styles.dateRangePicker}
               onChange={handleSelect}
               rangeColors={["#009cd5"]}
-              minDate={new Date()}
+              minDate={tomorrow}
               ranges={[selectionRange]}
             />
           </div>

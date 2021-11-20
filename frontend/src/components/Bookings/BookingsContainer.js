@@ -100,8 +100,6 @@ export default function BookingsContainer() {
     });
   };
 
-  console.log(bookings);
-
   let giveMeName = (id) => {
     if (spots[id]) {
       return spots[id].name;
@@ -151,8 +149,8 @@ export default function BookingsContainer() {
 
         {futureBookings?.length !== 0 && <div className={styles.divisor2} />}
 
-        {futureBookings?.map((booking) => (
-          <div className={styles2.resultsContainer}>
+        {futureBookings?.map((booking, i) => (
+          <div key={i} className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
                 onClick={() => linkMe(booking)}
@@ -161,7 +159,6 @@ export default function BookingsContainer() {
                 <img
                   className={styles.img}
                   layout="fill"
-                  objectFit="cover"
                   alt="bookingImg"
                   src={booking.imgUrl}
                 />
@@ -225,8 +222,8 @@ export default function BookingsContainer() {
 
         {pastBookings?.length > 0 && <div className={styles.divisor2} />}
 
-        {pastBookings?.map((booking) => (
-          <div className={styles2.resultsContainer}>
+        {pastBookings?.map((booking, i) => (
+          <div key={i} className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
                 onClick={() => linkMe(booking)}
@@ -236,7 +233,6 @@ export default function BookingsContainer() {
                   className={styles.img}
                   layout="fill"
                   alt="bookingImg2"
-                  objectFit="cover"
                   src={booking.imgUrl}
                 />
               </div>

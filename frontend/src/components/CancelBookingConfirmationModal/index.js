@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MySecondModal } from "../../context/CancelBookingConfirmation";
 import ConfirmationForm from "./ConfirmationForm";
 
@@ -13,6 +13,15 @@ function CancelBookingConfirmationModal({
   username,
 }) {
   const [showModal, setShowModal] = useState(false);
+
+  // Remove console error with the following from stackoverflow
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => {
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
+  if (!didMount) return null;
+  // End stackoverflow
 
   return (
     <>
