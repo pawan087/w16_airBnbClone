@@ -77,19 +77,19 @@ function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
 
   return (
     <>
-      {startDate < endDate &&
-        startDate &&
-        endDate &&
-        bool === true &&
-        !bool3 && (
-          <button className={styles.btn} onClick={() => setShowModal(true)}>
-            Reserve
-          </button>
-        )}{" "}
-      {((!startDate || !endDate) || (startDate > endDate)) && (
-        <button className={styles.btn4}>Reserve</button>
-      )}
-      {bool3 && <button className={styles.btn4}>Reserve</button>}{" "}
+      {startDate < endDate && startDate && endDate && !bool3 && (
+        <button className={styles.btn} onClick={() => setShowModal(true)}>
+          Reserve
+        </button>
+      )}{" "}
+      {bool3 && <button className={styles.btn4}>Reserve</button>}
+      {!bool3 &&
+        (!startDate ||
+          !endDate ||
+          startDate > endDate ||
+          startDate === endDate) && (
+          <button className={styles.btn4}>Reserve</button>
+        )}
       {bool2 === false && (
         <button onClick={(e) => redirectMe(e)} className={styles.btn3}>
           Please Log-in

@@ -14,16 +14,9 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
 
   const bookings = useSelector((state) => state.booking);
 
-  let initialStartDate = new Date(
-    // new Date(booking?.startDate).valueOf() + 1000 * 3600 * 24
+  let initialStartDate = new Date(new Date(booking?.startDate).valueOf());
 
-    new Date(booking?.startDate).valueOf()
-  );
-
-  let initialEndDate = new Date(
-    // new Date(booking?.endDate).valueOf() + 1000 * 3600 * 24
-    new Date(booking?.endDate).valueOf()
-  );
+  let initialEndDate = new Date(new Date(booking?.endDate).valueOf());
 
   if (String(initialStartDate)[16] === "1") {
     initialStartDate = new Date(initialStartDate.valueOf() + 1000 * 3600 * 8);
@@ -54,35 +47,51 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     let x = new Date(booking.startDate);
     let y = new Date(booking.endDate);
 
-    if (x === ed) {
-      bool = true;
+    if (x.getTime() === ed.getTime()) {
+      // bool = true;
+      // console.log("yee1");
       return;
     }
-    if (sd === y) {
+
+    if (sd.getTime() === y.getTime()) {
       bool = true;
+      // console.log("yee2");
       return;
     }
-    if (sd < ed) {
-      if (x < sd && ed < y) {
+
+    if (sd.getTime() < ed.getTime()) {
+      if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
         bool = true;
+        // console.log("yee3");
         return;
       }
-      if (sd < x && x < ed && ed < y) {
+      if (
+        sd.getTime() <= x.getTime() &&
+        x.getTime() <= ed.getTime() &&
+        ed.getTime() <= y.getTime()
+      ) {
         bool = true;
+        // console.log("yee4");
         return;
       }
-      if (sd < x && y < ed) {
+      if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
         bool = true;
+        // console.log("yee5");
         return;
       }
-      if (x < sd && y < ed && sd < y) {
+      if (
+        x.getTime() <= sd.getTime() &&
+        y.getTime() <= ed.getTime() &&
+        sd.getTime() <= y.getTime()
+      ) {
         bool = true;
+        // console.log("yee6");
         return;
       }
       return;
     }
 
-    bool = false;
+    // bool = false;
   });
 
   const selectionRange = {

@@ -89,47 +89,55 @@ export default function SpotsContainer() {
     specificBookings.forEach((booking) => {
       let y = booking.endDate.slice(0, 10);
       let x = booking.startDate.slice(0, 10);
+      let startDate = sd;
+      let endDate = ed;
 
-      if (x === ed) {
+      if (x === startDate) {
+        console.log('yee1')
         bool = true;
         return;
       }
 
-      if (sd === y) {
+      if (endDate === y) {
+        console.log('yee1')
         bool = true;
         return;
       }
 
-      if (sd < ed) {
-        if (booking.startDate < sd && ed < booking.endDate) {
+      if (sd <= ed) {
+        if (booking.startDate <= sd && ed <= booking.endDate) {
+          console.log('yee2')
           bool = true;
           return;
         }
 
         if (
-          sd < booking.startDate &&
-          booking.startDate < ed &&
-          ed < booking.endDate
+          sd <= booking.startDate &&
+          booking.startDate <= ed &&
+          ed <= booking.endDate
         ) {
+          console.log('yee3')
           bool = true;
           return;
         }
 
-        if (sd < booking.startDate && booking.endDate < ed) {
+        if (sd <= booking.startDate && booking.endDate <= ed) {
+          console.log('yee4')
           bool = true;
           return;
         }
 
         if (
-          booking.startDate < sd &&
-          booking.endDate < ed &&
+          booking.startDate <= sd &&
+          booking.endDate <= ed &&
           sd < booking.endDate
         ) {
-          bool = true;
+          console.log('yee5')
+          // bool = true;
           return;
         }
 
-        bool = false;
+        // bool = false;
       }
     });
   }

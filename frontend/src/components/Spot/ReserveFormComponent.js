@@ -44,9 +44,10 @@ export default function ReserveFormComponent({ spot, bool2 }) {
   let price;
   let total;
 
-  if (spot[0]) {
-    price = spot[0].price;
-    if (typeof dayCount == "number") total = price * dayCount;
+  price = spot[0]?.price;
+
+  if (typeof dayCount == "number") {
+    total = price * dayCount;
   }
 
   tomorrow.setDate(today.getDate() + 1);
@@ -175,76 +176,74 @@ export default function ReserveFormComponent({ spot, bool2 }) {
         />
       </div>
 
-      {!bool2 && <div className={styles.detailsContainer}>
-        <div className={styles.detailContainer}>
-          {!!dayCount && bool === true && (
-            <div className={styles.detail}>
-              ${price} x {dayCount} nights
-            </div>
-          )}
+      {true && (
+        <div className={styles.detailsContainer}>
+          <div className={styles.detailContainer}>
+            {!!dayCount && (
+              <div className={styles.detail}>
+                ${price} x {dayCount} nights
+              </div>
+            )}
 
-          {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>${total}</div>
+            {!!dayCount && (<div className={styles.detailTotal}>${total}</div>)}
+          </div>
+
+          <div className={styles.detailContainer}>
+            {!!dayCount && (<div className={styles.detail}>Special discount</div>)}
+
+            {
+              !!dayCount && (
+                <div className={styles.detailTotal}>
+                  -${(total * 0.02).toFixed(2)}
+                </div>
+              )
+            }
+          </div>
+
+          <div className={styles.detailContainer}>
+            {!!dayCount && <div className={styles.detail}>Cleaning fee</div>}
+
+            {!!dayCount && (
+              <div className={styles.detailTotal}>
+                ${(total * 0.15).toFixed(2)}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.detailContainer}>
+            {!!dayCount && <div className={styles.detail}>Service fee</div>}
+
+            {!!dayCount && (
+              <div className={styles.detailTotal}>
+                ${(total * 0.12).toFixed(2)}
+              </div>
+            )}
+          </div>
+
+          {!bool2 && (
+            <div className={styles.detailContainer}>
+              {!!dayCount && (
+                <div className={styles.detail}>Occupancy taxes and fees</div>
+              )}
+
+              {!!dayCount && (
+                <div className={styles.detailTotal}>
+                  ${(total * 0.06).toFixed()}
+                </div>
+              )}
+            </div>
           )}
         </div>
-
-        <div className={styles.detailContainer}>
-          {!!dayCount && bool === true && (
-            <div className={styles.detail}>Special discount</div>
-          )}
-
-          {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>
-              -${(total * 0.02).toFixed(2)}
-            </div>
-          )}
-        </div>
-
-        <div className={styles.detailContainer}>
-          {!!dayCount && bool === true && (
-            <div className={styles.detail}>Cleaning fee</div>
-          )}
-
-          {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>
-              ${(total * 0.15).toFixed(2)}
-            </div>
-          )}
-        </div>
-
-        <div className={styles.detailContainer}>
-          {!!dayCount && bool === true && (
-            <div className={styles.detail}>Service fee</div>
-          )}
-
-          {!!dayCount && bool === true && (
-            <div className={styles.detailTotal}>
-              ${(total * 0.12).toFixed(2)}
-            </div>
-          )}
-        </div>
-
-        {!bool2 && <div className={styles.detailContainer}>
-          {!!dayCount && bool === true && (
-            <div className={styles.detail}>Occupancy taxes and fees</div>
-          )}
-
-          {!!dayCount && bool && (
-            <div className={styles.detailTotal}>
-              ${(total * 0.06).toFixed()}
-            </div>
-          )}
-        </div>}
-      </div>}
+      )}
 
       <div className={styles.divisorContainer}>
-        {!!dayCount && bool && <p className={styles.divisor}></p>}
+        {!!dayCount && <p className={styles.divisor}></p>}
         <div className={styles.footer}>
-          {!!dayCount && bool && (
+          {!!dayCount && (
             <div className={styles.footerDetail}>Total</div>
           )}
 
-          {!!dayCount && bool && (
+          {!!dayCount && (
             <div className={styles.footerDetail}>
               $
               {(
