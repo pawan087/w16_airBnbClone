@@ -129,17 +129,17 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
       return;
     }
 
-    // await dispatch(
-    //   editBooking({ bookingId, userId, spotId, startDate, endDate })
-    // );
+    await dispatch(
+      editBooking({ bookingId, userId, spotId, startDate, endDate })
+    );
 
-    // await dispatch(getSpots());
+    await dispatch(getSpots());
 
-    // await dispatch(getImages());
+    await dispatch(getImages());
 
-    // await dispatch(getUserBookings(session.user.id));
+    await dispatch(getUserBookings(session.user.id));
 
-    // setShowModal(false);
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -197,7 +197,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
             Cancel
           </button>
 
-          {(!bool && startDate !== endDate) && (
+          {!bool && startDate !== endDate && (
             <button
               onClick={(e) => handleSubmit(e)}
               className={styles.btnSubmit}

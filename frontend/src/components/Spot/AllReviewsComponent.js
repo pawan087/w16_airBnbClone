@@ -20,8 +20,8 @@ export default function AllReviewsComponent({ reviewsArr }) {
       {reviewsArr
         ?.slice(0)
         .reverse()
-        .map((review) => (
-          <div className={styles.reviewContainer}>
+        .map((review, i) => (
+          <div key={i} className={styles.reviewContainer}>
             <div className={styles.leftContainer}>
               <div className={styles.userIcon}>
                 <svg

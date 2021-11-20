@@ -110,6 +110,8 @@ export default function ReserveFormComponent({ spot, bool2 }) {
     setEndDate(endDate);
 
     dispatch(getSearch2({ startDate: sd, endDate: endDate }));
+
+    return bool;
   };
 
   const setEDate = (ed) => {

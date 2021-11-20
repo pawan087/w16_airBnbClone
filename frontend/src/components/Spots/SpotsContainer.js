@@ -1,30 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { getSpots } from "../../store/spots";
 import DetailCardComponent from "./DetailCardComponent";
 
 import styles from "./SpotsContainer.module.css";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default function SpotsContainer() {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const spots = useSelector((state) => state.spot);
   const spotsArr = Object.values(spots);
-
-  const linkMe = (e, id) => {
-    e.preventDefault();
-
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-
-    history.push(`/spots/${id}`);
-  };
 
   useEffect(() => {
     dispatch(getSpots());
@@ -32,8 +19,8 @@ export default function SpotsContainer() {
 
   return (
     <div className={styles.outerContainer}>
-      {spotsArr?.map((spot) => (
-        <DetailCardComponent spot={spot} />
+      {spotsArr?.map((spot, i) => (
+        <DetailCardComponent key={i} spot={spot} />
       ))}
     </div>
   );

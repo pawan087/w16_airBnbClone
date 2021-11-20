@@ -68,6 +68,8 @@ function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
         }
       });
     }
+
+    return bool;
   }
   const redirectMe = (e) => {
     e.preventDefault();

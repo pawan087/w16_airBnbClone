@@ -44,7 +44,7 @@ export default function BookingsContainer() {
 
   const [load, setLoad] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
     (async () => {
       await dispatch(getSpots());
 

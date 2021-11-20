@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 
 import * as sessionActions from "../../store/session";
 
 import styles from "./LogInComponent.module.css";
 
 function LogInComponent() {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [credential, setCredential] = useState("");
@@ -66,7 +64,7 @@ function LogInComponent() {
         </ul>
       </div>
 
-      <label className={styles.signupLabel}>   
+      <label className={styles.signupLabel}>
         Username or Email
         <input
           className={styles.signupInput}
