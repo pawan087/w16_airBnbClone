@@ -34,10 +34,7 @@ export default function SpotsContainer() {
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
   let startDate = searchedStartDate;
-  // const [startDate, setStartDate] = useState(searchedStartDate);
-
   let endDate = searchedEndDate;
-  // const [endDate, setEndDate] = useState(searchedEndDate);
 
   const spotsArr = Object.values(spots);
   const reviewsArr = Object.values(reviews);
@@ -51,17 +48,13 @@ export default function SpotsContainer() {
   let ed = search2.endDate;
 
   const spot = spotsArr.filter((spot) => spot["id"] === +spotId);
-
   const specificImages = imagesArr.filter((image) => image.spotId === +spotId);
-
   const specificReviews = reviewsArr.filter(
     (review) => review["spotId"] === +spotId
   );
 
-  if (spot[0]) {
-    lng = +spot[0].lng;
-    lat = +spot[0].lat;
-  }
+  lng = +spot[0]?.lng;
+  lat = +spot[0]?.lat;
 
   if (spot[0]) {
     showSpot = true;
@@ -76,7 +69,6 @@ export default function SpotsContainer() {
   let bool = false;
 
   const bookings = useSelector((state) => state.booking);
-
   const bookingsArr = Object.values(bookings);
 
   const specificBookings = bookingsArr.filter((b) => {
@@ -89,24 +81,33 @@ export default function SpotsContainer() {
     specificBookings.forEach((booking) => {
       let y = booking.endDate.slice(0, 10);
       let x = booking.startDate.slice(0, 10);
-      let startDate = sd;
-      let endDate = ed;
+      if (searchedStartDate) {
+        let startDate = searchedStartDate;
+      } else {
+        let startDate = sd;
+      }
+
+      if (searchedEndDate) {
+        let endDate = searchedEndDate;
+      } else {
+        let endDate = ed;
+      }
 
       if (x === startDate) {
-        console.log('yee1')
+        // console.log("yee1");
         bool = true;
         return;
       }
 
       if (endDate === y) {
-        console.log('yee1')
+        // console.log("yee1");
         bool = true;
         return;
       }
 
       if (sd <= ed) {
         if (booking.startDate <= sd && ed <= booking.endDate) {
-          console.log('yee2')
+          // console.log("yee2");
           bool = true;
           return;
         }
@@ -116,13 +117,13 @@ export default function SpotsContainer() {
           booking.startDate <= ed &&
           ed <= booking.endDate
         ) {
-          console.log('yee3')
+          // console.log("yee3");
           bool = true;
           return;
         }
 
         if (sd <= booking.startDate && booking.endDate <= ed) {
-          console.log('yee4')
+          // console.log("yee4");
           bool = true;
           return;
         }
@@ -132,7 +133,7 @@ export default function SpotsContainer() {
           booking.endDate <= ed &&
           sd < booking.endDate
         ) {
-          console.log('yee5')
+          // console.log("yee5");
           // bool = true;
           return;
         }

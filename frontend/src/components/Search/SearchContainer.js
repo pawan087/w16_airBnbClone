@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import getCenter from "geolib/es/getCenter";
+import ReactLoading from "react-loading";
 
+import { getUserBookings } from "../../store/bookings";
+import { getImages } from "../../store/images";
+import { getSpots } from "../../store/spots";
 import MapComponent from "../Map/MapComponent";
 import SorryComponent from "../Sorry/SorryComponent";
 
@@ -12,6 +16,7 @@ export default function SearchContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const session = useSelector((state) => state.session);
   const searchCriteria = useSelector((state) => state.search);
   const searchResults = useSelector((state) => state.searchResults);
 
@@ -44,7 +49,32 @@ export default function SearchContainer() {
     center = getCenter(coordinates);
   }
 
-  useEffect(() => {}, [dispatch, searchCriteria]);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(getSpots());
+
+      await dispatch(getImages());
+
+      await dispatch(getUserBookings(session.user.id));
+
+      setLoad(true);
+    })();
+  }, [dispatch, searchCriteria, session.user.id]);
+
+  if (!load) {
+    return (
+      <div className={styles.loaderCotnainer}>
+        <ReactLoading
+          type={"cylon"}
+          color={"#009cd5"}
+          height={"0px"}
+          width={"57.5px"}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.componentContainer}>
@@ -71,8 +101,9 @@ export default function SearchContainer() {
 
             <div className={styles.divisor2} />
 
-            {searchResultsArr.map((spot) => (
+            {searchResultsArr.map((spot, i) => (
               <div
+                key={i}
                 onClick={() => linkMe(spot)}
                 className={styles.resultsContainer}
               >
@@ -81,7 +112,6 @@ export default function SearchContainer() {
                     <img
                       className={styles.img}
                       layout="fill"
-                      objectFit="cover"
                       alt="spotImg"
                       src={spot.Images[0].url}
                     />

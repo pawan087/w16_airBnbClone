@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 import { getUserBookings } from "../../store/bookings";
 import { getImages } from "../../store/images";
@@ -9,7 +10,6 @@ import { getSpots } from "../../store/spots";
 import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/index";
 import EditBookingModal from "../EditBookingModal/index";
 import SorryComponent from "../Sorry/SorryComponent";
-import ReactLoading from "react-loading";
 
 import styles from "../Search/SearchContainer.module.css";
 import styles2 from "./BookingContainer.module.css";

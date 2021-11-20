@@ -17,6 +17,14 @@
   width: 1.75em;
 }
 
+.loaderCotnainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 .detailContainer {
   display: flex;
   position: relative;
