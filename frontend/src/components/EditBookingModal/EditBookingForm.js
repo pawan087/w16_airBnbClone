@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { DateRangePicker } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
 
+import { getUserBookings } from "../../store/bookings";
+import { getImages } from "../../store/images";
+import { getSpots } from "../../store/spots";
 import { getBookings } from "../../store/bookings";
 import { editBooking } from "../../store/bookings";
 
@@ -13,6 +16,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
   const dispatch = useDispatch();
 
   const bookings = useSelector((state) => state.booking);
+  const session = useSelector((state) => state.session);
 
   let initialStartDate = new Date(new Date(booking?.startDate).valueOf());
 
@@ -54,7 +58,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     }
 
     if (sd.getTime() === y.getTime()) {
-      bool = true;
+      // bool = true;
       // console.log("yee2");
       return;
     }
@@ -109,16 +113,38 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     setShowWarning(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(editBooking({ bookingId, userId, spotId, startDate, endDate }));
+    if (
+      startDate.getTime() === initialStartDate.getTime() &&
+      endDate.getTime() === initialEndDate.getTime()
+    ) {
+      setShowModal(false);
+      return;
+    }
 
-    window.location.reload();
+    if (startDate.getTime() === endDate.getTime()) {
+      setShowModal(false);
+      return;
+    }
+
+    // await dispatch(
+    //   editBooking({ bookingId, userId, spotId, startDate, endDate })
+    // );
+
+    // await dispatch(getSpots());
+
+    // await dispatch(getImages());
+
+    // await dispatch(getUserBookings(session.user.id));
+
+    // setShowModal(false);
   };
+
   useEffect(() => {
     dispatch(getBookings());
-  }, [bool, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className={styles.outerContainer}>
@@ -171,7 +197,7 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
             Cancel
           </button>
 
-          {bool === false && (
+          {(!bool && startDate !== endDate) && (
             <button
               onClick={(e) => handleSubmit(e)}
               className={styles.btnSubmit}
@@ -180,7 +206,9 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
             </button>
           )}
 
-          {bool && <button className={styles.btnSubmit2}>Submit</button>}
+          {(bool || startDate === endDate) && (
+            <button className={styles.btnSubmit2}>Submit</button>
+          )}
         </div>
       </div>
     </div>

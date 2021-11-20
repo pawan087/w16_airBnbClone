@@ -185,19 +185,19 @@ export default function ReserveFormComponent({ spot, bool2 }) {
               </div>
             )}
 
-            {!!dayCount && (<div className={styles.detailTotal}>${total}</div>)}
+            {!!dayCount && <div className={styles.detailTotal}>${total}</div>}
           </div>
 
           <div className={styles.detailContainer}>
-            {!!dayCount && (<div className={styles.detail}>Special discount</div>)}
+            {!!dayCount && (
+              <div className={styles.detail}>Special discount</div>
+            )}
 
-            {
-              !!dayCount && (
-                <div className={styles.detailTotal}>
-                  -${(total * 0.02).toFixed(2)}
-                </div>
-              )
-            }
+            {!!dayCount && (
+              <div className={styles.detailTotal}>
+                -${(total * 0.02).toFixed(2)}
+              </div>
+            )}
           </div>
 
           <div className={styles.detailContainer}>
@@ -239,9 +239,7 @@ export default function ReserveFormComponent({ spot, bool2 }) {
       <div className={styles.divisorContainer}>
         {!!dayCount && <p className={styles.divisor}></p>}
         <div className={styles.footer}>
-          {!!dayCount && (
-            <div className={styles.footerDetail}>Total</div>
-          )}
+          {!!dayCount && <div className={styles.footerDetail}>Total</div>}
 
           {!!dayCount && (
             <div className={styles.footerDetail}>
