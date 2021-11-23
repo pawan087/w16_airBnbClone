@@ -15,8 +15,8 @@ export default function MapComponent({ id, lat, lng }) {
   const [selectedLocation, setSelectedLocation] = useState({});
 
   const [viewPort, setViewPort] = useState({
-    width: "100",
-    height: "100",
+    width: "100%",
+    height: "100%",
     latitude: lat,
     longitude: lng,
     zoom: spotId ? 11 : 6,
