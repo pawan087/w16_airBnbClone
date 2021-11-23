@@ -7,6 +7,10 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
 import styles from "../Map/MapComponent.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import mapboxgl from 'mapbox-gl';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 export default function MapComponent({ id, lat, lng }) {
   const history = useHistory();
