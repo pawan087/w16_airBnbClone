@@ -112,6 +112,7 @@
 .subHeader {
   font-size: 1.25em;
   margin-left: 3.75em;
+  /* border: 1px solid black; */
   margin-top: 2.5em;
   color: #009cd5;
 }
@@ -122,8 +123,8 @@
   font-size: 1.75em;
 }
 
-.map {
-  margin-top: 0em;
+.mapContainer {
+  margin-top: 3em;
   display: inline-flex;
   display: flex;
   justify-content: center;
@@ -134,14 +135,14 @@
   height: 40em;
 }
 
-.map:hover {
+/* .map:hover {
   transition-duration: 200ms;
   opacity: .975;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
+} */
 
 .outerContainer {
   height: 55em;

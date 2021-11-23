@@ -23,8 +23,6 @@ export default function SearchContainer() {
   const bookings = Object.values(usersBookings);
   const searchResultsArr = Object.values(searchResults);
 
-  const availableBookings = [];
-
   const unavailableBookings = [];
 
   bookings?.forEach((booking) => {
@@ -36,21 +34,22 @@ export default function SearchContainer() {
 
     if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
       // console.log("yee3");
-      unavailableBookings.push(booking.id);
+      unavailableBookings.push(booking.spotId);
       return;
     }
+
     if (
       sd.getTime() <= x.getTime() &&
       x.getTime() <= ed.getTime() &&
       ed.getTime() <= y.getTime()
     ) {
       // console.log("yee4");
-      unavailableBookings.push(booking.id);
+      unavailableBookings.push(booking.spotId);
       return;
     }
     if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
       // console.log("yee5");
-      unavailableBookings.push(booking.id);
+      unavailableBookings.push(booking.spotId);
       return;
     }
     if (
@@ -59,11 +58,10 @@ export default function SearchContainer() {
       sd.getTime() <= y.getTime()
     ) {
       // console.log("yee6");
-      unavailableBookings.push(booking.id);
+      unavailableBookings.push(booking.spotId);
+
       return;
     }
-
-    availableBookings.push(booking.id);
 
     return;
   });
@@ -88,14 +86,12 @@ export default function SearchContainer() {
     history.push(`/spots/${id}`);
   };
 
-  if (filteredSearchResults[0]) {
-    const coordinates = filteredSearchResults.map((x) => ({
-      longitude: +x.lng,
-      latitude: +x.lat,
-    }));
+  const coordinates = filteredSearchResults?.map((x) => ({
+    longitude: +x.lng,
+    latitude: +x.lat,
+  }));
 
-    center = getCenter(coordinates);
-  }
+  center = getCenter(coordinates);
 
   const [load, setLoad] = useState(false);
 
@@ -144,7 +140,9 @@ export default function SearchContainer() {
             )}
 
             {filteredSearchResults.length > 0 && (
-              <h1 className={styles.resultsHeader}>Stays in {location}</h1>
+              <h1 className={styles.resultsHeader}>
+                Stays in "{location.toUpperCase()}"
+              </h1>
             )}
 
             <div className={styles.divisor2} />
@@ -193,7 +191,7 @@ export default function SearchContainer() {
             ))}
           </section>
 
-          <section className={styles.map}>
+          <section className={styles.mapContainer}>
             {filteredSearchResults.length > 0 && (
               <MapComponent lat={center.latitude} lng={center.longitude} />
             )}

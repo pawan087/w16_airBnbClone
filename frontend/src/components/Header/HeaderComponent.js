@@ -20,15 +20,15 @@ export default function HeaderComponent() {
 
   let today = new Date();
   let tomorrow = new Date();
+  let initialStartDate = today;
 
-  tomorrow.setDate(today.getDate() + 2);
+  tomorrow.setDate(today.getDate() + 1);
   today = today.toISOString().split("T")[0];
 
-  let minDate = tomorrow;
   let initial = "";
 
-  const [startDate, setStartDate] = useState(minDate);
-  const [endDate, setEndDate] = useState(minDate);
+  const [startDate, setStartDate] = useState(initialStartDate);
+  const [endDate, setEndDate] = useState(tomorrow);
   const [showMenu, setShowMenu] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -73,6 +73,10 @@ export default function HeaderComponent() {
   };
 
   const handleSubmit = (e) => {
+    if (!searchInput) {
+      return;
+    }
+
     e.preventDefault();
 
     dispatch(
@@ -248,7 +252,7 @@ export default function HeaderComponent() {
             className={styles.dateRangePicker}
             onChange={handleSelect}
             rangeColors={["#009cd5"]}
-            minDate={minDate}
+            minDate={initialStartDate}
             ranges={[selectionRange]}
           />
 

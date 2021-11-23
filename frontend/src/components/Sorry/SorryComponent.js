@@ -27,9 +27,9 @@ export default function SorryComponent({ noBookings }) {
   }
 
   if (location && searchedStartDate && searchedStartDate) {
-    message = `Sorry, we couldn't find anything in ${
-      searchCriteria.searchInput
-    } between ${searchedStartDate.slice(5)} and ${searchedEndDate.slice(5)}`;
+    message = `Sorry, we couldn't find anything in "${searchCriteria.searchInput.toUpperCase()}" between ${searchedStartDate.slice(
+      5
+    )} and ${searchedEndDate.slice(5)}`;
   }
 
   if (noBookings) {
@@ -38,7 +38,7 @@ export default function SorryComponent({ noBookings }) {
 
   const linkMe = (e) => {
     e.preventDefault();
-    
+
     history.push(`/spots`);
   };
 
