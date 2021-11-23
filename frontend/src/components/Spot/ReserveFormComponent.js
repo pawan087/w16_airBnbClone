@@ -1,7 +1,6 @@
 import styles from "../../components/Spot/ReserveFormContainer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 
 import BookingConfirmationModal from "../BookingConfirmationModal/index";
 import { getBookings } from "../../store/bookings";
@@ -9,11 +8,9 @@ import { getSearch2 } from "../../store/search.js";
 
 export default function ReserveFormComponent({ spot, bool2 }) {
   const dispatch = useDispatch();
-  const { spotId } = useParams();
-
   const searchCriteria = useSelector((state) => state.search);
   // const user = useSelector((state) => state.session.user);
-  const bookings = useSelector((state) => state.booking);
+  // const bookings = useSelector((state) => state.booking);
 
   let searchedStartDate = searchCriteria?.startDate;
   let searchedEndDate = searchCriteria?.endDate;
@@ -35,7 +32,7 @@ export default function ReserveFormComponent({ spot, bool2 }) {
   let bool = false;
   let dayCount = false;
 
-  const bookingsArr = Object.values(bookings);
+  // const bookingsArr = Object.values(bookings);
 
   if (y > x) {
     dayCount = (y - x) / 60 / 60 / 1000 / 24;

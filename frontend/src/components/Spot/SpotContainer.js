@@ -13,7 +13,7 @@ import Sorry from "../BookingConfirmationModal/Sorry";
 import AllReviewsComponent from "./AllReviewsComponent";
 
 import styles from "../../components/Spot/SpotContainer.module.css";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function SpotsContainer() {
   const { spotId } = useParams();
@@ -82,16 +82,20 @@ export default function SpotsContainer() {
     specificBookings.forEach((booking) => {
       let y = booking.endDate.slice(0, 10);
       let x = booking.startDate.slice(0, 10);
+      let startDate;
+
       if (searchedStartDate) {
-        let startDate = searchedStartDate;
+        startDate = searchedStartDate;
       } else {
-        let startDate = sd;
+        startDate = sd;
       }
 
+      let endDate = searchedEndDate;
+
       if (searchedEndDate) {
-        let endDate = searchedEndDate;
+        endDate = searchedEndDate;
       } else {
-        let endDate = ed;
+        endDate = ed;
       }
 
       if (x === startDate) {
