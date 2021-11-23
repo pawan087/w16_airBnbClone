@@ -3,21 +3,17 @@ import { useDispatch } from "react-redux";
 import { Route, Switch, useLocation } from "react-router-dom";
 
 import SignupFormPage from "./components/SignupFormPage";
-import TestSpots from "./components/TestSpots/SpotsContainer";
-import TestSpot from "./components/TestSpot/SpotContainer";
-import Navigation from "./components/Navigation";
-import TestBookings from "./components/TestBookings/BookingsContainer";
-import TestNewBooking from "./components/NewBooking/BookingFormContainer";
-import TestSearch from "./components/TestSearch/SearchContainer";
+import Spots from "./components/Spots/SpotsContainer";
+import Spot from "./components/Spot/SpotContainer";
+import Bookings from "./components/Bookings/BookingsContainer";
+import Search from "./components/Search/SearchContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import BannerComponent from "./components/Banner/BannerComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
-import ReserveFormComponent from "./components/TestSpot/ReserveFormComponent";
 import SorryComponent from "./components/Sorry/SorryComponent";
 import LogInComponent from "./components/LogInComponent/LogInComponent";
 
 import * as sessionActions from "./store/session";
-// import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,19 +39,19 @@ function App() {
           </Route>
 
           <Route exact path="/spots">
-            <TestSpots />
+            <Spots />
           </Route>
 
           <Route path="/spots/:spotId">
-            <TestSpot />
+            <Spot />
           </Route>
 
           <Route exact path="/bookings">
-            <TestBookings />
+            <Bookings />
           </Route>
 
           <Route path="/search">
-            <TestSearch />
+            <Search />
           </Route>
 
           <Route path="/login">

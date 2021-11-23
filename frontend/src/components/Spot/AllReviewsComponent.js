@@ -2,18 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { delReview } from "../../store/reviews";
 
-import styles from "../../components/TestSpot/AllReviewsComponent.module.css";
+import styles from "../../components/Spot/AllReviewsComponent.module.css";
 
 export default function AllReviewsComponent({ reviewsArr }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
 
-  let username;
-
-  if (user) {
-    username = user.username;
-  }
+  let username = user?.username;
 
   const deleteReview = (r) => {
     dispatch(delReview(r));
@@ -22,10 +18,10 @@ export default function AllReviewsComponent({ reviewsArr }) {
   return (
     <div className={styles.outerContainer}>
       {reviewsArr
-        .slice(0)
+        ?.slice(0)
         .reverse()
-        .map((review) => (
-          <div className={styles.reviewContainer}>
+        .map((review, i) => (
+          <div key={i} className={styles.reviewContainer}>
             <div className={styles.leftContainer}>
               <div className={styles.userIcon}>
                 <svg

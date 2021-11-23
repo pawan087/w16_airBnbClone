@@ -8,6 +8,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const images = await Image.findAll();
+    
     res.json(images);
   })
 );

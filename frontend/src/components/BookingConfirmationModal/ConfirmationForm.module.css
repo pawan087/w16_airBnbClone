@@ -15,13 +15,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-items: center;
   transition-duration: 150ms;
-  justify-self: center;
-  align-content: center;
   align-items: center;
   animation: fadein 0.33s;
-  align-self: center;
   --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
@@ -40,11 +36,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  justify-items: center;
-  justify-self: center;
-  align-content: center;
   align-items: center;
-  align-self: center;
 }
 
 .logo {
@@ -58,15 +50,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-items: center;
-  justify-self: center;
   border-radius: 1.5em;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   align-content: center;
   align-items: center;
   padding-top: 1em;
-  align-self: center;
   width: 90%;
   --tw-bg-opacity: 1;
   background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
@@ -77,9 +66,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-items: center;
-  justify-self: center;
-  align-content: center;
   align-items: center;
   font-size: 1.125em;
 }
@@ -139,9 +125,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  justify-items: center;
-  justify-self: center;
-  align-content: center;
   align-items: center;
   margin-bottom: 1.5em;
 }
@@ -162,7 +145,7 @@
   outline: none;
   border: none;
   color: white;
-  opacity: 80%;
+  opacity: .8;
   transition-duration: 150ms;
   border-radius: 0.5em;
   cursor: pointer;
@@ -173,12 +156,12 @@
 
 .btnSubmit:hover,
 .btnCancel:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .btnSubmit:active,
 .btnCancel:active {
-  opacity: 100%;
+  opacity: 1;
   transform: scale(0.925);
 }
 
@@ -189,4 +172,12 @@
 .btnCancel {
   --tw-bg-opacity: 1;
   background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
+}
+
+
+.loaderCotnainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

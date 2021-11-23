@@ -22,7 +22,7 @@ const deleteReview = (id) => ({
 export const delReview = (r) => async (dispatch) => {
   const { id } = r;
 
-  const response = await csrfFetch("/api/reviews", {
+  await csrfFetch("/api/reviews", {
     method: "DELETE",
     body: JSON.stringify({
       id,
@@ -55,7 +55,7 @@ export const getReviews = () => async (dispatch) => {
   const res = await fetch("/api/reviews");
 
   const reviews = await res.json();
-  
+
   dispatch(setReviews(reviews));
 };
 

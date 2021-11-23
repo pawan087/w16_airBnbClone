@@ -1,11 +1,10 @@
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import styles from "../../components/Sorry/SorryComponent.module.css";
 
 export default function SorryComponent({ noBookings }) {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const user = useSelector((state) => state.session.user);
@@ -15,21 +14,22 @@ export default function SorryComponent({ noBookings }) {
   let searchedStartDate = searchCriteria.startDate;
   let searchedEndDate = searchCriteria.endDate;
 
-  if (searchCriteria.startDate)
+  if (searchCriteria?.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
-  if (searchCriteria.endDate)
+
+  if (searchCriteria?.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [location, setLocation] = useState(searchCriteria.searchInput);
+  let location = searchCriteria.searchInput;
 
   if (!location) {
     message = "Sorry we couldn't find what you were looking for.";
   }
 
   if (location && searchedStartDate && searchedStartDate) {
-    message = `Sorry, we couldn't find anything in ${
-      searchCriteria.searchInput
-    } between ${searchedStartDate.slice(5)} and ${searchedEndDate.slice(5)}`;
+    message = `Sorry, we couldn't find anything in "${searchCriteria.searchInput.toUpperCase()}" between ${searchedStartDate.slice(
+      5
+    )} and ${searchedEndDate.slice(5)}`;
   }
 
   if (noBookings) {
@@ -38,6 +38,7 @@ export default function SorryComponent({ noBookings }) {
 
   const linkMe = (e) => {
     e.preventDefault();
+
     history.push(`/spots`);
   };
 
@@ -48,7 +49,7 @@ export default function SorryComponent({ noBookings }) {
 
   return (
     <div className={styles.splashContainer}>
-      <img className={styles.bannerImg} src={imgUrl}></img>
+      <img alt="sorryImg" className={styles.bannerImg} src={imgUrl}></img>
 
       <div className={styles.splashText}>
         <p className={styles.message}>{message}</p>

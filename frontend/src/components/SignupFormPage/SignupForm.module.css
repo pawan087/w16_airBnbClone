@@ -1,7 +1,7 @@
 .signupForm {
   margin: 0 auto 0 auto;
   width: 25%;
-  opacity: 90%;
+  opacity: .9;
   display: flex;
   flex-direction: column;
   animation: fadein 0.5s;
@@ -42,7 +42,7 @@ input[type="textarea"] {
 .signupBtn {
   padding: 1em;
   background: #009cd5;
-  opacity: 75%;
+  opacity: .75;
   width: 33%;
   font-size: 0.8em;
   margin: 0 auto;
@@ -61,7 +61,7 @@ input[type="textarea"] {
 }
 
 .signupBtn:hover {
-  opacity: 85%;
+  opacity: .85;
 }
 
 .errors {
@@ -70,15 +70,11 @@ input[type="textarea"] {
   flex-direction: column;
   gap: 0.75em;
   justify-content: center;
-  justify-items: center;
   color: rgb(107, 114, 128);
-  align-content: center;
   align-items: center;
-  align-self: center;
   padding-bottom: 0.75em;
   list-style: none;
   text-align: center;
-
   margin-right: 3em;
   width: 90%;
   font-size: 0.75em;
@@ -102,11 +98,7 @@ input[type="textarea"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-items: center;
-  justify-self: center;
-  align-content: center;
   align-items: center;
-  align-self: center;
   gap: 0.75em;
 }
 
@@ -117,15 +109,15 @@ input[type="textarea"] {
 }
 
 .link {
-  text-decoration: none;
+  text-decoration: underline;
   transition: 0.2s ease all;
   color: black;
-  opacity: 75%;
+  opacity: .75;
   cursor: pointer;
 }
 
 .link:hover {
-  opacity: 100%;
+  opacity: 1;
   color: #009cd5;
 }
 
@@ -141,6 +133,6 @@ input[type="textarea"] {
     opacity: 0;
   }
   to {
-    opacity: 97.5%;
+    opacity: .975;
   }
 }

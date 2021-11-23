@@ -22,10 +22,16 @@
   margin-left: 4.25em;
   margin-top: 0.25em;
   font-size: 0.85em;
-  cursor: pointer;
+  cursor: default;
   transition-duration: 200ms;
 }
 
-.edit:hover {
-  color: #009cd5;
+.edit span {
+  transition-duration: 200ms;
+  cursor: pointer;
+
+}
+
+.edit span:hover {
+  color: #009cd5
 }

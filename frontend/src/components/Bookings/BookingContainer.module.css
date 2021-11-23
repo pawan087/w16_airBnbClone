@@ -30,7 +30,7 @@
 }
 
 .resultsContainer:hover {
-  opacity: 95%;
+  opacity: 0.95;
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
@@ -45,18 +45,29 @@
   justify-content: space-between;
   cursor: pointer;
   transition-duration: 200ms;
-  opacity: 95%;
+  opacity: 0.95;
+  object-fit: cover;
 }
 
 .imgContainer:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .spotName {
   margin-left: 2em;
   margin-top: 0.5em;
   font-size: 1.75em;
+  cursor: default;
+}
+
+.spotName2 {
+  transition-duration: 200ms;
   cursor: pointer;
+}
+
+.spotName2:hover {
+  text-decoration: underline;
+  /* color: #009cd5; */
 }
 
 .edit {
@@ -87,4 +98,11 @@
   to {
     opacity: 1;
   }
+}
+
+.loaderCotnainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

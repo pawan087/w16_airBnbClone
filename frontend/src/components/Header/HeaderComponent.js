@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import { DateRangePicker } from "react-date-range";
 import { useHistory } from "react-router-dom";
 
-import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm";
 import * as searchAction from "../../store/search";
 import * as sessionActions from "../../store/session";
 
@@ -22,21 +20,19 @@ export default function HeaderComponent() {
 
   let today = new Date();
   let tomorrow = new Date();
+  let initialStartDate = today;
 
-  tomorrow.setDate(today.getDate() + 2);
+  tomorrow.setDate(today.getDate() + 1);
   today = today.toISOString().split("T")[0];
 
-  let minDate = tomorrow;
   let initial = "";
-  
-  const [startDate, setStartDate] = useState(minDate);
-  const [endDate, setEndDate] = useState(minDate);
+
+  const [startDate, setStartDate] = useState(initialStartDate);
+  const [endDate, setEndDate] = useState(tomorrow);
   const [showMenu, setShowMenu] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  if (user) {
-    initial = user.username[0];
-  }
+  initial = user?.username[0]?.toUpperCase();
 
   const selectionRange = {
     startDate: startDate,
@@ -58,7 +54,9 @@ export default function HeaderComponent() {
 
   const logout = (e) => {
     e.preventDefault();
+
     dispatch(sessionActions.logout());
+
     if (window.location.pathname !== "/") {
       history.push("/");
     }
@@ -66,6 +64,7 @@ export default function HeaderComponent() {
 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
+
     setEndDate(ranges.selection.endDate);
   };
 
@@ -74,12 +73,20 @@ export default function HeaderComponent() {
   };
 
   const handleSubmit = (e) => {
+    if (!searchInput) {
+      return;
+    }
+
     e.preventDefault();
+
     dispatch(
       searchAction.getSearchResults({ searchInput, startDate, endDate })
     );
+
     dispatch(searchAction.getSearch({ searchInput, startDate, endDate }));
+
     setSearchInput("");
+
     history.push("/search");
   };
 
@@ -93,6 +100,7 @@ export default function HeaderComponent() {
   const handleDemoLogin = (e) => {
     e.preventDefault();
     let credential = "Demo-lition";
+
     let password = "password";
 
     dispatch(sessionActions.login({ credential, password }));
@@ -244,7 +252,7 @@ export default function HeaderComponent() {
             className={styles.dateRangePicker}
             onChange={handleSelect}
             rangeColors={["#009cd5"]}
-            minDate={minDate}
+            minDate={initialStartDate}
             ranges={[selectionRange]}
           />
 

@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useHistory } from "react-router-dom";
 
 import styles from "./Sorry.module.css";
 
@@ -11,7 +9,7 @@ export default function Sorry() {
   const bookings = useSelector((state) => state.booking);
   let bookingsArr = Object.values(bookings);
 
-  let specificBookings = bookingsArr.filter((b) => {
+  let specificBookings = bookingsArr?.filter((b) => {
     return b.Spot.id === +spotId;
   });
 
@@ -20,8 +18,6 @@ export default function Sorry() {
   for (let booking of specificBookings) {
     datesArr.push([booking.startDate, booking.endDate]);
   }
-
-  // useEffect(() => {}, [dispatch]);
 
   return (
     <div className={styles.outerContainer}>
@@ -33,13 +29,11 @@ export default function Sorry() {
             Sorry, this Bnb is unavailable during that time
           </div>
 
-          {true && (
-            <div className={styles.subtitle}>
-              {
-                "Please consider another time period, apart from what's listed below:"
-              }
-            </div>
-          )}
+          <div className={styles.subtitle}>
+            {
+              "Please consider another time period, apart from what's listed below:"
+            }
+          </div>
         </div>
 
         <div className={styles.middleContainer}>

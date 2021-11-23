@@ -1,6 +1,6 @@
 {
-  "short_name": "React Template",
-  "name": "Create React App Template",
+  "short_name": "airBnbClone",
+  "name": "Pawan's airBnbClone",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

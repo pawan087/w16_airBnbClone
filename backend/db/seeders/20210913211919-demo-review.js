@@ -1,28 +1,34 @@
 "use strict";
 
+const faker = require("faker");
+
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+let reviewsArr = [];
+
+for (let i = 1; i <= 25; i++) {
+  const rndInt = randomIntFromInterval(3, 6);
+
+  for (let j = 1; j <= rndInt; j++) {
+    let review = {};
+
+    const rndUserId = randomIntFromInterval(1, 5);
+    let randomParagraph = faker.lorem.sentence();
+
+    review["userId"] = rndUserId;
+    review["spotId"] = i;
+    review["review"] = randomParagraph;
+
+    reviewsArr.push(review);
+  }
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(
-      "Reviews",
-      [
-        {
-          userId: 2,
-          spotId: 3,
-          review: "This place is great!",
-        },
-        {
-          userId: 3,
-          spotId: 1,
-          review: "This place sucks!",
-        },
-        {
-          userId: 4,
-          spotId: 1,
-          review: "Never coming back.",
-        },
-      ],
-      {}
-    );
+    return queryInterface.bulkInsert("Reviews", reviewsArr, {});
   },
 
   down: (queryInterface, Sequelize) => {

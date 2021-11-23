@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import * as reviewActions from "../../store/reviews";
 
-import styles from "../../components/TestSpot/ReviewFormContainer.module.css";
+import styles from "../../components/Spot/ReviewFormContainer.module.css";
 
 export default function ReviewFormContainer({ spot }) {
   const history = useHistory();
@@ -16,16 +16,9 @@ export default function ReviewFormContainer({ spot }) {
   const [review, setReview] = useState("");
   const [showError, setShowError] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
-  let spotId;
-  let userId;
 
-  if (spot[0]) {
-    spotId = spot[0].id;
-  }
-
-  if (sessionUser) {
-    userId = sessionUser.id;
-  }
+  let spotId = spot[0]?.id
+  let userId = sessionUser?.id;
 
   if (showThankYou) {
     setTimeout(() => {
@@ -43,12 +36,16 @@ export default function ReviewFormContainer({ spot }) {
 
     if (review.length > 5 && review.length < 100) {
       dispatch(reviewActions.create({ userId, spotId, review }));
+
       setReview("");
+
       setShowError(false);
+
       setShowThankYou(true);
+
       setTimeout(() => {
         setShowThankYou(false);
-      }, 1500);
+      }, 2000);
     } else {
       setShowError(true);
     }
@@ -94,6 +91,7 @@ export default function ReviewFormContainer({ spot }) {
         )}
 
         {showThankYou && <p className={styles.thankYou}>Thanks!</p>}
+
         <div className={styles.btnContainer}>
           <button id="btn" className={styles.btn} type="submit">
             Submit

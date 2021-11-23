@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import { MyModal } from "../../context/BookingConfirmation";
-import { MyFourthModal } from "../../context/Sorry";
 import ConfirmationForm from "./ConfirmationForm";
-import Sorry from "./Sorry";
+import styles from "../../components/Spot/ReserveFormContainer.module.css";
 
-import styles from "../../components/TestSpot/ReserveFormContainer.module.css";
-
-function BookingConfirmationModal({ total, spot, endDate, startDate }) {
+function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
   const history = useHistory();
-  const dispatch = useDispatch();
   const { spotId } = useParams();
 
   const bookings = useSelector((state) => state.booking);
@@ -20,25 +16,26 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
 
   let bool = false;
   let bool2 = true;
+
   const [showModal, setShowModal] = useState(false);
-  const [showSecondModal, setSecondModal] = useState(false);
+
   const bookingsArr = Object.values(bookings);
 
-  const specificBookings = bookingsArr.filter((b) => {
+  const specificBookings = bookingsArr?.filter((b) => {
     return b["spotId"] === +spotId;
   });
 
   if (user === undefined || user === null) {
     bool = false;
+
     bool2 = false;
   } else {
-    if (specificBookings.length === 0) {
+    if (specificBookings?.length === 0) {
       bool = true;
     } else {
-      specificBookings.forEach((booking) => {
+      specificBookings?.forEach((booking) => {
         if (startDate < endDate) {
           if (booking.startDate < startDate && endDate < booking.endDate) {
-            console.log('yee11')
             bool = false;
             return;
           }
@@ -49,13 +46,11 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             endDate < booking.endDate
           ) {
             bool = false;
-            console.log('yee2')
             return;
           }
 
           if (startDate < booking.startDate && booking.endDate < endDate) {
             bool = false;
-            console.log('yee3')
             return;
           }
 
@@ -65,7 +60,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
             startDate < booking.endDate
           ) {
             bool = false;
-            console.log('yee4')
             return;
           }
 
@@ -76,38 +70,52 @@ function BookingConfirmationModal({ total, spot, endDate, startDate }) {
   }
   const redirectMe = (e) => {
     e.preventDefault();
+
     history.push("/login");
+
+    return bool;
   };
+
+  // Remove console error with the following from stackoverflow
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => {
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
+  if (!didMount) return null;
+  // End stackoverflow
 
   return (
     <>
-      {bool === true && (
+      {bool2 && startDate < endDate && startDate && endDate && !bool3 && (
         <button className={styles.btn} onClick={() => setShowModal(true)}>
           Reserve
         </button>
       )}{" "}
-      {bool === false && bool2 === true && (
-        <button className={styles.btn2}>Reserve</button>
-      )}
+      {bool2 && bool3 && <button className={styles.btn4}>Reserve</button>}
+      {bool2 &&
+        !bool3 &&
+        (!startDate ||
+          !endDate ||
+          startDate > endDate ||
+          startDate === endDate) && (
+          <button className={styles.btn4}>Reserve</button>
+        )}
       {bool2 === false && (
         <button onClick={(e) => redirectMe(e)} className={styles.btn3}>
           Please Log-in
         </button>
       )}
-      {showModal && true && true && (
+      {showModal && (
         <MyModal onClose={() => setShowModal(false)}>
           <ConfirmationForm
             total={total}
             spot={spot}
             startDate={startDate}
             endDate={endDate}
+            setShowModal={setShowModal}
           />
         </MyModal>
-      )}
-      {showSecondModal && (
-        <MyFourthModal>
-          <Sorry />
-        </MyFourthModal>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
 const SET_SEARCH = "search/setSearch";
 const SET_SEARCH2 = "search2/setSearch2";
@@ -39,16 +39,16 @@ export const setDates = (startDate, endDate) => async (dispatch) => {
 };
 
 export const getSearchResults = (searchCriteria) => async (dispatch) => {
-  const res = await fetch("/api/bookings");
-  const bookings = await res.json();
+  // const res = await fetch("/api/bookings");
+  // const bookings = await res.json();
 
   const res2 = await fetch("/api/spots");
   const spots = await res2.json();
 
   const searchResultsObj = {};
 
-  const startDate = new Date(searchCriteria.startDate);
-  const endDate = new Date(searchCriteria.endDate);
+  // const startDate = new Date(searchCriteria.startDate);
+  // const endDate = new Date(searchCriteria.endDate);
   const location = searchCriteria.searchInput;
 
   spots.forEach((spot) => {
@@ -64,46 +64,46 @@ export const getSearchResults = (searchCriteria) => async (dispatch) => {
     }
   });
 
-  bookings.forEach((booking) => {
-    if (
-      booking["Spot"]["city"].trim().toLowerCase().includes(location) &&
-      startDate &&
-      endDate
-    ) {
-      const bookingStartDate = new Date(booking.startDate);
-      const bookingEndDate = new Date(booking.endDate);
+  // bookings.forEach((booking) => {
+  //   if (
+  //     booking["Spot"]["city"].trim().toLowerCase().includes(location) &&
+  //     startDate &&
+  //     endDate
+  //   ) {
+  //     const bookingStartDate = new Date(booking.startDate);
+  //     const bookingEndDate = new Date(booking.endDate);
 
-      if (
-        bookingStartDate.getTime() < startDate.getTime() &&
-        endDate.getTime() < bookingEndDate.getTime()
-      ) {
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
+  //     if (
+  //       bookingStartDate.getTime() < startDate.getTime() &&
+  //       endDate.getTime() < bookingEndDate.getTime()
+  //     ) {
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
 
-      if (
-        startDate.getTime() < bookingStartDate.getTime() &&
-        bookingStartDate.getTime() < endDate.getTime() &&
-        endDate.getTime() < bookingEndDate.getTime()
-      ) {
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
+  //     if (
+  //       startDate.getTime() < bookingStartDate.getTime() &&
+  //       bookingStartDate.getTime() < endDate.getTime() &&
+  //       endDate.getTime() < bookingEndDate.getTime()
+  //     ) {
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
 
-      if (
-        startDate.getTime() < bookingStartDate.getTime() &&
-        bookingEndDate.getTime() < endDate.getTime()
-      ) {
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
+  //     if (
+  //       startDate.getTime() < bookingStartDate.getTime() &&
+  //       bookingEndDate.getTime() < endDate.getTime()
+  //     ) {
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
 
-      if (
-        bookingStartDate.getTime() < startDate.getTime() &&
-        bookingEndDate.getTime() < endDate.getTime() &&
-        startDate.getTime() < bookingStartDate.getTime()
-      ) {
-        delete searchResultsObj[booking["Spot"]["id"]];
-      }
-    }
-  });
+  //     if (
+  //       bookingStartDate.getTime() < startDate.getTime() &&
+  //       bookingEndDate.getTime() < endDate.getTime() &&
+  //       startDate.getTime() < bookingStartDate.getTime()
+  //     ) {
+  //       delete searchResultsObj[booking["Spot"]["id"]];
+  //     }
+  //   }
+  // });
 
   dispatch(setSearchResults(searchResultsObj));
 };

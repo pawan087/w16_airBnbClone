@@ -1,29 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getSpots } from "../../store/spots";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getImages } from "../../store/images";
 import { delBooking } from "../../store/bookings";
+import { getUserBookings } from "../../store/bookings";
+import ReactLoading from "react-loading";
 
 import styles from "../../components/BookingConfirmationModal/ConfirmationForm.module.css";
 
 function ConfirmationForm({
   booking,
-  bookingId,
   startDate,
   endDate,
   name,
   username,
+  setShowModal,
 }) {
   const dispatch = useDispatch();
 
-  const deleteBooking = (e, b) => {
-    e.preventDefault();
-    dispatch(delBooking(b));
-    window.location.reload();
-  };
+  const session = useSelector((state) => state.session);
 
-  const cancelMe = () => {
-    window.location.reload();
+  const [load, setLoad] = useState(false);
+
+  const deleteBooking = async (e, b) => {
+    e.preventDefault();
+
+    setLoad(true);
+
+    await dispatch(delBooking(b));
+
+    await dispatch(getSpots());
+
+    await dispatch(getImages());
+
+    await dispatch(getUserBookings(session.user.id));
+
+    setShowModal(false);
+    setLoad(false);
   };
 
   useEffect(() => {
@@ -32,13 +45,24 @@ function ConfirmationForm({
 
   return (
     <div className={styles.outerContainer}>
+      {load && (
+        <div className={styles.loaderCotnainer}>
+          <ReactLoading
+            type={"cylon"}
+            color={"#009cd5"}
+            height={"0px"}
+            width={"57.5px"}
+          />
+        </div>
+      )}
+
       <div className={styles.logoContainer}>
         <img
-          className={styles.logo}
           src={
             "https://logos-world.net/wp-content/uploads/2020/07/Airbnb-Logo-2008-2014.png"
           }
           className={styles.logo}
+          alt="bnbLogo"
         ></img>
       </div>
 
@@ -57,7 +81,7 @@ function ConfirmationForm({
           <div className={styles.label}>Date(s)</div>
 
           <div className={styles.detail}>
-            {startDate.slice(5, 10)} through {endDate.slice(5, 10)}
+            {startDate?.slice(5, 10)} through {endDate?.slice(5, 10)}
           </div>
 
           <div className={styles.label}></div>
@@ -71,7 +95,10 @@ function ConfirmationForm({
         </div>
 
         <div className={styles.btnsContainer}>
-          <button onClick={cancelMe} className={styles.btnCancel}>
+          <button
+            onClick={() => setShowModal(false)}
+            className={styles.btnCancel}
+          >
             Go Back
           </button>
 

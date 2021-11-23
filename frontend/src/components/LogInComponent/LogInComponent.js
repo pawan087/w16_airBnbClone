@@ -1,14 +1,12 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
-
 
 import * as sessionActions from "../../store/session";
 
 import styles from "./LogInComponent.module.css";
 
 function LogInComponent() {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [credential, setCredential] = useState("");
@@ -17,19 +15,23 @@ function LogInComponent() {
 
   const user = useSelector((state) => state.session.user);
 
-  if (user !== null) {
-    history.push('/')
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
-    dispatch(sessionActions.login({ credential, password }))
 
-    if (window.location.pathname === '/login') {
-      history.push('/')
-    }
+    setErrors([]);
+
+    return await dispatch(sessionActions.login({ credential, password }))
+      .catch(async (res) => {
+        const data = await res.json();
+
+        if (data && data.errors) setErrors(data.errors);
+      })
+      .finally(() => {
+        // setLoader(false);
+      });
   };
+
+  if (user) return <Redirect to="/" />;
 
   return (
     <form onSubmit={handleSubmit} className={styles.signupForm}>
@@ -54,7 +56,7 @@ function LogInComponent() {
         <div className={styles.title}>Sign in</div>
 
         <ul className={styles.errors}>
-          {errors.map((error, idx) => (
+          {errors?.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 import { getUserBookings } from "../../store/bookings";
 import { getImages } from "../../store/images";
@@ -10,8 +11,8 @@ import CancelBookingConfirmationModal from "../CancelBookingConfirmationModal/in
 import EditBookingModal from "../EditBookingModal/index";
 import SorryComponent from "../Sorry/SorryComponent";
 
-import styles from "../../components/TestSearch/SearchContainer.module.css";
-import styles2 from "../../components/TestBookings/BookingContainer.module.css";
+import styles from "../Search/SearchContainer.module.css";
+import styles2 from "./BookingContainer.module.css";
 // import { AnimatePresence, motion } from "framer-motion";
 
 export default function BookingsContainer() {
@@ -31,7 +32,9 @@ export default function BookingsContainer() {
 
   for (let booking of userBookingsArr) {
     let today = new Date();
+
     let x = new Date(booking.startDate);
+
     if (x < today) {
       pastBookings.push(booking);
     } else {
@@ -39,11 +42,32 @@ export default function BookingsContainer() {
     }
   }
 
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
-    dispatch(getSpots());
-    dispatch(getImages());
-    dispatch(getUserBookings(session.user.id));
-  }, [dispatch]);
+    (async () => {
+      await dispatch(getSpots());
+
+      await dispatch(getImages());
+
+      await dispatch(getUserBookings(session.user.id));
+
+      setLoad(true);
+    })();
+  }, [dispatch, session.user.id]);
+
+  if (!load) {
+    return (
+      <div className={styles2.loaderCotnainer}>
+        <ReactLoading
+          type={"cylon"}
+          color={"#009cd5"}
+          height={"0px"}
+          width={"57.5px"}
+        />
+      </div>
+    );
+  }
 
   if (!session.user) return <Redirect to="/" />;
 
@@ -59,13 +83,21 @@ export default function BookingsContainer() {
 
   const dayCount = (startDate, endDate) => {
     const x = new Date(startDate);
+
     const y = new Date(endDate);
+
     return (y - x) / 60 / 60 / 1000 / 24;
   };
 
   const linkMe = (booking) => {
     const { spotId } = booking;
+
     history.push(`/spots/${spotId}`);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   let giveMeName = (id) => {
@@ -74,29 +106,51 @@ export default function BookingsContainer() {
     } else return null;
   };
 
+  pastBookings.sort(function (a, b) {
+    if (new Date(a.startDate) < new Date(b.startDate)) {
+      return -1;
+    }
+
+    if (new Date(a.startDate) > new Date(b.startDate)) {
+      return +1;
+    }
+
+    return 0;
+  });
+
+  futureBookings.sort(function (a, b) {
+    if (new Date(a.startDate) < new Date(b.startDate)) {
+      return -1;
+    }
+
+    if (new Date(a.startDate) > new Date(b.startDate)) {
+      return +1;
+    }
+
+    return 0;
+  });
+
   return (
     <>
       <div className={styles.componentContainer}>
-        {futureBookings.length === 0 && (
-          <SorryComponent noBookings={true} />
-        )}
+        {futureBookings?.length === 0 && <SorryComponent noBookings={true} />}
 
-        {futureBookings.length === 1 && (
+        {futureBookings?.length === 1 && (
           <h3 className={styles.subHeader}>
-            {futureBookings.length} Reservation
+            {futureBookings?.length} Reservation
           </h3>
         )}
 
-        {futureBookings.length > 1 && (
+        {futureBookings?.length > 1 && (
           <h3 className={styles.subHeader}>
-            {futureBookings.length} Reservations
+            {futureBookings?.length} Reservations
           </h3>
         )}
 
-        {futureBookings.length !== 0 && <div className={styles.divisor2} />}
+        {futureBookings?.length !== 0 && <div className={styles.divisor2} />}
 
-        {userBookingsArr.map((booking) => (
-          <div className={styles2.resultsContainer}>
+        {futureBookings?.map((booking, i) => (
+          <div key={i} className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
                 onClick={() => linkMe(booking)}
@@ -105,7 +159,7 @@ export default function BookingsContainer() {
                 <img
                   className={styles.img}
                   layout="fill"
-                  objectFit="cover"
+                  alt="bookingImg"
                   src={booking.imgUrl}
                 />
               </div>
@@ -113,11 +167,13 @@ export default function BookingsContainer() {
               <div className={styles.results}>
                 <div className={styles.detailContainer}></div>
 
-                <div
-                  onClick={() => linkMe(booking)}
-                  className={styles2.spotName}
-                >
-                  {booking.Spot.name}
+                <div className={styles2.spotName}>
+                  <span
+                    className={styles2.spotName2}
+                    onClick={() => linkMe(booking)}
+                  >
+                    {booking.Spot.name}
+                  </span>
                 </div>
 
                 <div className={styles.divisor} />
@@ -152,19 +208,22 @@ export default function BookingsContainer() {
       </div>
 
       <div className={styles.componentContainer}>
-        {pastBookings.length === 0 && futureBookings.length === 0 && <SorryComponent noBookings={true} />}
-        {pastBookings.length === 1 && (
+        {pastBookings?.length === 0 && futureBookings?.length === 0 && (
+          <SorryComponent noBookings={true} />
+        )}
+
+        {pastBookings?.length === 1 && (
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
 
-        {pastBookings.length > 1 && (
+        {pastBookings?.length > 1 && (
           <h3 className={styles.subHeader}>Past Reservations</h3>
         )}
 
-        {pastBookings.length > 0 && <div className={styles.divisor2} />}
+        {pastBookings?.length > 0 && <div className={styles.divisor2} />}
 
-        {pastBookings.map((booking) => (
-          <div className={styles2.resultsContainer}>
+        {pastBookings?.map((booking, i) => (
+          <div key={i} className={styles2.resultsContainer}>
             <div className={styles.cardContainer}>
               <div
                 onClick={() => linkMe(booking)}
@@ -173,7 +232,7 @@ export default function BookingsContainer() {
                 <img
                   className={styles.img}
                   layout="fill"
-                  objectFit="cover"
+                  alt="bookingImg2"
                   src={booking.imgUrl}
                 />
               </div>
@@ -181,11 +240,13 @@ export default function BookingsContainer() {
               <div className={styles.results}>
                 <div className={styles.detailContainer}></div>
 
-                <div
-                  onClick={() => linkMe(booking)}
-                  className={styles2.spotName}
-                >
-                  {booking.Spot.name}
+                <div className={styles2.spotName}>
+                  <span
+                    className={styles2.spotName2}
+                    onClick={() => linkMe(booking)}
+                  >
+                    {booking.Spot.name}
+                  </span>
                 </div>
 
                 <div className={styles.divisor} />

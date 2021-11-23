@@ -23,6 +23,8 @@ export default function NewBookingForm() {
       bookingActions.create({ userId, spotId, startDate, endDate })
     ).catch(async (res) => {
       const data = await res.json();
+
+      return data;
     });
   };
 

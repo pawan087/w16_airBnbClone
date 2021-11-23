@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
-
 import styles from "../../components/SignupFormPage/SignupForm.module.css";
 
 function SignupFormPage() {
@@ -21,8 +20,10 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (password === confirmPassword) {
       setErrors([]);
+
       return dispatch(
         sessionActions.signup({ email, username, password })
       ).catch(async (res) => {
@@ -30,9 +31,14 @@ function SignupFormPage() {
         if (data && data.errors) setErrors(data.errors);
       });
     }
+
     return setErrors([
-      "Confirm Password field must be the same as the Password field",
+      "Confirm password field must be the same as the password field",
     ]);
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   return (
@@ -70,7 +76,7 @@ function SignupFormPage() {
 
           <ul className={styles.errors}>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx}>{capitalizeFirstLetter(error)}</li>
             ))}
           </ul>
         </div>

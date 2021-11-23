@@ -9,6 +9,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const bookings = await Booking.findAll({ include: Spot });
+
     res.json(bookings);
   })
 );
@@ -17,6 +18,7 @@ router.post(
   "/new",
   asyncHandler(async (req, res) => {
     const { userId, spotId, startDate, endDate } = req.body;
+
     const booking = await Booking.create({
       userId,
       spotId,
@@ -45,9 +47,10 @@ router.delete(
 router.put(
   "/update",
   asyncHandler(async (req, res) => {
-    const { bookingId, userId, spotId, startDate, endDate } = req.body;
+    const { bookingId, startDate, endDate } = req.body;
 
     const booking = await Booking.findByPk(bookingId);
+    
     await booking.update({ startDate: startDate, endDate: endDate });
 
     return res.json({

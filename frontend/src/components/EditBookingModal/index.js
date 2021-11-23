@@ -5,18 +5,18 @@ import EditBookingForm from "./EditBookingForm";
 
 import styles from "../../components/EditBookingModal/index.module.css";
 
-function EditBookingModal({name, username, booking}) {
+function EditBookingModal({ name, username, booking }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <div onClick={() => setShowModal(true)} className={styles.edit}>
-        Edit reservation
+        <span>Edit reservation</span>
       </div>
 
       {showModal && (
         <MyThirdModal onClose={() => setShowModal(false)}>
-          <EditBookingForm name={name} username={username} booking={booking} />
+          <EditBookingForm setShowModal={setShowModal} name={name} username={username} booking={booking} />
         </MyThirdModal>
       )}
     </>

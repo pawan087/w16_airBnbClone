@@ -7,7 +7,14 @@ export default function DetailCardComponent({ spot }) {
 
   const linkMe = (e, id) => {
     e.preventDefault();
+
     history.push(`/spots/${id}`);
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -17,8 +24,10 @@ export default function DetailCardComponent({ spot }) {
           <img
             onClick={(e) => linkMe(e, spot.id)}
             className={styles.img}
+            alt="detailImg"
             src={spot.Images[0].url}
           ></img>
+
           <div className={styles.heart}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

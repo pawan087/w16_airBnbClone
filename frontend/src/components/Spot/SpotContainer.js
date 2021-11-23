@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import MapComponent from "../Map/MapComponent";
@@ -12,8 +12,8 @@ import ReserveFormComponent from "./ReserveFormComponent";
 import Sorry from "../BookingConfirmationModal/Sorry";
 import AllReviewsComponent from "./AllReviewsComponent";
 
-import styles from "../../components/TestSpot/SpotContainer.module.css";
-// import { AnimatePresence, motion } from "framer-motion";
+import styles from "../../components/Spot/SpotContainer.module.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function SpotsContainer() {
   const { spotId } = useParams();
@@ -30,14 +30,17 @@ export default function SpotsContainer() {
 
   if (searchCriteria.startDate)
     searchedStartDate = searchedStartDate.toISOString().split("T")[0];
+
   if (searchCriteria.endDate)
     searchedEndDate = searchedEndDate.toISOString().split("T")[0];
 
-  const [startDate, setStartDate] = useState(searchedStartDate);
-  const [endDate, setEndDate] = useState(searchedEndDate);
+  let startDate = searchedStartDate;
+  let endDate = searchedEndDate;
+
   const spotsArr = Object.values(spots);
   const reviewsArr = Object.values(reviews);
   const imagesArr = Object.values(images);
+
   let lat;
   let lng;
   let showSpot = false;
@@ -46,17 +49,13 @@ export default function SpotsContainer() {
   let ed = search2.endDate;
 
   const spot = spotsArr.filter((spot) => spot["id"] === +spotId);
-
   const specificImages = imagesArr.filter((image) => image.spotId === +spotId);
-
   const specificReviews = reviewsArr.filter(
     (review) => review["spotId"] === +spotId
   );
 
-  if (spot[0]) {
-    lng = +spot[0].lng;
-    lat = +spot[0].lat;
-  }
+  lng = +spot[0]?.lng;
+  lat = +spot[0]?.lat;
 
   if (spot[0]) {
     showSpot = true;
@@ -71,7 +70,6 @@ export default function SpotsContainer() {
   let bool = false;
 
   const bookings = useSelector((state) => state.booking);
-
   const bookingsArr = Object.values(bookings);
 
   const specificBookings = bookingsArr.filter((b) => {
@@ -84,59 +82,84 @@ export default function SpotsContainer() {
     specificBookings.forEach((booking) => {
       let y = booking.endDate.slice(0, 10);
       let x = booking.startDate.slice(0, 10);
+      let startDate;
 
-      if (x === ed) {
+      if (searchedStartDate) {
+        startDate = searchedStartDate;
+      } else {
+        startDate = sd;
+      }
+
+      let endDate = searchedEndDate;
+
+      if (searchedEndDate) {
+        endDate = searchedEndDate;
+      } else {
+        endDate = ed;
+      }
+
+      if (x === startDate) {
         bool = true;
         return;
       }
 
-      if (sd === y) {
+      if (endDate === y) {
         bool = true;
         return;
       }
 
-      if (sd < ed) {
-        if (booking.startDate < sd && ed < booking.endDate) {
+      if (sd <= ed) {
+        if (booking.startDate <= sd && ed <= booking.endDate) {
           bool = true;
           return;
         }
 
         if (
-          sd < booking.startDate &&
-          booking.startDate < ed &&
-          ed < booking.endDate
+          sd <= booking.startDate &&
+          booking.startDate <= ed &&
+          ed <= booking.endDate
         ) {
           bool = true;
           return;
         }
 
-        if (sd < booking.startDate && booking.endDate < ed) {
+        if (sd <= booking.startDate && booking.endDate <= ed) {
           bool = true;
           return;
         }
 
         if (
-          booking.startDate < sd &&
-          booking.endDate < ed &&
+          booking.startDate <= sd &&
+          booking.endDate <= ed &&
           sd < booking.endDate
         ) {
-          bool = true;
           return;
         }
-
-        bool = false;
       }
     });
   }
 
+  let spotIds = [];
+
+  for (let spot of spotsArr) {
+    spotIds.push(spot.id);
+  }
+
   useEffect(() => {
     dispatch(getSpots());
+
     dispatch(getReviews());
+
     dispatch(getImages());
+
     dispatch(getSearch2({ startDate: "", endDate: "" }));
   }, [startDate, endDate, dispatch, searchCriteria]);
 
   if (!spot) return <Redirect to="/" />;
+
+  if (!spotIds?.includes(+spotId)) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={styles.outerContainer}>
@@ -149,6 +172,7 @@ export default function SpotsContainer() {
                 layout="fill"
                 objectfit="cover"
                 src={image}
+                alt="bookingImg"
               />
             </div>
 
@@ -188,6 +212,7 @@ export default function SpotsContainer() {
         spot={spot}
         startDate={startDate}
         endDate={endDate}
+        bool2={bool}
       />
 
       <ReviewFormContainer spot={spot} />
