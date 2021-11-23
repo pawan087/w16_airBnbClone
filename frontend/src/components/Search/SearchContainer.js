@@ -22,9 +22,10 @@ export default function SearchContainer() {
   const usersBookings = useSelector((state) => state.userBookings);
   const bookings = Object.values(usersBookings);
   const searchResultsArr = Object.values(searchResults);
-  console.log(searchResultsArr);
 
   const availableBookings = [];
+
+  const unavailableBookings = [];
 
   bookings?.forEach((booking) => {
     let x = new Date(booking.startDate);
@@ -35,6 +36,7 @@ export default function SearchContainer() {
 
     if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
       // console.log("yee3");
+      unavailableBookings.push(booking.id);
       return;
     }
     if (
@@ -43,10 +45,12 @@ export default function SearchContainer() {
       ed.getTime() <= y.getTime()
     ) {
       // console.log("yee4");
+      unavailableBookings.push(booking.id);
       return;
     }
     if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
       // console.log("yee5");
+      unavailableBookings.push(booking.id);
       return;
     }
     if (
@@ -55,6 +59,7 @@ export default function SearchContainer() {
       sd.getTime() <= y.getTime()
     ) {
       // console.log("yee6");
+      unavailableBookings.push(booking.id);
       return;
     }
 
@@ -64,7 +69,7 @@ export default function SearchContainer() {
   });
 
   const filteredSearchResults = searchResultsArr.filter((searchResult) => {
-    return availableBookings.includes(searchResult.id);
+    return !unavailableBookings.includes(searchResult.id);
   });
 
   let location = searchCriteria.searchInput;
