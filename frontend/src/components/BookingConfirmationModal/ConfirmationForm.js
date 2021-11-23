@@ -32,14 +32,14 @@ function ConfirmationForm({ total, spot, startDate, endDate, setShowModal }) {
     setShowModal(false);
   };
 
-    // Remove console error with the following from stackoverflow
-    const [didMount, setDidMount] = useState(false);
-    useEffect(() => {
-      setDidMount(true);
-      return () => setDidMount(false);
-    }, []);
-    if (!didMount) return null;
-    // End stackoverflow
+  // Remove console error with the following from stackoverflow
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => {
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
+  if (!didMount) return null;
+  // End stackoverflow
 
   return (
     <div className={styles.outerContainer}>
@@ -64,12 +64,17 @@ function ConfirmationForm({ total, spot, startDate, endDate, setShowModal }) {
           <div className={styles.middleHeader}>
             {sessionUser?.username}'s Itinerary
           </div>
+
           <div className={styles.divisor}></div>
+
           <div className={styles.label}>Date(s)</div>
+
           <div className={styles.detail}>{`${startDate?.slice(
             5
           )} through ${endDate?.slice(5)}`}</div>
+
           <div className={styles.label}>Total:</div>
+          
           <div className={styles.detail}>
             $
             {(

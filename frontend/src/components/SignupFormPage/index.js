@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
-
 import styles from "../../components/SignupFormPage/SignupForm.module.css";
 
 function SignupFormPage() {

@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 
 import { MyModal } from "../../context/BookingConfirmation";
 import ConfirmationForm from "./ConfirmationForm";
-
 import styles from "../../components/Spot/ReserveFormContainer.module.css";
 
 function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
@@ -68,8 +67,6 @@ function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
         }
       });
     }
-
-    // return bool;
   }
   const redirectMe = (e) => {
     e.preventDefault();
@@ -79,25 +76,25 @@ function BookingConfirmationModal({ total, spot, endDate, startDate, bool3 }) {
     return bool;
   };
 
-    // Remove console error with the following from stackoverflow
-    const [didMount, setDidMount] = useState(false);
-    useEffect(() => {
-      setDidMount(true);
-      return () => setDidMount(false);
-    }, []);
-    if (!didMount) return null;
-    // End stackoverflow
-
+  // Remove console error with the following from stackoverflow
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => {
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
+  if (!didMount) return null;
+  // End stackoverflow
 
   return (
     <>
-      {startDate < endDate && startDate && endDate && !bool3 && (
+      {bool2 && startDate < endDate && startDate && endDate && !bool3 && (
         <button className={styles.btn} onClick={() => setShowModal(true)}>
           Reserve
         </button>
       )}{" "}
-      {bool3 && <button className={styles.btn4}>Reserve</button>}
-      {!bool3 &&
+      {bool2 && bool3 && <button className={styles.btn4}>Reserve</button>}
+      {bool2 &&
+        !bool3 &&
         (!startDate ||
           !endDate ||
           startDate > endDate ||

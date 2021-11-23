@@ -39,7 +39,6 @@ export default function MapComponent({ id, lat, lng }) {
     let ed = new Date(searchCriteria.endDate);
 
     if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
-      // console.log("yee3");
       unavailableBookings.push(booking.spotId);
       return;
     }
@@ -49,12 +48,10 @@ export default function MapComponent({ id, lat, lng }) {
       x.getTime() <= ed.getTime() &&
       ed.getTime() <= y.getTime()
     ) {
-      // console.log("yee4");
       unavailableBookings.push(booking.spotId);
       return;
     }
     if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
-      // console.log("yee5");
       unavailableBookings.push(booking.spotId);
       return;
     }
@@ -63,12 +60,10 @@ export default function MapComponent({ id, lat, lng }) {
       y.getTime() <= ed.getTime() &&
       sd.getTime() <= y.getTime()
     ) {
-      // console.log("yee6");
       unavailableBookings.push(booking.spotId);
 
       return;
     }
-
     return;
   });
 

@@ -33,7 +33,6 @@ export default function SearchContainer() {
     let ed = new Date(searchCriteria.endDate);
 
     if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
-      // console.log("yee3");
       unavailableBookings.push(booking.spotId);
       return;
     }
@@ -43,12 +42,10 @@ export default function SearchContainer() {
       x.getTime() <= ed.getTime() &&
       ed.getTime() <= y.getTime()
     ) {
-      // console.log("yee4");
       unavailableBookings.push(booking.spotId);
       return;
     }
     if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
-      // console.log("yee5");
       unavailableBookings.push(booking.spotId);
       return;
     }
@@ -57,7 +54,6 @@ export default function SearchContainer() {
       y.getTime() <= ed.getTime() &&
       sd.getTime() <= y.getTime()
     ) {
-      // console.log("yee6");
       unavailableBookings.push(booking.spotId);
 
       return;
@@ -84,6 +80,12 @@ export default function SearchContainer() {
     const { id } = spot;
 
     history.push(`/spots/${id}`);
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const coordinates = filteredSearchResults?.map((x) => ({
@@ -101,11 +103,11 @@ export default function SearchContainer() {
 
       await dispatch(getImages());
 
-      await dispatch(getUserBookings(session.user.id));
+      await dispatch(getUserBookings(session?.user?.id));
 
       setLoad(true);
     })();
-  }, [dispatch, searchCriteria, session.user.id]);
+  }, [dispatch, searchCriteria, session?.user?.id]);
 
   if (!load) {
     return (
@@ -141,7 +143,7 @@ export default function SearchContainer() {
 
             {filteredSearchResults.length > 0 && (
               <h1 className={styles.resultsHeader}>
-                Stays in "{location.toUpperCase()}"
+                Stays in <span>{location.toUpperCase()}</span>
               </h1>
             )}
 

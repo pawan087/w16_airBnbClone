@@ -20,8 +20,6 @@ function LogInComponent() {
 
     setErrors([]);
 
-    // dispatch(sessionActions.login({ credential, password }));
-
     return await dispatch(sessionActions.login({ credential, password }))
       .catch(async (res) => {
         const data = await res.json();

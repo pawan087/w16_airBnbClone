@@ -9,8 +9,6 @@ import { getSearch2 } from "../../store/search.js";
 export default function ReserveFormComponent({ spot, bool2 }) {
   const dispatch = useDispatch();
   const searchCriteria = useSelector((state) => state.search);
-  // const user = useSelector((state) => state.session.user);
-  // const bookings = useSelector((state) => state.booking);
 
   let searchedStartDate = searchCriteria?.startDate;
   let searchedEndDate = searchCriteria?.endDate;
@@ -32,8 +30,6 @@ export default function ReserveFormComponent({ spot, bool2 }) {
   let bool = false;
   let dayCount = false;
 
-  // const bookingsArr = Object.values(bookings);
-
   if (y > x) {
     dayCount = (y - x) / 60 / 60 / 1000 / 24;
   }
@@ -50,68 +46,6 @@ export default function ReserveFormComponent({ spot, bool2 }) {
   tomorrow.setDate(today.getDate() + 1);
   today = today.toISOString().split("T")[0];
   tomorrow = tomorrow.toISOString().split("T")[0];
-
-  // const specificBookings = bookingsArr.filter((b) => {
-  //   return b["spotId"] === +spotId;
-  // });
-
-  // if (user === undefined) {
-  //   bool = false;
-  // } else {
-  //   if (specificBookings?.length === 0) {
-  //     bool = true;
-  //   } else {
-  //     specificBookings?.forEach((booking) => {
-  //       if (startDate <= endDate) {
-  //         if (booking.startDate < startDate && endDate <= booking.endDate) {
-  //           console.log("yee1");
-  //           bool = false;
-  //           return;
-  //         }
-
-  //         if (
-  //           startDate <= booking.startDate &&
-  //           booking.startDate <= endDate &&
-  //           endDate <= booking.endDate
-  //         ) {
-  //           console.log("yee2");
-
-  //           bool = false;
-
-  //           return;
-  //         }
-
-  //         if (
-  //           startDate <= booking.startDate &&
-  //           booking.startDate <= endDate &&
-  //           endDate <= booking.endDate
-  //         ) {
-  //           console.log("yee3");
-  //           bool = false;
-  //           return;
-  //         }
-
-  //         if (startDate <= booking.startDate && booking.endDate <= endDate) {
-  //           console.log("yee4");
-  //           bool = false;
-  //           return;
-  //         }
-
-  //         if (
-  //           booking.startDate <= startDate &&
-  //           booking.endDate <= endDate &&
-  //           startDate <= booking.endDate
-  //         ) {
-  //           console.log("yee5");
-  //           bool = false;
-  //           return;
-  //         }
-
-  //         bool = true;
-  //       }
-  //     });
-  //   }
-  // }
 
   useEffect(() => {
     dispatch(getBookings());

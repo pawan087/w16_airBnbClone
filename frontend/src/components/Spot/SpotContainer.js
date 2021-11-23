@@ -99,20 +99,17 @@ export default function SpotsContainer() {
       }
 
       if (x === startDate) {
-        // console.log("yee1");
         bool = true;
         return;
       }
 
       if (endDate === y) {
-        // console.log("yee1");
         bool = true;
         return;
       }
 
       if (sd <= ed) {
         if (booking.startDate <= sd && ed <= booking.endDate) {
-          // console.log("yee2");
           bool = true;
           return;
         }
@@ -122,13 +119,11 @@ export default function SpotsContainer() {
           booking.startDate <= ed &&
           ed <= booking.endDate
         ) {
-          // console.log("yee3");
           bool = true;
           return;
         }
 
         if (sd <= booking.startDate && booking.endDate <= ed) {
-          // console.log("yee4");
           bool = true;
           return;
         }
@@ -138,14 +133,16 @@ export default function SpotsContainer() {
           booking.endDate <= ed &&
           sd < booking.endDate
         ) {
-          // console.log("yee5");
-          // bool = true;
           return;
         }
-
-        // bool = false;
       }
     });
+  }
+
+  let spotIds = [];
+
+  for (let spot of spotsArr) {
+    spotIds.push(spot.id);
   }
 
   useEffect(() => {
@@ -159,6 +156,10 @@ export default function SpotsContainer() {
   }, [startDate, endDate, dispatch, searchCriteria]);
 
   if (!spot) return <Redirect to="/" />;
+
+  if (!spotIds?.includes(+spotId)) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={styles.outerContainer}>

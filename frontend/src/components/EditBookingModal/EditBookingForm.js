@@ -54,21 +54,16 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
     let y = new Date(booking.endDate);
 
     if (x.getTime() === ed.getTime()) {
-      // bool = true;
-      // console.log("yee1");
       return;
     }
 
     if (sd.getTime() === y.getTime()) {
-      // bool = true;
-      // console.log("yee2");
       return;
     }
 
     if (sd.getTime() < ed.getTime()) {
       if (x.getTime() <= sd.getTime() && ed.getTime() <= y.getTime()) {
         bool = true;
-        // console.log("yee3");
         return;
       }
       if (
@@ -77,12 +72,10 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
         ed.getTime() <= y.getTime()
       ) {
         bool = true;
-        // console.log("yee4");
         return;
       }
       if (sd.getTime() <= x.getTime() && y.getTime() <= ed.getTime()) {
         bool = true;
-        // console.log("yee5");
         return;
       }
       if (
@@ -91,13 +84,10 @@ function EditBookingForm({ name, username, booking, setShowModal }) {
         sd.getTime() <= y.getTime()
       ) {
         bool = true;
-        // console.log("yee6");
         return;
       }
       return;
     }
-
-    // bool = false;
   });
 
   const selectionRange = {

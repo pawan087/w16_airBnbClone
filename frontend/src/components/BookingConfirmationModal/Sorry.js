@@ -29,13 +29,11 @@ export default function Sorry() {
             Sorry, this Bnb is unavailable during that time
           </div>
 
-          {true && (
-            <div className={styles.subtitle}>
-              {
-                "Please consider another time period, apart from what's listed below:"
-              }
-            </div>
-          )}
+          <div className={styles.subtitle}>
+            {
+              "Please consider another time period, apart from what's listed below:"
+            }
+          </div>
         </div>
 
         <div className={styles.middleContainer}>
