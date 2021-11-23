@@ -173,8 +173,8 @@ export default function ReserveFormComponent({ spot, bool2 }) {
           <label className={styles.guestLabel}>Guests</label>
 
           <input
-            defaultValue="0"
-            min="0"
+            defaultValue="1"
+            min="1"
             className={styles.guestInput}
             type="number"
           ></input>

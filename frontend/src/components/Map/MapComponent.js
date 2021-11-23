@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { useParams } from "react-router";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 // import getCenter from "geolib/es/getCenter";
 
@@ -8,6 +9,7 @@ import styles from "../Map/MapComponent.module.css";
 
 export default function MapComponent({ id, lat, lng }) {
   const history = useHistory();
+  const { spotId } = useParams();
 
   const [selectedLocation, setSelectedLocation] = useState({});
 
@@ -16,7 +18,7 @@ export default function MapComponent({ id, lat, lng }) {
     height: "100%",
     latitude: lat,
     longitude: lng,
-    zoom: 6,
+    zoom: spotId ? 11 : 6,
   });
 
   const spots = useSelector((state) => state.spot);
@@ -71,10 +73,15 @@ export default function MapComponent({ id, lat, lng }) {
   });
 
   const filteredSearchResults = searchResultsArr.filter((searchResult) => {
+    if (spotId) {
+      return (
+        !unavailableBookings.includes(searchResult.id) &&
+        searchResult.id === spotId
+      );
+    }
+
     return !unavailableBookings.includes(searchResult.id);
   });
-
-  console.log(filteredSearchResults)
 
   const linkMe = (e, id) => {
     e.preventDefault();
