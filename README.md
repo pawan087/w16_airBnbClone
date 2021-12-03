@@ -2,6 +2,8 @@
 
 airBnbClone is a website designed to let users make accommodations around the world.
 
+https://airbnbclone-bypawan.herokuapp.com/
+
 # Technologies Used
 airBnbClone was built using JavaScript, HTML, and CSS. The backend core server and database were created using sequelize and express, respectively. While the HTML (through the use of react) used to structure the app, and CSS was used to style it.
 
