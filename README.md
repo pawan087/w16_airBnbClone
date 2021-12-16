@@ -83,7 +83,7 @@ To make an accommodation, users can sign-up on the "Sign Up" page which offers a
 
 Returning users can log-back into their existing accounts by visiting the "Sign In" page. This page is easily accessible from the top right submenu found in the navigation bar.
 
-If per-chance a user would like to test-drive this application's features and not create an account, there is an option for guests to log-in as "Demo User" accessible through the same submenu as forementioned.
+If per-chance a user would like to test-drive this application's features and not create an account, there is an option for guests to log-in as "Demo User," accessible through the same submenu as forementioned.
 
 <br>
 
