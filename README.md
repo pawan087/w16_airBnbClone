@@ -173,7 +173,7 @@ With the MapBox API integration already in place, I aim to provide users the fun
 
 ## Creating New Bookings
 
-I would like to give the opportunity for users to list their own home or locations that others may reserve. Currently this access is not granted. Owner profiles would first have to be established to set apart users who do not own a listing; subsequently denying accessibility to edit someone elses's listing's information, or removing the listing entirely from the marketplace. AWS S3 integration would be most appropriate alongside this feature, to allow users to upload a listings corresponding photos and/or other related media.
+I would like to give the opportunity for users to list their own home or locations that others may reserve. Currently this access is not granted. Owner profiles would first have to be established to set apart users who do not own a listing; subsequently denying accessibility to edit someone elses's listing's information, or removing the listing entirely from the marketplace. AWS S3 integration would be most appropriate alongside this feature to allow users to upload a listings corresponding photos and/or other related media.
 
 <br>
 
