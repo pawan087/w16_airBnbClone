@@ -167,7 +167,7 @@ Leaving reviews is fun and provides valuable insight for future users! To write 
 
 ## Search by Location
 
-With the MapBox API integration already in place, I aim to provide users the functionality to search within a "X" mile radius from where they are currently located. The longitudinal and latitudinal coordinates of the user would be accessed via the browser upon user granting permission. These coordinates would be used to calculate distances from nearby booking locations that may be of interest to the user.
+With the MapBox API integration already in place, I aim to provide users the functionality to search within a "X" mile radius from where they are currently located. The longitudinal and latitudinal coordinates of the user would be accessed via the browser upon user granting permission. These coordinates would be used to calculate distances from nearby booking locations that may be of particular interest to the user.
 
 <br>
 
