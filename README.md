@@ -111,7 +111,7 @@ This option is great for new users who want to get a feel for the application's 
 
 ## Search Feature
 
-Got an idea of what you're looking for? Users can utilize the "Search Feature" found directly in the navigation menu! Accommodations may be searched for by "City Name" and "Dates". Finding your next adventure never's been easier!
+Got an idea of what you're looking for? Users can utilize the "Search Feature" found directly in the navigation menu. Accommodations may be searched for by "City Name" and "Dates". Finding your next adventure never's been easier!
 
 <br>
 
