@@ -99,7 +99,7 @@ If per-chance a user would like to test-drive this application's features and no
 
 ## Explore
 
-Upon landing on the splash page, a user can opt for the choice of being flexible and pressing the "I'm Flexible" button which will directly navigate the user to an "Explore Page." From here, the user can experience all of which airBnb has to offer throughout the state of California.
+Upon landing on the splash page, a user can opt for the choice of being flexible and pressing the "I'm Flexible" button which will directly navigate the user to an "Explore Page." From here the user can experience all of which airBnb has to offer throughout the state of California.
 
 This option is great for new users who want to get a feel for the application's features and functionality!
 
