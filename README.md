@@ -6,9 +6,9 @@
   <h3 align="center">airBnb</h3>
 
   <p align="center">
-    An accommodations booking website based off of <a target="_blank" href="https://www.gamestop.com/">Airbnb.com</a>
+    An accommodations booking website based off of <a target="_blank" href="https://www.airbnb.com/">Airbnb.com</a>
     <br />
-    <a href="https://airbnb-pawan.herokuapp.com/" target="_blank"><strong>Explore the website »</strong></a>
+    <a href="https://airbnbpawan.herokuapp.com/" target="_blank"><strong>Explore the website »</strong></a>
     <br />
     <br />
   </p>
@@ -186,7 +186,7 @@ Pawan Chahal:
 
 Project Repo Link: https://github.com/pawan087/w16_airBnbClone
 
-Project Link: https://airbnb-pawan.herokuapp.com/
+Project Link: https://airbnbpawan.herokuapp.com/
 
 <br>
 
